@@ -1,0 +1,149 @@
+
+<p-tabView class="tabelaEstabelecimento">
+    <p-tabPanel header="Listagem">
+        <ng-template pTemplate="header">
+            <i class="pi pi-list" style="color:#181818"></i>
+            <span>Cadastros Gerais</span>
+        </ng-template>
+        <div class="card table-responsive">
+            <p-table 
+                #dt
+                sortField=""
+                dataKey="id"
+                styleClass="p-datatable-striped"
+                [tableStyle]="{'min-width': '50rem'}"
+                [paginator]="true" 
+                [rows]="5" 
+                [showCurrentPageReport]="true" 
+                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} páginas"
+                [filterDelay]="0"
+                [globalFilterFields]="['id','status', 'nome', 'chaveRegistro', 'serialNumber']">
+                <ng-template pTemplate="caption">
+                    <!-- Input para filtrar dados da Tabela -->
+                    <div class="d-flex align-items-center">
+                        <!-- <button class="btn btn-dark" (click)="clear(dt)">
+                            <span class="me-2">Limpar filtros</span>
+                            <i class="pi pi-filter-slash"></i>
+                        </button> -->
+                        <a  class="btn btn-primary ms-auto me-2"  [routerLink]="['cadastrar']">Cadastrar</a>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <!-- <input class="p-inputtext"  pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Digite a Palavra-Chave" /> -->
+                        </span>
+                    </div>
+               </ng-template>
+                <ng-template pTemplate="header">
+                    <tr >
+                        <th pSortableColumn="id" class="dispositivo__alerta">
+                            Nome
+                            <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
+                            <p-sortIcon field="id"></p-sortIcon> </th> 
+                        <th pSortableColumn="status" class="dispositivo__alerta">
+                            Páginas Com Exercícios
+                            <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+                            <p-sortIcon field="status"></p-sortIcon> </th>
+                        <th pSortableColumn="nome" class="dispositivo__status">
+                            Material Extra  
+                            <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
+                            <p-sortIcon field="nome"></p-sortIcon></th>     
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item  let-i="rowIndex" let-expanded="expanded">
+                    <tr 
+                        class="dispositivo__container" 
+                        [class.dispositivo__icone-alerta]="item.status == true" 
+                        [class.dispositivo__icone-ok]="item.status == false">
+                        <td>{{item.id}}</td>
+                        <td>
+                           
+                        </td>
+                        <td 
+                            class="dispositivo__alerta">
+                            <p>{{item.nome}}</p>
+                        </td>
+                        <td class="dispositivo__status">
+                            {{item.chaveRegistro}}
+                            <!-- <button type="button" pButton pRipple [pRowToggler]="item" class="p-button-text p-button-rounded p-button-plain mr-2" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-down'">
+                            </button> -->
+                            <!-- <div class="alerta__container" *ngIf="item.status == 'OK'">
+                                <fa-icon class="icone__check icone__tabela" [icon]="faCheck"></fa-icon>
+                            </div>
+                            <div class="" *ngIf="item.status == 'ALERTA'">
+                                <fa-icon class="icone__alerta icone__tabela" [icon]="faTriangleExclamation"></fa-icon>
+                            </div> -->
+                        </td>
+                        <td class="dispositivo__alerta">
+                            {{item.serialNumber}}
+                        </td>
+                        <td>
+                            <a class="btn btn-primary me-2" [routerLink]="['editar',item.id ]">Editar</a>
+                            <a class="btn btn-dark" [routerLink]="['excluir',item.id]">Excluir</a>
+                        </td>
+                         <td></td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Map">
+        <ng-template pTemplate="header">
+            <i class="pi pi-list" style="color: #181818"></i>
+            <span>Lançar Aula</span>
+        </ng-template>
+        <div class="card">
+            <p-table class="dataTable">
+                <ng-template pTemplate="header">
+                    <tr >
+                        <th pSortableColumn="id" class="dispositivo__alerta">
+                            Nome
+                            <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
+                            <p-sortIcon field="id"></p-sortIcon> </th> 
+                        <th pSortableColumn="status" class="dispositivo__alerta">
+                            Páginas Com Exercícios
+                            <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+                            <p-sortIcon field="status"></p-sortIcon> </th>
+                        <th pSortableColumn="nome" class="dispositivo__status">
+                            Material Extra  
+                            <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
+                            <p-sortIcon field="nome"></p-sortIcon></th>     
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Map">
+        <ng-template pTemplate="header">
+            <i class="pi pi-list" style="color: #181818"></i>
+            <span>Gerenciar Reposições</span>
+        </ng-template>
+        <div class="card">
+            <p-table class="dataTable">
+                <ng-template pTemplate="header">
+                    <tr >
+                        <th pSortableColumn="id" class="dispositivo__alerta">
+                            Nome
+                            <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
+                            <p-sortIcon field="id"></p-sortIcon> </th> 
+                        <th pSortableColumn="status" class="dispositivo__alerta">
+                            Páginas Com Exercícios
+                            <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+                            <p-sortIcon field="status"></p-sortIcon> </th>
+                        <th pSortableColumn="nome" class="dispositivo__status">
+                            Material Extra  
+                            <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
+                            <p-sortIcon field="nome"></p-sortIcon></th>     
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </p-tabPanel>
+</p-tabView>
+
+<router-outlet></router-outlet>

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './pages/header/header.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { HeaderComponent } from './pages/header/header.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

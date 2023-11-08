@@ -1,20 +1,78 @@
 
-.background{
+.home_body{
     margin: 0 0;
     padding: 0 0;
-    background-color: #868686;
+    top: 0;
+    background-color: #cacaca;
     width: 100vw;
     height: 100vh;
-    position: fixed;
+    position: relative;
 }
 
-
-img {
+.background img {
     display: block;
     width: 250px;
     padding: 80px;
     position: center;
     margin: 0 auto;
-    opacity: 0.3;
+    z-index: 1;
     transform: translateY(50%);
+}
+
+.background{
+    opacity: 0.2;
+	display: block;
+	position: relative;
+}
+
+.carrousell img{
+		display: block;
+		width: 100%;
+		height: auto;
+        opacity: 0;
+        z-index: 2;
+}
+
+.slide{
+    img {
+		display: block;
+		width: 100%;
+		height: auto;
+        opacity: 0;
+        z-index: 2;
+	}
+}
+
+Styling the default Slick dots
+
+.slick-dots {
+	display: flex;
+	justify-content: center;
+	
+	margin: 0;
+	padding: 1rem 0;
+	
+	list-style-type: none;
+	
+		li {
+			margin: 0 0.25rem;
+		}
+	
+		button {
+			display: block;
+			width: 1rem;
+			height: 1rem;
+			padding: 0;
+			
+			border: none;
+			border-radius: 100%;
+			background-color: blue;
+			
+			text-indent: -9999px;
+		}
+	
+		li.slick-active button {
+			background-color: red;
+		}
+	
 }

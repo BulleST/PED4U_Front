@@ -1,5 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
 * {
     margin: 0;
     padding: 0;
+}
+
+:root {
+    --primary: #ff6315;
+    --primary-highlight: #8c47dc;
+    --secondary: #fff;
+    --secondary-highlight: #F94184 ;
+    --grey: #181818;
+    --grey-highlight: #5a5c60;
+}
+
+.p-tabview-nav-link span {
+    font-size: 14pt;
+    margin-left: 20px;
+    background: #ffffff;
+    border-color: #181818;
+    color: #ff6315;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    border: solid #dee2e6;
+    border-width: 0 0 2px 0;
+    border-color: transparent transparent #dee2e6 transparent;
+    background: #ffffff;
+    color: #ff6315;
+    padding: 1.25rem;
+    font-weight: 700;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    transition: box-shadow 0.2s;
+    margin: 0 0 -2px 0;
+}
+
+.p-datatable .p-datatable-thead > tr > th,
+.bg-primary {
+    --bs-bg-opacity: 1;
+    background-color: var(--grey-highlight)!important;
+    color: #fff!important;
+}
+
+.p-column-filter-menu-button,
+.p-datatable .p-sortable-column .p-sortable-column-icon {
+    color: #fff!important;
 }

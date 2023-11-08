@@ -1,0 +1,58 @@
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    border: solid #dee2e6;
+    border-width: 0 0 2px 0;
+    border-color: transparent transparent #dee2e6 transparent;
+    background: #ffffff;
+    color: #181818;
+    padding: 1.25rem;
+    font-weight: 700;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    transition: box-shadow 0.2s;
+    margin: 0 0 -2px 0;
+}
+
+.p-tabview-nav-link span {
+    font-size: 15pt;
+    margin-left: 20px;
+    background: #ffffff;
+    border-color: #343a40;
+    color: #181818;
+
+}
+.p-datatable .p-datatable-thead > tr > th {
+    text-align: center;
+    padding: 20px 4px;
+    border: 1px solid #dee2e6;
+    border-width: 0 0 1px 0;
+    font-weight: 700;
+    color: #343a40;
+    background: #f8f9fa;
+    transition: box-shadow 0.2s;
+    font-size: 11pt;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    text-align: center;
+    border: 1px solid #dee2e6;
+    border-width: 0 0 1px 0;
+    padding: 1rem;
+}
+
+.flex {
+    display: flex!important;
+    justify-content: space-between;
+}
+
+.p-button.p-button-outlined {
+    background-color: transparent;
+    color: #181818;
+    border: 1px solid;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
