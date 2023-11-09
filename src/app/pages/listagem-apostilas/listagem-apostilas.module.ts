@@ -5,6 +5,7 @@ import { RouterModule } from "@angular/router";
 import { ListagemApostilas } from "./listagem-apostilas.component";
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
+import { PanelMenuModule } from 'primeng/panelmenu';
 
 @NgModule ({
     declarations: [ 
@@ -16,7 +17,8 @@ import { TabViewModule } from 'primeng/tabview';
         RouterModule,
         ListagemApostilasRoutingModule,
         TableModule,
-        TabViewModule
+        TabViewModule,
+        PanelMenuModule
     ],
 })
 

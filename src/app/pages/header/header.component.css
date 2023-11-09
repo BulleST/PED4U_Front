@@ -1,8 +1,6 @@
 
 
-.header{
-    width: 100vw;
-    height: 10vh;
+#panelMenu{
     margin: 0;
     padding: 0;
     top: 0;
@@ -17,7 +15,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    margin-right: 50px;
+    margin: 0 50px;
 }
 
 
@@ -72,10 +70,47 @@ ul {
     margin-bottom: 0;
 }
 
-nav {
+/* nav {
     width: 80%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+} */
+
+.p-button {
+    margin: 0;
+    display: inline-flex;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    align-items: center;
+    vertical-align: bottom;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.p-button {
+    color: #ffffff;
+    background: #ff6315;
+    border: 1px solid #ff6315;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+}
+
+.p-component, .p-component * {
+    box-sizing: border-box;
+}
+
+button {
+    font-family: inherit;
+    font-feature-settings: inherit;
+}
+
+.p-button:enabled:hover {
+    background: #F94184;
+    color: #ffffff;
 }

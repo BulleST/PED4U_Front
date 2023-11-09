@@ -11,8 +11,8 @@
 
 .background img {
     display: block;
-    width: 250px;
-    padding: 80px;
+    width: 400px;
+    padding: 20px;
     position: center;
     margin: 0 auto;
     z-index: 1;
@@ -25,21 +25,25 @@
 	position: relative;
 }
 
-.carrousell img{
-		display: block;
-		width: 100%;
-		height: auto;
-        opacity: 0;
-        z-index: 2;
-}
+/* .carrousell img{
+	display: block;
+    width: 250px;
+    padding: 80px;
+    position: center;
+    margin: 0 auto;
+    z-index: 1;
+    transform: translateY(50%);
+} */
 
 .slide{
     img {
 		display: block;
-		width: 100%;
-		height: auto;
-        opacity: 0;
-        z-index: 2;
+		width: 32px;
+		padding: 10px;
+		position: center;
+		margin: 0 auto;
+		z-index: 1;
+		transform: translateY(50%);
 	}
 }
 
