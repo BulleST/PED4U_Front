@@ -1,0 +1,23 @@
+<div class="header">
+    <div class="menu_header">
+        <div class="button_header">
+            <p-menu #menu [model]="items" [popup]="true"></p-menu>
+            <button pButton type="button" (click)="menu.toggle($event)" icon="pi pi-angle-down" label="Cadastros Gerais"></button>
+        </div>
+        <div class="button_header">
+            <p-menu #menu [model]="items" [popup]="true"></p-menu>
+            <button pButton type="button"  label="Lançar Aula">
+            </button>
+        </div>
+        <div class="button_header">
+            <p-menu #menu [model]="items" [popup]="true"></p-menu>
+            <button pButton type="button"  label="Gerenciar Reposições"></button>
+        </div>
+        <div class="button_header">
+            <button class="btn-header" type="button" (click)="clickMethod('name')">Fazer Login</button>
+        </div>
+    </div>
+   
+</div>
+       
+

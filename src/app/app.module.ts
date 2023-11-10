@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './pages/header/header.component';
+import { HeaderComponent } from './header-parts/header/header.component';
 import { TableModule } from 'primeng/table';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { PanelModule } from 'primeng/panel';

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const home = () => import ('./pages/home/home.module').then(res => res.HomeModule)
+const home = () => import ('./header-parts/home/home.module').then(res => res.HomeModule)
 const listagemApostilas = () => import ('./pages/listagem-apostilas/listagem-apostilas.module').then(res => res.ListagemApostilasModule)
 
 const routes: Routes = [

@@ -48,3 +48,10 @@
 .p-datatable .p-sortable-column .p-sortable-column-icon {
     color: #fff!important;
 }
+
+.p-menu .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {
+    color: #495057;
+    font-size: 12pt;
+    padding: 5px;
+}
+
