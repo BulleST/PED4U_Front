@@ -1,25 +1,25 @@
-import { ListagemApostilasRoutingModule } from "./listagem-apostilas.routing";
+import { ApostilasAbacoRoutingModule } from "./apostilas-abaco.routing";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-import { ListagemApostilas } from "./listagem-apostilas.component";
+import { ApostilasAbacoComponent  } from "./apostilas-abaco.component";
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { PanelMenuModule } from 'primeng/panelmenu';
 
 @NgModule ({
     declarations: [ 
-        ListagemApostilas,
+        ApostilasAbacoComponent,
         
     ],
     imports: [
         CommonModule,
         RouterModule,
-        ListagemApostilasRoutingModule,
+        ApostilasAbacoRoutingModule,
         TableModule,
         TabViewModule,
         PanelMenuModule
     ],
 })
 
-export class ListagemApostilasModule {}
+export class ApostilasAbacoModule {}

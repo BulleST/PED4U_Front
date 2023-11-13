@@ -10,9 +10,13 @@
     border-top-left-radius: 6px;
     transition: box-shadow 0.2s;
     margin: 0 0 -2px 0;
+    display: flex;
+    flex-direction: row;
 }
 
 .p-tabview-nav-link span {
+    display: flex;
+    flex-direction: row;
     font-size: 15pt;
     margin-left: 20px;
     background: #ffffff;
@@ -32,12 +36,7 @@
     font-size: 11pt;
 }
 
-.p-datatable .p-datatable-tbody > tr > td {
-    text-align: center;
-    border: 1px solid #dee2e6;
-    border-width: 0 0 1px 0;
-    padding: 1rem;
-}
+
 
 .flex {
     display: flex!important;
@@ -55,4 +54,22 @@
 td {
     text-align: center;
     vertical-align: middle;
+}
+
+ .p-tabview .p-tabview-nav ul {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+}
+
+.p-checkbox .p-checkbox-box {
+    border: 2px solid #ced4da;
+    background: #ffffff;
+    width: 22px;
+    height: 22px;
+    color: #495057;
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }

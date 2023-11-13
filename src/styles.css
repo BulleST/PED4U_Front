@@ -16,7 +16,7 @@
 }
 
 .p-tabview-nav-link span {
-    font-size: 14pt;
+    font-size: 18pt;
     margin-left: 20px;
     background: #ffffff;
     border-color: #181818;
@@ -55,3 +55,34 @@
     padding: 5px;
 }
 
+ul .p-tabview .p-tabview-nav-content  {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    text-align: center;
+    border: 1px solid #dee2e6;
+    border-width: 0 0 1px 0;
+    padding: 1rem;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #dee2e6;
+    border-width: 0 0 1px 0;
+    font-weight: 700;
+    color: #343a40;
+    background: #f8f9fa;
+    transition: box-shadow 0.2s;
+}
+
+.p-input-icon-left>i, .p-input-icon-left>.p-icon-wrapper, .p-input-icon-right>i, .p-input-icon-right>.p-icon-wrapper {
+    position: absolute;
+    top: 50%;
+    margin-top: -0.5rem;
+}
