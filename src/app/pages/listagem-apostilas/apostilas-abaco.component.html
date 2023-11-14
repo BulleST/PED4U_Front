@@ -5,7 +5,7 @@
             <p-table 
                 #dt
                 class="table"
-                [value]="listagem"
+                [value]="listApostila"
                 sortField=""
                 dataKey="id"
                 styleClass="p-datatable-striped"
@@ -17,39 +17,37 @@
                 [filterDelay]="0"
                 [globalFilterFields]="['id','status', 'nome', 'chaveRegistro', 'serialNumber']">
                 <ng-template pTemplate="caption">
-                    <!-- Input para filtrar dados da Tabela -->
-                    <div class="d-flex align-items-center">
-                        <!-- <button class="btn btn-dark" (click)="clear(dt)">
+                     <!-- Input para filtrar dados da Tabela -->
+                     <div class="d-flex align-items-center">
+                        <button class="btn btn-dark" (click)="clear(dt)">
                             <span class="me-2">Limpar filtros</span>
                             <i class="pi pi-filter-slash"></i>
-                        </button> -->
+                        </button>
                         <a  class="btn btn-primary ms-auto me-2"  [routerLink]="['cadastrar']">Cadastrar</a>
                         <span class="p-input-icon-left">
                             <i class="pi pi-search"></i>
-                            <!-- <input class="p-inputtext"  pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Digite a Palavra-Chave" /> -->
+                            <input class="p-inputtext"  pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Digite a Palavra-Chave" />
                         </span>
                     </div>
                </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
                         <th></th>
-                        
-                        <th pSortableColumn="" class="">
+                        <th pSortableColumn="nome" class="nome">
                             Nome
-                            <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
-                            <p-sortIcon field=""></p-sortIcon> </th> 
-                        <th pSortableColumn="" class="">
+                            <p-columnFilter type="text" field="Nome" display="menu"></p-columnFilter>
+                            <p-sortIcon field="nome"></p-sortIcon> </th> 
+                        <th pSortableColumn="paginas" class="paginas">
                             Páginas Com Exercícios
-                            <p-columnFilter type="text" field="" display="menu"></p-columnFilter>
-                            <p-sortIcon field=""></p-sortIcon> </th>
-                        <th pSortableColumn="" class="">
+                            <p-columnFilter type="text" field="paginas" display="menu"></p-columnFilter>
+                            <p-sortIcon field="paginas"></p-sortIcon> </th>
+                        <th pSortableColumn="material" class="material">
                             Material Extra  
-                            <p-columnFilter type="text" field="" display="menu"></p-columnFilter>
-                            <p-sortIcon field=""></p-sortIcon></th>     
+                            <p-columnFilter type="text" field="material" display="menu"></p-columnFilter>
+                            <p-sortIcon field="material"></p-sortIcon></th>     
                         <th></th>
                         <th></th>
                         <th></th>
-
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-item>

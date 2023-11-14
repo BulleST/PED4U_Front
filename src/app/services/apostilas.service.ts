@@ -7,11 +7,11 @@ import { ApostilasAbaco } from "../pages/listagem-apostilas/apostilas-abaco.mode
   })
 
 export class ApostilasService{
-    listagem: BehaviorSubject<ApostilasAbaco[]> = new BehaviorSubject<ApostilasAbaco[]>([])
+    listApostila: BehaviorSubject<ApostilasAbaco[]> = new BehaviorSubject<ApostilasAbaco[]>([])
 
     constructor(){
         var index = 0
-        this.listagem.next([
+        this.listApostila.next([
             {id: ++index, nome: 'Básico 1 ' , paginas: index++, material: false},
             {id: ++index, nome: 'Básico 2 ' , paginas: index++, material: false},
             {id: ++index, nome: 'Básico 3 ' , paginas: index++, material: false},

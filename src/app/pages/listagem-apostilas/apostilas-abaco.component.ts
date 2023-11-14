@@ -1,7 +1,8 @@
 
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ApostilasAbaco } from './apostilas-abaco.model';
 import { ApostilasService } from 'src/app/services/apostilas.service';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'apostilas-abaco-apostilas',
@@ -9,14 +10,23 @@ import { ApostilasService } from 'src/app/services/apostilas.service';
   styleUrls: ['./apostilas-abaco.component.css']
 })
 export class ApostilasAbacoComponent {
-
-  listagem: ApostilasAbaco[] = [];
+  listApostila: ApostilasAbaco[] = [];
+  @ViewChild('dt') dt!: Table;
 
   constructor(private apostilasService: ApostilasService){
-    this.apostilasService.listagem.subscribe((data) =>{
-      this.listagem = Object.assign([], data);
+    this.apostilasService.listApostila.subscribe((data) =>{
+      this.listApostila = Object.assign([], data);
       console.log('lista de apostilas ', data)
     })
+  }
 
+  // Função para limpar os filtros aplicados na tabela
+  clear(table: Table) {
+    table.clear();
+  }
+
+  // Função para filtrar a tabela a partir do input
+  applyFilterGlobal(event: any, filterType: string) {
+    this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);
   }
 }

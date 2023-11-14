@@ -1,0 +1,99 @@
+<p-tabView class="alunos">
+    <p-tabPanel header="Alunos">
+        <div class="card table-responsive">
+            <p-table 
+                #dt
+                class="table"
+                [value]="listAlunos"
+                sortField=""
+                dataKey="id"
+                styleClass="p-datatable-striped"
+                [tableStyle]="{'min-width': '50rem'}"
+                [paginator]="true" 
+                [rows]="8" 
+                [showCurrentPageReport]="true" 
+                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} páginas"
+                [filterDelay]="0"
+                [globalFilterFields]="['id','nome', 'telefone', 'idade', 'genero', 'horario', 'semana', 'perfil', 'vigencia' ]">
+                <ng-template pTemplate="caption">
+                    <!-- Input para filtrar dados da Tabela -->
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-clear" (click)="clear(dt)">
+                            <span class="me-2">Limpar filtros</span>
+                            <i class="pi pi-filter-slash"></i>
+                        </button>
+                        <a  class="btn btn-primary ms-auto me-2"  [routerLink]="['cadastrar']">Cadastrar</a>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input class="p-inputtext"  pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Digite a Palavra-Chave" />
+                        </span>
+                    </div>
+               </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>  
+                        <th  class="id" pSortableColumn="id">
+                            Id
+                            <p-columnFilter style="color: #fff" type="text" field="id" display="menu"></p-columnFilter>
+                            <p-sortIcon field="id"></p-sortIcon> </th> 
+                        <th  class="nome" pSortableColumn="nome">
+                            Nome
+                            <p-columnFilter style="color: #fff" type="text" field="nome" display="menu"></p-columnFilter>
+                            <p-sortIcon field=""></p-sortIcon> </th> 
+                        <th class="telefone" pSortableColumn="telefone" >
+                            Telefone
+                            <p-columnFilter style="color: #fff" type="text" field="telefone" display="menu"></p-columnFilter>
+                            <p-sortIcon field="telefone"></p-sortIcon> </th>
+                        <th class="idade" pSortableColumn="idade" >
+                            Idade
+                            <p-columnFilter style="color: #fff" type="text" field="idade" display="menu"></p-columnFilter>
+                            <p-sortIcon field="idade"></p-sortIcon></th>     
+                         <th pSortableColumn="genero" class="genero">
+                           Gênero
+                            <p-columnFilter style="color: #fff" type="text" field="genero" display="menu"></p-columnFilter>
+                            <p-sortIcon field=""></p-sortIcon></th>     
+                        <th pSortableColumn="horario" class="horario">
+                            Horário
+                            <p-columnFilter style="color: #fff" type="text" field="horario" display="menu"></p-columnFilter>
+                            <p-sortIcon field="horario"></p-sortIcon></th>
+                        <th pSortableColumn="semana" class="semana">
+                            Dia da semana
+                            <p-columnFilter style="color: #fff" type="text" field="semana" display="menu"></p-columnFilter>
+                            <p-sortIcon field="semana"></p-sortIcon></th>    
+                        <th pSortableColumn="perfil" class="perfil">
+                            Perfil
+                            <p-columnFilter type="text" field="perfil" display="menu"></p-columnFilter>
+                            <p-sortIcon field="perfil"></p-sortIcon></th>
+                        <th pSortableColumn="vigente" class="vigente">
+                            Vigência
+                            <p-columnFilter style="color: #fff" type="text" field="vigente" display="menu"></p-columnFilter>
+                            <p-sortIcon field="vigente"></p-sortIcon></th>    
+                        <th></th>
+                        
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.nome}}</td>
+                        <td>{{item.telefone}}</td>
+                        <td>{{item.idade}}</td>
+                        <td>{{item.genero}}</td>
+                        <td>{{item.horario| date:'shortTime'}}</td>
+                        <td>{{item.semana}}</td>
+                        <td>{{item.perfil}}</td>
+                        <td><p-tableCheckbox [value]="item"></p-tableCheckbox></td>
+                        <td>
+                            <a class="btn btn-primary me-2" [routerLink]="['editar',item.id ]">Editar</a>
+                            <a class="btn btn-dark" [routerLink]="['excluir',item.id]">Excluir</a>
+                        </td>
+                        
+                         
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </p-tabPanel>
+</p-tabView>
+
+<router-outlet></router-outlet>

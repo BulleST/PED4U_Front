@@ -20,11 +20,13 @@ export class HeaderComponent implements OnInit{
                 items: [
                     {
                         label: 'Apostilas de ábaco',
+                        routerLink: ['apostilas-abaco']
                         
                       
                     },
                     {
                         label: 'Alunos',
+                        routerLink: ['alunos']
                         
                         
                     },
