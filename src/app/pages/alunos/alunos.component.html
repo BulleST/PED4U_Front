@@ -1,5 +1,8 @@
 <p-tabView class="alunos">
-    <p-tabPanel header="Alunos">
+    <p-tabPanel>
+        <ng-template pTemplate="header">
+            <span>Alunos</span>
+        </ng-template>
         <div class="card table-responsive">
             <p-table 
                 #dt
@@ -16,17 +19,23 @@
                 [filterDelay]="0"
                 [globalFilterFields]="['id','nome', 'telefone', 'idade', 'genero', 'horario', 'semana', 'perfil', 'vigencia' ]">
                 <ng-template pTemplate="caption">
-                    <!-- Input para filtrar dados da Tabela -->
-                    <div class="d-flex align-items-center">
-                        <button class="btn btn-clear" (click)="clear(dt)">
-                            <span class="me-2">Limpar filtros</span>
-                            <i class="pi pi-filter-slash"></i>
-                        </button>
-                        <a  class="btn btn-primary ms-auto me-2"  [routerLink]="['cadastrar']">Cadastrar</a>
-                        <span class="p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input class="p-inputtext"  pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Digite a Palavra-Chave" />
-                        </span>
+                    <div class="flex">
+                        <!-- Button para realizar cadastros na Tabela -->
+                        <div class="">
+                            <a  class="btn-primary"  [routerLink]="['cadastrar']">Cadastrar</a>
+                        </div>
+                        <!-- Button para limpar filtros aplicados na Tabela -->
+                        <div class="p-2">
+                            <button class="btn-clear" (click)="clear(dt)">
+                                <span class="me-2">Limpar filtros</span>
+                                <i class="pi pi-filter-slash"></i>
+                            </button>
+                            <!-- Input para palavras-chave dados da Tabela -->
+                            <span class="p-2 p-input-icon-right">
+                                <i class="pi pi-search"></i>
+                                <input class="p-inputtext"  pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Digite a Palavra-Chave" />
+                            </span>
+                        </div>
                     </div>
                </ng-template>
                 <ng-template pTemplate="header">

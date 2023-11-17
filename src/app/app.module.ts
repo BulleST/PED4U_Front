@@ -12,6 +12,8 @@ import { CardModule } from 'primeng/card';
 import { MenuModule } from 'primeng/menu';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -31,6 +33,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MenuModule,
     ToastModule,
     BrowserAnimationsModule,
+    FormsModule,
+    
+    
    
   ],
   providers: [],

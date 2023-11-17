@@ -6,10 +6,17 @@ import { ApostilasAbacoComponent  } from "./apostilas-abaco.component";
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { FormsModule } from '@angular/forms';
+import { CardModule } from "primeng/card";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { DropdownModule } from 'primeng/dropdown';
+import { CreateApostilasComponent } from "./create/create-apostilas.component";
 
 @NgModule ({
     declarations: [ 
         ApostilasAbacoComponent,
+        CreateApostilasComponent
         
     ],
     imports: [
@@ -18,7 +25,12 @@ import { PanelMenuModule } from 'primeng/panelmenu';
         ApostilasAbacoRoutingModule,
         TableModule,
         TabViewModule,
-        PanelMenuModule
+        PanelMenuModule,
+        FormsModule,
+        NgbModule,
+        CardModule,
+        DropdownModule,
+        ProgressSpinnerModule
     ],
 })
 

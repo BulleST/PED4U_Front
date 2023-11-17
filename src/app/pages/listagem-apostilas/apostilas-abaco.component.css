@@ -73,3 +73,18 @@ td {
     border-radius: 6px;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
+
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn-clear{
+    background-color: #5a5c60;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 6px;
+    cursor: pointer;
+}

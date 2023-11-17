@@ -1,0 +1,68 @@
+<div class="modal" 
+    [class.modal--show]="open">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cadastro Apostilas</h5>
+                <a 
+                    type="button" class="close button" (click)="close()">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form #form="ngForm">
+                    <div class="d-flex mb-3">
+                        <button type="reset" class="btn btn-secondary ms-auto">Limpar Dados</button>
+                    </div>
+                    <div class="column">
+                        <div class="form-container mb-4">
+                            <p class="container-header">Dados do Dispositivo</p>
+                            <div class="campo-container">
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <label for="nome">Nome Aluno: <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="nome" name="nome" #nome="ngModel"
+                                            [(ngModel)]="abaco" required minlength="5" maxlength="30">
+                                        <div *ngIf="nome.touched && nome.errors">
+                                            <p class="text-danger" *ngIf="nome.errors['required']">Esse campo é
+                                                obrigatório.</p>
+                                            <p class="text-danger" *ngIf="nome.errors['minlength']">
+                                                Minimo é {{nome.errors['minlength']['requiredLength']}} e o atual é
+                                                {{nome.errors['minlength']['actualLength']}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4 col-12">
+                                        <label for="chaveRegistro">Chave Registro: <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="ex: A1B2C3D4E5FF"
+                                            id="chaveRegistro" pattern="[A-Z0-9]{12}" name="chaveRegistro"
+                                            #chaveRegistro="ngModel" [(ngModel)]="abaco" required minlength="5"
+                                            maxlength="12">
+                                        <div *ngIf="chaveRegistro.touched && chaveRegistro.errors">
+                                            <p class="text-danger" *ngIf="chaveRegistro.errors['required']">Esse campo é
+                                                obrigatório</p>
+                                            <p class="text-danger" *ngIf="chaveRegistro.errors['minlength']">
+                                                Minimo é {{chaveRegistro.errors['minlength']['requiredLength']}} e o
+                                                atual é {{chaveRegistro.errors['minlength']['actualLength']}}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-dark" (click)="close()">Cancelar
+                                    </button>
+                                    <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="save()"
+                            [disabled]="loading || erro">Salvar Configurações
+                        </button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

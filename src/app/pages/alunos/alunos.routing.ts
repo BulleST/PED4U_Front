@@ -3,9 +3,13 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AlunosComponent } from "./alunos.component";
 
+
 const routes: Routes = [
     {
-        path: '', component: AlunosComponent
+        path: '', component: AlunosComponent, children: [
+           
+        ]
+
     }
 ];
 

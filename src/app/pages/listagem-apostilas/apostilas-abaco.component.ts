@@ -1,6 +1,6 @@
 
 import { Component, ViewChild } from '@angular/core';
-import { ApostilasAbaco } from './apostilas-abaco.model';
+import { Abaco } from './apostilas-abaco.model';
 import { ApostilasService } from 'src/app/services/apostilas.service';
 import { Table } from 'primeng/table';
 
@@ -10,7 +10,7 @@ import { Table } from 'primeng/table';
   styleUrls: ['./apostilas-abaco.component.css']
 })
 export class ApostilasAbacoComponent {
-  listApostila: ApostilasAbaco[] = [];
+  listApostila: Abaco[] = [];
   @ViewChild('dt') dt!: Table;
 
   constructor(private apostilasService: ApostilasService){

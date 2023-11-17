@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { ApostilasAbaco } from "../pages/listagem-apostilas/apostilas-abaco.model";
+import { Abaco } from "../pages/listagem-apostilas/apostilas-abaco.model";
 
 @Injectable({
     providedIn: 'root'
   })
 
 export class ApostilasService{
-    listApostila: BehaviorSubject<ApostilasAbaco[]> = new BehaviorSubject<ApostilasAbaco[]>([])
+    listApostila: BehaviorSubject<Abaco[]> = new BehaviorSubject<Abaco[]>([])
 
     constructor(){
         var index = 0
