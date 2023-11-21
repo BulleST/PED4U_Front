@@ -62,12 +62,12 @@
                         <td>{{item.nome}}</td>
                         <td>{{item.paginas}}</td>
                         <td>
-                            <p-tableCheckbox [value]="item"></p-tableCheckbox>
+                            <p-tag [value]="getValue(item.material)" [severity]="getSeverity(item.material)"></p-tag>
                         <td></td>
                         <td></td>
                         <td>
-                            <a class="btn btn-primary me-2" [routerLink]="['editar',item.id ]">Editar</a>
-                            <a class="btn btn-dark" [routerLink]="['excluir',item.id]">Excluir</a>
+                            <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
+                            <a class="btn btn-delete" [routerLink]="['excluir',item.id]">Excluir</a>
                         </td>
                          
                     </tr>

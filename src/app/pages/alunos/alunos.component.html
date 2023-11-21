@@ -91,10 +91,12 @@
                         <td>{{item.horario| date:'shortTime'}}</td>
                         <td>{{item.semana}}</td>
                         <td>{{item.perfil}}</td>
-                        <td><p-tableCheckbox [value]="item"></p-tableCheckbox></td>
                         <td>
-                            <a class="btn btn-primary me-2" [routerLink]="['editar',item.id ]">Editar</a>
-                            <a class="btn btn-dark" [routerLink]="['excluir',item.id]">Excluir</a>
+                            <p-tag [value]="getValue(item.vigente)" [severity]="getSeverity(item.vigente)"></p-tag>
+                        </td>
+                        <td>
+                            <a class="btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
+                            <a class="btn-delete" [routerLink]="['excluir',item.id]">Excluir</a>
                         </td>
                         
                          

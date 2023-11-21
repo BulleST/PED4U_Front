@@ -12,9 +12,9 @@ export class ApostilasService{
     constructor(){
         var index = 0
         this.listApostila.next([
-            {id: ++index, nome: 'Básico 1 ' , paginas: index++, material: false},
+            {id: ++index, nome: 'Básico 1 ' , paginas: index++, material: true},
             {id: ++index, nome: 'Básico 2 ' , paginas: index++, material: false},
-            {id: ++index, nome: 'Básico 3 ' , paginas: index++, material: false},
+            {id: ++index, nome: 'Básico 3 ' , paginas: index++, material: true},
             {id: ++index, nome: 'Básico 9 ' , paginas: index++, material: false},
             {id: ++index, nome: 'Intermediário 1 ' , paginas: index++, material: false},
             {id: ++index, nome: 'Intermediário 2  ' + index, paginas: index++, material: false},

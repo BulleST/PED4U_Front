@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DropdownModule } from 'primeng/dropdown';
 import { CreateApostilasComponent } from "./create/create-apostilas.component";
+import { TagModule } from 'primeng/tag';
 
 @NgModule ({
     declarations: [ 
@@ -30,7 +31,8 @@ import { CreateApostilasComponent } from "./create/create-apostilas.component";
         NgbModule,
         CardModule,
         DropdownModule,
-        ProgressSpinnerModule
+        ProgressSpinnerModule,
+        TagModule
     ],
 })
 

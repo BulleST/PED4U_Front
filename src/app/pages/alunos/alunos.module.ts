@@ -6,6 +6,7 @@ import { RouterModule } from "@angular/router";
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { TagModule } from 'primeng/tag';
 
 @NgModule ({
     declarations: [ 
@@ -18,7 +19,8 @@ import { PanelMenuModule } from 'primeng/panelmenu';
         TableModule,
         TabViewModule,
         PanelMenuModule,
-        AlunosRoutingModule
+        AlunosRoutingModule,
+        TagModule
     ],
 })
 

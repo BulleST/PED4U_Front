@@ -31,4 +31,22 @@ import { Table } from 'primeng/table';
     applyFilterGlobal(event: any, filterType: string) {
       this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);
     }
+
+    getValue(value: boolean){
+      switch (value){
+        case true:
+          return 'Ativo';
+        case false:
+          return 'Inativo';
+      }
+    }
+  
+    getSeverity(status: boolean){
+      switch (status){
+        case true:
+          return 'success';
+        case false:
+          return 'danger';
+      }
+    }
   }

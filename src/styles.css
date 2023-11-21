@@ -185,14 +185,7 @@ a {
     padding-top: calc(5vh + 50px);
 }
 
-.modal-dialog {
-    max-width: 1500px;
-    width: 95%;
-    /* height: 95%; */
-    max-height: 95vh;
-    padding: 0;
-    margin: auto;
-}
+
 
 .modal-delete .modal-dialog {
     max-width: 650px!important;
@@ -216,3 +209,18 @@ a {
 .form-group {
     margin-bottom: 12px;
 }
+
+.p-tag.p-tag-success {
+    background-color: #22C55E;
+    color: #ffffff;
+    font-size: 12pt;
+    padding: 4px 10px;
+}
+
+.p-tag.p-tag-danger {
+    background-color: #EF4444;
+    color: #ffffff;
+    font-size: 12pt;
+    padding: 4px;
+}
+

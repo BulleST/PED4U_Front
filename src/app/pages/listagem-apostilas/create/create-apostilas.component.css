@@ -76,3 +76,60 @@
 :host ::ng-deep .p-dropdown {
   width: 100%;
 }
+
+.container-header {
+  background-color: var(--grey-highlight);
+  color: white;
+  padding: 8px 30px;
+  font-weight: normal;
+  letter-spacing: 1.50px;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 12pt;
+  font-family: sans-serif;
+}
+
+.campo-container {
+  padding: 10px 30px;
+}
+
+.modal-dialog {
+  max-width: 1500px;
+  width: 95%;
+  /* height: 95%; */
+  max-height: 95vh;
+  padding: 0;
+  margin: auto;
+}
+
+.modal-header{
+  padding: 15px 45px;
+  background-color: #fff;
+}
+
+h5 {
+  font-family: sans-serif;
+  font-size: 14pt;
+  color: #ff6315;
+  margin-top: 10px;
+}
+
+.modal-body{
+  background-color: #fff;
+}
+
+.btn-close{
+  display: flex;
+  justify-content: end;
+  color: #5a5c60;
+}
+
+.btn-clear{
+    background-color: #5a5c60;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 6px;
+    cursor: pointer;
+}

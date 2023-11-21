@@ -3,4 +3,5 @@ export class Abaco{
     nome: string = "";
     paginas: number = 0;
     material: boolean = false;
+
 }
