@@ -1,0 +1,27 @@
+:root {
+    --primary: #ff6315;
+    --primary-highlight: #8c47dc;
+    --secondary: #fff;
+    --secondary-highlight: #F94184 ;
+    --grey: #181818;
+    --grey-highlight: #5a5c60;
+}
+
+.container-header {
+    background-color: var(--primary);
+    color: white;
+    padding: 8px 30px;
+    font-weight: normal;
+    letter-spacing: 1.50px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12pt;
+}
+
+h5 {
+    font-family: sans-serif;
+    font-size: 14pt;
+    color: #ff6315;
+    margin-top: 10px;
+  }

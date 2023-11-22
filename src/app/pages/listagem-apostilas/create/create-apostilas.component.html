@@ -3,10 +3,9 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Cadastro Apostilas</h5>
-                <a 
-                    type="button" class="btn-close" (click)="close()">
-                    <span aria-hidden="true">&times;</span>
+                <h5 class="modal-title">Cadastrar Apostila</h5>
+                <a type="button" class="btn-close" (click)="close()">
+                        <!-- <span aria-hidden="true">&times;</span> -->
                 </a>
             </div>
             <div class="modal-body">
@@ -16,63 +15,73 @@
                     </div>
                     <div class="column">
                         <div class="form-container mb-4">
-                            <p class="container-header">Campos:</p>
                             <div class="campo-container">
                                 <div class="row">
                                     <div class="form-group col-md-6 col-12">
-                                        <label for="nome">Nome Apostila: <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="nome" name="nome" #nome="ngModel"
-                                            [(ngModel)]="abaco" required minlength="5" maxlength="30">
+                                        <label for="nome">Título da apostila:
+                                             <span class="text-danger">*</span></label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="nome" 
+                                            name="nome" 
+                                            #nome="ngModel"
+                                            [(ngModel)]="abaco.nome" 
+                                            required minlength="5" 
+                                            maxlength="30">
                                         <div *ngIf="nome.touched && nome.errors">
-                                            <p class="text-danger" *ngIf="nome.errors['required']">Esse campo é
-                                                obrigatório.</p>
-                                            <p class="text-danger" *ngIf="nome.errors['minlength']">
-                                                Minimo é {{nome.errors['minlength']['requiredLength']}} e o atual é
-                                                {{nome.errors['minlength']['actualLength']}}</p>
+                                            <p class="text-danger" *ngIf="nome.errors['required']">
+                                                Esse campo é obrigatório.
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6 col-12">
-                                        <label for="chaveRegistro">Páginas: <span
-                                                class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="ex: A1B2C3D4E5FF"
-                                            id="chaveRegistro" pattern="[A-Z0-9]{12}" name="chaveRegistro"
-                                            #chaveRegistro="ngModel" [(ngModel)]="abaco" required minlength="5"
-                                            maxlength="12">
-                                        <div *ngIf="chaveRegistro.touched && chaveRegistro.errors">
-                                            <p class="text-danger" *ngIf="chaveRegistro.errors['required']">Esse campo é
-                                                obrigatório</p>
-                                            <p class="text-danger" *ngIf="chaveRegistro.errors['minlength']">
-                                                Minimo é {{chaveRegistro.errors['minlength']['requiredLength']}} e o
-                                                atual é {{chaveRegistro.errors['minlength']['actualLength']}}</p>
+                                        <label for="paginas">Quantidade de páginas:
+                                            <span class="text-danger">*</span></label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="paginas"  
+                                            name="paginas"
+                                            #paginas="ngModel"
+                                            [(ngModel)]="abaco.paginas" 
+                                            required 
+                                            minlength="1"
+                                            maxlength="4">
+                                        <div *ngIf="paginas.touched && paginas.errors">
+                                            <p class="text-danger" *ngIf="paginas.errors['required']">
+                                                Esse campo é obrigatório
+                                            </p>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="form-group col-md-6 col-12">
-                                            <label for="chaveRegistro">Material Extra: <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" placeholder="ex: A1B2C3D4E5FF"
-                                                id="chaveRegistro" pattern="[A-Z0-9]{12}" name="chaveRegistro"
-                                                #chaveRegistro="ngModel" [(ngModel)]="abaco" required minlength="5"
-                                                maxlength="12">
-                                            <div *ngIf="chaveRegistro.touched && chaveRegistro.errors">
-                                                <p class="text-danger" *ngIf="chaveRegistro.errors['required']">Esse campo é
-                                                    obrigatório</p>
-                                                <p class="text-danger" *ngIf="chaveRegistro.errors['minlength']">
-                                                    Minimo é {{chaveRegistro.errors['minlength']['requiredLength']}} e o
-                                                    atual é {{chaveRegistro.errors['minlength']['actualLength']}}</p>
+                                        <div class="form-group col-12">
+                                            <label for="material">Material Extra:</label>
+                                            <input 
+                                                type="checkbox" 
+                                                class="me-2"
+                                                id="material"
+                                                name="material"
+                                                #material="ngModel" 
+                                                [(ngModel)]="abaco.material">
+                                            <div *ngIf="material.touched && material.errors">
+                                                <p class="text-danger" *ngIf="material.errors['required']">
+                                                    Esse campo é obrigatório
+                                                </p>
                                             </div>
                                         </div>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-dark" (click)="close()">Cancelar
+                                    <button 
+                                        type="button" class="btn-cancel" (click)="close()">Cancelar
                                     </button>
-                                    <!-- <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="save()"
-                            [disabled]="loading || erro">Salvar Configurações
-                        </button> -->
+                                    <button 
+                                        type="button" class="btn-save" data-dismiss="modal">Salvar
+                                     </button>
                                 </div>
                             </div>
                         </div>

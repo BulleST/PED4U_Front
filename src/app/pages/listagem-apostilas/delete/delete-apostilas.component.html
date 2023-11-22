@@ -1,0 +1,38 @@
+<div class="modal modal-delete" [class.modal--show]="open"> 
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Excluir</h5>
+          <a 
+              type="button" 
+              class="close button" 
+              (click)="close()">
+              <span >&times;</span>
+          </a>
+        </div>
+        <div class="modal-body">
+            <p>Tem certeza que deseja excluir esse registro?<br>
+              Essa ação é irreversível e você não poderá recuperar esses dados!</p>
+        </div>
+        <div class="modal-footer">
+            <button
+              type="button" 
+              class="btn btn-dark"
+              (click)="close()">Cancelar
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-primary" 
+              >Excluir
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- <div class="progress-spinner" *ngIf="loading">
+    <p-progressSpinner styleClass="color-spinner" strokeWidth="8">
+      
+    </p-progressSpinner>
+    
+  </div>  -->

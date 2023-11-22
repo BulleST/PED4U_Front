@@ -33,9 +33,9 @@ export class ApostilasAbacoComponent {
   getValue(value: boolean){
     switch (value){
       case true:
-        return 'Ativo';
+        return 'Sim';
       case false:
-        return 'Inativo';
+        return 'Não';
     }
   }
 

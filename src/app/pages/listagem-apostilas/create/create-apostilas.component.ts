@@ -12,7 +12,7 @@ import { Abaco } from '../apostilas-abaco.model';
 
 export class CreateApostilasComponent{
     open = true;
-    abaco: Abaco [] = [];
+    abaco: Abaco = new Abaco;
 
     constructor(
         private activatedRoute: ActivatedRoute,
