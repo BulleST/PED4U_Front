@@ -1,8 +1,9 @@
 
 import { Component, ViewChild } from '@angular/core';
-import { Abaco } from './apostilas-abaco.model';
+import { ApostilaAbaco } from './apostilas-abaco.model';
 import { ApostilasService } from 'src/app/services/apostilas.service';
 import { Table } from 'primeng/table';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'apostilas-abaco-apostilas',
@@ -10,14 +11,15 @@ import { Table } from 'primeng/table';
   styleUrls: ['./apostilas-abaco.component.css']
 })
 export class ApostilasAbacoComponent {
-  listApostila: Abaco[] = [];
+  listApostila: ApostilaAbaco[] = [];
   @ViewChild('dt') dt!: Table;
 
   constructor(private apostilasService: ApostilasService){
     this.apostilasService.listApostila.subscribe((data) =>{
       this.listApostila = Object.assign([], data);
       console.log('lista de apostilas ', data)
-    })
+      })
+      lastValueFrom(apostilasService.getList())
   }
 
   // Função para limpar os filtros aplicados na tabela
@@ -39,12 +41,13 @@ export class ApostilasAbacoComponent {
     }
   }
 
-  getSeverity(status: boolean){
+  getSeverity(status: string){
     switch (status){
-      case true:
+      case "Sim":
         return 'success';
-      case false:
+      case "Não":
         return 'danger';
+      default: return 'info'
     }
   }
 }

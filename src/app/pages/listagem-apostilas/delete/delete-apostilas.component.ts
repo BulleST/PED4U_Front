@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ApostilasService } from "src/app/services/apostilas.service";
-import { Abaco } from "../apostilas-abaco.model";
+import { ApostilaAbaco } from "../apostilas-abaco.model";
+import { lastValueFrom } from "rxjs";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
 	selector: 'delete-apostilas',
@@ -11,22 +13,54 @@ import { Abaco } from "../apostilas-abaco.model";
 
 export class DeleteApostilasComponent{
 	open = true;
-    abaco: Abaco = new Abaco;
+    abaco: ApostilaAbaco = new ApostilaAbaco;
+	id: number = 0;
+	erro = '';
+	loading: boolean = false;
 
 	constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private apostilasService: ApostilasService
-    ){}
+        private apostilasService: ApostilasService,
+		private toastr: ToastrService
+    ){
+		this.activatedRoute.params.subscribe(res =>{
+			if(res ['ApostilaAbaco_id']){
+				this.id = res['ApostilaAbaco_id']
+				this.open = true
+			}
+			else{
+				this.close()
+				this.toastr.error('Não foi possível acessar essa página')
+			}
+			console.log(res)
+		})
+	}
 
- // Abrir modal
- ngOnInit(): void {
-	this.open = true
-};
 // Fechar modal e retornar para rota de estabelecimento
 close(): void {
 	this.open = false;
 	this.router.navigate(['apostilas-abaco']);
 	return;
+}
+
+delete(){
+	this.loading = true;
+
+	lastValueFrom(this.apostilasService.delete(this.id))
+	.then(res =>{
+
+		if(res.success){
+			this.close()
+			this.toastr.success('Operação concluída com sucesso')
+		}
+		else{
+			this.erro = res.message
+			this.toastr.error(res.message)
+		}
+
+		this.loading = false;
+	})
+
 }
 }

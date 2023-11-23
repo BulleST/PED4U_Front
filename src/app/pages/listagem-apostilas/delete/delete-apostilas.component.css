@@ -25,3 +25,24 @@ h5 {
     color: #ff6315;
     margin-top: 10px;
   }
+
+  .btn-cancel{
+    background-color: #5a5c60;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 6px;
+    cursor: pointer;
+   border: none;
+  }
+  
+  .btn-save{
+    background-color: #ff6315;
+    border-color: #ff6315;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 6px;
+    cursor: pointer;
+    border: #9b9c9d;
+  }

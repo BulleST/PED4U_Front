@@ -46,7 +46,7 @@
                                             id="paginas"  
                                             name="paginas"
                                             #paginas="ngModel"
-                                            [(ngModel)]="abaco.paginas" 
+                                            [(ngModel)]="abaco.qtdePaginas" 
                                             required 
                                             minlength="1"
                                             maxlength="4">
@@ -66,7 +66,7 @@
                                                 id="material"
                                                 name="material"
                                                 #material="ngModel" 
-                                                [(ngModel)]="abaco.material">
+                                                [(ngModel)]="abaco.materialExtra">
                                             <div *ngIf="material.touched && material.errors">
                                                 <p class="text-danger" *ngIf="material.errors['required']">
                                                     Esse campo é obrigatório
@@ -80,7 +80,7 @@
                                         type="button" class="btn-cancel" (click)="close()">Cancelar
                                     </button>
                                     <button 
-                                        type="button" class="btn-save" data-dismiss="modal">Salvar
+                                        type="button" class="btn-save" data-dismiss="modal" (click)="send()">Salvar
                                      </button>
                                 </div>
                             </div>

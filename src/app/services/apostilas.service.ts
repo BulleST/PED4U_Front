@@ -1,27 +1,43 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
-import { Abaco } from "../pages/listagem-apostilas/apostilas-abaco.model";
+import { BehaviorSubject, tap } from "rxjs";
+import { ApostilaAbaco } from "../pages/listagem-apostilas/apostilas-abaco.model";
+import { environment } from "src/environment/environment";
+import { HttpClient } from "@angular/common/http";
+import { Response } from "../models/response.model";
 
 @Injectable({
     providedIn: 'root'
   })
 
 export class ApostilasService{
-    listApostila: BehaviorSubject<Abaco[]> = new BehaviorSubject<Abaco[]>([])
+    url = environment.url;
+    listApostila: BehaviorSubject<ApostilaAbaco[]> = new BehaviorSubject<ApostilaAbaco[]>([])
 
-    constructor(){
-        var index = 0
-        this.listApostila.next([
-            {id: ++index, nome: 'Básico 1 ' , paginas: index++, material: true},
-            {id: ++index, nome: 'Básico 2 ' , paginas: index++, material: false},
-            {id: ++index, nome: 'Básico 3 ' , paginas: index++, material: true},
-            {id: ++index, nome: 'Básico 9 ' , paginas: index++, material: false},
-            {id: ++index, nome: 'Intermediário 1 ' , paginas: index++, material: false},
-            {id: ++index, nome: 'Intermediário 2  ' + index, paginas: index++, material: false},
-            {id: ++index, nome: 'Avançado 1 ' , paginas: index++, material: false},
-            {id: ++index, nome: 'Avançado 2 ' , paginas: index++, material: false},
-            {id: ++index, nome: 'Avançado 3 ', paginas: index++, material: false},
+    constructor(
+        private httpClient: HttpClient
+    ){}
 
-        ])
+    getList(){
+        return this.httpClient.get<ApostilaAbaco[]>(`${this.url}/ApostilaAbaco`)
+        .pipe(tap({
+            next:res=>{
+                this.listApostila.next(res)
+            }
+        }))
     }
+
+    get(id:number){
+        return this.httpClient.get<ApostilaAbaco[]>(`${this.url}/ApostilaAbaco/${id}`)
+
+    }
+
+    post(model:ApostilaAbaco){
+        return this.httpClient.post<Response>(`${this.url}/ApostilaAbaco`, model)
+    }
+
+    delete(id:number){
+        return this.httpClient.delete<Response>(`${this.url}/ApostilaAbaco/${id}`)
+    }
+
+    
 }

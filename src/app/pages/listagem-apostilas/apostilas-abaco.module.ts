@@ -15,6 +15,7 @@ import { CreateApostilasComponent } from "./create/create-apostilas.component";
 import { EditApostilasComponent } from "./edit/edit-apostilas.component";
 import { DeleteApostilasComponent } from "./delete/delete-apostilas.component";
 import { TagModule } from 'primeng/tag';
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule ({
     declarations: [ 
@@ -36,7 +37,8 @@ import { TagModule } from 'primeng/tag';
         CardModule,
         DropdownModule,
         ProgressSpinnerModule,
-        TagModule
+        TagModule,
+        ToastrModule
     ],
 })
 

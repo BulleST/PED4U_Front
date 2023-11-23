@@ -1,7 +1,7 @@
-export class Abaco{
+export class ApostilaAbaco{
     id: number = 0;
     nome: string = "";
-    paginas: number = '' as unknown as number;
-    material: boolean = false;
+    qtdePaginas: number = '' as unknown as number;
+    materialExtra: boolean = false;
 
 }

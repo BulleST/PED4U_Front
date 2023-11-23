@@ -2,27 +2,32 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Excluir</h5>
-          <a 
+          <h5 class="modal-title">Excluir Apostila</h5>
+          <button 
               type="button" 
-              class="close button" 
-              (click)="close()">
-              <span >&times;</span>
-          </a>
+              class="btn-close" 
+              (click)="close()"
+              [disabled]="loading">
+        </button>
         </div>
         <div class="modal-body">
-            <p>Tem certeza que deseja excluir esse registro?<br>
+            <p>Tem certeza que deseja excluir essa apostila?<br>
               Essa ação é irreversível e você não poderá recuperar esses dados!</p>
+            <p class="text-danger">{{erro}}</p>
         </div>
         <div class="modal-footer">
             <button
               type="button" 
-              class="btn btn-dark"
-              (click)="close()">Cancelar
+              class="btn-cancel"
+              (click)="close()"
+              [disabled]="loading">Cancelar
+              
             </button>
             <button 
               type="button" 
-              class="btn btn-primary" 
+              class="btn-save" 
+              (click)="delete()"
+              [disabled]="loading"
               >Excluir
             </button>
         </div>

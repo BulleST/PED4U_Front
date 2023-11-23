@@ -13,6 +13,9 @@ import { MenuModule } from 'primeng/menu';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 
@@ -34,6 +37,11 @@ import { FormsModule } from '@angular/forms';
     ToastModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      enableHtml: true
+    })
     
     
    
