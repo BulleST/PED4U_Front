@@ -265,3 +265,9 @@ input.form-control {
 .text-danger {
    color: red;
 }
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: #ffffff;
+    border-color: #EFF6FF;
+    color: var(--primary);
+}

@@ -1,12 +1,11 @@
 export class Alunos {
-    id: number = 0;
+    alunoId: number = '' as unknown as number;
     nome: string = '';
-    telefone: number = 0;
-    idade: number = 0;
+    celular: number = '' as unknown as number;
+    idade: number = '' as unknown as number;
     genero: string = '';
-    horario:  Date = new Date(); 
-    semana: string = '';
-    perfil: string = '';
-    vigente: boolean = false;
-
+    horarioTurma:  Date = new Date(); 
+    diaTurma: string = '';
+    perfilAluno: string = '';
+    dataVigencia: boolean = false;
 }

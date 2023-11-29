@@ -27,6 +27,7 @@ export class DeleteApostilasComponent{
 		this.activatedRoute.params.subscribe(res =>{
 			if(res ['ApostilaAbaco_id']){
 				this.id = res['ApostilaAbaco_id']
+				// Abrir modal
 				this.open = true
 			}
 			else{

@@ -4,7 +4,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Cadastrar Apostila</h5>
-                <a type="button" class="btn-close" (click)="close()">
+                <a 
+                type="button" 
+                class="btn-close" 
+                (click)="close()">
                         <!-- <span aria-hidden="true">&times;</span> -->
                 </a>
             </div>
@@ -33,6 +36,7 @@
                                             <p class="text-danger" *ngIf="nome.errors['required']">
                                                 Esse campo é obrigatório.
                                             </p>
+                                            <p class="text-danger">{{erro}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -54,6 +58,7 @@
                                             <p class="text-danger" *ngIf="paginas.errors['required']">
                                                 Esse campo é obrigatório
                                             </p>
+                                            <p class="text-danger">{{erro}}</p>
                                         </div>
                                     </div>
 
@@ -71,16 +76,24 @@
                                                 <p class="text-danger" *ngIf="material.errors['required']">
                                                     Esse campo é obrigatório
                                                 </p>
+                                                <p class="text-danger">{{erro}}</p>
                                             </div>
                                         </div>
                                 </div>
 
                                 <div class="modal-footer">
                                     <button 
-                                        type="button" class="btn-cancel" (click)="close()">Cancelar
+                                        type="button"
+                                        class="btn-cancel" 
+                                        (click)="close()"
+                                        [disabled]="loading">Cancelar
                                     </button>
                                     <button 
-                                        type="button" class="btn-save" data-dismiss="modal" (click)="send()">Salvar
+                                        type="button"
+                                        class="btn-save" 
+                                        data-dismiss="modal" 
+                                        (click)="save()"
+                                        [disabled]="loading">Salvar
                                      </button>
                                 </div>
                             </div>
@@ -91,4 +104,10 @@
             </div>
         </div>
     </div>
+</div>
+<div class="progress-spinner" *ngIf="loading">
+    <p-progressSpinner styleClass="color-spinner" strokeWidth="8">
+
+    </p-progressSpinner>
+
 </div>

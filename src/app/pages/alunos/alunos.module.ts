@@ -7,10 +7,15 @@ import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { TagModule } from 'primeng/tag';
+import { CreateAlunosComponent } from './create/create-alunos.component';
+import { FormsModule } from '@angular/forms';
+import { CheckboxModule } from 'primeng/checkbox';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule ({
     declarations: [ 
         AlunosComponent,
+        CreateAlunosComponent,
         
     ],
     imports: [
@@ -20,7 +25,10 @@ import { TagModule } from 'primeng/tag';
         TabViewModule,
         PanelMenuModule,
         AlunosRoutingModule,
-        TagModule
+        TagModule,
+        FormsModule,
+        CheckboxModule,
+        DropdownModule
     ],
 })
 
