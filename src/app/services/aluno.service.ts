@@ -1,7 +1,7 @@
 
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, tap } from "rxjs";
-import { Alunos } from "../pages/alunos/alunos.model";
+import { Aluno } from "../pages/aluno/aluno.model";
 import { environment } from "src/environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
@@ -10,9 +10,9 @@ import { Response } from "../models/response.model";
     providedIn: 'root'
   })
 
-  export class AlunosService{
+  export class AlunoService{
     url = environment.url;
-    listAlunos: BehaviorSubject<Alunos[]> = new BehaviorSubject<Alunos[]>([])
+    list: BehaviorSubject<Aluno[]> = new BehaviorSubject<Aluno[]>([])
    
 
       constructor(
@@ -20,25 +20,25 @@ import { Response } from "../models/response.model";
       ) { }
 
       getList(){
-        return this.httpClient.get<Alunos[]>(`${this.url}/Alunos`)
+        return this.httpClient.get<Aluno[]>(`${this.url}/Aluno`)
         .pipe(tap({
             next:res=>{
-                this.listAlunos.next(res)
+                this.list.next(res)
             }
         }))
     }
 
         get(id:number){
-          return this.httpClient.get<Alunos[]>(`${this.url}/Alunos/${id}`)
+          return this.httpClient.get<Aluno[]>(`${this.url}/Aluno/${id}`)
 
       }
 
-      post(model:Alunos){
-          return this.httpClient.post<Response>(`${this.url}/Alunos`, model)
+      post(model:Aluno){
+          return this.httpClient.post<Response>(`${this.url}/Aluno`, model)
       }
 
       delete(id:number){
-          return this.httpClient.delete<Response>(`${this.url}/Alunos/${id}`)
+          return this.httpClient.delete<Response>(`${this.url}/Aluno/${id}`)
       }
 
   }

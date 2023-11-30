@@ -1,4 +1,4 @@
-export class Alunos {
+export class Aluno {
     alunoId: number = '' as unknown as number;
     nome: string = '';
     celular: number = '' as unknown as number;

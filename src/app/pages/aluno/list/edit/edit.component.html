@@ -1,0 +1,166 @@
+<div class="modal" 
+    [class.modal--show]="open">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cadastrar Aluno</h5>
+                <a 
+                type="button" 
+                class="btn-close" 
+                (click)="close()">
+                        <!-- <span aria-hidden="true">&times;</span> -->
+                </a>
+            </div>
+            <div class="modal-body">
+                <form #form="ngForm">
+                    <div class="d-flex mb-3">
+                        <button type="reset" class="btn-clear">Limpar Dados</button>
+                    </div>
+                    <div class="column">
+                        <div class="form-container mb-4">
+                            <div class="campo-container">
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-12">
+                                        <label for="nome">Nome do aluno:
+                                             <span class="text-danger">*</span></label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="nome" 
+                                            name="nome" 
+                                            #nome="ngModel"
+                                            [(ngModel)]="object.nome" 
+                                            required minlength="5" 
+                                            maxlength="30">
+                                        <div *ngIf="nome.touched && nome.errors">
+                                            <p class="text-danger" *ngIf="nome.errors['required']">
+                                                Esse campo é obrigatório.
+                                            </p>
+                                            <p class="text-danger">{{erro}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 col-12">
+                                        <label for="idade">Data de nascimento:</label>
+                                        <input 
+                                            type="text"  
+                                            class="form-control" 
+                                            id="idade"  
+                                            name="idade"
+                                            #idade="ngModel"
+                                            [(ngModel)]="object.idade" 
+                                            required 
+                                            minlength="1"
+                                            maxlength="8    ">
+                                            <div *ngIf="idade.touched && idade.errors">
+                                            <p class="text-danger" *ngIf="idade.errors['required']">
+                                                Esse campo é obrigatório
+                                            </p>
+                                            <p class="text-danger">{{erro}}</p>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label for="genero">Gênero:
+                                            <span class="text-danger">*</span></label>
+                                            <div class="card flex justify-content-center gap-3">
+                                                <div *ngFor="let genero of generos" class="flex align-items-center gap-3">
+                                                    <p-checkbox name="group" [value]="genero" [(ngModel)]="object.genero" [inputId]="genero"></p-checkbox>
+                                                    <label [for]="genero">{{ genero }}</label>
+                                                </div>
+                                            </div>
+                                            
+                                       
+                                    </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-12">
+                                        <label for="celular">Telefone:</label>
+                                        <input 
+                                            type="text"  
+                                            class="form-control" 
+                                            id="celular"  
+                                            name="celular"
+                                            #celular="ngModel"
+                                            [(ngModel)]="object.celular" 
+                                            required 
+                                            minlength="1"
+                                            maxlength="14">
+                                            <div *ngIf="celular.touched && celular.errors">
+                                            <p class="text-danger" *ngIf="celular.errors['required']">
+                                                Esse campo é obrigatório
+                                            </p>
+                                            <p class="text-danger">{{erro}}</p>
+                                            </div>
+                                    </div>
+                                    <div class="form-group col-md-6 col-12">
+                                        <label for="diaTurma">Turma:</label>
+                                        <input 
+                                            type="text"  
+                                            class="form-control" 
+                                            id="diaTurma"  
+                                            name="diaTurma"
+                                            #diaTurma="ngModel"
+                                            [(ngModel)]="object.diaTurma" 
+                                            required 
+                                            minlength="1"
+                                            maxlength="4">
+                                            <div *ngIf="diaTurma.touched && diaTurma.errors">
+                                            <p class="text-danger" *ngIf="diaTurma.errors['required']">
+                                                Esse campo é obrigatório
+                                            </p>
+                                            <p class="text-danger">{{erro}}</p>
+                                            </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-12">
+                                        <label for="perfilAluno">Perfil:</label>
+                                        <input 
+                                            type="text"  
+                                            class="form-control" 
+                                            id="perfilAluno"  
+                                            name="perfilAluno"
+                                            #perfilAluno="ngModel"
+                                            [(ngModel)]="object.perfilAluno" 
+                                            required 
+                                            minlength="1"
+                                            maxlength="4">
+                                            <div *ngIf="perfilAluno.touched && perfilAluno.errors">
+                                            <p class="text-danger" *ngIf="perfilAluno.errors['required']">
+                                                Esse campo é obrigatório
+                                            </p>
+                                            <p class="text-danger">{{erro}}</p>
+                                            </div>
+                                    </div>
+                                    <div class="form-group col-md-6 col-12">
+                                        <label for="dataVigencia">Matrícula:</label>
+                                        <p-dropdown [options]="vigencia" [(ngModel)]="object" placeholder="Informe o status da matrícula" [showClear]="true"></p-dropdown>
+                                    </div>
+                                </div>
+                                
+                               
+                                <div class="modal-footer">
+                                    <button 
+                                        type="button"
+                                        class="btn-cancel" 
+                                        (click)="close()"
+                                        [disabled]="loading">Cancelar
+                                    </button>
+                                    <button 
+                                        type="button"
+                                        class="btn-save" 
+                                        data-dismiss="modal" 
+                                        (click)="save()"
+                                        [disabled]="loading">Salvar
+                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

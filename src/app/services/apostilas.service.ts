@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, tap } from "rxjs";
-import { ApostilaAbaco } from "../pages/listagem-apostilas/apostilas-abaco.model";
+import { ApostilaAbaco } from "../pages/abaco/abaco.model";
 import { environment } from "src/environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
@@ -11,7 +11,7 @@ import { Response } from "../models/response.model";
 
 export class ApostilasService{
     url = environment.url;
-    listApostila: BehaviorSubject<ApostilaAbaco[]> = new BehaviorSubject<ApostilaAbaco[]>([])
+    list: BehaviorSubject<ApostilaAbaco[]> = new BehaviorSubject<ApostilaAbaco[]>([])
 
     constructor(
         private httpClient: HttpClient
@@ -21,13 +21,13 @@ export class ApostilasService{
         return this.httpClient.get<ApostilaAbaco[]>(`${this.url}/ApostilaAbaco`)
         .pipe(tap({
             next:res=>{
-                this.listApostila.next(res)
+                this.list.next(res)
             }
         }))
     }
 
     get(id:number){
-        return this.httpClient.get<ApostilaAbaco[]>(`${this.url}/ApostilaAbaco/${id}`)
+        return this.httpClient.get<ApostilaAbaco>(`${this.url}/ApostilaAbaco/${id}`)
 
     }
 

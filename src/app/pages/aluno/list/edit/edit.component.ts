@@ -1,20 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { AlunosService } from "src/app/services/alunos.service";
-import { Alunos } from "../alunos.model";
+import { AlunoService } from "src/app/services/aluno.service";
+import { Aluno } from '../../aluno.model';
 import { lastValueFrom } from "rxjs";
 
 
 @Component({
 	selector: 'create-apostilas',
-	templateUrl: './create-alunos.component.html',
-	styleUrls: ['./create-alunos.component.css']
+	templateUrl: './edit.component.html',
+	styleUrls: ['./edit.component.css']
 })
 
-export class CreateAlunosComponent{
+export class EditComponent{
     open = true;
-    alunos: Alunos = new Alunos;
+    object: Aluno = new Aluno;
     id: number = 0;
 	erro = '';
 	loading: boolean = true;
@@ -32,7 +32,7 @@ export class CreateAlunosComponent{
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private alunosService: AlunosService,
+        private alunoService: AlunoService,
 		private httpClient: HttpClient
     ){}
 
@@ -46,8 +46,8 @@ export class CreateAlunosComponent{
 		// Função criada para salvar as informações inseridas na modal de cadastro
 		async save() {
 			this.loading = true;
-			console.log(this.alunos)
-			lastValueFrom(this.alunosService.post(this.alunos))
+			console.log(this.object)
+			lastValueFrom(this.alunoService.post(this.object))
 				.then(res => {
 						this.close();
 	
@@ -63,7 +63,7 @@ export class CreateAlunosComponent{
 
 		getList(){
 			this.loading = true;
-			lastValueFrom(this.alunosService.get(this.id))
+			lastValueFrom(this.alunoService.get(this.id))
 			// .then(res =>{
 			// 	if(res.success){
 			// 		this.close()

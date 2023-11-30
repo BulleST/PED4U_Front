@@ -1,10 +1,12 @@
-import { Alunos } from './pages/alunos/alunos.model';
+
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AbacoModule } from './pages/abaco/abaco.module';
 
 const home = () => import ('./header-parts/home/home.module').then(res => res.HomeModule)
-const listApostilas = () => import ('./pages/listagem-apostilas/apostilas-abaco.module').then(res => res.ApostilasAbacoModule)
-const listAlunos = () => import ('./pages/alunos/alunos.module').then(res => res.Alunosmodule)
+const listAbaco = () => import ('./pages/abaco/abaco.module').then(res => AbacoModule)
+const listAluno = () => import ('./pages/aluno/aluno.module').then(res => res.Alunomodule)
 
 const routes: Routes = [
   {
@@ -13,13 +15,13 @@ const routes: Routes = [
   },
 
   {
-    path: 'apostilas-abaco',
-    loadChildren: listApostilas
+    path: 'abaco',
+    loadChildren: listAbaco
   },
 
   {
-    path: 'alunos',
-    loadChildren: listAlunos
+    path: 'aluno',
+    loadChildren: listAluno
   },
 
   {

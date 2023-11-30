@@ -1,22 +1,22 @@
 
 import { Component, ViewChild } from '@angular/core';
-import { ApostilaAbaco } from './apostilas-abaco.model';
+import { ApostilaAbaco } from './abaco.model';
 import { ApostilasService } from 'src/app/services/apostilas.service';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'apostilas-abaco-apostilas',
-  templateUrl: './apostilas-abaco.component.html',
-  styleUrls: ['./apostilas-abaco.component.css']
+  templateUrl: './abaco.component.html',
+  styleUrls: ['./abaco.component.css']
 })
-export class ApostilasAbacoComponent {
-  listApostila: ApostilaAbaco[] = [];
+export class AbacoComponent {
+  list: ApostilaAbaco[] = [];
   @ViewChild('dt') dt!: Table;
 
   constructor(private apostilasService: ApostilasService){
-    this.apostilasService.listApostila.subscribe((data) =>{
-      this.listApostila = Object.assign([], data);
+    this.apostilasService.list.subscribe((data) =>{
+      this.list = Object.assign([], data);
       console.log('lista de apostilas ', data)
       })
       lastValueFrom(apostilasService.getList())

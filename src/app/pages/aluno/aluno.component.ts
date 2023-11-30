@@ -1,25 +1,28 @@
+
+
 import { Component, ViewChild } from '@angular/core';
-import { Alunos } from './alunos.model';
-import { AlunosService } from 'src/app/services/alunos.service';
+import { Aluno } from './aluno.model';
+import { AlunoService } from 'src/app/services/aluno.service';
 import { Table } from 'primeng/table';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
     selector: 'alunos',
-    templateUrl: './alunos.component.html',
-    styleUrls: ['./alunos.component.css']
+    templateUrl: './aluno.component.html',
+    styleUrls: ['./aluno.component.css']
   })
 
 
-  export class AlunosComponent{
-    listAlunos: Alunos[] = [];
+  export class AlunoComponent{
+    list: Aluno [] = [];
     @ViewChild('dt') dt!: Table;
 
-    constructor(private alunosservice: AlunosService){
-      this.alunosservice.listAlunos.subscribe((data) => {
-        this.listAlunos = Object.assign([], data);
-        console.log('lista de alunos ', data)
-      }
-      )
+    constructor(private AlunoService: AlunoService){
+      this.AlunoService.list.subscribe((data) =>{
+        this.list = Object.assign([], data);
+        console.log('lista de apostilas ', data)
+        })
+        lastValueFrom(AlunoService.getList())
     }
 
     // Função para limpar os filtros aplicados na tabela

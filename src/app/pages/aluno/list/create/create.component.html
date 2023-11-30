@@ -29,12 +29,17 @@
                                             id="nome" 
                                             name="nome" 
                                             #nome="ngModel"
-                                            [(ngModel)]="alunos.nome" 
-                                            required minlength="5" 
+                                            [(ngModel)]="object.nome" 
+                                            pattern="\S(.*\S)?"
+                                            (change)="object.nome = nome.value.trim()"
+                                            required minlength="3" 
                                             maxlength="30">
                                         <div *ngIf="nome.touched && nome.errors">
                                             <p class="text-danger" *ngIf="nome.errors['required']">
                                                 Esse campo é obrigatório.
+                                            </p>
+                                            <p class="text-danger" *ngIf="nome.errors['pattern']">
+                                                Não insira espaços em branco antes ou no final do campo
                                             </p>
                                             <p class="text-danger">{{erro}}</p>
                                         </div>
@@ -47,10 +52,12 @@
                                             id="idade"  
                                             name="idade"
                                             #idade="ngModel"
-                                            [(ngModel)]="alunos.idade" 
+                                            [(ngModel)]="object.idade" 
+                                            placeholder=" ex: 00/00/0000"
+                                            mask="00/00/0000"
                                             required 
-                                            minlength="1"
-                                            maxlength="8    ">
+                                            minlength="12"
+                                            maxlength="12">
                                             <div *ngIf="idade.touched && idade.errors">
                                             <p class="text-danger" *ngIf="idade.errors['required']">
                                                 Esse campo é obrigatório
@@ -65,7 +72,12 @@
                                             <span class="text-danger">*</span></label>
                                             <div class="card flex justify-content-center gap-3">
                                                 <div *ngFor="let genero of generos" class="flex align-items-center gap-3">
-                                                    <p-checkbox name="group" [value]="genero" [(ngModel)]="alunos.genero" [inputId]="genero"></p-checkbox>
+                                                    <p-checkbox 
+                                                        name="group" 
+                                                        [value]="genero" 
+                                                        [(ngModel)]="object.genero" 
+                                                        [inputId]="genero">
+                                                </p-checkbox>
                                                     <label [for]="genero">{{ genero }}</label>
                                                 </div>
                                             </div>
@@ -81,10 +93,12 @@
                                             id="celular"  
                                             name="celular"
                                             #celular="ngModel"
-                                            [(ngModel)]="alunos.celular" 
+                                            [(ngModel)]="object.celular"
+                                            placeholder="ex: 00 0 0000-0000" 
+                                            mask="(00) 0.0000-0000 || (00) 0000-0000"
                                             required 
-                                            minlength="1"
-                                            maxlength="14">
+                                            minlength="10"
+                                            maxlength="16">
                                             <div *ngIf="celular.touched && celular.errors">
                                             <p class="text-danger" *ngIf="celular.errors['required']">
                                                 Esse campo é obrigatório
@@ -100,10 +114,10 @@
                                             id="diaTurma"  
                                             name="diaTurma"
                                             #diaTurma="ngModel"
-                                            [(ngModel)]="alunos.diaTurma" 
+                                            [(ngModel)]="object.diaTurma" 
                                             required 
                                             minlength="1"
-                                            maxlength="4">
+                                            maxlength="25">
                                             <div *ngIf="diaTurma.touched && diaTurma.errors">
                                             <p class="text-danger" *ngIf="diaTurma.errors['required']">
                                                 Esse campo é obrigatório
@@ -122,10 +136,10 @@
                                             id="perfilAluno"  
                                             name="perfilAluno"
                                             #perfilAluno="ngModel"
-                                            [(ngModel)]="alunos.perfilAluno" 
+                                            [(ngModel)]="object.perfilAluno" 
                                             required 
                                             minlength="1"
-                                            maxlength="4">
+                                            maxlength="25">
                                             <div *ngIf="perfilAluno.touched && perfilAluno.errors">
                                             <p class="text-danger" *ngIf="perfilAluno.errors['required']">
                                                 Esse campo é obrigatório
@@ -135,7 +149,13 @@
                                     </div>
                                     <div class="form-group col-md-6 col-12">
                                         <label for="dataVigencia">Matrícula:</label>
-                                        <p-dropdown [options]="vigencia" [(ngModel)]="alunos" placeholder="Informe o status da matrícula" [showClear]="true"></p-dropdown>
+                                        <p-dropdown 
+                                            [options]="vigencia" 
+                                            [(ngModel)]="object.dataVigencia" 
+                                            name="vigencia"
+                                            placeholder="Informe o status da matrícula" 
+                                            [showClear]="true">
+                                        </p-dropdown>
                                     </div>
                                 </div>
                                 

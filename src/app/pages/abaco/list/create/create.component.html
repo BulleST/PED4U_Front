@@ -29,14 +29,18 @@
                                             id="nome" 
                                             name="nome" 
                                             #nome="ngModel"
-                                            [(ngModel)]="abaco.nome" 
+                                            pattern="\S(.*\S)?"
+                                            (change)="object.nome = nome.value.trim()"
+                                            [(ngModel)]="object.nome" 
                                             required minlength="5" 
                                             maxlength="30">
                                         <div *ngIf="nome.touched && nome.errors">
                                             <p class="text-danger" *ngIf="nome.errors['required']">
                                                 Esse campo é obrigatório.
                                             </p>
-                                            <p class="text-danger">{{erro}}</p>
+                                            <p class="text-danger" *ngIf="nome.errors['pattern']">
+                                                Não insira espaços em branco antes ou no final do campo
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -50,13 +54,18 @@
                                             id="paginas"  
                                             name="paginas"
                                             #paginas="ngModel"
-                                            [(ngModel)]="abaco.qtdePaginas" 
+                                            pattern="\S(.*\S)?"
+                                            [(ngModel)]="object.qtdePaginas" 
+                                            mask="0*"
                                             required 
                                             minlength="1"
                                             maxlength="4">
                                         <div *ngIf="paginas.touched && paginas.errors">
                                             <p class="text-danger" *ngIf="paginas.errors['required']">
                                                 Esse campo é obrigatório
+                                            </p>
+                                            <p class="text-danger" *ngIf="paginas.errors['pattern']">
+                                                Não insira espaços em branco antes ou no final do campo
                                             </p>
                                             <p class="text-danger">{{erro}}</p>
                                         </div>
@@ -71,7 +80,7 @@
                                                 id="material"
                                                 name="material"
                                                 #material="ngModel" 
-                                                [(ngModel)]="abaco.materialExtra">
+                                                [(ngModel)]="object.materialExtra">
                                             <div *ngIf="material.touched && material.errors">
                                                 <p class="text-danger" *ngIf="material.errors['required']">
                                                     Esse campo é obrigatório
