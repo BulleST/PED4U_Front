@@ -9,3 +9,8 @@ export class Aluno {
     perfilAluno: string = '';
     dataVigencia: boolean = false;
 }
+
+export class PerfilAluno{
+    id: number = '' as unknown as number;
+    nome: string = '';
+}

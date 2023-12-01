@@ -2,7 +2,7 @@
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AlunoService } from "src/app/services/aluno.service";
-import { Aluno } from "../../aluno.model";
+import { Aluno, PerfilAluno } from "../../aluno.model";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
@@ -27,14 +27,26 @@ export class CreateComponent{
 	vigencia: string [] = [
 		'Ativo',
 		'Inativo'
-	]
+	];
+	perfis: object [] = [];
+	perfil: PerfilAluno = new PerfilAluno;
+
+
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private alunoService: AlunoService,
 		private httpClient: HttpClient,
 		private toastr: ToastrService,
-    ){}
+    ){
+
+		lastValueFrom(this.alunoService.getListPerfil()).then( res => {
+			this.perfis = Object.assign([], res);
+		});
+		lastValueFrom(this.alunoService.getList())
+
+		
+	}
 
     // Fechar modal e retornar para rota de estabelecimento
 	close(): void {
@@ -46,6 +58,7 @@ export class CreateComponent{
 	// Função criada para salvar as informações inseridas na modal de cadastro
 	async save() {
 		this.loading = true;
+		this.object.perfilAluno = this.perfil.nome;
 		console.log(this.object)
 		lastValueFrom(this.alunoService.post(this.object))
 			.then(res => {

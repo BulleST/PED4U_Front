@@ -119,18 +119,3 @@
     height: 16px;
   }
   
-  .field-checkbox{
-    display: flex;
-    flex-direction: row;
-    
-  }
-
-  .gap-3 {
-    gap: 1rem !important;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    display: flex;
-    border: none;
-}
-

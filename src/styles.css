@@ -267,3 +267,7 @@ a {
     border-color: #EFF6FF;
     color: var(--primary);
 }
+
+.p-inputtext{
+    padding: 6px;
+}

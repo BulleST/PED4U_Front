@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { AlunoService } from "src/app/services/aluno.service";
 import { Aluno } from '../../aluno.model';
 import { lastValueFrom } from "rxjs";
+import { PerfilAluno } from '../../aluno.model';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class EditComponent{
     object: Aluno = new Aluno;
     id: number = 0;
 	erro = '';
-	loading: boolean = true;
+	loading: boolean = false;
 	generos: string[] = [
 		'Masculino',
 		'Feminino',
@@ -26,7 +27,9 @@ export class EditComponent{
 	vigencia: string [] = [
 		'Ativo',
 		'Inativo'
-	]
+	];
+	perfis: object [] = [];
+	perfil: PerfilAluno = new PerfilAluno;
 
 
     constructor(

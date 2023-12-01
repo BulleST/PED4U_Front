@@ -14,13 +14,13 @@
             <div class="modal-body">
                 <form #form="ngForm">
                     <div class="d-flex mb-3">
-                        <button type="reset" class="btn-clear">Limpar Dados</button>
+                        <button type="reset" class="btn-clear">Limpar Campos</button>
                     </div>
                     <div class="column">
                         <div class="form-container mb-4">
                             <div class="campo-container">
                                 <div class="row">
-                                    <div class="form-group col-md-6 col-12">
+                                    <div class="form-group col-md-4 col-12">
                                         <label for="nome">Nome do aluno:
                                              <span class="text-danger">*</span></label>
                                         <input 
@@ -44,8 +44,10 @@
                                             <p class="text-danger">{{erro}}</p>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-6 col-12">
-                                        <label for="idade">Data de nascimento:</label>
+                                    <div class="form-group col-md-4 col-12">
+                                        
+                                        <label for="idade">Data de nascimento: 
+                                            <span class="text-danger">*</span></label>
                                         <input 
                                             type="text"  
                                             class="form-control" 
@@ -65,99 +67,55 @@
                                             <p class="text-danger">{{erro}}</p>
                                             </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-4 col-12">
                                         <label for="genero">Gênero:
-                                            <span class="text-danger">*</span></label>
-                                            <div class="card flex justify-content-center gap-3">
-                                                <div *ngFor="let genero of generos" class="flex align-items-center gap-3">
-                                                    <p-checkbox 
-                                                        name="group" 
-                                                        [value]="genero" 
-                                                        [(ngModel)]="object.genero" 
-                                                        [inputId]="genero">
-                                                </p-checkbox>
-                                                    <label [for]="genero">{{ genero }}</label>
-                                                </div>
-                                            </div>
-                                            
-                                       
-                                    </div>
-                                <div class="row">
-                                    <div class="form-group col-md-6 col-12">
-                                        <label for="celular">Telefone:</label>
-                                        <input 
-                                            type="text"  
-                                            class="form-control" 
-                                            id="celular"  
-                                            name="celular"
-                                            #celular="ngModel"
-                                            [(ngModel)]="object.celular"
-                                            placeholder="ex: 00 0 0000-0000" 
-                                            mask="(00) 0.0000-0000 || (00) 0000-0000"
-                                            required 
-                                            minlength="10"
-                                            maxlength="16">
-                                            <div *ngIf="celular.touched && celular.errors">
-                                            <p class="text-danger" *ngIf="celular.errors['required']">
-                                                Esse campo é obrigatório
-                                            </p>
-                                            <p class="text-danger">{{erro}}</p>
-                                            </div>
-                                    </div>
-                                    <div class="form-group col-md-6 col-12">
-                                        <label for="diaTurma">Turma:</label>
-                                        <input 
-                                            type="text"  
-                                            class="form-control" 
-                                            id="diaTurma"  
-                                            name="diaTurma"
-                                            #diaTurma="ngModel"
-                                            [(ngModel)]="object.diaTurma" 
-                                            required 
-                                            minlength="1"
-                                            maxlength="25">
-                                            <div *ngIf="diaTurma.touched && diaTurma.errors">
-                                            <p class="text-danger" *ngIf="diaTurma.errors['required']">
-                                                Esse campo é obrigatório
-                                            </p>
-                                            <p class="text-danger">{{erro}}</p>
-                                            </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="form-group col-md-6 col-12">
-                                        <label for="perfilAluno">Perfil:</label>
-                                        <input 
-                                            type="text"  
-                                            class="form-control" 
-                                            id="perfilAluno"  
-                                            name="perfilAluno"
-                                            #perfilAluno="ngModel"
-                                            [(ngModel)]="object.perfilAluno" 
-                                            required 
-                                            minlength="1"
-                                            maxlength="25">
-                                            <div *ngIf="perfilAluno.touched && perfilAluno.errors">
-                                            <p class="text-danger" *ngIf="perfilAluno.errors['required']">
-                                                Esse campo é obrigatório
-                                            </p>
-                                            <p class="text-danger">{{erro}}</p>
-                                            </div>
-                                    </div>
-                                    <div class="form-group col-md-6 col-12">
-                                        <label for="dataVigencia">Matrícula:</label>
+                                            <span class="text-danger">*</span>
+                                        </label>
                                         <p-dropdown 
+                                            class="dropdown" 
+                                            [options]="generos" 
+                                            [(ngModel)]="object.genero" 
+                                            name="vigencia"
+                                            placeholder="Selecione o gênero">
+                                        </p-dropdown>
+                                    </div>  
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4 col-12">
+                                        <label for="diaTurma">Turma:</label>
+                                        <p-dropdown 
+                                            class="dropdown" 
+                                            [options]="" 
+                                            [(ngModel)]="object.diaTurma" 
+                                            name="diaTurma"
+                                            placeholder="Selecione a Turma">
+                                        </p-dropdown>
+                                    </div>
+                                    <div class="form-group col-md-4 col-12">
+                                        <label for="perfilAluno">Perfil:</label>
+                                        <p-dropdown 
+                                        class="dropdown" 
+                                        [options]="perfis" 
+                                        [(ngModel)]="perfil.nome" 
+                                        optionLabel="nome"
+                                        name="perfilAluno"
+                                        placeholder="Selecione o Perfil do Aluno">
+                                    </p-dropdown>
+                                     </div>
+                                     <div class="form-group col-md-4 col-12">
+                                        <label for="dataVigencia"> Status Matrícula:  
+                                            <span class="text-danger">*</span></label>
+                                        <p-dropdown 
+                                            class="dropdown"
                                             [options]="vigencia" 
                                             [(ngModel)]="object.dataVigencia" 
                                             name="vigencia"
-                                            placeholder="Informe o status da matrícula" 
-                                            [showClear]="true">
+                                            placeholder="Informe o status da matrícula">
                                         </p-dropdown>
                                     </div>
                                 </div>
+                                  
+                            
                                 
                                
                                 <div class="modal-footer">
@@ -178,9 +136,7 @@
                             </div>
                         </div>
                     </div>
-                    </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
