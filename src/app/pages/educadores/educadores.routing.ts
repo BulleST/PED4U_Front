@@ -1,7 +1,8 @@
 
+
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AlunoComponent } from "./aluno.component";
+import { EducadoresComponent } from "./educadores.component";
 import { CreateComponent } from "./list/create/create.component";
 import { EditComponent } from "./list/edit/edit.component";
 import { DeleteComponent } from "./list/delete/delete.component";
@@ -9,7 +10,7 @@ import { DeleteComponent } from "./list/delete/delete.component";
 
 const routes: Routes = [
     {
-        path: '', component: AlunoComponent, children: [
+        path: '', component: EducadoresComponent, children: [
             {path: 'cadastrar', component: CreateComponent},
             {path: 'editar/:id', component: EditComponent},
             {path: 'excluir/:id', component: DeleteComponent}

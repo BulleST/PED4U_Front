@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Editar cadastro de aluno</h5>
+                <h5 class="modal-title">Cadastrar Aluno</h5>
                 <a 
                 type="button" 
                 class="btn-close" 
@@ -13,7 +13,9 @@
             </div>
             <div class="modal-body">
                 <form #form="ngForm">
-                   
+                    <div class="d-flex mb-3">
+                        <button type="reset" class="btn-clear">Limpar Campos</button>
+                    </div>
                     <div class="column">
                         <div class="form-container mb-4">
                             <div class="campo-container">
@@ -73,49 +75,58 @@
                                             class="dropdown" 
                                             [options]="generos" 
                                             [(ngModel)]="object.genero" 
-                                            name="genero"
+                                            name="vigencia"
                                             placeholder="Selecione o gênero">
                                         </p-dropdown>
                                     </div>  
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-4 col-12">
-                                        <label for="diaTurma">Turma:</label>
-                                        <p-dropdown 
-                                            class="dropdown" 
-                                            [options]="" 
-                                            [(ngModel)]="object.diaTurma" 
-                                            name="diaTurma"
-                                            placeholder="Selecione a Turma">
-                                        </p-dropdown>
+                                        <label for="email">E-mail:
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        
+                                        <input 
+                                            type="text"  
+                                            class="form-control" 
+                                            id="email"  
+                                            name="email"
+                                            #email="ngModel"
+                                            [(ngModel)]="object.email" 
+                                            placeholder=" ex: 00/00/0000"
+                                            mask="00/00/0000"
+                                            required 
+                                            minlength="12"
+                                            maxlength="12">
+                                            <div *ngIf="email.touched && email.errors">
+                                            <p class="text-danger" *ngIf="email.errors
+                                            ['required']">
+                                                Esse campo é obrigatório
+                                            </p>
+                                            <p class="text-danger">{{erro}}</p>
                                     </div>
-                                    <div class="form-group col-md-4 col-12">
-                                        <p>{{perfil_Id.value}}</p>
-                                        <p>{{object.perfil_Id}}</p>
-                                        <label for="perfil_Id">Perfil:</label>
+                                    <!-- <div class="form-group col-md-4 col-12">
+                                        <label for="perfilAluno">Perfil:</label>
                                         <p-dropdown 
                                         class="dropdown" 
                                         [options]="perfis" 
-                                        [(ngModel)]="object.perfil_Id" 
-                                        #perfil_Id="ngModel"
+                                        [(ngModel)]="perfil.nome" 
                                         optionLabel="nome"
-                                        optionValue="id"
-                                        name="perfil_Id"
-                                        id="perfil_Id"
+                                        name="perfilAluno"
                                         placeholder="Selecione o Perfil do Aluno">
-                                    </p-dropdown>
+                                    </p-dropdown> -->
                                      </div>
-                                     <div class="form-group col-md-4 col-12">
-                                        <label for="dataVigencia">Matrícula:  
+                                     <!-- <div class="form-group col-md-4 col-12">
+                                        <label for="dataVigencia"> Status Matrícula:  
                                             <span class="text-danger">*</span></label>
                                         <p-dropdown 
                                             class="dropdown"
                                             [options]="vigencia" 
                                             [(ngModel)]="object.dataVigencia" 
-                                            name="dataVigencia"
+                                            name="vigencia"
                                             placeholder="Informe o status da matrícula">
-                                        </p-dropdown>
-                                    </div>
+                                        </p-dropdown> -->
+                                    
                                 </div>
                                   
                             
@@ -132,7 +143,7 @@
                                         type="button"
                                         class="btn-save" 
                                         data-dismiss="modal" 
-                                        (click)="send()"
+                                        (click)="save()"
                                         [disabled]="loading">Salvar
                                      </button>
                                 </div>

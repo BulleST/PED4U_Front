@@ -83,22 +83,22 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-item>
                     <tr>
-                        <td>{{item.id}}</td>
+                        <td>{{item.alunoId}}</td>
                         <td>{{item.nome}}</td>
-                        <td>{{item.telefone}}</td>
+                        <td>{{item.celular}}</td>
                         <td>{{item.idade}}</td>
                         <td>{{item.genero}}</td>
-                        <td>{{item.horario| date:'shortTime'}}</td>
-                        <td>{{item.semana}}</td>
-                        <td>{{item.perfil}}</td>
+                        <td>{{item.horarioTurma| date:'shortTime'}}</td>
+                        <td>{{item.diaTurma}}</td>
+                        <td>{{item.perfilAluno}}</td>
                         <td>
-                            <p-tag [value]="getValue(item.vigente)" [severity]="getSeverity(item.vigente)"></p-tag>
+                            <p-tag [value]="item.dataVigencia" [severity]="getSeverity(item.dataVigencia)"></p-tag>
                         </td>
                         <td>
                             <a class="btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
                             <a class="btn-delete" [routerLink]="['excluir',item.id]">Excluir</a>
                         </td>
-                        
+                            
                          
                     </tr>
                 </ng-template>

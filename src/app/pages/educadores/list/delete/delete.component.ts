@@ -1,19 +1,20 @@
+
 import { Component } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { ApostilasService } from "src/app/services/apostilas.service";
-import { ApostilaAbaco } from "../../abaco.model";
+import { Educadores } from "../../educadores.modal";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AlunoService } from 'src/app/services/aluno.service';
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 
-@Component({
-	selector: 'delete-apostilas',
+@Component ({
+    selector: 'delete-alunos',
 	templateUrl: './delete.component.html',
 	styleUrls: ['./delete.component.css']
 })
 
-export class DeleteComponent {
+export class DeleteComponent{
 	open = true;
-	abaco: ApostilaAbaco = new ApostilaAbaco;
+	object: Educadores = new Educadores;
 	id: number = 0;
 	erro = '';
 	loading: boolean = false;
@@ -21,7 +22,7 @@ export class DeleteComponent {
 	constructor(
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
-		private apostilasService: ApostilasService,
+		private alunoService: AlunoService,
 		private toastr: ToastrService
 	) {
 		this.activatedRoute.params.subscribe(res => {
@@ -41,18 +42,18 @@ export class DeleteComponent {
 	// Fechar modal e retornar para rota de estabelecimento
 	close(): void {
 		this.open = false;
-		this.router.navigate(['abaco']);
+		this.router.navigate(['educadores']);
 		return;
 	}
 
 	delete() {
 		this.loading = true;
 
-		lastValueFrom(this.apostilasService.delete(this.id))
+		lastValueFrom(this.alunoService.delete(this.id))
 			.then(res => {
 
 				if (res.success) {
-					lastValueFrom(this.apostilasService.getList())
+					lastValueFrom(this.alunoService.getList())
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
 				}
@@ -72,3 +73,5 @@ export class DeleteComponent {
 
 	}
 }
+
+   

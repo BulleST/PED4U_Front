@@ -1,21 +1,17 @@
-
-
 import { Component, ViewChild } from '@angular/core';
-import { Aluno } from './aluno.model';
-import { AlunoTesteService} from 'src/app/services/aluno-teste.service';
+import { EducadoresService } from 'src/app/services/educadores.service';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
+import { Educadores } from './educadores.modal';
 
 @Component({
-    selector: 'alunos',
-    templateUrl: './aluno.component.html',
-    styleUrls: ['./aluno.component.css']
+    selector: 'educadores',
+    templateUrl: './educadores.component.html',
+    styleUrls: ['./educadores.component.css']
   })
-
-
-  export class AlunoComponent{
+  export class EducadoresComponent {
     open = true;
-    list: Aluno [] = [];
+    list: Educadores [] = [];
     id: number = 0;
     erro = '';
     generos: string [] = [
@@ -23,28 +19,21 @@ import { lastValueFrom } from 'rxjs';
       'Feminino',
       'Outros'
     ]
-    loading: boolean = true;
     @ViewChild('dt') dt!: Table;
-
-    constructor(private alunoTesteService: AlunoTesteService){
-      // this.AlunoService.list.subscribe((data) =>{
-      //   this.list = Object.assign([], data);
-      //   console.log('lista de apostilas ', data)
-      //   })
-      //   lastValueFrom(AlunoService.getList())
-        this.loading = false;
-        this.alunoTesteService.list.subscribe((data) => {
-            this.list = Object.assign([], data);
-            console.log('lista', data)
-    })
-      
+  
+    constructor(private educadoresService: EducadoresService){
+    //   this.educadoresService.list.subscribe((data) =>{
+    //     this.list = Object.assign([], data);
+    //     console.log('lista de apostilas ', data)
+    //     })
+    //     lastValueFrom(educadoresService.getList())
     }
-
+  
     // Função para limpar os filtros aplicados na tabela
     clear(table: Table) {
       table.clear();
     }
-
+  
     // Função para filtrar a tabela a partir do input
     applyFilterGlobal(event: any, filterType: string) {
       this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);
@@ -67,4 +56,4 @@ import { lastValueFrom } from 'rxjs';
           return 'danger';
       }
     }
-  }
+}

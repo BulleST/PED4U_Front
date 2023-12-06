@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit{
                     },
                     {
                         label: 'Educadores',
+                        routerLink: ['educadores']
                         
                         
                     },

@@ -48,7 +48,7 @@ export class EditComponent {
 	// Fechar modal e retornar para rota de estabelecimento
 	close(): void {
 		this.open = false;
-		this.router.navigate(['apostilas-abaco']);
+		this.router.navigate(['abaco']);
 		return;
 	}
 

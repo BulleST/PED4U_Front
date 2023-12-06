@@ -1,11 +1,11 @@
 
 import { Component } from "@angular/core";
-import { AlunoTesteService } from "src/app/services/aluno-teste.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Aluno } from "../../aluno.model";
+import { EducadoresService } from 'src/app/services/educadores.service';
+import { Educadores } from './../../educadores.modal';
 import { ToastrService } from "ngx-toastr";
 import { lastValueFrom } from "rxjs";
-import { PerfilAluno } from "../../aluno.model";
+
 
 @Component({
 	selector: 'edit',
@@ -15,7 +15,7 @@ import { PerfilAluno } from "../../aluno.model";
 
 export class EditComponent {
 	open = true;
-	object: Aluno = new Aluno;
+	object: Educadores = new Educadores;
 	erro = '';
 	loading: boolean = true;
 	generos: string[] = [
@@ -23,32 +23,22 @@ export class EditComponent {
 		'Feminino',
 		'Outros'
 	];
-	vigencia: string [] = [
-		'Ativo',
-		'Inativo'
-	];
-	perfis: object [] = [
-		{
-			id: 2,
-			nome: '80+'
-		}
-	];
-	perfil: PerfilAluno = new PerfilAluno;
+	
 
 	constructor(
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
-		private alunoTesteService: AlunoTesteService,
+		private educadoresService: EducadoresService,
 		private toastr: ToastrService
 	) {
 		this.activatedRoute.params.subscribe(res => {
 			if (res['id']) {
 				this.object.id = res['id']
 				// Abrir modal
-				lastValueFrom(this.alunoTesteService.get(this.object.id))
+				lastValueFrom(this.educadoresService.get(this.object.id))
 					.then(res => {
 						this.open = true;
-						this.object = res;
+						
 						this.loading = false;
 						console.log(res)
 					}).catch(res => {
@@ -73,17 +63,17 @@ export class EditComponent {
 
 	send() {
 		this.loading = true;
-		lastValueFrom(this.alunoTesteService.edit(this.object))
+		lastValueFrom(this.educadoresService.get(this.object.id))
 			.then(res => {
-				if (res.success) {
-					lastValueFrom(this.alunoTesteService.getList())
-					this.close()
-					this.toastr.success('Operação concluída com sucesso')
-				}
-				else {
-					this.erro = res.message
-					this.toastr.error(res.message)
-				}
+				// if (res.success) {
+				// 	lastValueFrom(this.educadoresService.getList())
+				// 	this.close()
+				// 	this.toastr.success('Operação concluída com sucesso')
+				// }
+				// else {
+				// 	this.erro = res.message
+				// 	this.toastr.error(res.message)
+				// }
 				this.loading = false;
 			})
 			.catch(res => {
