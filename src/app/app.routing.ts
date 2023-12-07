@@ -2,7 +2,7 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AbacoModule } from './pages/abaco/abaco.module';
+
 
 const home = () => import ('./header-parts/home/home.module').then(res => res.HomeModule)
 const listAbaco = () => import ('./pages/abaco/abaco.module').then(res => res.AbacoModule)

@@ -42,14 +42,22 @@
                             Nome
                             <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
                             <p-sortIcon field="nome"></p-sortIcon> </th> 
-                        <th pSortableColumn="qtdePaginas" class="qtdePaginas">
-                            Páginas Com Exercícios
-                            <p-columnFilter type="text" field="qtdePaginas" display="menu"></p-columnFilter>
-                            <p-sortIcon field="qtdePaginas"></p-sortIcon> </th>
-                        <th pSortableColumn="materialExtra" class="materialExtra">
-                            Material Extra  
-                            <p-columnFilter type="text" field="materialExtra" display="menu"></p-columnFilter>
-                            <p-sortIcon field="materialExtra"></p-sortIcon></th>     
+                        <th pSortableColumn="idade" class="idade">
+                            Idade
+                            <p-columnFilter type="text" field="idade" display="menu"></p-columnFilter>
+                            <p-sortIcon field="idade"></p-sortIcon></th> 
+                        <th pSortableColumn="genero" class="genero">
+                            Gênero
+                            <p-columnFilter type="text" field="genero" display="menu"></p-columnFilter>
+                            <p-sortIcon field="genero"></p-sortIcon></th>
+                        <th pSortableColumn="email" class="email">
+                            E-mail
+                            <p-columnFilter type="text" field="email" display="menu"></p-columnFilter>
+                            <p-sortIcon field="email"></p-sortIcon></th>   
+                        <th pSortableColumn="celular" class="celular">
+                            Telefone:
+                            <p-columnFilter type="text" field="celular" display="menu"></p-columnFilter>
+                            <p-sortIcon field="celular"></p-sortIcon> </th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -59,12 +67,10 @@
                     <tr>
                         <td>{{item.id}}</td>
                         <td>{{item.nome}}</td>
-                        <td>{{item.celular}}</td>
-                        <td>{{item.email}}</td>
                         <td>{{item.idade}}</td>
-                        <td>
-                            <p-tag [value]="item.genero" [severity]="getSeverity(item.genero)"></p-tag>
-                        <td></td>
+                        <td>{{item.genero}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.celular}}</td>
                         <td></td>
                         <td>
                             <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>

@@ -23,7 +23,7 @@ export class EditComponent {
 		'Feminino',
 		'Outros'
 	];
-	
+
 
 	constructor(
 		private activatedRoute: ActivatedRoute,
@@ -38,7 +38,6 @@ export class EditComponent {
 				lastValueFrom(this.educadoresService.get(this.object.id))
 					.then(res => {
 						this.open = true;
-						
 						this.loading = false;
 						console.log(res)
 					}).catch(res => {
@@ -57,18 +56,20 @@ export class EditComponent {
 	// Fechar modal e retornar para rota de estabelecimento
 	close(): void {
 		this.open = false;
-		this.router.navigate(['aluno']);
+		this.router.navigate(['educadores']);
 		return;
 	}
-
-	send() {
+	// Função criada para salvar as informações inseridas na modal de cadastro
+	async save() {
 		this.loading = true;
+
+		console.log(this.object)
 		lastValueFrom(this.educadoresService.get(this.object.id))
 			.then(res => {
 				// if (res.success) {
-				// 	lastValueFrom(this.educadoresService.getList())
 				// 	this.close()
 				// 	this.toastr.success('Operação concluída com sucesso')
+				// 	lastValueFrom(this.educadoresService.getList())
 				// }
 				// else {
 				// 	this.erro = res.message
@@ -78,12 +79,10 @@ export class EditComponent {
 			})
 			.catch(res => {
 				this.erro = res;
-
-				console.error("console error" + res);
+				console.error("console catch" + res);
 			})
 			.finally(() => {
 				this.loading = false;
 			})
 	}
-
 }

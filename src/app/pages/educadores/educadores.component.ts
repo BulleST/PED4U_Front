@@ -22,11 +22,11 @@ import { Educadores } from './educadores.modal';
     @ViewChild('dt') dt!: Table;
   
     constructor(private educadoresService: EducadoresService){
-    //   this.educadoresService.list.subscribe((data) =>{
-    //     this.list = Object.assign([], data);
-    //     console.log('lista de apostilas ', data)
-    //     })
-    //     lastValueFrom(educadoresService.getList())
+      this.educadoresService.list.subscribe((data) =>{
+        this.list = Object.assign([], data);
+        console.log('educadores', data)
+        })
+        lastValueFrom(educadoresService.getList())
     }
   
     // Função para limpar os filtros aplicados na tabela

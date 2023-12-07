@@ -2,7 +2,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-
+import { EducadoresRoutingModule } from "./educadores.routing";
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -36,6 +36,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
         
     ],
     imports: [
+        EducadoresRoutingModule,
         CommonModule,
         RouterModule,
         TableModule,
