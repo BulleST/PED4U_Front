@@ -1,11 +1,11 @@
-
+import { AlunoTesteService } from 'src/app/services/aluno-teste.service';
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { AlunoService } from "src/app/services/aluno.service";
 import { Aluno, PerfilAluno } from "../../aluno.model";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
+import { AlunoList } from '../../aluno.model';
 
 @Component({
 	selector: 'create-alunos',
@@ -15,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class CreateComponent{
     open = true;
-    object: Aluno = new Aluno;
+    object: AlunoList = new AlunoList;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
@@ -36,15 +36,15 @@ export class CreateComponent{
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private alunoService: AlunoService,
+        private AlunoTesteService: AlunoTesteService,
 		private httpClient: HttpClient,
 		private toastr: ToastrService,
     ){
 
-		lastValueFrom(this.alunoService.getListPerfil()).then( res => {
+		lastValueFrom(this.AlunoTesteService.getList()).then( res => {
 			this.perfis = Object.assign([], res);
 		});
-		lastValueFrom(this.alunoService.getList())
+		lastValueFrom(this.AlunoTesteService.getList())
 
 		
 	}
@@ -61,12 +61,12 @@ export class CreateComponent{
 		this.loading = true;
 		
 		console.log(this.object)
-		lastValueFrom(this.alunoService.post(this.object))
+		lastValueFrom(this.AlunoTesteService.post(this.object))
 			.then(res => {
 				if (res.success) {
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
-					lastValueFrom(this.alunoService.getList())
+					lastValueFrom(this.AlunoTesteService.getList())
 				}
 				else {
 					this.erro = res.message

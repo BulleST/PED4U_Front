@@ -2,7 +2,7 @@
 import { Component } from "@angular/core";
 import { Educadores } from "../../educadores.modal";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AlunoService } from 'src/app/services/aluno.service';
+import { EducadoresService } from "src/app/services/educadores.service";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 
@@ -14,7 +14,6 @@ import { ToastrService } from "ngx-toastr";
 
 export class DeleteComponent{
 	open = true;
-	object: Educadores = new Educadores;
 	id: number = 0;
 	erro = '';
 	loading: boolean = false;
@@ -22,7 +21,7 @@ export class DeleteComponent{
 	constructor(
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
-		private alunoService: AlunoService,
+		private educadoresService: EducadoresService,
 		private toastr: ToastrService
 	) {
 		this.activatedRoute.params.subscribe(res => {
@@ -49,11 +48,11 @@ export class DeleteComponent{
 	delete() {
 		this.loading = true;
 
-		lastValueFrom(this.alunoService.delete(this.id))
+		lastValueFrom(this.educadoresService.delete(this.id))
 			.then(res => {
 
 				if (res.success) {
-					lastValueFrom(this.alunoService.getList())
+					lastValueFrom(this.educadoresService.getList())
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
 				}

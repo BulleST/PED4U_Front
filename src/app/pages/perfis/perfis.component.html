@@ -1,0 +1,85 @@
+<p-tabView class="educadores">
+    <p-tabPanel header="Perfil de Alunos">
+        <div class="card table-responsive">
+            <p-table 
+                #dt
+                class="table"
+                [value]="list"
+                sortField=""
+                dataKey="id"
+                styleClass="p-datatable-striped"
+                [tableStyle]="{'min-width': '50rem'}"
+                [paginator]="true" 
+                [rows]="5" 
+                [showCurrentPageReport]="true" 
+                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} páginas"
+                [filterDelay]="0"
+                [globalFilterFields]="['id','nome', 'qtdeTurmas']">
+                <ng-template pTemplate="caption">
+                    <div class="flex">
+                        <!-- Button para realizar cadastros na Tabela -->
+                        <div>
+                            <a  class="btn-primary" [routerLink]="['cadastrar']">Cadastrar</a>
+                        </div>
+                        <!-- Button para limpar filtros aplicados na Tabela -->
+                        <div class="p-2">
+                            <button class="btn-clear" (click)="clear(dt)">
+                                <span class="me-2">Limpar filtros</span>
+                                <i class="pi pi-filter-slash"></i>
+                            </button>
+                            <!-- Input para palavras-chave dados da Tabela -->
+                            <span class="p-2 p-input-icon-right">
+                                <i class="pi pi-search"></i>
+                                <input class="p-inputtext"  pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Digite a Palavra-Chave" />
+                            </span>
+                        </div>
+                    </div>
+               </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th></th>
+                        <th pSortableColumn="nome" class="nome">
+                            Perfil da Turma:
+                            <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
+                            <p-sortIcon field="nome"></p-sortIcon> </th> 
+                        <th pSortableColumn="qtdeTurmas" class="qtdeTurmas">
+                            N° de Turmas:
+                            <p-columnFilter type="text" field="qtdeTurmas" display="menu"></p-columnFilter>
+                            <p-sortIcon field="qtdeTurmas"></p-sortIcon></th> 
+                        <!-- <th pSortableColumn="genero" class="genero">
+                            Gênero
+                            <p-columnFilter type="text" field="genero" display="menu"></p-columnFilter>
+                            <p-sortIcon field="genero"></p-sortIcon></th>
+                        <th pSortableColumn="email" class="email">
+                            E-mail
+                            <p-columnFilter type="text" field="email" display="menu"></p-columnFilter>
+                            <p-sortIcon field="email"></p-sortIcon></th>   
+                        <th pSortableColumn="celular" class="celular">
+                            Telefone:
+                            <p-columnFilter type="text" field="celular" display="menu"></p-columnFilter>
+                            <p-sortIcon field="celular"></p-sortIcon> </th> -->
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.nome}}</td>
+                        <td>{{item.qtdeTurmas}}</td>
+                        <td></td>
+                        <td>
+                            <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
+                            <a class="btn btn-delete" [routerLink]="['excluir', item.id]">Excluir</a>
+                        </td>
+                        <td></td>
+                         
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </p-tabPanel>
+</p-tabView>
+
+<router-outlet></router-outlet>

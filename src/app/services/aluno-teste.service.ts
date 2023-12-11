@@ -29,8 +29,14 @@ import { Response } from "../models/response.model";
     // }
 
     getList() {
-        return this.list;
-      }
+      return new Observable<AlunoList[]>(observer => {
+        var lista = this.sortLista();
+  
+        this.list.next(lista);
+        observer.next(lista);
+        observer.complete();
+      })
+    }
     
     get(alunoId: number) {
     return new Observable<Aluno>(observer => {
@@ -66,6 +72,18 @@ import { Response } from "../models/response.model";
     })
     }
 
+    post(model: AlunoList) {
+      return new Observable<Response>(observer => {
+        var lista = this.sortLista();
+        var lastIndex = lista.length > 0 ? lista[lista.length - 1].id + 1 : 1;
+        model.id = lastIndex;
+        // lista.push(model);
+        this.list.next(lista);
+        // observer.next(model)
+        observer.complete()
+      })
+    }
+
     // edit(id: number) {
     //   var objeto = this.list.value.find(x=>x.id == id)
     //   var lista = this.list
@@ -87,23 +105,29 @@ import { Response } from "../models/response.model";
     
       }
 
-    delete(alunoId: number) {
-    return new Observable(observer => {
-        var lista = this.sortLista();
-        console.log(lista)
-        var index = lista.findIndex(x => x.id == alunoId);
-        console.log(index)
-        if (index == -1) {
-        console.log(index)
-        throw new Error('Aluno não encontrado');
-        }
-        lista.splice(index, 1);
-        console.log(lista)
-        this.list.next(lista)
-        observer.next('teste')
-        observer.complete()
-    });
+      delete(id: number) {
+        return new Observable<Response>(observer => {
+          var lista = this.sortLista();
+          console.log(lista)
+          var index = lista.findIndex(x => x.id == id);
+          console.log(index)
+          if (index == -1) {
+            observer.next({
+              message: 'Aluno não encontrado',
+              success: false
+            })
+            observer.complete()
+          }
+          lista.splice(index, 1);
+          // this.list.next(lista)
+          observer.next({
+            message: 'Aluno excluído com sucesso',
+            success: true
+          })
+          observer.complete()
+        });
+      }
+    
     }
 
 
-}

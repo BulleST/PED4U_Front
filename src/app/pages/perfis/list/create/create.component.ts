@@ -1,11 +1,11 @@
 
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { EducadoresService } from "src/app/services/educadores.service";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { Educadores } from "../../educadores.modal";
+import { Perfis } from "../../perfis.modal";
+import { PerfisService } from "src/app/services/perfis.service";
 
 @Component({
 	selector: 'create-alunos',
@@ -15,36 +15,28 @@ import { Educadores } from "../../educadores.modal";
 
 export class CreateComponent{
     open = true;
-    object: Educadores = new Educadores;
+    object: Perfis = new Perfis;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
-	generos: string[] = [
-		'Masculino',
-		'Feminino',
-		'Outros'
-	];
 	
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private educadoresService: EducadoresService,
+        private perfisService: PerfisService,
 		private httpClient: HttpClient,
 		private toastr: ToastrService,
     ){
-
 		// lastValueFrom(this.educadoresService.getListPerfil()).then( res => {
 		// 	this.perfis = Object.assign([], res);
 		// });
 		// lastValueFrom(this.educadoresService.getList())
-
-		
 	}
 
     // Fechar modal e retornar para rota de estabelecimento
 	close(): void {
 		this.open = false;
-		this.router.navigate(['educadores']);
+		this.router.navigate(['perfis']);
 		return;
 	}
 
@@ -53,12 +45,12 @@ export class CreateComponent{
 		this.loading = true;
 		
 		console.log(this.object)
-		lastValueFrom(this.educadoresService.post(this.object))
+		lastValueFrom(this.perfisService.post(this.object))
 			.then(res => {
 				if (res.success) {
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
-					lastValueFrom(this.educadoresService.getList())
+					lastValueFrom(this.perfisService.getList())
 				}
 				else {
 					this.erro = res.message

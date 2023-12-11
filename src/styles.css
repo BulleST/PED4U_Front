@@ -271,3 +271,9 @@ a {
 .p-inputtext{
     padding: 6px;
 }
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    background: #ffffff;
+    border-color: #ff6315;
+    
+}

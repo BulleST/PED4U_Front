@@ -37,11 +37,13 @@ export class HeaderComponent implements OnInit{
                     },
                     {
                         label: 'Perfis',
+                        routerLink: ['perfis']
                         
                         
                     },
                     {
                         label: 'Turmas',
+                        routerLink:['turmas']
                        
                         
                     }

@@ -1,10 +1,10 @@
 
 import { Component } from "@angular/core";
-import { Aluno } from "../../aluno.model";
+import { Perfis } from "../../perfis.modal";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AlunoTesteService } from "src/app/services/aluno-teste.service";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
+import { PerfisService } from "src/app/services/perfis.service";
 
 @Component ({
     selector: 'delete-alunos',
@@ -14,7 +14,7 @@ import { ToastrService } from "ngx-toastr";
 
 export class DeleteComponent{
 	open = true;
-	object: Aluno = new Aluno;
+	object: Perfis = new Perfis;
 	id: number = 0;
 	erro = '';
 	loading: boolean = false;
@@ -22,7 +22,7 @@ export class DeleteComponent{
 	constructor(
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
-		private AlunoTesteService: AlunoTesteService,
+		private perfisService: PerfisService,
 		private toastr: ToastrService
 	) {
 		this.activatedRoute.params.subscribe(res => {
@@ -42,16 +42,16 @@ export class DeleteComponent{
 	// Fechar modal e retornar para rota de estabelecimento
 	close(): void {
 		this.open = false;
-		this.router.navigate(['apostilas-abaco']);
+		this.router.navigate(['perfis']);
 		return;
 	}
 	delete() {
 		this.loading = true;
 
-		lastValueFrom(this.AlunoTesteService.delete(this.id))
+		lastValueFrom(this.perfisService.delete(this.id))
 			.then(res => {
 				if (res.success) {
-					lastValueFrom(this.AlunoTesteService.getList())
+					lastValueFrom(this.perfisService.getList())
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
 				}

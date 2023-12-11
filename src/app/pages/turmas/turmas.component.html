@@ -1,0 +1,85 @@
+<p-tabView class="educadores">
+    <p-tabPanel header="Turmas">
+        <div class="card table-responsive">
+            <p-table 
+                #dt
+                class="table"
+                [value]="list"
+                sortField=""
+                dataKey="id"
+                styleClass="p-datatable-striped"
+                [tableStyle]="{'min-width': '50rem'}"
+                [paginator]="true" 
+                [rows]="5" 
+                [showCurrentPageReport]="true" 
+                currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} páginas"
+                [filterDelay]="0"
+                [globalFilterFields]="['id','horarioTurma', 'diaTurma', 'qtdeAlunos', 'vagasturma', 'nome', 'perfil']">
+                <ng-template pTemplate="caption">
+                    <div class="flex">
+                        <!-- Button para realizar cadastros na Tabela -->
+                        <div>
+                            <a  class="btn-primary" [routerLink]="['cadastrar']">Cadastrar</a>
+                        </div>
+                        <!-- Button para limpar filtros aplicados na Tabela -->
+                        <div class="p-2">
+                            <button class="btn-clear" (click)="clear(dt)">
+                                <span class="me-2">Limpar filtros</span>
+                                <i class="pi pi-filter-slash"></i>
+                            </button>
+                            <!-- Input para palavras-chave dados da Tabela -->
+                            <span class="p-2 p-input-icon-right">
+                                <i class="pi pi-search"></i>
+                                <input class="p-inputtext"  pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Digite a Palavra-Chave" />
+                            </span>
+                        </div>
+                    </div>
+               </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th></th>
+                        <th pSortableColumn="horarioTurma" class="horarioTurma">
+                            Horário:
+                            <p-columnFilter type="text" field="horarioTurma" display="menu"></p-columnFilter>
+                            <p-sortIcon field="horarioTurma"></p-sortIcon> </th> 
+                        <th pSortableColumn="diaTurma" class="diaTurma">
+                            Dia da Semana:
+                            <p-columnFilter type="text" field="diaTurma" display="menu"></p-columnFilter>
+                            <p-sortIcon field="diaTurma"></p-sortIcon></th> 
+                        <th pSortableColumn="qtdeAlunos" class="qtdeAlunos">
+                            Capacidade de Alunos:
+                            <p-columnFilter type="text" field="qtdeAlunos" display="menu"></p-columnFilter>
+                            <p-sortIcon field="qtdeAlunos"></p-sortIcon></th>
+                        <th pSortableColumn="vagasTurma" class="vagasTurma">
+                            Vagas Restantes:
+                            <p-columnFilter type="text" field="vagasTurma" display="menu"></p-columnFilter>
+                            <p-sortIcon field="vagasTurma"></p-sortIcon></th>   
+                        <th pSortableColumn="nome" class="nome">
+                            Educador:
+                            <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
+                            <p-sortIcon field="nome"></p-sortIcon> </th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.nome}}</td>
+                        <td>{{item.qtdeTurmas}}</td>
+                        <td></td>
+                        <td>
+                            <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
+                            <a class="btn btn-delete" [routerLink]="['excluir', item.id]">Excluir</a>
+                        </td>
+                        <td></td>
+                         
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </p-tabPanel>
+</p-tabView>
+
+<router-outlet></router-outlet>

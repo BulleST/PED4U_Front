@@ -8,6 +8,8 @@ const home = () => import ('./header-parts/home/home.module').then(res => res.Ho
 const listAbaco = () => import ('./pages/abaco/abaco.module').then(res => res.AbacoModule)
 const listAluno = () => import ('./pages/aluno/aluno.module').then(res => res.Alunomodule)
 const listEducadores = () => import ('./pages/educadores/educadores.module').then(res => res.EducadoresModule)
+const listPerfis = () => import ('./pages/perfis/perfis.module').then( res => res.PerfisModule)
+const listTurmas = () => import ('./pages/turmas/turmas.module').then( res => res.TurmasModule)
 
 const routes: Routes = [
   {
@@ -28,6 +30,16 @@ const routes: Routes = [
   {
     path: 'educadores',
     loadChildren: listEducadores
+  },
+
+  {
+    path: 'perfis',
+    loadChildren: listPerfis
+  },
+
+  {
+    path: 'turmas',
+    loadChildren: listTurmas
   },
   
   {

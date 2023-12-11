@@ -1,0 +1,91 @@
+<div class="modal" 
+    [class.modal--show]="open">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cadastrar Perfil da Turma</h5>
+                <a 
+                type="button" 
+                class="btn-close" 
+                (click)="close()">
+                        <!-- <span aria-hidden="true">&times;</span> -->
+                </a>
+            </div>
+            <div class="modal-body">
+                <form #form="ngForm">
+                    <div class="d-flex mb-3">
+                        <button type="reset" class="btn-clear">Limpar Campos</button>
+                    </div>
+                    <div class="column">
+                        <div class="form-container mb-4">
+                            <div class="campo-container">
+                                <div class="row">
+                                    <div class="form-group col-md-4 col-12">
+                                        <label for="nome"> Perfil:
+                                             <span class="text-danger">*</span></label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="nome" 
+                                            name="nome" 
+                                            #nome="ngModel"
+                                            [(ngModel)]="object.nome" 
+                                            pattern="\S(.*\S)?"
+                                            (change)="object.nome = nome.value.trim()"
+                                            required minlength="3" 
+                                            maxlength="30">
+                                        <div *ngIf="nome.touched && nome.errors">
+                                            <p class="text-danger" *ngIf="nome.errors['required']">
+                                                Esse campo é obrigatório.
+                                            </p>
+                                            <p class="text-danger" *ngIf="nome.errors['pattern']">
+                                                Não insira espaços em branco antes ou no final do campo
+                                            </p>
+                                            <p class="text-danger">{{erro}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4 col-12">
+                                        <label for="qtdeTurmas"> N° de Turmas: 
+                                            <span class="text-danger">*</span></label>
+                                        <input 
+                                            type="text"  
+                                            class="form-control" 
+                                            id="qtdeTurmas"  
+                                            name="qtdeTurmas"
+                                            #qtdeTurmas="ngModel"
+                                            [(ngModel)]="object.qtdeTurmas" 
+                                            required 
+                                            minlength="12"
+                                            maxlength="12">
+                                            <div *ngIf="qtdeTurmas.touched && qtdeTurmas.errors">
+                                            <p class="text-danger" *ngIf="qtdeTurmas.errors['required']">
+                                                Esse campo é obrigatório
+                                            </p>
+                                            <p class="text-danger">{{erro}}</p>
+                                            </div>
+                                    </div>
+                                   
+                               
+                                <div class="modal-footer">
+                                    <button 
+                                        type="button"
+                                        class="btn-cancel" 
+                                        (click)="close()"
+                                        [disabled]="loading">Cancelar
+                                    </button>
+                                    <button 
+                                        type="button"
+                                        class="btn-save" 
+                                        data-dismiss="modal" 
+                                        (click)="save()"
+                                        [disabled]="loading">Salvar
+                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>

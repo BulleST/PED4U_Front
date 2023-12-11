@@ -60,26 +60,25 @@ export class EditComponent {
 		return;
 	}
 	// Função criada para salvar as informações inseridas na modal de cadastro
-	async save() {
+	save() {
 		this.loading = true;
-
-		console.log(this.object)
-		lastValueFrom(this.educadoresService.get(this.object.id))
+		lastValueFrom(this.educadoresService.post(this.object))
 			.then(res => {
-				// if (res.success) {
-				// 	this.close()
-				// 	this.toastr.success('Operação concluída com sucesso')
-				// 	lastValueFrom(this.educadoresService.getList())
-				// }
-				// else {
-				// 	this.erro = res.message
-				// 	this.toastr.error(res.message)
-				// }
+				if (res.success) {
+					lastValueFrom(this.educadoresService.getList())
+					this.close()
+					this.toastr.success('Operação concluída com sucesso')
+				}
+				else {
+					this.erro = res.message
+					this.toastr.error(res.message)
+				}
 				this.loading = false;
 			})
 			.catch(res => {
 				this.erro = res;
-				console.error("console catch" + res);
+
+				console.error("console error" + res);
 			})
 			.finally(() => {
 				this.loading = false;

@@ -12,13 +12,11 @@ import { Response } from "../models/response.model";
 export class EducadoresService {
 
   list = new BehaviorSubject<Educadores[]>([
-    { id: 1, nome: 'João', celular: 0, idade: 80, genero: 'masculino', email: 'joao@gmail.com' },
-    { id: 2, nome: 'Maria', celular: 11933377700, idade: 80, genero: 'feminino', email: 'maria@gmail.com' },
-    { id: 3, nome: 'Bete', celular: 0, idade: 50, genero: 'feminino', email: 'bete@gmail.com' },
-    { id: 4, nome: 'Lucia', celular: 0, idade: 72, genero: 'feminino', email: 'lucia@gmail.com' },
-    { id: 5, nome: 'Antonio', celular: 0, idade: 65, genero: 'masculino', email: 'antonio@gmail.com' },
-    { id: 6, nome: 'Carlos', celular: 0, idade: 46, genero: 'masculino', email: 'carlos@gmail.com' },
-    { id: 7, nome: 'Manoel', celular: 0, idade: 59, genero: 'masculino', email: 'manoel@gmail.com' },
+    { id: 1, nome: 'Lucas', celular: 0, idade: 24, genero: 'masculino', email: 'lucas@gmail.com' },
+    { id: 2, nome: 'Marina', celular: 11933377700, idade: 30, genero: 'feminino', email: 'marina@gmail.com' },
+    { id: 3, nome: 'Luana', celular: 0, idade: 32, genero: 'feminino', email: 'luana@gmail.com' },
+    { id: 4, nome: 'João', celular: 0, idade: 72, genero: 'masculino', email: 'joao@gmail.com' },
+   
   ])
 
 
@@ -28,7 +26,12 @@ export class EducadoresService {
   ) { }
 
   getList() {
-    return this.list;
+    return new Observable<Educadores[]>(observer => {
+      var lista = this.sortLista();
+
+      this.list.next(lista);
+      observer.complete();
+    })
   }
 
   get(alunoId: number) {
@@ -44,7 +47,7 @@ export class EducadoresService {
     return this.list.value.sort((a, b) => a.id - b.id);
   }
 
-  create(model: Educadores) {
+  post(model: Educadores) {
     return new Observable<Response>(observer => {
       var lista = this.sortLista();
       var lastIndex = lista.length > 0 ? lista[lista.length - 1].id + 1 : 1;
@@ -62,35 +65,40 @@ export class EducadoresService {
   //   return of (objeto ,lista);
   // }
 
-  edit(model: Educadores) {
-    return new Observable<Response>(observer => {
-      var lista = this.sortLista();
-      var index = lista.findIndex(x => x.id == model.id);
-      if (index == -1) {
-        throw new Error('Aluno não encontrado');
-      }
-      // lista.splice(index, 1, model);
-      this.list.next(lista);
-      // observer.next(model)
-      observer.complete()
-    });
+  // post(model: Educadores) {
+  //   return new Observable<Response>(observer => {
+  //     var lista = this.sortLista();
+  //     var index = lista.findIndex(x => x.id == model.id);
+  //     if (index == -1) {
+  //       throw new Error('Aluno não encontrado');
+  //     }
+  //     // lista.splice(index, 1, model);
+  //     this.list.next(lista);
+  //     // observer.next(model)
+  //     observer.complete()
+  //   });
 
-  }
+  // }
 
   delete(id: number) {
-    return new Observable(observer => {
+    return new Observable<Response>(observer => {
       var lista = this.sortLista();
       console.log(lista)
       var index = lista.findIndex(x => x.id == id);
       console.log(index)
       if (index == -1) {
-        console.log(index)
-        throw new Error('Aluno não encontrado');
+        observer.next({
+          message: 'Educador não encontrado',
+          success: false
+        })
+        observer.complete()
       }
       lista.splice(index, 1);
-      console.log(lista)
-      this.list.next(lista)
-      observer.next('teste')
+      // this.list.next(lista)
+      observer.next({
+        message: 'Educador excluído com sucesso',
+        success: true
+      })
       observer.complete()
     });
   }

@@ -9,7 +9,7 @@ import { Response } from "../models/response.model";
   providedIn: 'root'
 })
 
-export class TurmasService {
+export class PerfisService {
 
   list = new BehaviorSubject<Perfis[]>([
     { id: 1, nome: 'Adolescentes', qtdeTurmas: 2 },
