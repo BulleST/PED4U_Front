@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of, tap } from "rxjs";
-import { Perfis } from "../pages/perfis/perfis.modal";
+import { Turma } from "../pages/turmas/turmas.model";
 import { environment } from "src/environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
@@ -11,13 +11,14 @@ import { Response } from "../models/response.model";
 
 export class TurmasService {
 
-  list = new BehaviorSubject<Perfis[]>([
-    { id: 1, nome: 'Adolescentes', qtdeTurmas: 2 },
-    { id: 2, nome: 'Adultos', qtdeTurmas: 1 },
-    { id: 3, nome: '80+', qtdeTurmas: 1 },
-    { id: 4, nome: 'Junior 1', qtdeTurmas: 3 },
-    { id: 5, nome: 'Junior 2', qtdeTurmas: 2 },
-    { id: 5, nome: 'CCL', qtdeTurmas: 1 },
+  list = new BehaviorSubject<Turma[]>([
+    { id: 1, horarioTurma: new Date(), diaTurma: 'segunda-feira', qtdeAlunos: 12 , vagasTurma: 1 , nome: 'Marina', perfil: [{id: 1, nome: 'CCL'}, {id: 2, nome: '80+'}, {id: 3, nome: 'Adolescente'}, {id: 4, nome: 'Adulto'} ]},
+    { id: 1, horarioTurma: new Date(), diaTurma: 'segunda-feira', qtdeAlunos: 5 , vagasTurma: 3 , nome: 'Lucas', perfil: [{id: 3, nome: 'Adolescente'}, {id: 4, nome: 'Adulto'} ]},
+    { id: 1, horarioTurma: new Date(), diaTurma: 'segunda-feira', qtdeAlunos: 6 , vagasTurma: 10 , nome: 'Luana', perfil: [{id: 1, nome: 'CCL'}, {id: 2, nome: '80+'} ]},
+    { id: 1, horarioTurma: new Date(), diaTurma: 'segunda-feira', qtdeAlunos: 12 , vagasTurma: 4 , nome: 'Antônio', perfil: [{id: 1, nome: 'CCL'}, {id: 2, nome: '80+'} ]},
+    { id: 1, horarioTurma: new Date(), diaTurma: 'segunda-feira', qtdeAlunos: 12 , vagasTurma: 5 , nome: 'Letícia', perfil: [{id: 1, nome: 'CCL'}, {id: 2, nome: '80+'} ]},
+
+   
     
    
   ])
@@ -27,7 +28,7 @@ export class TurmasService {
   ) { }
 
   getList() {
-    return new Observable<Perfis[]>(observer => {
+    return new Observable<Turma[]>(observer => {
       var lista = this.sortLista();
 
       this.list.next(lista);
@@ -36,7 +37,7 @@ export class TurmasService {
   }
 
   get(id: number) {
-    return new Observable<Perfis>(observer => {
+    return new Observable<Turma>(observer => {
       var lista = this.sortLista()
       var objeto = lista.find(x => x.id == id);
       if (!objeto) {
@@ -48,7 +49,7 @@ export class TurmasService {
     return this.list.value.sort((a, b) => a.id - b.id);
   }
 
-  post(model: Perfis) {
+  post(model: Turma) {
     return new Observable<Response>(observer => {
       var lista = this.sortLista();
       var lastIndex = lista.length > 0 ? lista[lista.length - 1].id + 1 : 1;

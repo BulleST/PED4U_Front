@@ -1,6 +1,6 @@
 
 import { Component } from "@angular/core";
-import { Perfis } from "../../perfis.modal";
+import { Perfis } from "../../perfis.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";

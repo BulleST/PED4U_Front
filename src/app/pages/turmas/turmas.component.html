@@ -14,7 +14,7 @@
                 [showCurrentPageReport]="true" 
                 currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} páginas"
                 [filterDelay]="0"
-                [globalFilterFields]="['id','horarioTurma', 'diaTurma', 'qtdeAlunos', 'vagasturma', 'nome', 'perfil']">
+                [globalFilterFields]="['id','diaTurma','horarioTurma', 'qtdeAlunos', 'vagasturma', 'nome', 'perfil']">
                 <ng-template pTemplate="caption">
                     <div class="flex">
                         <!-- Button para realizar cadastros na Tabela -->
@@ -38,12 +38,12 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th></th>
-                        <th pSortableColumn="horarioTurma" class="horarioTurma">
-                            Horário:
-                            <p-columnFilter type="text" field="horarioTurma" display="menu"></p-columnFilter>
-                            <p-sortIcon field="horarioTurma"></p-sortIcon> </th> 
                         <th pSortableColumn="diaTurma" class="diaTurma">
                             Dia da Semana:
+                            <p-columnFilter type="text" field="diaTurma" display="menu"></p-columnFilter>
+                            <p-sortIcon field="diaTurma"></p-sortIcon> </th> 
+                        <th pSortableColumn="diaTurma" class="diaTurma">
+                            Horário:
                             <p-columnFilter type="text" field="diaTurma" display="menu"></p-columnFilter>
                             <p-sortIcon field="diaTurma"></p-sortIcon></th> 
                         <th pSortableColumn="qtdeAlunos" class="qtdeAlunos">
@@ -51,11 +51,11 @@
                             <p-columnFilter type="text" field="qtdeAlunos" display="menu"></p-columnFilter>
                             <p-sortIcon field="qtdeAlunos"></p-sortIcon></th>
                         <th pSortableColumn="vagasTurma" class="vagasTurma">
-                            Vagas Restantes:
+                            Educador:
                             <p-columnFilter type="text" field="vagasTurma" display="menu"></p-columnFilter>
                             <p-sortIcon field="vagasTurma"></p-sortIcon></th>   
                         <th pSortableColumn="nome" class="nome">
-                            Educador:
+                            Perfil:
                             <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
                             <p-sortIcon field="nome"></p-sortIcon> </th>
                         <th></th>
@@ -66,9 +66,12 @@
                 <ng-template pTemplate="body" let-item>
                     <tr>
                         <td>{{item.id}}</td>
+                        <td>{{item.diaTurma}}</td>
+                        <td>{{item.horarioTurma| date:'shortTime'}}</td>
+                        <td>{{item.vagasTurma}}</td>
                         <td>{{item.nome}}</td>
-                        <td>{{item.qtdeTurmas}}</td>
-                        <td></td>
+                        <td>{{concatenatePerfil(item)}}</td>
+                        
                         <td>
                             <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
                             <a class="btn btn-delete" [routerLink]="['excluir', item.id]">Excluir</a>

@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { PerfisService } from 'src/app/services/perfis.service';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
-import { Perfis } from './perfis.modal';
+import { Perfis } from './perfis.model';
 
 
 @Component({

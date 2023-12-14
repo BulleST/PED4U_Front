@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Editar Cadastro de Educador</h5>
+                <h5 class="modal-title">Cadastrar Turma</h5>
                 <a 
                 type="button" 
                 class="btn-close" 
@@ -13,69 +13,91 @@
             </div>
             <div class="modal-body">
                 <form #form="ngForm">
-                
+                    <div class="d-flex mb-3">
+                        <button type="reset" class="btn-clear">Limpar Campos</button>
+                    </div>
                     <div class="column">
                         <div class="form-container mb-4">
                             <div class="campo-container">
                                 <div class="row">
                                     <div class="form-group col-md-4 col-12">
-                                        <label for="nome">Nome do Educador:
+                                        <label for="genero">Dia da Semana:
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <p-dropdown 
+                                            class="dropdown" 
+                                            [options]="diaTurma" 
+                                            [(ngModel)]="object.diaTurma" 
+                                            name="perfil"
+                                            placeholder="Selecione o dia da semana">
+                                        </p-dropdown>
+                                    </div>  
+                                    <!-- <div class="form-group col-md-4 col-12">
+                                        <label for="nome"> Dia da semana:
                                              <span class="text-danger">*</span></label>
                                         <input 
                                             type="text" 
                                             class="form-control" 
-                                            id="nome" 
-                                            name="nome" 
-                                            #nome="ngModel"
-                                            [(ngModel)]="object.nome" 
+                                            id="diaTurma" 
+                                            name="diaTurma" 
+                                            #diaTurma="ngModel"
+                                            [(ngModel)]="object.diaTurma" 
                                             pattern="\S(.*\S)?"
-                                            (change)="object.nome = nome.value.trim()"
+                                            (change)="object.horarioTurma = diaTurma.value.trim()"
                                             required minlength="3" 
                                             maxlength="30">
-                                        <div *ngIf="nome.touched && nome.errors">
-                                            <p class="text-danger" *ngIf="nome.errors['required']">
+                                        <div *ngIf="diaTurma.touched && diaTurma.errors">
+                                            <p class="text-danger" *ngIf="diaTurma.errors['required']">
                                                 Esse campo é obrigatório.
                                             </p>
-                                            <p class="text-danger" *ngIf="nome.errors['pattern']">
+                                            <p class="text-danger" *ngIf="horarioTurma.errors['pattern']">
                                                 Não insira espaços em branco antes ou no final do campo
                                             </p>
                                             <p class="text-danger">{{erro}}</p>
                                         </div>
-                                    </div>
-                                    <div class="form-group col-md-4 col-12">
+                                    </div> -->
+                                    <!-- <div class="form-group col-md-4 col-12">
                                         
                                         <label for="idade">Data de nascimento: 
                                             <span class="text-danger">*</span></label>
                                         <input 
                                             type="text"  
                                             class="form-control" 
-                                            id="idade"  
-                                            name="idade"
-                                            #idade="ngModel"
-                                            [(ngModel)]="object.idade" 
+                                            id="diaTurma"  
+                                            name="diaTurma"
+                                            #diaTurma="ngModel"
+                                            [(ngModel)]="object.diaTurma" 
                                             placeholder=" ex: 00/00/0000"
                                             mask="00/00/0000"
                                             required 
                                             minlength="12"
                                             maxlength="12">
-                                            <div *ngIf="idade.touched && idade.errors">
-                                            <p class="text-danger" *ngIf="idade.errors['required']">
+                                            <div *ngIf="diaTurma.touched && diaTurma.errors">
+                                            <p class="text-danger" *ngIf="diaTurma.errors['required']">
                                                 Esse campo é obrigatório
                                             </p>
                                             <p class="text-danger">{{erro}}</p>
                                             </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group col-md-4 col-12">
-                                        <label for="genero">Gênero:
+                                        <label for="genero">Perfil:
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <p-dropdown 
+                                        <p-multiSelect
+                                             class="dropdown"
+                                             [options]="perfis"
+                                             optionLabel="nome" 
+                                             [(ngModel)]="object.perfil" 
+                                             placeholder="Selecione o perfil da turma">
+                                        </p-multiSelect>
+                                        
+                                        <!-- <p-dropdown 
                                             class="dropdown" 
-                                            [options]="generos" 
-                                            [(ngModel)]="object.genero" 
-                                            name="vigencia"
-                                            placeholder="Selecione o gênero">
-                                        </p-dropdown>
+                                            [options]="perfil" 
+                                            [(ngModel)]="object.perfil" 
+                                            name="perfil"
+                                            placeholder="Selecione o perfil da turma">
+                                        </p-dropdown> -->
                                     </div>  
                                 </div>
                                 <div class="row">
@@ -91,7 +113,7 @@
                                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
                                             name="email"
                                             #email="ngModel"
-                                            [(ngModel)]="object.email" 
+                                            [(ngModel)]="object.qtdeAlunos" 
                                             required 
                                             minlength="1"
                                             maxlength="40">
@@ -116,7 +138,7 @@
                                             placeholder="ex: 00 0 0000-0000"
                                             name="celular"
                                             #celular="ngModel"
-                                            [(ngModel)]="object.celular" 
+                                            [(ngModel)]="object.perfil" 
                                             required 
                                             minlength="1"
                                             maxlength="16">

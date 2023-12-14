@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { Perfis } from "../../perfis.modal";
+import { Perfis } from "../../perfis.model";
 import { PerfisService } from "src/app/services/perfis.service";
 
 @Component({

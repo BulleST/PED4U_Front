@@ -3,7 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { TurmasService } from './../../services/turmas.service';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
-import { Turmas } from './turmas.modal';
+import { Turma } from './turmas.model';
 
 
 
@@ -14,7 +14,7 @@ import { Turmas } from './turmas.modal';
 })
 export class TurmasComponent {
   open = true;
-  list: Turmas[] = [];
+  list: Turma[] = [];
   id: number = 0;
   erro = '';
   // generos: string [] = [
@@ -32,6 +32,19 @@ export class TurmasComponent {
       console.log('perfis', data)
     })
     lastValueFrom(turmasService.getList())
+  }
+
+  concatenatePerfil(turma: Turma): string{
+    let perfis: string = '';
+    
+    for(let i = 0; i < turma.perfil.length; i++){
+      perfis += turma.perfil[i].nome
+      if(i != turma.perfil.length-1){
+        perfis += ', '
+      }
+       
+    }
+    return perfis
   }
 
   clear(table: Table) {

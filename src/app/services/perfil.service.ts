@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of, tap } from "rxjs";
-import { Perfis } from "../pages/perfis/perfis.model";
+import { Perfil, Perfis } from "../pages/perfis/perfis.model";
 import { environment } from "src/environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
@@ -9,15 +9,15 @@ import { Response } from "../models/response.model";
   providedIn: 'root'
 })
 
-export class PerfisService {
+export class PerfilService {
 
-  list = new BehaviorSubject<Perfis[]>([
-    { id: 1, nome: 'Adolescentes', qtdeTurmas: 2 },
-    { id: 2, nome: 'Adultos', qtdeTurmas: 1 },
-    { id: 3, nome: '80+', qtdeTurmas: 1 },
-    { id: 4, nome: 'Junior 1', qtdeTurmas: 3 },
-    { id: 5, nome: 'Junior 2', qtdeTurmas: 2 },
-    { id: 5, nome: 'CCL', qtdeTurmas: 1 },
+  list = new BehaviorSubject<Perfil[]>([
+      { id: 1, nome: 'Adolescentes'},
+      { id: 2, nome: 'Adultos' },
+      { id: 3, nome: '80+' },
+      { id: 4, nome: 'Junior 1' },
+      { id: 5, nome: 'Junior 2' },
+      { id: 5, nome: 'CCL' },
     
    
   ])
@@ -27,7 +27,7 @@ export class PerfisService {
   ) { }
 
   getList() {
-    return new Observable<Perfis[]>(observer => {
+    return new Observable<Perfil[]>(observer => {
       var lista = this.sortLista();
 
       this.list.next(lista);

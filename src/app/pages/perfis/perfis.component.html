@@ -18,9 +18,9 @@
                 <ng-template pTemplate="caption">
                     <div class="flex">
                         <!-- Button para realizar cadastros na Tabela -->
-                        <div>
+                        <!-- <div>
                             <a  class="btn-primary" [routerLink]="['cadastrar']">Cadastrar</a>
-                        </div>
+                        </div> -->
                         <!-- Button para limpar filtros aplicados na Tabela -->
                         <div class="p-2">
                             <button class="btn-clear" (click)="clear(dt)">
@@ -39,7 +39,7 @@
                     <tr>
                         <th></th>
                         <th pSortableColumn="nome" class="nome">
-                            Perfil da Turma:
+                            Perfil:
                             <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
                             <p-sortIcon field="nome"></p-sortIcon> </th> 
                         <th pSortableColumn="qtdeTurmas" class="qtdeTurmas">
@@ -70,8 +70,8 @@
                         <td>{{item.qtdeTurmas}}</td>
                         <td></td>
                         <td>
-                            <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
-                            <a class="btn btn-delete" [routerLink]="['excluir', item.id]">Excluir</a>
+                            <!-- <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
+                            <a class="btn btn-delete" [routerLink]="['excluir', item.id]">Excluir</a> -->
                         </td>
                         <td></td>
                          

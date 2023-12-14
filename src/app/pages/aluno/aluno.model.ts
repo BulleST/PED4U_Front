@@ -1,3 +1,4 @@
+
 export class AlunoList {
     id: number = '' as unknown as number;
     nome: string = '';
