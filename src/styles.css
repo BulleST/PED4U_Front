@@ -240,6 +240,7 @@ a {
     width: 100%;
     border: 1px solid #ced4da;
     background-color: #fff;
+    color: #6c757d;
 }
 
 .form-group {
@@ -270,10 +271,20 @@ a {
 
 .p-inputtext{
     padding: 6px;
+    color: #6c757d;
 }
 
 .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
     background: #ffffff;
     border-color: #ff6315;
     
+}
+
+.p-multiselect{
+    width: 100%;
+    padding: 6px;
+}
+
+.form-control{
+    color: #6c757d;
 }

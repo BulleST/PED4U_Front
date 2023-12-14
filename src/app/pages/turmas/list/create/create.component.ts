@@ -29,6 +29,14 @@ export class CreateComponent{
 		'Quinta-Feira',
 		'Sexta-Feira',
 		'Sábado'
+	  ];
+	  nome: string [] = [
+		'Lucas',
+		'Marina',
+		'Luana',
+		'Antônio',
+		'Letícia'
+		
 	  ]
 	
     constructor(

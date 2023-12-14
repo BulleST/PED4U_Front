@@ -16,6 +16,7 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { IConfig, provideEnvironmentNgxMask } from 'ngx-mask'
 import { TurmasRoutingModule } from "./turmas.routing";
 import { CreateComponent } from "./list/create/create.component";
+import { EditComponent } from "./list/edit/edit.component";
 import { MultiSelectModule } from 'primeng/multiselect';
 
 
@@ -29,7 +30,8 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
 @NgModule ({
     declarations: [ 
         TurmasComponent,
-        CreateComponent
+        CreateComponent,
+        EditComponent
         
     ],
     imports: [

@@ -1,20 +1,20 @@
-<div class="modal" 
-    [class.modal--show]="open">
+<div class="modal" [class.modal--show]="open">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Cadastrar Turma</h5>
                 <a 
-                type="button" 
-                class="btn-close" 
-                (click)="close()">
-                        <!-- <span aria-hidden="true">&times;</span> -->
+                    type="button" 
+                    class="btn-close" 
+                    (click)="close()">
                 </a>
             </div>
             <div class="modal-body">
                 <form #form="ngForm">
                     <div class="d-flex mb-3">
-                        <button type="reset" class="btn-clear">Limpar Campos</button>
+                        <button 
+                            type="reset" 
+                            class="btn-clear">Limpar Campos</button>
                     </div>
                     <div class="column">
                         <div class="form-container mb-4">
@@ -27,27 +27,28 @@
                                         <p-dropdown 
                                             class="dropdown" 
                                             [options]="diaTurma" 
-                                            [(ngModel)]="object.diaTurma" 
-                                            name="perfil"
+                                            [(ngModel)]="object.diaTurma"
+                                            name="perfil" 
                                             placeholder="Selecione o dia da semana">
                                         </p-dropdown>
-                                    </div>  
-                                    <!-- <div class="form-group col-md-4 col-12">
-                                        <label for="nome"> Dia da semana:
-                                             <span class="text-danger">*</span></label>
+                                    </div>
+                                    <div class="form-group col-md-4 col-12">
+                                        <label for="horarioTurma"> Horário:
+                                            <span class="text-danger">*</span></label>
                                         <input 
-                                            type="text" 
+                                            type="time" 
                                             class="form-control" 
-                                            id="diaTurma" 
-                                            name="diaTurma" 
-                                            #diaTurma="ngModel"
-                                            [(ngModel)]="object.diaTurma" 
+                                            id="horarioTurma" 
+                                            name="horarioTurma"
+                                            #horarioTurma="ngModel" 
+                                            [(ngModel)]="object.horarioTurma"
                                             pattern="\S(.*\S)?"
-                                            (change)="object.horarioTurma = diaTurma.value.trim()"
-                                            required minlength="3" 
+                                            (change)="object.horarioTurma = horarioTurma.value.trim()" 
+                                            required
+                                            minlength="3" 
                                             maxlength="30">
-                                        <div *ngIf="diaTurma.touched && diaTurma.errors">
-                                            <p class="text-danger" *ngIf="diaTurma.errors['required']">
+                                        <div *ngIf="horarioTurma.touched && horarioTurma.errors">
+                                            <p class="text-danger" *ngIf="horarioTurma.errors['required']">
                                                 Esse campo é obrigatório.
                                             </p>
                                             <p class="text-danger" *ngIf="horarioTurma.errors['pattern']">
@@ -55,120 +56,70 @@
                                             </p>
                                             <p class="text-danger">{{erro}}</p>
                                         </div>
-                                    </div> -->
-                                    <!-- <div class="form-group col-md-4 col-12">
-                                        
-                                        <label for="idade">Data de nascimento: 
+                                    </div>
+                                    <div class="form-group col-md-4 col-12">
+
+                                        <label for="idade">Capacidade de Alunos:
                                             <span class="text-danger">*</span></label>
                                         <input 
-                                            type="text"  
+                                            type="text" 
                                             class="form-control" 
-                                            id="diaTurma"  
-                                            name="diaTurma"
-                                            #diaTurma="ngModel"
-                                            [(ngModel)]="object.diaTurma" 
-                                            placeholder=" ex: 00/00/0000"
-                                            mask="00/00/0000"
-                                            required 
-                                            minlength="12"
-                                            maxlength="12">
-                                            <div *ngIf="diaTurma.touched && diaTurma.errors">
-                                            <p class="text-danger" *ngIf="diaTurma.errors['required']">
-                                                Esse campo é obrigatório
-                                            </p>
-                                            <p class="text-danger">{{erro}}</p>
-                                            </div>
-                                    </div> -->
-                                    <div class="form-group col-md-4 col-12">
-                                        <label for="genero">Perfil:
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <p-multiSelect
-                                             class="dropdown"
-                                             [options]="perfis"
-                                             optionLabel="nome" 
-                                             [(ngModel)]="object.perfil" 
-                                             placeholder="Selecione o perfil da turma">
-                                        </p-multiSelect>
-                                        
-                                        <!-- <p-dropdown 
-                                            class="dropdown" 
-                                            [options]="perfil" 
-                                            [(ngModel)]="object.perfil" 
-                                            name="perfil"
-                                            placeholder="Selecione o perfil da turma">
-                                        </p-dropdown> -->
-                                    </div>  
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-4 col-12">
-                                        <label for="email">E-mail:
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <input 
-                                            type="email"  
-                                            class="form-control" 
-                                            id="email" 
-                                            placeholder="example@gmail.com" 
-                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
-                                            name="email"
-                                            #email="ngModel"
+                                            id="qtdeAlunos" 
+                                            name="qtdeAlunos"
+                                            #qtdeAlunos="ngModel" 
                                             [(ngModel)]="object.qtdeAlunos" 
+                                            placeholder=" ex: 12"
                                             required 
-                                            minlength="1"
-                                            maxlength="40">
-                                            <div *ngIf="email.touched && email.errors">
-                                            <p class="text-danger" *ngIf="email.errors
-                                            ['required']">
+                                            minlength="12" 
+                                            maxlength="12">
+                                        <div *ngIf="qtdeAlunos.touched && qtdeAlunos.errors">
+                                            <p class="text-danger" *ngIf="qtdeAlunos.errors['required']">
                                                 Esse campo é obrigatório
                                             </p>
                                             <p class="text-danger">{{erro}}</p>
-                                            </div>
-                                     </div>
-                                     <div class="form-group col-md-4 col-12">
-                                        <label for="celular">Telefone:
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4 col-12">
+                                        <label for="perfil">Perfil:
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <input 
-                                            type="text"  
-                                            class="form-control" 
-                                            id="celular" 
-                                            mask="(00) 0.0000-0000 || (00) 0000-0000"
-                                            pattern="[0-9]{2} [0-9]{5}-[0-9]{4} || [0-9]{2} [0-9]{4}-[0-9]{4}" 
-                                            placeholder="ex: 00 0 0000-0000"
-                                            name="celular"
-                                            #celular="ngModel"
-                                            [(ngModel)]="object.perfil" 
-                                            required 
-                                            minlength="1"
-                                            maxlength="16">
-                                            <div *ngIf="celular.touched && celular.errors">
-                                            <p class="text-danger" *ngIf="celular.errors
-                                            ['required']">
-                                                Esse campo é obrigatório
-                                            </p>
-                                            <p class="text-danger">{{erro}}</p>
+                                        <p-multiSelect 
+                                            class="dropdown" 
+                                            [options]="perfis" 
+                                            optionLabel="nome"
+                                            [(ngModel)]="object.perfil"
+                                            placeholder="Selecione o perfil da turma">
+                                        </p-multiSelect>
+                                    </div>
+                                    <div class="form-group col-md-4 col-12">
+                                        <label for="nome">Educador:
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <p-dropdown 
+                                            class="dropdown" 
+                                            [options]="nome"
+                                            [(ngModel)]="object.nome"
+                                            name="nome" 
+                                            placeholder="Selecione o educador">
+                                        </p-dropdown>
                                     </div>
                                 </div>
-                            </div>
-                                  
-                            
-                                
-                               
                                 <div class="modal-footer">
                                     <button 
-                                        type="button"
+                                        type="button" 
                                         class="btn-cancel" 
                                         (click)="close()"
-                                        [disabled]="loading">Cancelar
+                                        [disabled]="loading">
+                                        Cancelar
                                     </button>
                                     <button 
-                                        type="button"
+                                        type="button" 
                                         class="btn-save" 
                                         data-dismiss="modal" 
                                         (click)="save()"
-                                        [disabled]="loading">Salvar
-                                     </button>
+                                        [disabled]="loading">
+                                        Salvar
+                                    </button>
                                 </div>
                             </div>
                         </div>
