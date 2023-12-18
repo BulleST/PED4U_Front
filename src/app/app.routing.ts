@@ -10,6 +10,8 @@ const listAluno = () => import ('./pages/aluno/aluno.module').then(res => res.Al
 const listEducadores = () => import ('./pages/educadores/educadores.module').then(res => res.EducadoresModule)
 const listPerfis = () => import ('./pages/perfis/perfis.module').then( res => res.PerfisModule)
 const listTurmas = () => import ('./pages/turmas/turmas.module').then( res => res.TurmasModule)
+const listAulas = () => import ('./header-parts/aulas/aulas.module').then ( res => res.AulasModule)
+
 
 const routes: Routes = [
   {
@@ -41,10 +43,19 @@ const routes: Routes = [
     path: 'turmas',
     loadChildren: listTurmas
   },
+
+  {
+    path: 'aulas',
+    loadChildren: listAulas
+  },
   
   {
     path: '', redirectTo: 'home', pathMatch: 'full'
-  } 
+  },
+
+  {
+    path: '', redirectTo: 'aulas', pathMatch: 'full'
+  }
 ];
 
 @NgModule({

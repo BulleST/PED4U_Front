@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of, tap } from "rxjs";
-import { Educadores } from "../pages/educadores/educadores.modal";
+import { Educadores } from "../pages/educadores/educadores.model";
 import { environment } from "src/environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";

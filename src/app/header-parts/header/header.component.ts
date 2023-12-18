@@ -52,13 +52,15 @@ export class HeaderComponent implements OnInit{
             }
            
         ];
+
+        
         
      }
 
     clickMethod(name: string) {
-        // if (confirm('Você tem certeza que deseja fazer Logout?')) {
-        //   console.log("Implement logout funcionality here")
-        // }
+        if (confirm('Você tem certeza que deseja fazer Logout?')) {
+          console.log("Implement logout funcionality here")
+        }
     }
 }
       

@@ -2,7 +2,7 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { EducadoresService } from 'src/app/services/educadores.service';
-import { Educadores } from './../../educadores.modal';
+import { Educadores } from '../../educadores.model';
 import { ToastrService } from "ngx-toastr";
 import { lastValueFrom } from "rxjs";
 

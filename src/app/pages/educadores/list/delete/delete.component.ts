@@ -1,6 +1,6 @@
 
 import { Component } from "@angular/core";
-import { Educadores } from "../../educadores.modal";
+import { Educadores } from "../../educadores.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { EducadoresService } from "src/app/services/educadores.service";
 import { lastValueFrom } from "rxjs";

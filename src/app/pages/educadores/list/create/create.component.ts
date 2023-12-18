@@ -5,7 +5,7 @@ import { EducadoresService } from "src/app/services/educadores.service";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { Educadores } from "../../educadores.modal";
+import { Educadores } from "../../educadores.model";
 
 @Component({
 	selector: 'create-alunos',

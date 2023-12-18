@@ -5,8 +5,7 @@
             <button pButton type="button" (click)="menu.toggle($event)" icon="pi pi-angle-down" label="Cadastros Gerais"></button>
         </div>
         <div class="button_header">
-            <p-menu #menu [model]="items" [popup]="true"></p-menu>
-            <button pButton type="button"  label="Lançar Aula">
+            <button [routerLink]="['aulas']" routerLinkActive="active" pButton type="button"  label="Lançar Aula">
             </button>
         </div>
         <div class="button_header">

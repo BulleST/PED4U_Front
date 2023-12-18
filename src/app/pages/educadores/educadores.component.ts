@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { EducadoresService } from 'src/app/services/educadores.service';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
-import { Educadores } from './educadores.modal';
+import { Educadores } from './educadores.model';
 
 @Component({
     selector: 'educadores',
