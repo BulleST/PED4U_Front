@@ -5,7 +5,7 @@
             <p-table 
                 #dt
                 class="table"
-               
+                [value]="list"
                 sortField=""
                 dataKey="id"
                 styleClass="p-datatable-striped"
@@ -15,7 +15,7 @@
                 [showCurrentPageReport]="true" 
                 currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} páginas"
                 [filterDelay]="0"
-                [globalFilterFields]="['id','nome', 'apostila', 'pagina', '']">
+                [globalFilterFields]="['id','nome', 'apostila', 'pagina', 'flata', 'reposicao']">
                 <ng-template pTemplate="caption">
                     <div class="flex">
                         <!-- Button para realizar cadastros na Tabela -->
@@ -43,14 +43,22 @@
                             Nome
                             <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
                             <p-sortIcon field="nome"></p-sortIcon> </th> 
-                        <th pSortableColumn="qtdePaginas" class="qtdePaginas">
-                            Páginas Com Exercícios
-                            <p-columnFilter type="text" field="qtdePaginas" display="menu"></p-columnFilter>
-                            <p-sortIcon field="qtdePaginas"></p-sortIcon> </th>
-                        <th pSortableColumn="materialExtra" class="materialExtra">
-                            Material Extra  
-                            <p-columnFilter type="text" field="materialExtra" display="menu"></p-columnFilter>
-                            <p-sortIcon field="materialExtra"></p-sortIcon></th>     
+                        <th pSortableColumn="apostila" class="apostila">
+                            Apostila
+                            <p-columnFilter type="text" field="apostila" display="menu"></p-columnFilter>
+                            <p-sortIcon field="apostila"></p-sortIcon> </th>
+                        <th pSortableColumn="pagina" class="pagina">
+                            Quantidade de Páginas
+                            <p-columnFilter type="text" field="pagina" display="menu"></p-columnFilter>
+                            <p-sortIcon field="pagina"></p-sortIcon></th>  
+                        <th pSortableColumn="falta" class="falta">
+                            Falta
+                            <p-columnFilter type="text" field="falta" display="menu"></p-columnFilter>
+                            <p-sortIcon field="falta"></p-sortIcon></th>   
+                        <th pSortableColumn="reposicao" class="reposicao">
+                            Reposição
+                            <p-columnFilter type="text" field="reposicao" display="menu"></p-columnFilter>
+                            <p-sortIcon field="reposicao"></p-sortIcon></th>   
                         <th></th>
                         <th></th>
                         <th></th>
@@ -60,9 +68,16 @@
                     <tr>
                         <td>{{item.id}}</td>
                         <td>{{item.nome}}</td>
-                        <td>{{item.qtdePaginas}}</td>
+                        <td>{{item.apostila}}</td>
+                        <td>{{item.pagina}}</td>
                         <td>
-                            <!-- <p-tag [value]="item.materialExtra" [severity]="getSeverity(item.materialExtra)"></p-tag> -->
+                           
+                            <p-button class="btn-faltas" [severity]="getSeverity(item.falta)">
+                                {{getValueFalta(item.falta)}}
+                            </p-button>
+                        </td>
+                        <td>
+                            <p-tag class="btn-reposicao" [value]="getValueReposicao(item.reposicao)" [severity]="getSeverity(item.reposicao)"></p-tag>
                         <td></td>
                         <td></td>
                         <td>

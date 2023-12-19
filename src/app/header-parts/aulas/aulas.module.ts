@@ -6,6 +6,8 @@ import { AulasComponent } from './aulas.component';
 import { AulasRoutingmodule } from './aulas.routing';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
+import { TagModule } from 'primeng/tag';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule ({
     declarations: [ 
@@ -16,7 +18,9 @@ import { TabViewModule } from 'primeng/tabview';
         RouterModule,
         AulasRoutingmodule,
         TabViewModule,
-        TableModule
+        TableModule,
+        TagModule,
+        ButtonModule
     ],
 })
 

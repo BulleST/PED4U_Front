@@ -222,18 +222,21 @@ a {
     margin-bottom: 12px;
 }
 
-.p-tag.p-tag-success {
-    background-color: #22C55E;
+.p-tag{
+    width: 80%;
+    min-width: 54px;
     color: #ffffff;
     font-size: 12pt;
     padding: 4px 10px;
 }
 
+.p-tag.p-tag-success {
+    background-color: #22C55E;
+    
+}
+
 .p-tag.p-tag-danger {
     background-color: #EF4444;
-    color: #ffffff;
-    font-size: 12pt;
-    padding: 4px 10px;
 }
 
 .form-control{
@@ -287,4 +290,8 @@ a {
 
 .form-control{
     color: #6c757d;
+}
+
+.btn-reposicao > .p-tag{
+    width: 50%;
 }

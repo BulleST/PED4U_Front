@@ -92,7 +92,7 @@
                         <td>{{item.diaTurma}}</td>
                         <td>{{item.perfilAluno}}</td>
                         <td>
-                            <p-tag [value]="item.dataVigencia" [severity]="getSeverity(item.dataVigencia)"></p-tag>
+                            <p-tag [value]="getValue(item.dataVigencia)" [severity]="getSeverity(item.dataVigencia)"></p-tag>
                         </td>
                         <td>
                             <a class="btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
