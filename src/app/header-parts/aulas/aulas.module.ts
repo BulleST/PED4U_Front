@@ -8,10 +8,21 @@ import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
+import { CreateComponent } from "./list/create/create.component";
+import { EditComponent } from "./list/edit/edit.component";
+import { FormsModule } from '@angular/forms';
+import { CheckboxModule } from 'primeng/checkbox';
+import { DropdownModule } from 'primeng/dropdown';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule ({
     declarations: [ 
-        AulasComponent
+        AulasComponent,
+        CreateComponent,
+        EditComponent
     ],
     imports: [
         CommonModule,
@@ -20,7 +31,16 @@ import { ButtonModule } from 'primeng/button';
         TabViewModule,
         TableModule,
         TagModule,
-        ButtonModule
+        ButtonModule,
+        FormsModule,
+        CheckboxModule,
+        DropdownModule,
+        RadioButtonModule,
+        SelectButtonModule,
+        ToggleButtonModule,
+        InputNumberModule
+        
+    
     ],
 })
 

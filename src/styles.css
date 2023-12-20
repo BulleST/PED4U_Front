@@ -292,6 +292,63 @@ a {
     color: #6c757d;
 }
 
+.p-button:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--primary), 0 1px 2px 0 black;
+}
+
 .btn-reposicao > .p-tag{
     width: 50%;
 }
+
+.btn-reposicao > .p-button{
+    font-size: 12pt;
+    height: 32px;
+    background: #fff;
+    border: 2px solid;
+    border-color:  #d1d5db;
+    color: #4b5563;
+}
+
+.btn-falta > .p-button{
+    font-size: 12pt;
+    height: 32px;
+    background: #fff;
+    border: 2px solid;
+    border-color:  #d1d5db;
+    color: #4b5563;
+}
+
+.btn-falta > .p-togglebutton.p-button.p-highlight {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+}
+
+.btn-reposicao > .p-togglebutton.p-button.p-highlight {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+}
+
+.p-inputtext {
+    width: 60px;
+    padding: 0.75rem 0.75rem;
+    color: #6c757d;
+    display: inline-flex;
+    height: 38px;
+    margin-top: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.p-button.p-button-secondary, .p-buttonset.p-button-secondary > .p-button, .p-splitbutton.p-button-secondary > .p-button {
+    color: var(--primary);
+    background: none;
+    border: 1px solid var(--primary);
+    width: 40px;
+    height: 37px;
+    margin-top: 2px;
+    
+}
+
+

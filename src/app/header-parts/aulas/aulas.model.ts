@@ -3,6 +3,6 @@ export class Aulas{
     nome: string = '';
     apostila: string = '';
     pagina: number = 0;
-    falta: boolean = false;
-    reposicao: boolean = false;
+    falta: boolean = true;
+    reposicao: boolean = true;
 }

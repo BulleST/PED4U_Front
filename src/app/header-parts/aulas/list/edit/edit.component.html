@@ -1,0 +1,124 @@
+<div class="modal" [class.modal--show]="open">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Aulas</h5>
+                <a type="button" class="btn-close" (click)="close()">
+                </a>
+            </div>
+            <div class="modal-body">
+                <form #form="ngForm">
+                    <!-- <div class="d-flex mb-3">
+                        <button type="reset" class="btn-clear">Limpar Campos</button>
+                    </div> -->
+                    <div class="column">
+                        <div class="form-container mb-4">
+                            <div class="campo-container">
+                                <div class="row">
+                                    <div class="form-group col-md-3 col-12">
+                                        <label for="nome">Educador:
+                                            <span class="text-danger">*</span></label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="nome" 
+                                            name="nome" 
+                                            #nome="ngModel"
+                                            [(ngModel)]="object.nome" 
+                                            pattern="\S(.*\S)?"
+                                            (change)="object.nome = nome.value.trim()" 
+                                            required 
+                                            minlength="3"
+                                            maxlength="30">
+                                        <div *ngIf="nome.touched && nome.errors">
+                                            <p class="text-danger" *ngIf="nome.errors['required']">
+                                                Esse campo é obrigatório.
+                                            </p>
+                                            <p class="text-danger" *ngIf="nome.errors['pattern']">
+                                                Não insira espaços em branco antes ou no final do campo
+                                            </p>
+                                            <p class="text-danger">{{erro}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-3 col-12">
+                                        <label for="idade">Apostila:
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="apostila" 
+                                            name="apostila"
+                                            #apostila="ngModel" 
+                                            [(ngModel)]="object.apostila"
+                                            placeholder=" ex: Básico 1" 
+                                            required>
+                                        <div *ngIf="apostila.touched && apostila.errors">
+                                            <p class="text-danger" *ngIf="apostila.errors['required']">
+                                                Esse campo é obrigatório
+                                            </p>
+                                            <p class="text-danger">{{erro}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 col-12">
+                                        <label for="pagina">Quantidade de Páginas:
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <p-inputNumber 
+                                            [(ngModel)]="object.pagina" 
+                                            [showButtons]="true"
+                                            buttonLayout="horizontal" 
+                                            spinnerMode="horizontal" 
+                                            inputId="horizontal"
+                                            decrementButtonClass="p-button-secondary"
+                                            incrementButtonClass="p-button-secondary" 
+                                            incrementButtonIcon="pi pi-plus"
+                                            decrementButtonIcon="pi pi-minus">
+                                        </p-inputNumber>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-3 col-12">
+                                        <label for="falta">Falta:
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <p-toggleButton 
+                                            class="btn-falta" 
+                                            [(ngModel)]="object.falta" 
+                                            onLabel="Presente"
+                                            offLabel="Ausente">
+                                        </p-toggleButton>
+                                    </div>
+                                    <div class="form-group col-md-3 col-12">
+                                        <label for="reposicao">Reposição:
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <p-toggleButton 
+                                            class="btn-reposicao" 
+                                            [(ngModel)]="object.reposicao"
+                                            onLabel="Sim" 
+                                            offLabel="Não">
+                                        </p-toggleButton>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn-cancel" (click)="close()" [disabled]="loading">Cancelar
+                                </button>
+                                <button type="button" class="btn-save" data-dismiss="modal" (click)="save()"
+                                    [disabled]="loading">Salvar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
