@@ -351,4 +351,25 @@ a {
     
 }
 
+.generalInput{
+    padding: 12px 15px;
+    color: #bfbfbf;
+    display: inline-flex;
+    height: 38px;
+    margin-top: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    border-radius: 8px;
+    border: 1px solid #bfbfbf;
+}
 
+
+.btn-clear{
+    background-color: #5a5c60;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid;
+    margin: 6px;
+    cursor: pointer;
+}

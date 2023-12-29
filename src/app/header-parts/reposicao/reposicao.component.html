@@ -1,6 +1,6 @@
 
 <p-tabView class="aulas">
-    <p-tabPanel header="Lançamento de Aulas">
+    <p-tabPanel header="Reposições">
         <div class="card table-responsive">
             <p-table 
                 #dt
@@ -15,7 +15,7 @@
                 [showCurrentPageReport]="true" 
                 currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} páginas"
                 [filterDelay]="0"
-                [globalFilterFields]="['id','nome', 'apostila', 'pagina', 'flata', 'reposicao']">
+                [globalFilterFields]="['id','diaTurma', 'horarioTurma', 'perfil', 'vagasTurma']">
                 <ng-template pTemplate="caption">
                     <div class="flex">
                         <!-- Button para realizar cadastros na Tabela -->
@@ -24,14 +24,14 @@
                         </div>
                         <!-- Button para limpar filtros aplicados na Tabela -->
                         <div class="p-2">
-                            <!-- <button class="btn-clear" (click)="clear(dt)">
+                            <button class="btn-clear" (click)="clear(dt)">
                                 <span class="me-2">Limpar filtros</span>
                                 <i class="pi pi-filter-slash"></i>
-                            </button> -->
+                            </button>
                             <!-- Input para palavras-chave dados da Tabela -->
                             <span class="p-2 p-input-icon-right">
                                 <i class="pi pi-search"></i>
-                                <!-- <input class="p-inputtext"  pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Digite a Palavra-Chave" /> -->
+                                <input class="generalInput"  pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Digite a Palavra-Chave" />
                             </span>
                         </div>
                     </div>
@@ -39,47 +39,38 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th></th>
-                        <th pSortableColumn="nome" class="nome">
-                            Nome
-                            <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
-                            <p-sortIcon field="nome"></p-sortIcon> </th> 
-                        <th pSortableColumn="apostila" class="apostila">
-                            Apostila
-                            <p-columnFilter type="text" field="apostila" display="menu"></p-columnFilter>
-                            <p-sortIcon field="apostila"></p-sortIcon> </th>
-                        <th pSortableColumn="pagina" class="pagina">
-                            Quantidade de Páginas
-                            <p-columnFilter type="text" field="pagina" display="menu"></p-columnFilter>
-                            <p-sortIcon field="pagina"></p-sortIcon></th>  
-                        <th pSortableColumn="falta" class="falta">
-                            Falta
-                            <p-columnFilter type="text" field="falta" display="menu"></p-columnFilter>
-                            <p-sortIcon field="falta"></p-sortIcon></th>   
-                        <th pSortableColumn="reposicao" class="reposicao">
-                            Reposição
-                            <p-columnFilter type="text" field="reposicao" display="menu"></p-columnFilter>
-                            <p-sortIcon field="reposicao"></p-sortIcon></th>   
+                        <th pSortableColumn="diaTurma" class="diaTurma">
+                            Dia da Semana
+                            <p-columnFilter type="text" field="diaTurma" display="menu"></p-columnFilter>
+                            <p-sortIcon field="diaTurma"></p-sortIcon> </th> 
+                        <th pSortableColumn="horarioTurma" class="horarioTurma">
+                            Horário
+                            <p-columnFilter type="text" field="horarioTurma" display="menu"></p-columnFilter>
+                            <p-sortIcon field="horarioTurma"></p-sortIcon> </th>
+                        <th pSortableColumn="perfil" class="perfil">
+                            Perfil da Turma
+                            <p-columnFilter type="text" field="perfil" display="menu"></p-columnFilter>
+                            <p-sortIcon field="perfil"></p-sortIcon></th>  
+                        <th pSortableColumn="vagasTurma" class="vagasTurma">
+                            Vagas na Turma
+                            <p-columnFilter type="text" field="vagasTurma" display="menu"></p-columnFilter>
+                            <p-sortIcon field="va"></p-sortIcon></th>   
+                         
                         <th></th>
-                        <th></th>
-                        <th></th>
+                        
+                        
+                        
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-item>
                     <tr>
                         <td>{{item.id}}</td>
-                        <td>{{item.nome}}</td>
-                        <td>{{item.apostila}}</td>
-                        <td>{{item.pagina}}</td>
-                        <td>
-                           
-                            <p-button class="btn-faltas" [severity]="getSeverity(item.falta)">
-                                {{getValueFalta(item.falta)}}
-                            </p-button>
-                        </td>
-                        <td>
-                            <p-tag class="btn-reposicao" [value]="getValueReposicao(item.reposicao)" [severity]="getSeverity(item.reposicao)"></p-tag>
-                        <td></td>
-                        <td></td>
+                        <td>{{item.diaTurma}}</td>
+                        <td>{{item.horarioTurma| date:'shortTime'}}</td>
+                        <td>{{item.perfil}}</td>
+                        <td>{{item.vagasTurma}}</td>
+                      
+                    
                         <td>
                             <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
                             <a class="btn btn-delete" [routerLink]="['excluir', item.id]">Excluir</a>

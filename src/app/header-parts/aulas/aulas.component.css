@@ -94,7 +94,7 @@ td {
     color: #fff;
     padding: 10px;
     border-radius: 10px;
-    border: none;
+    border: 1px solid;
     margin: 6px;
     cursor: pointer;
 }

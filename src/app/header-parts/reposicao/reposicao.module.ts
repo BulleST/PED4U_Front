@@ -43,4 +43,4 @@ import { InputNumberModule } from 'primeng/inputnumber';
     ],
 })
 
-export class AulasModule {}
+export class ReposicaoModule {}

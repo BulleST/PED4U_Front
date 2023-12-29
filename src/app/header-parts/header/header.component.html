@@ -9,8 +9,9 @@
             </button>
         </div>
         <div class="button_header">
-            <p-menu #menu [model]="items" [popup]="true"></p-menu>
-            <button pButton type="button"  label="Gerenciar Reposições"></button>
+            <button [routerLink]="['reposicao']" routerLinkActive="active" pButton type="button"  label="Gerenciar Reposições">
+            </button>
+            
         </div>
         <div class="button_header">
             <button class="btn-header" type="button" (click)="clickMethod('name')">Fazer Login</button>

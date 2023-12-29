@@ -11,6 +11,8 @@ const listEducadores = () => import ('./pages/educadores/educadores.module').the
 const listPerfis = () => import ('./pages/perfis/perfis.module').then( res => res.PerfisModule)
 const listTurmas = () => import ('./pages/turmas/turmas.module').then( res => res.TurmasModule)
 const listAulas = () => import ('./header-parts/aulas/aulas.module').then ( res => res.AulasModule)
+const listReposicao = () => import ('./header-parts/reposicao/reposicao.module').then ( res => res.ReposicaoModule)
+
 
 
 const routes: Routes = [
@@ -47,6 +49,11 @@ const routes: Routes = [
   {
     path: 'aulas',
     loadChildren: listAulas
+  },
+
+  {
+    path: 'reposicao',
+    loadChildren: listReposicao
   },
   
   {
