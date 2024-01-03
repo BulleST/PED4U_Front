@@ -89,15 +89,7 @@ td {
     justify-content: space-between;
 }
 
-.btn-clear{
-    background-color: #5a5c60;
-    color: #fff;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid;
-    margin: 6px;
-    cursor: pointer;
-}
+
 
 .btn-primary{
     background-color:var(--primary);

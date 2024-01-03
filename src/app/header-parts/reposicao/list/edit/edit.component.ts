@@ -1,27 +1,26 @@
 
+import { ReposicaoService } from "src/app/services/reposicao.service";
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { Turma } from "../../turmas.model";
-import { PerfilAluno } from "src/app/pages/aluno/aluno.model";
-import { TurmasService } from "src/app/services/turmas.service";
-import { PerfilService } from "src/app/services/perfil.service";
+import { ReposicaoAlunos } from "../../reposicao.model";
+import { Perfil } from "src/app/pages/perfis/perfis.model";
 
 @Component({
-	selector: 'create-alunos',
-	templateUrl: './create.component.html',
-	styleUrls: ['./create.component.css']
+	selector: 'edit-reposicao',
+	templateUrl: './edit.component.html',
+	styleUrls: ['./edit.component.css']
 })
 
-export class CreateComponent{
+export class EditComponent{
     open = true;
-    object: Turma = new Turma;
+    object: ReposicaoAlunos = new ReposicaoAlunos;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
-	perfis: PerfilAluno [] = [];
+	perfis: Perfil [] = [];
 	diaTurma: string [] = [
 		'Segunda-Feira',
 		'Terça-Feira',
@@ -30,33 +29,26 @@ export class CreateComponent{
 		'Sexta-Feira',
 		'Sábado'
 	  ];
-	  nome: string [] = [
-		'Lucas',
-		'Marina',
-		'Luana',
-		'Antônio',
-		'Letícia'
-	  ]
-	
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private turmasService: TurmasService,
+        private reposicaoService: ReposicaoService,
 		private httpClient: HttpClient,
 		private toastr: ToastrService,
-		private perfilService: PerfilService
     ){
-		this.perfilService.list.subscribe((data) => {
-			this.perfis = Object.assign([], data);
-			console.log('perfis', data)
-		  })
-		  lastValueFrom(perfilService.getList())
+
+		// lastValueFrom(this.aulasService.getList()).then( res => {
+		// 	this.Aulas = Object.assign([], res);
+		// });
+		lastValueFrom(this.reposicaoService.getList())
+
+		
 	}
 
     // Fechar modal e retornar para rota de estabelecimento
 	close(): void {
 		this.open = false;
-		this.router.navigate(['turmas']);
+		this.router.navigate(['reposicao']);
 		return;
 	}
 
@@ -65,12 +57,12 @@ export class CreateComponent{
 		this.loading = true;
 		
 		console.log(this.object)
-		lastValueFrom(this.turmasService.post(this.object))
+		lastValueFrom(this.reposicaoService.post(this.object))
 			.then(res => {
 				if (res.success) {
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
-					lastValueFrom(this.turmasService.getList())
+					lastValueFrom(this.reposicaoService.getList())
 				}
 				else {
 					this.erro = res.message

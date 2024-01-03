@@ -1,23 +1,24 @@
 
+import { ReposicaoService } from "src/app/services/reposicao.service";
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { Turma } from "../../turmas.model";
-import { PerfilAluno } from "src/app/pages/aluno/aluno.model";
-import { TurmasService } from "src/app/services/turmas.service";
+import { ReposicaoAlunos } from "../../reposicao.model";
 import { PerfilService } from "src/app/services/perfil.service";
 
+import { PerfilAluno } from "src/app/pages/aluno/aluno.model";
+
 @Component({
-	selector: 'create-alunos',
+	selector: 'create-reposicao',
 	templateUrl: './create.component.html',
 	styleUrls: ['./create.component.css']
 })
 
 export class CreateComponent{
     open = true;
-    object: Turma = new Turma;
+    object: ReposicaoAlunos = new ReposicaoAlunos;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
@@ -30,33 +31,32 @@ export class CreateComponent{
 		'Sexta-Feira',
 		'Sábado'
 	  ];
-	  nome: string [] = [
-		'Lucas',
-		'Marina',
-		'Luana',
-		'Antônio',
-		'Letícia'
-	  ]
-	
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private turmasService: TurmasService,
+        private reposicaoService: ReposicaoService,
 		private httpClient: HttpClient,
 		private toastr: ToastrService,
 		private perfilService: PerfilService
     ){
+
+		// lastValueFrom(this.aulasService.getList()).then( res => {
+		// 	this.Aulas = Object.assign([], res);
+		// });
+		
 		this.perfilService.list.subscribe((data) => {
 			this.perfis = Object.assign([], data);
 			console.log('perfis', data)
 		  })
 		  lastValueFrom(perfilService.getList())
+
+		
 	}
 
     // Fechar modal e retornar para rota de estabelecimento
 	close(): void {
 		this.open = false;
-		this.router.navigate(['turmas']);
+		this.router.navigate(['reposicao']);
 		return;
 	}
 
@@ -65,12 +65,12 @@ export class CreateComponent{
 		this.loading = true;
 		
 		console.log(this.object)
-		lastValueFrom(this.turmasService.post(this.object))
+		lastValueFrom(this.reposicaoService.post(this.object))
 			.then(res => {
 				if (res.success) {
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
-					lastValueFrom(this.turmasService.getList())
+					lastValueFrom(this.reposicaoService.getList())
 				}
 				else {
 					this.erro = res.message

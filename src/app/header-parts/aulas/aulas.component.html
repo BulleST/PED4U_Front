@@ -71,13 +71,21 @@
                         <td>{{item.apostila}}</td>
                         <td>{{item.pagina}}</td>
                         <td>
-                           
-                            <p-button class="btn-faltas" [severity]="getSeverity(item.falta)">
-                                {{getValueFalta(item.falta)}}
-                            </p-button>
+                            <p-toggleButton 
+                                    class="btn-falta" 
+                                    [(ngModel)]="item.falta"
+                                    onLabel="Presente" 
+                                    offLabel="Ausente">
+                            </p-toggleButton>
+                            
                         </td>
                         <td>
-                            <p-tag class="btn-reposicao" [value]="getValueReposicao(item.reposicao)" [severity]="getSeverity(item.reposicao)"></p-tag>
+                            <p-toggleButton 
+                            class="btn-reposicao" 
+                            [(ngModel)]="item.reposicao"
+                            onLabel="Sim" 
+                            offLabel="Não">
+                    </p-toggleButton>
                         <td></td>
                         <td></td>
                         <td>

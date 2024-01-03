@@ -12,12 +12,12 @@ import { Response } from "../models/response.model";
 export class ReposicaoService {
 
   list = new BehaviorSubject<ReposicaoAlunos[]>([
-    { id: 1, diaTurma: 'Quinta-feira', horarioTurma: new Date(), perfil:'80+', vagasTurma: 2 },
-    { id: 2, diaTurma: 'Segunda-feira', horarioTurma: new Date(), perfil:'Adulto', vagasTurma: 1 },
-    { id: 3, diaTurma: 'Terça-feira', horarioTurma: new Date(), perfil:'Adolescente', vagasTurma: 0 },
-    { id: 4, diaTurma: 'Quarta-feira', horarioTurma: new Date(), perfil:'60+', vagasTurma: 3 },
-    { id: 5, diaTurma: 'Sexta-feira', horarioTurma: new Date(), perfil:'Júnior 1', vagasTurma: 5 },
-    { id: 6, diaTurma: 'Sábado', horarioTurma: new Date(), perfil:'Júnior 2', vagasTurma: 4 },
+    { id: 1, diaTurma: 'Quinta-feira', horarioTurma: new Date(),perfil: [{id: 1, nome: 'CCL'}, {id: 2, nome: '80+'}], vagasTurma: 2 },
+    { id: 2, diaTurma: 'Segunda-feira', horarioTurma: new Date(), perfil:[{id: 3, nome: 'Adolescente'}, {id: 4, nome: 'Adulto'}], vagasTurma: 1 },
+    { id: 3, diaTurma: 'Terça-feira', horarioTurma: new Date(), perfil:[{id: 5, nome: 'Júnior 1'}, {id: 6, nome: 'Júnior 2'}], vagasTurma: 0 },
+    { id: 4, diaTurma: 'Quarta-feira', horarioTurma: new Date(), perfil: [{id: 7, nome: 'Adulto'}, {id: 8, nome: 'CCL'}], vagasTurma: 3},
+    { id: 5, diaTurma: 'Sexta-feira', horarioTurma: new Date(), perfil: [{id: 9, nome: 'Adolescente'}, {id: 10, nome: 'CCL'}], vagasTurma: 3},
+    { id: 6, diaTurma: 'Sábado', horarioTurma: new Date(), perfil: [{id: 11, nome: 'Adulto'}, {id: 12, nome: 'CCL'}], vagasTurma: 3},
     
     
    

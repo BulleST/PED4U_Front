@@ -1,0 +1,121 @@
+<div class="modal" [class.modal--show]="open">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cadastrar Reposição</h5>
+                <a 
+                    type="button" 
+                    class="btn-close" 
+                    (click)="close()">
+                </a>
+            </div>
+            <div class="modal-body">
+                <form #form="ngForm">
+                    <div class="d-flex mb-3">
+                        <button 
+                            type="reset" 
+                            class="btn-clear">Limpar Campos</button>
+                    </div>
+                    <div class="column">
+                        <div class="form-container mb-4">
+                            <div class="campo-container">
+                                <div class="row">
+                                    <div class="form-group col-md-4 col-12">
+                                        <label for="diaTurma">Dia da Semana:
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <p-dropdown 
+                                            class="dropdown" 
+                                            [options]="diaTurma" 
+                                            [(ngModel)]="object.diaTurma"
+                                            name="perfil" 
+                                            placeholder="Selecione o dia da semana">
+                                        </p-dropdown>
+                                    </div>
+                                    <div class="form-group col-md-4 col-12">
+                                        <label for="horarioTurma"> Horário:
+                                            <span class="text-danger">*</span></label>
+                                        <input 
+                                            type="time" 
+                                            class="form-control" 
+                                            id="horarioTurma" 
+                                            name="horarioTurma"
+                                            #horarioTurma="ngModel" 
+                                            [(ngModel)]="object.horarioTurma"
+                                            pattern="\S(.*\S)?"
+                                            (change)="object.horarioTurma = horarioTurma.value.trim()" 
+                                            required
+                                            minlength="3" 
+                                            maxlength="30">
+                                        <div *ngIf="horarioTurma.touched && horarioTurma.errors">
+                                            <p class="text-danger" *ngIf="horarioTurma.errors['required']">
+                                                Esse campo é obrigatório.
+                                            </p>
+                                            <p class="text-danger" *ngIf="horarioTurma.errors['pattern']">
+                                                Não insira espaços em branco antes ou no final do campo
+                                            </p>
+                                            <p class="text-danger">{{erro}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4 col-12">
+
+                                        <label for="perfil">Perfil da Turma:
+                                            <span class="text-danger">*</span></label>
+                                            <p-multiSelect 
+                                                class="dropdown" 
+                                                [options]="perfis" 
+                                                optionLabel="nome"
+                                                [(ngModel)]="object.perfil"
+                                                placeholder="Selecione o perfil da turma">
+                                        </p-multiSelect>
+                                        
+                                            <p class="text-danger">{{erro}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4 col-12">
+                                        <label for="perfil">Vagas na Turma:
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="vagasTurma" 
+                                            name="vagasTurma"
+                                            #vagasTurma="ngModel" 
+                                            [(ngModel)]="object.vagasTurma" 
+                                            placeholder=" ex: 12"
+                                            required 
+                                            minlength="12" 
+                                            maxlength="12">
+                                        <div *ngIf="vagasTurma.touched && vagasTurma.errors">
+                                            <p class="text-danger" *ngIf="vagasTurma.errors['required']">
+                                                Esse campo é obrigatório
+                                            </p>
+                                       
+                                    </div>
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <button 
+                                        type="button" 
+                                        class="btn-cancel" 
+                                        (click)="close()"
+                                        [disabled]="loading">
+                                        Cancelar
+                                    </button>
+                                    <button 
+                                        type="button" 
+                                        class="btn-save" 
+                                        data-dismiss="modal" 
+                                        (click)="save()"
+                                        [disabled]="loading">
+                                        Salvar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

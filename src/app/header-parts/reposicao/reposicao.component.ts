@@ -3,7 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ReposicaoService } from 'src/app/services/reposicao.service';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
-import { AulasService } from 'src/app/services/aulas.service';
+
 
 
 
@@ -17,11 +17,7 @@ export class ReposicaoComponent {
   list: ReposicaoAlunos[] = [];
   id: number = 0;
   erro = '';
-  // generos: string [] = [
-  //   'Masculino',
-  //   'Feminino',
-  //   'Outros'
-  // ]
+ 
   @ViewChild('dt') dt!: Table;
   // Função para limpar os filtros aplicados na tabela
 
@@ -41,6 +37,19 @@ export class ReposicaoComponent {
   // Função para filtrar a tabela a partir do input
   applyFilterGlobal(event: any, filterType: string) {
     this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);
+  }
+
+  concatenatePerfil(reposicao: ReposicaoAlunos): string{
+    let perfis: string = '';
+    
+    for(let i = 0; i < reposicao.perfil.length; i++){
+      perfis += reposicao.perfil[i].nome
+      if(i != reposicao.perfil.length-1){
+        perfis += ', '
+      }
+       
+    }
+    return perfis
   }
 
   getValueFalta(value: boolean){

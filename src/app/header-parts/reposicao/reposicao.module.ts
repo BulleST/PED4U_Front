@@ -16,12 +16,18 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { CreateComponent } from "./list/create/create.component";
+import { CalendarModule } from 'primeng/calendar';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { EditComponent } from "./list/edit/edit.component";
+
+
 
 @NgModule ({
     declarations: [ 
         ReposicaoComponent,
-        // CreateComponent,
-        // EditComponent
+        CreateComponent,
+        EditComponent
     ],
     imports: [
         CommonModule,
@@ -37,7 +43,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
         RadioButtonModule,
         SelectButtonModule,
         ToggleButtonModule,
-        InputNumberModule
+        InputNumberModule,
+        CalendarModule,
+        MultiSelectModule
+       
         
     
     ],
