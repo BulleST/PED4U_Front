@@ -1,4 +1,4 @@
-import { Aulas } from './aulas.model';
+import { Aulas } from 'src/app/models/aulas.model';
 import { Component, ViewChild } from '@angular/core';
 import { PerfisService } from 'src/app/services/perfis.service';
 import { Table } from 'primeng/table';

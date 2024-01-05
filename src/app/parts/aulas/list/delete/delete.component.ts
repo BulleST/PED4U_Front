@@ -1,7 +1,7 @@
 
 
 import { Component } from "@angular/core";
-import { Aulas } from "../../aulas.model";
+import { Aulas } from "src/app/models/aulas.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AulasService } from "src/app/services/aulas.service";
 import { lastValueFrom } from "rxjs";

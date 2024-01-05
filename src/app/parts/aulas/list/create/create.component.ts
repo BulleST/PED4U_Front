@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { Aulas } from '../../aulas.model';
+import { Aulas } from "src/app/models/aulas.model";
 
 @Component({
 	selector: 'create-aulas',

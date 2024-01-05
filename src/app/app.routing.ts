@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const home = () => import ('./header-parts/home/home.module').then(res => res.HomeModule)
+
 const listAbaco = () => import ('./pages/abaco/abaco.module').then(res => res.AbacoModule)
 const listAluno = () => import ('./pages/aluno/aluno.module').then(res => res.Alunomodule)
 const listEducadores = () => import ('./pages/educadores/educadores.module').then(res => res.EducadoresModule)
