@@ -1,7 +1,7 @@
 
 
 import { Component } from "@angular/core";
-import { Aulas } from "src/app/models/aulas.model";
+import { ReposicaoAlunos } from "src/app/models/reposicao.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AulasService } from "src/app/services/aulas.service";
 import { lastValueFrom } from "rxjs";
@@ -15,7 +15,7 @@ import { ToastrService } from "ngx-toastr";
 
 export class DeleteComponent{
 	open = true;
-	object: Aulas = new Aulas;
+	object: ReposicaoAlunos = new ReposicaoAlunos;
 	id: number = 0;
 	erro = '';
 	loading: boolean = false;
@@ -43,7 +43,7 @@ export class DeleteComponent{
 	// Fechar modal e retornar para rota de estabelecimento
 	close(): void {
 		this.open = false;
-		this.router.navigate(['apostilas-abaco']);
+		this.router.navigate(['reposicao']);
 		return;
 	}
 	delete() {

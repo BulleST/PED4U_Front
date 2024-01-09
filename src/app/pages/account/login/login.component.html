@@ -1,4 +1,64 @@
+
 <div class="px-0 mb-3">
+    <h3 class="account-title mb-0">Login</h3>
+    <p class="account-text mb-0">Insira seu e-mail e senha para continuar.</p>
+</div>
+
+<form #form="ngForm" (ngSubmit)="send()">
+<div class="container">
+    
+    <div class="container_login">
+        <div class="user_container">
+            <input pInputText id="username" type="text" class="login-control" placeholder="E-mail" />
+        </div>
+        <div class="flex flex-wrap justify-content-center align-items-center gap-2">
+            <input pInputText id="password" type="password" class="login-control" placeholder="Senha"/>
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-7 col-md-7 col-sm-7 col-12">
+                <div class="d-flex align-items-center">
+                    <p-checkbox name="showHide"
+                                id="showHide"
+                                inputId="showHide"
+                                #_showHide="ngModel"
+                                [(ngModel)]="showHide"
+                                [value]="true"
+                                [trueValue]="true"
+                                [falseValue]="false"></p-checkbox>
+                    <label for="showHide" class="ml-2">
+                        <span *ngIf="!_showHide.value">Exibir</span>
+                        <span *ngIf="_showHide.value">Esconder</span> senha </label>
+                </div>
+            </div>
+            <div class="text-center text-wrap-balance col-12 px-0">
+                <p class="text-danger mb-2" *ngIf="err">{{err}}</p>
+                <p class="mt-1 mb-3"> Ao logar você concorda com os <a class="link" routerLink="./termos-de-uso">termos de uso</a>. </p>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12">
+                    <button type="submit" class="btn-register" type="button" [disabled]="form.invalid || loading">Entrar</button>
+                  
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                    <a class="link" [routerLink]="['..', 'register']">Me cadastrar</a>
+                </div>
+                <div class="text-right col-lg-6 col-md-6 col-sm-6 col-12">
+                    <a class="link" [routerLink]="['..', 'forgot-password']">Esqueci minha senha</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="container_img">
+       <img src="box_brain.jpg" alt="">
+    </div>
+</div>
+</form>
+
+
+<!-- <div class="px-0 mb-3">
     <h3 class="account-title mb-0">Login</h3>
     <p class="account-text mb-0">Insira e-mail e senha para acessar.</p>
 </div>
@@ -88,4 +148,4 @@
             <a class="link" [routerLink]="['..', 'forgot-password']">Esqueci minha senha</a>
         </div>
     </div>
-</form>
+</form> -->

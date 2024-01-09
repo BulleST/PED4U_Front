@@ -84,13 +84,13 @@ export class AccountService {
         this.startRefreshTokenTimer();
     }
 
-    // register(model: Register) {
-    //     return this.http.post<any>(`${this.url}/accounts/register`, model);
-    // }
+    register(model: Register) {
+        return this.http.post<any>(`${this.url}/accounts/register`, model);
+    }
 
-    // resetPassword(object: ResetPassword) {
-    //     return this.http.post<any>(`${this.url}/accounts/reset-password`, object);
-    // }
+    resetPassword(object: ResetPassword) {
+        return this.http.post<any>(`${this.url}/accounts/reset-password`, object);
+    }
 
     forgotPassword(email: string) {
         return this.http.post<any>(`${this.url}/accounts/forgot-password`, { email: email });

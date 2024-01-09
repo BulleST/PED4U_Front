@@ -28,6 +28,7 @@ import { EditComponent } from "./list/edit/edit.component";
         ReposicaoComponent,
         CreateComponent,
         EditComponent
+     
     ],
     imports: [
         CommonModule,

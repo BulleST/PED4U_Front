@@ -3,7 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { ReposicaoComponent } from "./reposicao.component";
 import { CreateComponent } from "./list/create/create.component";
 import { EditComponent } from "./list/edit/edit.component";
-import { DeleteComponent } from "../aulas/list/delete/delete.component";
+import { DeleteComponent } from "./list/delete/delete.component";
 
 const routes: Routes = [
     {

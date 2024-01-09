@@ -4,7 +4,7 @@ import { AccountRoutingModule } from './account.routing';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-// import { CreateAccountComponent } from './create-account/create-account.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
 import { AccountComponent } from './account.component';
 // import { VerifyEmailComponent } from './verify-email/verify-email.component';
 // import { ResetPasswordComponent } from './reset-password/reset-password.component';
@@ -12,11 +12,14 @@ import { AccountComponent } from './account.component';
 import { CheckboxModule } from 'primeng/checkbox';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
+import { DividerModule } from 'primeng/divider';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
     AccountComponent,
     LoginComponent,
+    CreateAccountComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +27,9 @@ import { NgModule } from '@angular/core';
     FormsModule,
     ToastrModule,
     CheckboxModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DividerModule,
+    ButtonModule
   ],
   bootstrap: [AccountComponent],
 })

@@ -1,4 +1,4 @@
-import { ReposicaoAlunos } from './reposicao.model';
+import { ReposicaoAlunos } from 'src/app/models/reposicao.model';
 import { Component, ViewChild } from '@angular/core';
 import { ReposicaoService } from 'src/app/services/reposicao.service';
 import { Table } from 'primeng/table';

@@ -4,15 +4,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 
-const home = () => import ('./header-parts/home/home.module').then(res => res.HomeModule)
-
+const home = () => import ('./pages/initial/initial.module').then(res => res.InitialModule)
 const listAbaco = () => import ('./pages/abaco/abaco.module').then(res => res.AbacoModule)
 const listAluno = () => import ('./pages/aluno/aluno.module').then(res => res.Alunomodule)
 const listEducadores = () => import ('./pages/educadores/educadores.module').then(res => res.EducadoresModule)
 const listPerfis = () => import ('./pages/perfis/perfis.module').then( res => res.PerfisModule)
 const listTurmas = () => import ('./pages/turmas/turmas.module').then( res => res.TurmasModule)
-const listAulas = () => import ('./header-parts/aulas/aulas.module').then ( res => res.AulasModule)
-const listReposicao = () => import ('./header-parts/reposicao/reposicao.module').then ( res => res.ReposicaoModule)
+const listAulas = () => import ('./pages/aulas/aulas.module').then( res => res.AulasModule)
+const listReposicao = () => import ('./pages/reposicao/reposicao.module').then ( res => res.ReposicaoModule)
+const account = () => import ('./pages/account/account.module'). then ( res => res.AccountModule)
 
 
 
@@ -55,6 +55,11 @@ const routes: Routes = [
   {
     path: 'reposicao',
     loadChildren: listReposicao
+  },
+
+  {
+    path: 'account',
+    loadChildren: account
   },
   
   {

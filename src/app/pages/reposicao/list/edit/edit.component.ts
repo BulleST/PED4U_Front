@@ -5,24 +5,22 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { ReposicaoAlunos } from "../../reposicao.model";
-import { PerfilService } from "src/app/services/perfil.service";
-
-import { PerfilAluno } from "src/app/pages/aluno/aluno.model";
+import { ReposicaoAlunos } from "src/app/models/reposicao.model";
+import { Perfil } from "src/app/pages/perfis/perfis.model";
 
 @Component({
-	selector: 'create-reposicao',
-	templateUrl: './create.component.html',
-	styleUrls: ['./create.component.css']
+	selector: 'edit-reposicao',
+	templateUrl: './edit.component.html',
+	styleUrls: ['./edit.component.css']
 })
 
-export class CreateComponent{
+export class EditComponent{
     open = true;
     object: ReposicaoAlunos = new ReposicaoAlunos;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
-	perfis: PerfilAluno [] = [];
+	perfis: Perfil [] = [];
 	diaTurma: string [] = [
 		'Segunda-Feira',
 		'Terça-Feira',
@@ -37,18 +35,12 @@ export class CreateComponent{
         private reposicaoService: ReposicaoService,
 		private httpClient: HttpClient,
 		private toastr: ToastrService,
-		private perfilService: PerfilService
     ){
 
 		// lastValueFrom(this.aulasService.getList()).then( res => {
 		// 	this.Aulas = Object.assign([], res);
 		// });
-		
-		this.perfilService.list.subscribe((data) => {
-			this.perfis = Object.assign([], data);
-			console.log('perfis', data)
-		  })
-		  lastValueFrom(perfilService.getList())
+		lastValueFrom(this.reposicaoService.getList())
 
 		
 	}

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of, tap } from "rxjs";
-import { Aulas } from "../header-parts/aulas/aulas.model";
+import { Aulas } from "../models/aulas.model";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
 
@@ -12,9 +12,9 @@ export class AulasService {
 
   list = new BehaviorSubject<Aulas[]>([
     { id: 1, nome: 'Lucas', apostila: 'Intermediário 2', pagina: 24, falta: true, reposicao: false },
-    { id: 2, nome: 'Marina', apostila: 'Básico 1', pagina: 30, falta: false, reposicao: true },
-    { id: 3, nome: 'Luana', apostila: 'Avançado 2', pagina: 32, falta: true, reposicao: true },
-    { id: 4, nome: 'João', apostila: 'Intermediário 1', pagina: 72, falta: false, reposicao: false },
+    { id: 2, nome: 'Marina', apostila: 'Básico 1', pagina: 30, falta: true, reposicao: false },
+    { id: 3, nome: 'Luana', apostila: 'Avançado 2', pagina: 32, falta: true, reposicao: false },
+    { id: 4, nome: 'João', apostila: 'Intermediário 1', pagina: 72, falta: true, reposicao: false },
    
   ])
 
