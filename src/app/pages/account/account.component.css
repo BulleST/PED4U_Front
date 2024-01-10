@@ -34,7 +34,6 @@
 .form-control.ng-invalid[required]:not(.form-control[readonly]):not(.form-control[disabled]):-internal-autofill-selected,
 .form-control.ng-invalid[required]:not(.form-control[readonly]):not(.form-control[disabled]) {
     background-color: white;
-    border-color: #4069fd;
     background-image: none !important;
 }
 
@@ -50,7 +49,7 @@
 }
 
 .account-inner {
-    --account-width: 900px;
+    --account-width: 1200px;
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;
@@ -65,11 +64,15 @@
 
 .account-left form  {
     width: 100vh;
+    display: flex;
+    justify-content: center;
 }
 
 .account-right img {
-    width: 40vh;
+    width: 100%;
     display: flex;
+    justify-content: center;
+    height: auto;
 }
 
 .account-title {
@@ -188,6 +191,9 @@ img{
     max-width: 100%;
     width: 50%;
     filter: drop-shadow(1px 1px 0px rgb(0 0 0 / 9%));
+    display: flex;
+    justify-content: center;
+    padding: 20px 20px;
 }
 
 .container{
@@ -220,7 +226,7 @@ img{
     font-family: sans-serif;
     cursor: pointer;
     height: 50px;
-    width: 380px;
+    width: 100%;
     border: none;
     margin-top: 30px;
     background: linear-gradient(311deg, #8c47dc 0%, #F94184 35%, #ff6315 100%);
@@ -279,3 +285,7 @@ label {
     margin-bottom: 0;
 }
 
+.ms-1{
+    font-size: 11pt;
+    color: var(--grey-highlight);
+}

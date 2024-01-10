@@ -1,5 +1,5 @@
 <div class="mb-3 row">
-    <h3 class="account-title mb-0">Me cadastrar</h3>
+    <h3 class="account-title mb-0">CADASTRE-SE</h3>
     <p class="account-text mb-0">Insira seus dados nos campos abaixo para efetuar seu cadastro.</p>
     <a class="link d-flex" [routerLink]="['..', 'login']">
         <fa-icon [icon]="faChevronCircleLeft" class="me-2"></fa-icon> voltar </a>
@@ -17,8 +17,8 @@
                        placeholder="   "
                        required>
                 <label for="name">
-                    <span class="form-control-icon"><fa-icon [icon]="faUser"></fa-icon></span>
-                    <span class="ms-3">Nome Completo <span class="text-danger">*</span></span>
+                   
+                    <span class="ms-1">Nome Completo <span class="text-danger">*</span></span>
                 </label>
             </div>
             <div *ngIf="name.touched && name.errors" class="p-1 py-0">
@@ -36,8 +36,8 @@
                        placeholder="(11) x.0000-0000"
                        required>
                 <label for="telefoneCelular">
-                    <span class="form-control-icon"><fa-icon [icon]="faPhone"></fa-icon></span>
-                    <span class="ms-3">Telefone/Celular<span class="text-danger">*</span></span>
+       
+                    <span class="ms-1">Telefone/Celular<span class="text-danger">*</span></span>
                 </label>
             </div>
             <div *ngIf="telefoneCelular.errors != null && telefoneCelular.touched" class="p-1 py-0">
@@ -60,8 +60,7 @@
                        required
                        [pattern]="emailPattern">
                 <label for="email">
-                    <span class="form-control-icon"><fa-icon [icon]="faEnvelope"></fa-icon></span>
-                    <span class="ms-3">E-mail <span class="text-danger">*</span></span>
+                    <span class="ms-1">E-mail <span class="text-danger">*</span></span>
                 </label>
             </div>
             <div *ngIf="email.errors != null && email.touched" class="p-1 py-0">
@@ -83,11 +82,7 @@
                        required
                        minlength="6">
                 <label for="password">
-                    <span class="form-control-icon">
-                        <fa-icon [icon]="faLock" *ngIf="!showHide.value"></fa-icon>
-                        <fa-icon [icon]="faUnlock" *ngIf="showHide.value"></fa-icon>
-                    </span>
-                    <span class="ms-3">Senha <span class="text-danger">*</span></span>
+                    <span class="ms-1">Senha <span class="text-danger">*</span></span>
                 </label>
             </div>
             <div *ngIf="password.errors != null && password.touched" class="p-1 py-0">
@@ -110,10 +105,9 @@
                        minlength="4">
                 <label for="confirmPassword">
                     <span class="form-control-icon">
-                        <fa-icon [icon]="faLock" *ngIf="!showHide.value"></fa-icon>
-                        <fa-icon [icon]="faUnlock" *ngIf="showHide.value"></fa-icon>
+                       
                     </span>
-                    <span class="ms-3">Confirmar Senha <span class="text-danger">*</span></span>
+                    <span class="ms-1">Confirmar Senha <span class="text-danger">*</span></span>
                 </label>
             </div>
             <div *ngIf="confirmPassword.errors != null && confirmPassword.touched" class="p-1 py-0">
@@ -140,9 +134,9 @@
     </div>
     <div class="row">
         <p class="text-danger text-center col-12 mt-3" *ngIf="erro">{{erro}}</p>
-        <p class="text-center col-12 mb-3">Ao clicar em "cadastrar" você concorda com os <a class="link" routerLink="./termos-de-uso">termos de uso</a> do zentech.</p>
+        <p class="text-center col-12 mb-3">Ao clicar em "cadastrar" você concorda com os <a class="link" routerLink="./termos-de-uso">termos de uso</a> do Ped4u.</p>
         <div class="form-group form-floating col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
-            <button type="submit" class="btn btn-primary w-100 py-2" [disabled]="form.invalid || loading || (password.value != confirmPassword.value)">
+            <button type="submit" class="btn-register" [disabled]="form.invalid || loading || (password.value != confirmPassword.value)">
                 Cadastrar
             </button>
         </div>
