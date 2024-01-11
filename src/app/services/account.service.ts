@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable, lastValueFrom, of, throwError } from 'rxjs';
-
 import { environment } from 'src/environment/environment';
 import { catchError, tap } from 'rxjs/operators';
 import { Crypto } from '../utils/crypto';

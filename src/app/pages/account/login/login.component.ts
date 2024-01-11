@@ -18,7 +18,7 @@ export class LoginComponent {
     loading: boolean = false;
     rememberMe: boolean = false;
     showHide: boolean = false;
-    err = '';
+    erro = '';
     emailPattern = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     faEnvelope = faEnvelope;
     faLock = faLock;
@@ -27,17 +27,20 @@ export class LoginComponent {
     constructor(
         private accountService: AccountService,
         private loadingHelper: LoadingService,
-        private router: Router
+        private router: Router,
+        
+
     ) {
         this.loadingHelper.loading.subscribe(res => this.loading = res);
     }
 
     send() {
         this.loadingHelper.loading.next(true);
+        console.log(this.login)
         lastValueFrom(this.accountService.login(this.login))
             .then(res => { })
             .catch(res => {
-                this.err = getError(res)
+                this.erro = getError(res)
             });
     }
 
