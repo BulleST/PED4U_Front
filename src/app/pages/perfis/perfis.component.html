@@ -18,9 +18,9 @@
                 <ng-template pTemplate="caption">
                     <div class="flex">
                         <!-- Button para realizar cadastros na Tabela -->
-                        <!-- <div>
+                        <div>
                             <a  class="btn-primary" [routerLink]="['cadastrar']">Cadastrar</a>
-                        </div> -->
+                        </div>
                         <!-- Button para limpar filtros aplicados na Tabela -->
                         <div class="p-2">
                             <button class="btn-clear" (click)="clear(dt)">
@@ -58,9 +58,7 @@
                             Telefone:
                             <p-columnFilter type="text" field="celular" display="menu"></p-columnFilter>
                             <p-sortIcon field="celular"></p-sortIcon> </th> -->
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                     <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-item>
@@ -68,12 +66,11 @@
                         <td>{{item.id}}</td>
                         <td>{{item.nome}}</td>
                         <td>{{item.qtdeTurmas}}</td>
-                        <td></td>
+                        
                         <td>
-                            <!-- <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
-                            <a class="btn btn-delete" [routerLink]="['excluir', item.id]">Excluir</a> -->
+                            <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
+                            <a class="btn btn-delete" [routerLink]="['excluir', item.id]">Excluir</a>
                         </td>
-                        <td></td>
                          
                     </tr>
                 </ng-template>

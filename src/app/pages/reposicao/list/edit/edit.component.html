@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Editar Reposição</h5>
+                <h5 class="modal-title">Editar Cadastro de Reposição</h5>
                 <a 
                     type="button" 
                     class="btn-close" 
@@ -28,7 +28,7 @@
                                             class="dropdown" 
                                             [options]="diaTurma" 
                                             [(ngModel)]="object.diaTurma"
-                                            name="diaTurma" 
+                                            name="perfil" 
                                             placeholder="Selecione o dia da semana">
                                         </p-dropdown>
                                     </div>
@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="form-group col-md-4 col-12">
 
-                                        <label for="idade">Perfil da Turma:
+                                        <label for="perfil">Perfil da Turma:
                                             <span class="text-danger">*</span></label>
                                             <p-multiSelect 
                                                 class="dropdown" 
@@ -71,7 +71,8 @@
                                         
                                             <p class="text-danger">{{erro}}</p>
                                         </div>
-                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="form-group col-md-4 col-12">
                                         <label for="perfil">Vagas na Turma:
                                             <span class="text-danger">*</span>
@@ -91,10 +92,11 @@
                                             <p class="text-danger" *ngIf="vagasTurma.errors['required']">
                                                 Esse campo é obrigatório
                                             </p>
-                                       
                                     </div>
                                     
+                                    </div>
                                 </div>
+                                    
                                 <div class="modal-footer">
                                     <button 
                                         type="button" 

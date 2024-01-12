@@ -71,7 +71,8 @@
                                         
                                             <p class="text-danger">{{erro}}</p>
                                         </div>
-                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="form-group col-md-4 col-12">
                                         <label for="perfil">Vagas na Turma:
                                             <span class="text-danger">*</span>
@@ -91,10 +92,11 @@
                                             <p class="text-danger" *ngIf="vagasTurma.errors['required']">
                                                 Esse campo é obrigatório
                                             </p>
-                                       
                                     </div>
                                     
+                                    </div>
                                 </div>
+                                    
                                 <div class="modal-footer">
                                     <button 
                                         type="button" 

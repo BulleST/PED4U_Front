@@ -6,13 +6,14 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { TermosDeUsoComponent } from './termos-de-uso/termos-de-uso.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 const routes: Routes = [
     { path: '', component: AccountComponent, children: [
         { path: '', redirectTo: 'login', pathMatch: 'prefix', },
         
         {
-            path: 'login', component: LoginComponent    , children: [
+            path: 'login', component: LoginComponent, children: [
                 { path: 'termos-de-uso', component: TermosDeUsoComponent },
             ]
         },
@@ -23,6 +24,7 @@ const routes: Routes = [
         },
         { path: 'forgot-password', component: ForgotPasswordComponent },
         { path: 'reset-password', component: ResetPasswordComponent },
+        { path: 'verify-email', component: VerifyEmailComponent },
     ]}
 
 ];

@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ButtonModule } from 'primeng/button';
     CreateAccountComponent,
     TermosDeUsoComponent,
     ResetPasswordComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    VerifyEmailComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +35,8 @@ import { ButtonModule } from 'primeng/button';
     CheckboxModule,
     FontAwesomeModule,
     DividerModule,
-    ButtonModule
+    ButtonModule,
+    TableModule
   ],
   bootstrap: [AccountComponent],
 })
