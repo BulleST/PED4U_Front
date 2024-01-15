@@ -99,13 +99,13 @@ export class AccountService {
         return this.http.post<any>(`${this.url}/accounts/verify-email`, { token: token });
     }
 
-    // changePassword(object: ChangePassword) {
-    //     return this.http.post<any>(`${this.url}/accounts/change-password`, object);
-    // }
+    changePassword(object: ChangePassword) {
+        return this.http.post<any>(`${this.url}/accounts/change-password`, object);
+    }
 
-    // updateAccount(object: UpdateAccount) {
-    //     return this.http.post<any>(`${this.url}/accounts/update-account`, object);
-    // }
+    updateAccount(object: UpdateAccount) {
+        return this.http.post<any>(`${this.url}/accounts/update-account`, object);
+    }
 
     private refreshTokenTimeout: any;
 

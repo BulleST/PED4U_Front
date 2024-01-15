@@ -11,9 +11,8 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 const routes: Routes = [
     { path: '', component: AccountComponent, children: [
         { path: '', redirectTo: 'login', pathMatch: 'prefix', },
-        
         {
-            path: 'login', component: LoginComponent, children: [
+            path: 'login', component: LoginComponent    , children: [
                 { path: 'termos-de-uso', component: TermosDeUsoComponent },
             ]
         },

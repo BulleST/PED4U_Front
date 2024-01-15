@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { AccountService } from 'src/app/services/account.service';
 import { getError } from 'src/app/utils/error';
-// import { Table } from 'src/app/utils/table';
+import { Table } from 'src/app/utils/table';
 import { faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 

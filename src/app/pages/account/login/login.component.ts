@@ -36,7 +36,6 @@ export class LoginComponent {
 
     send() {
         this.loadingHelper.loading.next(true);
-        console.log(this.login)
         lastValueFrom(this.accountService.login(this.login))
             .then(res => { })
             .catch(res => {
