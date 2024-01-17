@@ -1,8 +1,8 @@
 
 import { Component } from "@angular/core";
-import { Aluno } from "../../aluno.model";
+import { AlunoList } from "src/app/models/aluno.model";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AlunoTesteService } from "src/app/services/aluno-teste.service";
+import { AlunoService } from "src/app/services/aluno.service";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 
@@ -14,7 +14,7 @@ import { ToastrService } from "ngx-toastr";
 
 export class DeleteComponent{
 	open = true;
-	object: Aluno = new Aluno;
+	object: AlunoList = new AlunoList;
 	id: number = 0;
 	erro = '';
 	loading: boolean = false;
@@ -22,7 +22,7 @@ export class DeleteComponent{
 	constructor(
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
-		private AlunoTesteService: AlunoTesteService,
+		private alunoService: AlunoService,
 		private toastr: ToastrService
 	) {
 		this.activatedRoute.params.subscribe(res => {
@@ -48,10 +48,10 @@ export class DeleteComponent{
 	delete() {
 		this.loading = true;
 
-		lastValueFrom(this.AlunoTesteService.delete(this.id))
+		lastValueFrom(this.alunoService.delete(this.id))
 			.then(res => {
 				if (res.success) {
-					lastValueFrom(this.AlunoTesteService.getList())
+					lastValueFrom(this.alunoService.getList())
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
 				}

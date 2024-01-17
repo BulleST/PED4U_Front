@@ -5,7 +5,7 @@ import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
 import { Turma } from "../../turmas.model";
-import { PerfilAluno } from "src/app/pages/aluno/aluno.model";
+import { PerfilAluno } from "src/app/models/aluno.model";
 import { TurmasService } from "src/app/services/turmas.service";
 import { PerfilService } from "src/app/services/perfil.service";
 

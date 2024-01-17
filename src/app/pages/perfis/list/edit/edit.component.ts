@@ -1,11 +1,9 @@
-
 import { Component } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { lastValueFrom } from "rxjs";
+import { PerfilService } from "src/app/services/perfil.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Perfil, Perfis} from "src/app/models/perfis.model";
 import { ToastrService } from "ngx-toastr";
-import { HttpClient } from '@angular/common/http';
-import { Perfis } from "../../perfis.model";
-import { PerfisService } from "src/app/services/perfis.service";
+import { lastValueFrom } from "rxjs";
 
 @Component({
 	selector: 'edit',
@@ -13,54 +11,68 @@ import { PerfisService } from "src/app/services/perfis.service";
 	styleUrls: ['./edit.component.css']
 })
 
-export class EditComponent{
-    open = true;
-    object: Perfis = new Perfis;
-    id: number = 0;
+export class EditComponent {
+	open = true;
+	object: Perfil = new Perfis;
 	erro = '';
-	loading: boolean = false;
-	
-    constructor(
-        private activatedRoute: ActivatedRoute,
-        private router: Router,
-        private perfisService: PerfisService,
-		private httpClient: HttpClient,
-		private toastr: ToastrService,
-    ){
-		// lastValueFrom(this.educadoresService.getListPerfil()).then( res => {
-		// 	this.perfis = Object.assign([], res);
-		// });
-		// lastValueFrom(this.educadoresService.getList())
+	loading: boolean = true;
+
+	constructor(
+		private activatedRoute: ActivatedRoute,
+		private router: Router,
+		private perfilService: PerfilService,
+		private toastr: ToastrService
+	) {
+		this.activatedRoute.params.subscribe(res => {
+			if (res['id']) {
+				this.object.id = res['id']
+				// Abrir modal
+				lastValueFrom(this.perfilService.get(this.object.id))
+					.then(res => {
+						this.open = true;
+						this.object = res;
+						this.loading = false;
+					}).catch(res => {
+						this.close();
+						this.toastr.error('Não foi possível acessar essa página')
+					})
+			}
+			else {
+				this.close();
+				this.toastr.error('Não foi possível acessar essa página')
+			}
+			console.log(res)
+		})
 	}
 
-    // Fechar modal e retornar para rota de estabelecimento
+	// Fechar modal e retornar para rota de estabelecimento
 	close(): void {
 		this.open = false;
 		this.router.navigate(['perfis']);
 		return;
 	}
 
-	// Função criada para salvar as informações inseridas na modal de cadastro
-	async save() {
+	send() {
 		this.loading = true;
-		
-		console.log(this.object)
-		lastValueFrom(this.perfisService.post(this.object))
+		lastValueFrom(this.perfilService.post(this.object))
 			.then(res => {
+
 				if (res.success) {
+					lastValueFrom(this.perfilService.getList())
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
-					lastValueFrom(this.perfisService.getList())
 				}
 				else {
 					this.erro = res.message
 					this.toastr.error(res.message)
 				}
+
 				this.loading = false;
 			})
 			.catch(res => {
 				this.erro = res;
-				console.error("console catch" + res);
+
+				console.error("console error" + res);
 			})
 			.finally(() => {
 				this.loading = false;

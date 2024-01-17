@@ -1,10 +1,10 @@
 
 import { Component } from "@angular/core";
-import { Perfis } from "../../perfis.model";
+import { Perfis } from "src/app/models/perfis.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
-import { PerfisService } from "src/app/services/perfis.service";
+import { PerfilService } from "src/app/services/perfil.service";
 
 @Component ({
     selector: 'delete-alunos',
@@ -22,7 +22,7 @@ export class DeleteComponent{
 	constructor(
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
-		private perfisService: PerfisService,
+		private perfilService: PerfilService,
 		private toastr: ToastrService
 	) {
 		this.activatedRoute.params.subscribe(res => {
@@ -48,10 +48,10 @@ export class DeleteComponent{
 	delete() {
 		this.loading = true;
 
-		lastValueFrom(this.perfisService.delete(this.id))
+		lastValueFrom(this.perfilService.delete(this.id))
 			.then(res => {
 				if (res.success) {
-					lastValueFrom(this.perfisService.getList())
+					lastValueFrom(this.perfilService.getList())
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
 				}

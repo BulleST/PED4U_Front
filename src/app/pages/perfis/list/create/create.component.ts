@@ -4,8 +4,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { Perfis } from "../../perfis.model";
-import { PerfisService } from "src/app/services/perfis.service";
+import { Perfis } from "src/app/models/perfis.model";
+import { PerfilService } from "src/app/services/perfil.service";
 
 @Component({
 	selector: 'create-alunos',
@@ -23,7 +23,7 @@ export class CreateComponent{
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private perfisService: PerfisService,
+        private perfilService: PerfilService,
 		private httpClient: HttpClient,
 		private toastr: ToastrService,
     ){
@@ -45,12 +45,12 @@ export class CreateComponent{
 		this.loading = true;
 		
 		console.log(this.object)
-		lastValueFrom(this.perfisService.post(this.object))
+		lastValueFrom(this.perfilService.post(this.object))
 			.then(res => {
 				if (res.success) {
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
-					lastValueFrom(this.perfisService.getList())
+					lastValueFrom(this.perfilService.getList())
 				}
 				else {
 					this.erro = res.message

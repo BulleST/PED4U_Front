@@ -1,4 +1,4 @@
-import { Perfil } from "../perfis/perfis.model";
+import { Perfil } from "src/app/models/perfis.model";
 
 export class Turma{
     id: number = 0;

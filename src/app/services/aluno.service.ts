@@ -1,7 +1,8 @@
 
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, tap } from "rxjs";
-import { Aluno } from "../pages/aluno/aluno.model";
+import { Aluno } from "../models/aluno.model";
+import { AlunoList } from "../models/aluno.model";
 import { environment } from "src/environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
@@ -29,7 +30,7 @@ export class AlunoService {
   }
 
   getListPerfil(){
-    return this.httpClient.get<Aluno[]>(`${this.url}/Turma_Perfil`)
+    return this.httpClient.get<Aluno[]>(`${this.url}/Aluno`)
       .pipe(tap({
         next: res => {
           this.list.next(res)
@@ -38,7 +39,7 @@ export class AlunoService {
   }
 
   get(id: number) {
-    return this.httpClient.get<Aluno[]>(`${this.url}/Aluno/${id}`)
+    return this.httpClient.get<Aluno>(`${this.url}/Aluno/${id}`)
 
   }
 

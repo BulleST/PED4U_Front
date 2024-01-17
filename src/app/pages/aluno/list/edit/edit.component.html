@@ -49,42 +49,42 @@
                                         <input 
                                             type="text"  
                                             class="form-control" 
-                                            id="idade"  
-                                            name="idade"
-                                            #idade="ngModel"
-                                            [(ngModel)]="object.idade" 
+                                            id="dataNascimento"  
+                                            name="dataNascimento"
+                                            #dataNascimento="ngModel"
+                                            [(ngModel)]="object.dataNascimento" 
                                             placeholder=" ex: 00/00/0000"
                                             mask="00/00/0000"
                                             required 
                                             minlength="12"
                                             maxlength="12">
-                                            <div *ngIf="idade.touched && idade.errors">
-                                            <p class="text-danger" *ngIf="idade.errors['required']">
+                                            <div *ngIf="dataNascimento.touched && dataNascimento.errors">
+                                            <p class="text-danger" *ngIf="dataNascimento.errors['required']">
                                                 Esse campo é obrigatório
                                             </p>
                                             <p class="text-danger">{{erro}}</p>
                                             </div>
                                     </div>
                                     <div class="form-group col-md-4 col-12">
-                                        <label for="genero">Gênero:
+                                        <label for="sexo_Id">Gênero:
                                             <span class="text-danger">*</span>
                                         </label>
                                         <p-dropdown 
                                             class="dropdown" 
                                             [options]="generos" 
-                                            [(ngModel)]="object.genero" 
-                                            name="genero"
+                                            [(ngModel)]="object.sexo_Id" 
+                                            name="sexo"
                                             placeholder="Selecione o gênero">
                                         </p-dropdown>
                                     </div>  
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-4 col-12">
-                                        <label for="diaTurma">Turma:</label>
+                                        <label for="turma_Id">Turma:</label>
                                         <p-dropdown 
                                             class="dropdown" 
                                             [options]="" 
-                                            [(ngModel)]="object.diaTurma" 
+                                            [(ngModel)]="object.turma_Id" 
                                             name="diaTurma"
                                             placeholder="Selecione a Turma">
                                         </p-dropdown>
@@ -106,16 +106,28 @@
                                     </p-dropdown>
                                      </div>
                                      <div class="form-group col-md-4 col-12">
-                                        <label for="dataVigencia">Matrícula:  
+                                        <label for="data_Vigencia_Inicial">Matrícula:  
                                             <span class="text-danger">*</span></label>
                                         <p-dropdown 
                                             class="dropdown"
                                             [options]="vigencia" 
-                                            [(ngModel)]="object.dataVigencia" 
-                                            name="dataVigencia"
+                                            [(ngModel)]="object.data_Vigencia_Inicial" 
+                                            name="data_Vigencia_Inicial"
                                             placeholder="Informe o status da matrícula">
                                         </p-dropdown>
                                     </div>
+                                    <div class="form-group col-md-4 col-12">
+                                        <label for="data_Vigencia_Final">Matrícula:  
+                                            <span class="text-danger">*</span></label>
+                                        <p-dropdown 
+                                            class="dropdown"
+                                            [options]="vigencia" 
+                                            [(ngModel)]="object.data_Vigencia_Final" 
+                                            name="data_Vigencia_Inicial"
+                                            placeholder="Informe o status da matrícula">
+                                        </p-dropdown>
+                                    </div>
+                                  
                                 </div>
                                   
                             

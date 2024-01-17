@@ -1,4 +1,4 @@
-import { Perfil } from "src/app/pages/perfis/perfis.model";
+import { Perfil } from "./perfis.model";
 
 export class ReposicaoAlunos{
     id: number = 0;

@@ -17,7 +17,7 @@
                 [showCurrentPageReport]="true" 
                 currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} páginas"
                 [filterDelay]="0"
-                [globalFilterFields]="['id','nome', 'telefone', 'idade', 'genero', 'horario', 'semana', 'perfil', 'vigencia' ]">
+                [globalFilterFields]="['id', 'pessoa_Id','turma_Id', 'perfil_Id', 'data_Vigencia_Inicial','data_Vigencia_Final', 'dataNascimento', 'celular', 'sexo_Id']">
                 <ng-template pTemplate="caption">
                     <div class="flex">
                         <!-- Button para realizar cadastros na Tabela -->
@@ -52,13 +52,13 @@
                             Telefone
                             <p-columnFilter style="color: #fff" type="text" field="celular" display="menu"></p-columnFilter>
                             <p-sortIcon field="celular"></p-sortIcon> </th>
-                        <th class="idade" pSortableColumn="idade" >
+                        <th class="dataNascimento" pSortableColumn="dataNascimento" >
                             Idade
-                            <p-columnFilter style="color: #fff" type="text" field="idade" display="menu"></p-columnFilter>
+                            <p-columnFilter style="color: #fff" type="text" field="dataNascimento" display="menu"></p-columnFilter>
                             <p-sortIcon field="idade"></p-sortIcon></th>     
-                         <th pSortableColumn="genero" class="genero">
+                         <th pSortableColumn="sexo_Id" class="sexo_Id">
                            Gênero
-                            <p-columnFilter style="color: #fff" type="text" field="genero" display="menu"></p-columnFilter>
+                            <p-columnFilter style="color: #fff" type="text" field="sexo_Id" display="menu"></p-columnFilter>
                             <p-sortIcon field=""></p-sortIcon></th>     
                         <th pSortableColumn="horarioTurma" class="horarioTurma">
                             Horário
@@ -86,8 +86,8 @@
                         <td>{{item.alunoId}}</td>
                         <td>{{item.nome}}</td>
                         <td>{{item.celular}}</td>
-                        <td>{{item.idade}}</td>
-                        <td>{{item.genero}}</td>
+                        <td>{{item.dataNascimento}}</td>
+                        <td>{{item.sexo_Id}}</td>
                         <td>{{item.horarioTurma| date:'shortTime'}}</td>
                         <td>{{item.diaTurma}}</td>
                         <td>{{item.perfilAluno}}</td>

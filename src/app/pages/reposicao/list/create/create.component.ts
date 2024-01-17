@@ -7,8 +7,7 @@ import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
 import { ReposicaoAlunos } from "src/app/models/reposicao.model";
 import { PerfilService } from "src/app/services/perfil.service";
-
-import { PerfilAluno } from "src/app/pages/aluno/aluno.model";
+import { PerfilAluno } from "src/app/models/aluno.model";
 
 @Component({
 	selector: 'create-reposicao',

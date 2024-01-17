@@ -1,8 +1,8 @@
 
 
 import { Component, ViewChild } from '@angular/core';
-import { Aluno } from './aluno.model';
-import { AlunoTesteService} from 'src/app/services/aluno-teste.service';
+import { Aluno } from 'src/app/models/aluno.model';
+import { AlunoService } from 'src/app/services/aluno.service';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
 
@@ -26,19 +26,15 @@ import { lastValueFrom } from 'rxjs';
     loading: boolean = true;
     @ViewChild('dt') dt!: Table;
 
-    constructor(private alunoTesteService: AlunoTesteService){
-      // this.AlunoService.list.subscribe((data) =>{
-      //   this.list = Object.assign([], data);
-      //   console.log('lista de apostilas ', data)
-      //   })
-      //   lastValueFrom(AlunoService.getList())
-        this.loading = false;
-        this.alunoTesteService.list.subscribe((data) => {
-            this.list = Object.assign([], data);
-            console.log('lista', data)
-    })
-      
+    constructor(private alunoService: AlunoService){
+      this.alunoService.list.subscribe((data) =>{
+        this.list = Object.assign([], data);
+        console.log('lista de apostilas ', data)
+        })
+        lastValueFrom(alunoService.getList())
     }
+      
+  
 
     // Função para limpar os filtros aplicados na tabela
     clear(table: Table) {

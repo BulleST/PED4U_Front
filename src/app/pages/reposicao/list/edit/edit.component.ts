@@ -6,7 +6,7 @@ import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
 import { ReposicaoAlunos } from "src/app/models/reposicao.model";
-import { Perfil } from "src/app/pages/perfis/perfis.model";
+import { Perfil } from "src/app/models/perfis.model";
 
 @Component({
 	selector: 'edit-reposicao',

@@ -1,6 +1,6 @@
 import { Aulas } from 'src/app/models/aulas.model';
 import { Component, ViewChild } from '@angular/core';
-import { PerfisService } from 'src/app/services/perfis.service';
+import { PerfilService } from 'src/app/services/perfil.service';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
 import { AulasService } from 'src/app/services/aulas.service';

@@ -1,11 +1,11 @@
-import { AlunoTesteService } from 'src/app/services/aluno-teste.service';
+import { AlunoService } from "src/app/services/aluno.service";
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { Aluno, PerfilAluno } from "../../aluno.model";
+import { Aluno, PerfilAluno } from "src/app/models/aluno.model";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { AlunoList } from '../../aluno.model';
+
 
 @Component({
 	selector: 'create-alunos',
@@ -15,7 +15,7 @@ import { AlunoList } from '../../aluno.model';
 
 export class CreateComponent{
     open = true;
-    object: AlunoList = new AlunoList;
+    object: Aluno = new Aluno;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
@@ -33,23 +33,15 @@ export class CreateComponent{
 	
 
 
-    constructor(
-        private activatedRoute: ActivatedRoute,
-        private router: Router,
-        private AlunoTesteService: AlunoTesteService,
-		private httpClient: HttpClient,
+	constructor(
+		private activatedRoute: ActivatedRoute,
+		private router: Router,
+		private alunoService: AlunoService,
 		private toastr: ToastrService,
-    ){
+		private http: HttpClient
+	) { }
 
-		lastValueFrom(this.AlunoTesteService.getList()).then( res => {
-			this.perfis = Object.assign([], res);
-		});
-		lastValueFrom(this.AlunoTesteService.getList())
-
-		
-	}
-
-    // Fechar modal e retornar para rota de estabelecimento
+	// Fechar modal e retornar para rota de estabelecimento
 	close(): void {
 		this.open = false;
 		this.router.navigate(['aluno']);
@@ -59,20 +51,19 @@ export class CreateComponent{
 	// Função criada para salvar as informações inseridas na modal de cadastro
 	async save() {
 		this.loading = true;
-		
 		console.log(this.object)
-		lastValueFrom(this.AlunoTesteService.post(this.object))
+		lastValueFrom(this.alunoService.post(this.object))
 			.then(res => {
 				if (res.success) {
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
-					lastValueFrom(this.AlunoTesteService.getList())
+					lastValueFrom(this.alunoService.getList())
 				}
 				else {
 					this.erro = res.message
 					this.toastr.error(res.message)
 				}
-				this.loading = false;
+					this.loading = false;
 			})
 			.catch(res => {
 				this.erro = res;
@@ -82,5 +73,4 @@ export class CreateComponent{
 				this.loading = false;
 			})
 	}
-
 }
