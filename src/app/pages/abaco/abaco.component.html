@@ -62,7 +62,10 @@
                         <td>{{item.nome}}</td>
                         <td>{{item.qtdePaginas}}</td>
                         <td>
-                            <p-tag [value]="item.materialExtra" [severity]="getSeverity(item.materialExtra)"></p-tag>
+                            <p-tag 
+                                [value]="item.materialExtra" 
+                                [severity]="getSeverity(item.materialExtra)">
+                            </p-tag>
                         <td></td>
                         <td></td>
                         <td>

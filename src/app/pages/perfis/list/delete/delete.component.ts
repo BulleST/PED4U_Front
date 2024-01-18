@@ -1,6 +1,6 @@
 
 import { Component } from "@angular/core";
-import { Perfis } from "src/app/models/perfis.model";
+import { Perfil } from "src/app/models/perfis.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
@@ -14,7 +14,7 @@ import { PerfilService } from "src/app/services/perfil.service";
 
 export class DeleteComponent{
 	open = true;
-	object: Perfis = new Perfis;
+	object: Perfil = new Perfil;
 	id: number = 0;
 	erro = '';
 	loading: boolean = false;

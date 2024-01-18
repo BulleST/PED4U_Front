@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, of, tap } from "rxjs";
 import { Aulas } from "../models/aulas.model";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
+import { ApostilaAbaco } from "../pages/abaco/abaco.model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,10 @@ import { Response } from "../models/response.model";
 export class AulasService {
 
   list = new BehaviorSubject<Aulas[]>([
-    { id: 1, nome: 'Lucas', apostila: 'Intermediário 2', pagina: 24, falta: true, reposicao: false },
-    { id: 2, nome: 'Marina', apostila: 'Básico 1', pagina: 30, falta: true, reposicao: false },
-    { id: 3, nome: 'Luana', apostila: 'Avançado 2', pagina: 32, falta: true, reposicao: false },
-    { id: 4, nome: 'João', apostila: 'Intermediário 1', pagina: 72, falta: true, reposicao: false },
+    { id: 1, nome: 'Lucas', apostila: { id: 1, nome: 'Basico 1', qtdePaginas: 2, materialExtra: false }, pagina: 24, falta: true, reposicao: false },
+    { id: 2, nome: 'Marina', apostila: { id: 1, nome: 'Basico 1', qtdePaginas: 2, materialExtra: false }, pagina: 30, falta: true, reposicao: false },
+    { id: 3, nome: 'Luana', apostila: { id: 1, nome: 'Basico 1', qtdePaginas: 2, materialExtra: false }, pagina: 32, falta: true, reposicao: false },
+    { id: 4, nome: 'João',apostila: { id: 1, nome: 'Basico 1', qtdePaginas: 2, materialExtra: false }, pagina: 72, falta: true, reposicao: false },
    
   ])
 
@@ -29,7 +30,7 @@ export class AulasService {
       var lista = this.sortLista();
 
       this.list.next(lista);
-      observer.complete();
+      // observer.complete();
     })
   }
 
@@ -53,7 +54,7 @@ export class AulasService {
       model.id = lastIndex;
       // lista.push(model);
       this.list.next(lista);
-      // observer.next(model)
+      observer.next()
       observer.complete()
     })
   }

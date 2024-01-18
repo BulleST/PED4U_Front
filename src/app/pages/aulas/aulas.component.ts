@@ -1,9 +1,11 @@
+
 import { Aulas } from 'src/app/models/aulas.model';
 import { Component, ViewChild } from '@angular/core';
-import { PerfilService } from 'src/app/services/perfil.service';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
 import { AulasService } from 'src/app/services/aulas.service';
+import { ApostilaAbaco } from '../abaco/abaco.model';
+import { ApostilasService } from 'src/app/services/apostilas.service';
 
 
 
@@ -17,22 +19,32 @@ export class AulasComponent {
   list: Aulas[] = [];
   id: number = 0;
   erro = '';
-  // generos: string [] = [
-  //   'Masculino',
-  //   'Feminino',
-  //   'Outros'
-  // ]
+  loadingApostilas = false;
+  apostilasAbaco: ApostilaAbaco[] = [];
+  apostilaSelected?: ApostilaAbaco;
+
+
+  apostilas: ApostilaAbaco [] = [
+    { id: 1, nome: 'Basico 1', qtdePaginas: 2, materialExtra: false },
+    { id: 1, nome: 'Basico 2', qtdePaginas: 2, materialExtra: false },
+    { id: 1, nome: 'Basico 3', qtdePaginas: 2, materialExtra: false },
+    { id: 1, nome: 'Intermediario 1', qtdePaginas: 2, materialExtra: false },
+    { id: 1, nome: 'Intermediario 2', qtdePaginas: 2, materialExtra: false },
+    { id: 1, nome: 'Intermediario 3', qtdePaginas: 2, materialExtra: false },
+  ]
   @ViewChild('dt') dt!: Table;
   // Função para limpar os filtros aplicados na tabela
 
 
-  constructor(private aulasService: AulasService) {
+  constructor(private aulasService: AulasService,
+    private apostilasService: ApostilasService,) {
     this.aulasService.list.subscribe((data) => {
       this.list = Object.assign([], data);
       console.log('perfis', data)
     })
-    lastValueFrom(aulasService.getList())
+    lastValueFrom(aulasService.getList()).then
   }
+
 
   clear(table: Table) {
     table.clear();
@@ -69,6 +81,19 @@ export class AulasComponent {
         return 'danger';
     }
   }
+  apostilaChanged(e: any, item: Aulas) {
+    console.log(item)
+    console.log(e)
 
-  
+    return
+    // this.loadingApostilas = true;
+    // if (!this.apostilasAbaco || !this.apostilasAbaco.length) {
+    //     await lastValueFrom(this.apostilasService.getList());
+    // }
+    // item.apostila = this.apostilasAbaco.find(x => x.id == e);
+    // this.loadingApostilas = false;
+
+}
+    
+
 }

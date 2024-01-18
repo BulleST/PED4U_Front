@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { PerfilService } from "src/app/services/perfil.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Perfil, Perfis} from "src/app/models/perfis.model";
+import { Perfil} from "src/app/models/perfis.model";
 import { ToastrService } from "ngx-toastr";
 import { lastValueFrom } from "rxjs";
 
@@ -13,7 +13,7 @@ import { lastValueFrom } from "rxjs";
 
 export class EditComponent {
 	open = true;
-	object: Perfil = new Perfis;
+	object: Perfil = new Perfil;
 	erro = '';
 	loading: boolean = true;
 

@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { Perfis } from "src/app/models/perfis.model";
+import { Perfil } from "src/app/models/perfis.model";
 import { PerfilService } from "src/app/services/perfil.service";
 
 @Component({
@@ -15,7 +15,7 @@ import { PerfilService } from "src/app/services/perfil.service";
 
 export class CreateComponent{
     open = true;
-    object: Perfis = new Perfis;
+    object: Perfil = new Perfil;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
@@ -33,7 +33,8 @@ export class CreateComponent{
 		// lastValueFrom(this.educadoresService.getList())
 	}
 
-    // Fechar modal e retornar para rota de estabelecimento
+  
+	// Fechar modal e retornar para rota de estabelecimento
 	close(): void {
 		this.open = false;
 		this.router.navigate(['perfis']);
@@ -43,7 +44,6 @@ export class CreateComponent{
 	// Função criada para salvar as informações inseridas na modal de cadastro
 	async save() {
 		this.loading = true;
-		
 		console.log(this.object)
 		lastValueFrom(this.perfilService.post(this.object))
 			.then(res => {
@@ -56,7 +56,7 @@ export class CreateComponent{
 					this.erro = res.message
 					this.toastr.error(res.message)
 				}
-				this.loading = false;
+					this.loading = false;
 			})
 			.catch(res => {
 				this.erro = res;

@@ -1,7 +1,9 @@
+import { ApostilaAbaco } from "../pages/abaco/abaco.model";
+
 export class Aulas{
     id: number = 0;
     nome: string = '';
-    apostila: string = '';
+    apostila?: ApostilaAbaco = new ApostilaAbaco();
     pagina: number = 0;
     falta: boolean = true;
     reposicao: boolean = true;

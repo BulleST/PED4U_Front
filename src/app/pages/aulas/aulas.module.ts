@@ -19,6 +19,8 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DeleteComponent } from "./list/delete/delete.component";
 
+
+
 @NgModule ({
     declarations: [ 
         AulasComponent,

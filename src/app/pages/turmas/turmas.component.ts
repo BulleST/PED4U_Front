@@ -1,52 +1,29 @@
 
+
 import { Component, ViewChild } from '@angular/core';
-import { TurmasService } from './../../services/turmas.service';
+import { Turma } from './turmas.model';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
-import { Turma } from './turmas.model';
-
-
+import { TurmasService } from 'src/app/services/turmas.service';
 
 @Component({
-  selector: 'turmas',
+  selector: 'turma',
   templateUrl: './turmas.component.html',
   styleUrls: ['./turmas.component.css']
 })
 export class TurmasComponent {
-  open = true;
   list: Turma[] = [];
-  id: number = 0;
-  erro = '';
-  // generos: string [] = [
-  //   'Masculino',
-  //   'Feminino',
-  //   'Outros'
-  // ]
   @ViewChild('dt') dt!: Table;
-  // Função para limpar os filtros aplicados na tabela
 
-
-  constructor(private turmasService: TurmasService) {
-    this.turmasService.list.subscribe((data) => {
+  constructor(private turmasService: TurmasService){
+    this.turmasService.list.subscribe((data) =>{
       this.list = Object.assign([], data);
-      console.log('perfis', data)
-    })
-    lastValueFrom(turmasService.getList())
+      console.log('lista de apostilas ', data)
+      })
+      lastValueFrom(turmasService.getList())
   }
 
-  concatenatePerfil(turma: Turma): string{
-    let perfis: string = '';
-    
-    for(let i = 0; i < turma.perfil.length; i++){
-      perfis += turma.perfil[i].nome
-      if(i != turma.perfil.length-1){
-        perfis += ', '
-      }
-       
-    }
-    return perfis
-  }
-
+  // Função para limpar os filtros aplicados na tabela
   clear(table: Table) {
     table.clear();
   }
@@ -55,4 +32,6 @@ export class TurmasComponent {
   applyFilterGlobal(event: any, filterType: string) {
     this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);
   }
+
 }
+

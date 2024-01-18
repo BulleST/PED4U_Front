@@ -1,9 +1,9 @@
 
 import { Component, ViewChild } from '@angular/core';
-import { Perfil, Perfis } from 'src/app/models/perfis.model';
-import { ApostilasService } from 'src/app/services/apostilas.service';
+import { Perfil } from 'src/app/models/perfis.model';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
+import { PerfilService } from 'src/app/services/perfil.service';
 
 @Component({
   selector: 'apostilas-abaco-apostilas',
@@ -14,12 +14,12 @@ export class PerfisComponent {
   list: Perfil[] = [];
   @ViewChild('dt') dt!: Table;
 
-  constructor(private apostilasService: ApostilasService){
-    this.apostilasService.list.subscribe((data) =>{
+  constructor(private perfilService: PerfilService){
+    this.perfilService.list.subscribe((data) =>{
       this.list = Object.assign([], data);
       console.log('lista de apostilas ', data)
       })
-      lastValueFrom(apostilasService.getList())
+      lastValueFrom(perfilService.getList())
   }
 
   // Função para limpar os filtros aplicados na tabela

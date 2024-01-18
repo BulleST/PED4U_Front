@@ -1,7 +1,7 @@
 
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of, tap } from "rxjs";
-import { Perfil, Perfis } from "../models/perfis.model";
+import { Perfil} from "../models/perfis.model";
 import { environment } from "src/environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
@@ -20,7 +20,7 @@ export class PerfilService {
   ) { }
 
   getList() {
-    return this.httpClient.get<Perfil[]>(`${this.url}/Perfil`)
+    return this.httpClient.get<Perfil[]>(`${this.url}/Turma_Perfil`)
       .pipe(tap({
         next: res => {
           this.list.next(res)
@@ -29,7 +29,7 @@ export class PerfilService {
   }
 
   getListPerfil(){
-    return this.httpClient.get<Perfil[]>(`${this.url}/Perfil`)
+    return this.httpClient.get<Perfil[]>(`${this.url}/Turma_Perfil`)
       .pipe(tap({
         next: res => {
           this.list.next(res)
@@ -38,16 +38,16 @@ export class PerfilService {
   }
 
   get(id: number) {
-    return this.httpClient.get<Perfil>(`${this.url}/Perfil/${id}`)
+    return this.httpClient.get<Perfil>(`${this.url}/Turma_Perfil/${id}`)
 
   }
 
   post(model: Perfil) {
-    return this.httpClient.post<Response>(`${this.url}/Perfil`, model)
+    return this.httpClient.post<Response>(`${this.url}/Turma_Perfil`, model)
   }
 
   delete(id: number) {
-    return this.httpClient.delete<Response>(`${this.url}/Perfil/${id}`)
+    return this.httpClient.delete<Response>(`${this.url}/Turma_Perfil/${id}`)
   }
 
 }

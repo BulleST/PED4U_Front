@@ -68,7 +68,41 @@
                     <tr>
                         <td>{{item.id}}</td>
                         <td>{{item.nome}}</td>
-                        <td>{{item.apostila}}</td>
+                        <td>
+                            
+                                    <label class="p-float-label">Apostilas <span class="text-danger">*</span></label>
+                                   
+                                        <p-dropdown 
+                                                [style]="{'width':'100%'}"
+                                                [options]="apostilas"
+                                                #apostila="ngModel"
+                                                [(ngModel)]="item.apostila"
+                                                optionLabel="nome"
+                                                optionValue="id"
+                                                [placeholder]="'Selecione'"
+                                                [disabled]="loadingApostilas"
+                                                name="apostila_id"
+                                                id="apostila_id"
+                                                [filterFields]="['nome']"
+                                                [showClear]="false"
+                                                [required]="true">
+                                                (ngModelChange)="apostilaChanged($event, item)"
+                                        <ng-template pTemplate="footer">
+                                            <div class="py-2 px-3 border-top bg-light"> Não encontrou? Clique para <a class="link text-info" [routerLink]="['cadastrar']">adicionar</a>
+                                            </div>
+                                        </ng-template>
+                                    </p-dropdown>
+                                  
+                           
+                            
+    
+                       
+                        <!-- <td>
+                            <p-dropdown 
+                            formControlName="selectedCity" 
+                            [options]="item.apostilas" 
+                            optionLabel="apostila" 
+                            placeholder="Select a City"></p-dropdown></td> -->
                         <td>{{item.pagina}}</td>
                         <td>
                             <p-toggleButton 
