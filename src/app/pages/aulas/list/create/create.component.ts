@@ -19,18 +19,6 @@ export class CreateComponent{
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
-	// faltas: any[] = [
-    //     { name: 'Ausente', value: 1 },
-    //     { name: 'Option 2', value: 2 },
-    //     { name: 'Option 3', value: 3 }
-    // ];
-	// vigencia: string [] = [
-	// 	'Ativo',
-	// 	'Inativo'
-	// ];
-
-	
-
 
     constructor(
         private activatedRoute: ActivatedRoute,

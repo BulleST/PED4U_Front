@@ -1,3 +1,11 @@
+:root {
+    --primary: #ff6315;
+    --primary-highlight: #8c47dc;
+    --secondary: #fff;
+    --secondary-highlight: #F94184 ;
+    --grey: #181818;
+    --grey-highlight: #5a5c60;
+}
 
 #panelMenu{
     margin: 0;
@@ -67,7 +75,7 @@ li {
 ul {
     height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 0.75rem 1.25rem;
     margin-bottom: 0;
     width:100%;
@@ -138,4 +146,12 @@ ul .menu_header{
     padding: 0;
     display: flex;
     flex-direction: row;
+    margin-top: 20px;
 }
+
+::ng-deep .btn-logout {
+    color: var(--primary);
+    cursor: pointer;
+}
+
+

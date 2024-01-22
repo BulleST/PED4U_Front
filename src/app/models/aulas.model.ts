@@ -1,4 +1,4 @@
-import { ApostilaAbaco } from "../pages/abaco/abaco.model";
+import { ApostilaAbaco } from "./abaco.model";
 
 export class Aulas{
     id: number = 0;

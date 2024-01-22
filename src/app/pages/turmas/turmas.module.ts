@@ -13,7 +13,7 @@ import { TurmasComponent } from "./turmas.component";
 import { TagModule } from 'primeng/tag';
 import { ToastrModule } from "ngx-toastr";
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
-import { IConfig, provideEnvironmentNgxMask } from 'ngx-mask'
+import { IConfig } from 'ngx-mask'
 import { TurmasRoutingModule } from "./turmas.routing";
 import { CreateComponent } from "./list/create/create.component";
 import { EditComponent } from "./list/edit/edit.component";
@@ -48,13 +48,11 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
         ProgressSpinnerModule,
         TagModule,
         ToastrModule,
-        NgxMaskDirective,
-        NgxMaskPipe,
         MultiSelectModule
     ],
 
     providers: [
-        provideEnvironmentNgxMask(maskConfigFunction)
+        
     ]
 })
 

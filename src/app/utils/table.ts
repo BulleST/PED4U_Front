@@ -1,10 +1,12 @@
+
+import { NgxMaskService } from 'ngx-mask';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import * as $ from 'jquery';
 import { ToastrService } from 'ngx-toastr';
 import { Crypto } from './crypto';
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { NgxMaskApplierService } from 'ngx-mask/lib/ngx-mask-applier.service';
+
 import { Column, FilterType, MaskType } from '../helpers/column.interface';
 import { MenuTableLink } from '../helpers/menu-links.interface';
 
@@ -24,7 +26,7 @@ export class Table {
         private toastr: ToastrService,
         private crypto: Crypto,
         private currency: CurrencyPipe,
-        private mask: NgxMaskApplierService,
+        private mask: NgxMaskService,
         private datePipe: DatePipe,
     ) { }
 

@@ -4,7 +4,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
 import { AulasService } from 'src/app/services/aulas.service';
-import { ApostilaAbaco } from '../abaco/abaco.model';
+import { ApostilaAbaco } from 'src/app/models/abaco.model';
 import { ApostilasService } from 'src/app/services/apostilas.service';
 
 
@@ -16,6 +16,7 @@ import { ApostilasService } from 'src/app/services/apostilas.service';
 })
 export class AulasComponent {
   open = true;
+  object: ApostilaAbaco = new ApostilaAbaco;
   list: Aulas[] = [];
   id: number = 0;
   erro = '';
@@ -24,7 +25,7 @@ export class AulasComponent {
   apostilaSelected?: ApostilaAbaco;
 
 
-  apostilas: ApostilaAbaco [] = [
+  listapostilas: ApostilaAbaco [] = [
     { id: 1, nome: 'Basico 1', qtdePaginas: 2, materialExtra: false },
     { id: 1, nome: 'Basico 2', qtdePaginas: 2, materialExtra: false },
     { id: 1, nome: 'Basico 3', qtdePaginas: 2, materialExtra: false },
@@ -81,19 +82,18 @@ export class AulasComponent {
         return 'danger';
     }
   }
-  apostilaChanged(e: any, item: Aulas) {
-    console.log(item)
-    console.log(e)
+   async apostilaChanged(e: any, item: Aulas) {
+  
+      this.loadingApostilas = true;
+      if (!this.listapostilas || !this.listapostilas.length) {
+          await lastValueFrom(this.apostilasService.getList());
+      }
+      this.apostilaSelected = this.listapostilas.find(x => x.id == e);
+      this.loadingApostilas = false;
 
-    return
-    // this.loadingApostilas = true;
-    // if (!this.apostilasAbaco || !this.apostilasAbaco.length) {
-    //     await lastValueFrom(this.apostilasService.getList());
-    // }
-    // item.apostila = this.apostilasAbaco.find(x => x.id == e);
-    // this.loadingApostilas = false;
+      console.log(this.object.nome, this.apostilaSelected)
+  }
 
 }
     
 
-}

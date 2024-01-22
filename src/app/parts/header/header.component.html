@@ -1,5 +1,35 @@
-<div class="header">
-    <div class="menu_header">
+<div class="header" >
+    <p-menubar *ngIf="!loggedIn">
+        <ng-template pTemplate="start">
+            <img src="../../../assets/Supera_ampliado (2).png" height="80" class="mr-2" />
+        </ng-template>
+       <ng-template ></ng-template>
+    </p-menubar>
+
+    <p-menubar [model]="items" *ngIf="loggedIn">
+        <ng-template pTemplate="start">
+            <img src="../../../assets/Supera_ampliado (2).png" height="80" class="mr-2" />
+        </ng-template>
+    
+            <div class="button_header" >
+                <p class="header__userLogado-submenu-link">Bem-vindo</p>
+                <a class="header__userLogado-submenu-link" (click)="minhaConta()">
+                    <span style="margin-right: 8px;">
+                      
+                    </span> Meus dados </a>
+                <a class="header__userLogado-submenu-link" (click)="sair()">
+                    <span style="margin-right: 8px;">
+                        Sair
+                    </span>  </a>
+            </div>
+      
+      
+        <!-- <ng-template pTemplate="end">
+            <a href="" class="btn-logout" (click)="sair()">
+                <span class="pi pi-power-off" style="margin-right: 8px;"></span> Sair</a>
+        </ng-template> -->
+    </p-menubar>
+    <!-- <div class="menu_header">
         <div class="button_header">
             <p-menu #menu [model]="items" [popup]="true"></p-menu>
             <button pButton type="button" (click)="menu.toggle($event)" icon="pi pi-angle-down" label="Cadastros Gerais"></button>
@@ -16,6 +46,17 @@
         <div class="button_header">
             <button class="btn-header" type="button" [routerLink]="['account']" routerLinkActive="active">Fazer Login</button>
         </div>
-    </div>
+        <div class="button_header" [class.header__userLogado-submenu--open]="menuMinhaContaOpen">
+            <p class="header__userLogado-submenu-link">Bem-vindo</p>
+            <a class="header__userLogado-submenu-link" (click)="minhaConta()">
+                <span style="margin-right: 8px;">
+                  
+                </span> Meus dados </a>
+            <a class="header__userLogado-submenu-link" (click)="sair()">
+                <span style="margin-right: 8px;">
+                   
+                </span> Sair </a>
+        </div>
+    </div> -->
    
 </div>

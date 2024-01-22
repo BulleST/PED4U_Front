@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable, of, tap } from "rxjs";
 import { Aulas } from "../models/aulas.model";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
-import { ApostilaAbaco } from "../pages/abaco/abaco.model";
+import { ApostilaAbaco } from "../models/abaco.model";
 
 @Injectable({
   providedIn: 'root'

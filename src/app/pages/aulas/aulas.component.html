@@ -68,41 +68,54 @@
                     <tr>
                         <td>{{item.id}}</td>
                         <td>{{item.nome}}</td>
-                        <td>
+                       <td>
+                        <span class="p-float-label">
+                            <label for="apostila">Apostilas</label>
+                                <p-dropdown 
+                                    [autoDisplayFirst]="false"
+                                    appendTo="body" 
+                                    styleClass="dropdown-apostila" 
+                                    panelStyleClass="minWidthOverride"
+                                    [style]="{'width':'80%', overflow: 'visible'}" 
+                                    [options]="listapostilas" 
+                                    #apostila="ngModel"
+                                    [(ngModel)]="item.apostila" 
+                                    optionLabel="nome" 
+                                    optionValue="id" 
+                                    [placeholder]="'Selecione'"
+                                    [disabled]="loadingApostilas" 
+                                    name="apostila_id" 
+                                    id="apostila_id" 
+                                    [filterFields]="['nome']" 
+                                    [showClear]="false"
+                                    [required]="true">
+                                    (ngModelChange)="apostilaChanged($event)"
+                                    <ng-template pTemplate="footer">
+                                        <div class="py-2 px-3 border-top bg-light"> Não encontrou? Clique para <a class="link text-info"
+                                                [routerLink]="['cadastrar']">adicionar</a>
+                                        </div>
+                                    </ng-template>
+                   
+                            </p-dropdown>
+                        </span>
                             
-                                    <label class="p-float-label">Apostilas <span class="text-danger">*</span></label>
-                                   
-                                        <p-dropdown 
-                                                [style]="{'width':'100%'}"
-                                                [options]="apostilas"
-                                                #apostila="ngModel"
-                                                [(ngModel)]="item.apostila"
-                                                optionLabel="nome"
-                                                optionValue="id"
-                                                [placeholder]="'Selecione'"
-                                                [disabled]="loadingApostilas"
-                                                name="apostila_id"
-                                                id="apostila_id"
-                                                [filterFields]="['nome']"
-                                                [showClear]="false"
-                                                [required]="true">
-                                                (ngModelChange)="apostilaChanged($event, item)"
-                                        <ng-template pTemplate="footer">
-                                            <div class="py-2 px-3 border-top bg-light"> Não encontrou? Clique para <a class="link text-info" [routerLink]="['cadastrar']">adicionar</a>
-                                            </div>
-                                        </ng-template>
-                                    </p-dropdown>
-                                  
+                                        
+                       </td>
+                               
+                       
+                                           
+                        
+                           
+                       
                            
                             
-    
-                       
-                        <!-- <td>
-                            <p-dropdown 
-                            formControlName="selectedCity" 
-                            [options]="item.apostilas" 
-                            optionLabel="apostila" 
-                            placeholder="Select a City"></p-dropdown></td> -->
+                            <!-- <ng-template pTemplate="body-guard">
+                                <label class="p-float-label">Apostilas <span class="text-danger">*</span></label>
+                                
+                            </ng-template> -->
+                                   
+                        
+                    
                         <td>{{item.pagina}}</td>
                         <td>
                             <p-toggleButton 
@@ -111,7 +124,6 @@
                                     onLabel="Presente" 
                                     offLabel="Ausente">
                             </p-toggleButton>
-                            
                         </td>
                         <td>
                             <p-toggleButton 
@@ -126,7 +138,6 @@
                             <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
                             <a class="btn btn-delete" [routerLink]="['excluir', item.id]">Excluir</a>
                         </td>
-                         
                     </tr>
                 </ng-template>
             </p-table>

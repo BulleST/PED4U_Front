@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ApostilasService } from '../../../../services/apostilas.service';
 import { ActivatedRoute, Router } from "@angular/router";
-import { ApostilaAbaco } from '../../abaco.model';
+import { ApostilaAbaco } from "src/app/models/abaco.model";
 import { ToastrService } from "ngx-toastr";
 import { lastValueFrom } from "rxjs";
 

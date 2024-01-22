@@ -1,6 +1,6 @@
 
 import { Component, ViewChild } from '@angular/core';
-import { ApostilaAbaco } from './abaco.model';
+import { ApostilaAbaco } from 'src/app/models/abaco.model';
 import { ApostilasService } from 'src/app/services/apostilas.service';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';

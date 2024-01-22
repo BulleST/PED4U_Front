@@ -158,14 +158,9 @@ td {
 }
 
 
-.p-dropdown{
-    display: inline-flex;
-    background: transparent;
-    color: #6b7280;
-    width: 250px;
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
-}
+
+
+
 
 @import url('../../../assets/css/form/form.css');
 @import url('../../../assets/css/p-dropdown/p-dropdown.css')

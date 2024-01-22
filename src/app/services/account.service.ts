@@ -6,6 +6,7 @@ import { environment } from 'src/environment/environment';
 import { catchError, tap } from 'rxjs/operators';
 import { Crypto } from '../utils/crypto';
 import { Account, ChangePassword, Login, Register, ResetPassword, UpdateAccount } from '../models/account.model';
+import { Header } from '../utils/header';
 
 
 @Injectable({
@@ -14,6 +15,7 @@ import { Account, ChangePassword, Login, Register, ResetPassword, UpdateAccount 
 export class AccountService {
     url = environment.url;
 
+    menuMinhaContaOpen: BehaviorSubject<Account | undefined>;
     accountSubject: BehaviorSubject<Account | undefined>;
     public account: Observable<Account | undefined>;
 
@@ -22,14 +24,21 @@ export class AccountService {
         private activatedRoute: ActivatedRoute,
         private http: HttpClient,
         private crypto: Crypto,
+        private header:  Header
     ) {
         this.accountSubject = new BehaviorSubject<Account | undefined>(undefined);
         this.account = this.accountSubject.asObservable();
+        this.menuMinhaContaOpen = new BehaviorSubject<Account | undefined>(undefined)
     }
 
     setAccount(value?: Account) {
+        console.log( value)
         if (value) {
             value.role = value.perfilAcesso_Id;
+            this.header.loggedIn.next(true)
+        }
+        else {
+            this.header.loggedIn.next(false)
         }
         this.accountSubject.next(value)
         let encrypted = this.crypto.encrypt(value);
@@ -63,13 +72,14 @@ export class AccountService {
     }
 
     async logout() {
+        console.log('entrou no logout')
         await lastValueFrom(this.http.post<any>(`${this.url}/accounts/revoke-token`, {token: this.accountValue?.refreshToken}, { withCredentials: true } /**/))
             .catch(error => {
                 console.log(error)
             })
             this.stopRefreshTokenTimer();
             this.setAccount(undefined);
-            this.router.navigate(['account', 'login']);
+            this.router.navigate(['account/login']);
             localStorage.clear();
     } 
 

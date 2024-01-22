@@ -3,7 +3,7 @@
 import { ApostilasService } from '../../../../services/apostilas.service';
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ApostilaAbaco } from '../../abaco.model';
+import { ApostilaAbaco } from 'src/app/models/abaco.model';
 import { lastValueFrom } from 'rxjs';
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';

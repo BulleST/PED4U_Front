@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, tap } from "rxjs";
-import { ApostilaAbaco } from "../pages/abaco/abaco.model";
+import { ApostilaAbaco } from "../models/abaco.model";
 import { environment } from "src/environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";

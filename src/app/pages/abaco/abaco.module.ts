@@ -16,8 +16,7 @@ import { EditComponent } from "./list/edit/edit.component";
 import { DeleteComponent } from "./list/delete/delete.component";
 import { TagModule } from 'primeng/tag';
 import { ToastrModule } from "ngx-toastr";
-import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
-import { IConfig, provideEnvironmentNgxMask } from 'ngx-mask'
+import { IConfig } from 'ngx-mask'
 
 
 
@@ -48,12 +47,11 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
         ProgressSpinnerModule,
         TagModule,
         ToastrModule,
-        NgxMaskDirective,
-        NgxMaskPipe
+       
     ],
 
     providers: [
-        provideEnvironmentNgxMask(maskConfigFunction)
+      
     ]
 })
 

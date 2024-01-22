@@ -13,8 +13,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditComponent } from './list/edit/edit.component';
 import { ToastrModule } from "ngx-toastr";
-import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
-import { IConfig, provideEnvironmentNgxMask } from 'ngx-mask'
+import { IConfig } from 'ngx-mask'
 import { DeleteComponent } from './list/delete/delete.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
@@ -44,12 +43,11 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
         CheckboxModule,
         DropdownModule,
         ToastrModule,
-        NgxMaskDirective,
-        NgxMaskPipe
+   
     ],
 
     providers: [
-        provideEnvironmentNgxMask(maskConfigFunction)
+  
     ]
 })
 
