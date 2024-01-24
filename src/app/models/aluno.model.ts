@@ -4,10 +4,10 @@ export class Aluno{
     pessoa_Id: number = '' as unknown as number;
     turma_Id: number = '' as unknown as number;
     perfil_Id:number = '' as unknown as number;
-    data_Vigencia_Inicial: Date = new Date();
-    data_Vigencia_Final: Date = new Date();
+    data_Vigencia_Inicial: boolean = false;
+    data_Vigencia_Final:boolean = false;
     nome: string = '';
-    dataNascimento: Date = new Date();
+    dataNascimento:  string = '';;
     celular: string = '';
     sexo_Id: number = '' as unknown as number;
   }
@@ -24,7 +24,3 @@ export class Aluno{
     dataVigencia: boolean = false;
   }
 
-  export class PerfilAluno{
-    id: number = '' as unknown as number;
-    nome: string = '';
-  }

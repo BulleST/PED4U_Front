@@ -5,7 +5,7 @@ import { EducadoresService } from "src/app/services/educadores.service";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { Educadores } from "../../educadores.model";
+import { Educador } from "src/app/models/educador.model";
 
 @Component({
 	selector: 'create-alunos',
@@ -15,7 +15,7 @@ import { Educadores } from "../../educadores.model";
 
 export class CreateComponent{
     open = true;
-    object: Educadores = new Educadores;
+    object: Educador = new Educador;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;

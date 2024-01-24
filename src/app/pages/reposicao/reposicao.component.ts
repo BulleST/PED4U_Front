@@ -1,4 +1,4 @@
-import { ReposicaoAlunos } from 'src/app/models/reposicao.model';
+import { Reposicao } from 'src/app/models/reposicao.model';
 import { Component, ViewChild } from '@angular/core';
 import { ReposicaoService } from 'src/app/services/reposicao.service';
 import { Table } from 'primeng/table';
@@ -14,7 +14,7 @@ import { lastValueFrom } from 'rxjs';
 })
 export class ReposicaoComponent {
   open = true;
-  list: ReposicaoAlunos[] = [];
+  list: Reposicao[] = [];
   id: number = 0;
   erro = '';
  
@@ -39,7 +39,7 @@ export class ReposicaoComponent {
     this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);
   }
 
-  concatenatePerfil(reposicao: ReposicaoAlunos): string{
+  concatenatePerfil(reposicao: Reposicao): string{
     let perfis: string = '';
     
     for(let i = 0; i < reposicao.perfil.length; i++){

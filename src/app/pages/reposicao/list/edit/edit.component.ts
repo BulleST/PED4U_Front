@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { ReposicaoAlunos } from "src/app/models/reposicao.model";
+import { Reposicao } from "src/app/models/reposicao.model";
 import { Perfil } from "src/app/models/perfis.model";
 
 @Component({
@@ -16,7 +16,7 @@ import { Perfil } from "src/app/models/perfis.model";
 
 export class EditComponent{
     open = true;
-    object: ReposicaoAlunos = new ReposicaoAlunos;
+    object: Reposicao = new Reposicao;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;

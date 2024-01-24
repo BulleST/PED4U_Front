@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of, tap } from "rxjs";
-import { ReposicaoAlunos } from "../models/reposicao.model";
+import { Reposicao } from "../models/reposicao.model";
 import { environment } from "src/environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
@@ -11,14 +11,14 @@ import { Response } from "../models/response.model";
 
 export class ReposicaoService {
   url = environment.url;
-  list: BehaviorSubject<ReposicaoAlunos[]> = new BehaviorSubject<ReposicaoAlunos[]>([])
+  list: BehaviorSubject<Reposicao[]> = new BehaviorSubject<Reposicao[]>([])
 
   constructor(
     private httpClient: HttpClient
   ) { }
 
   getList() {
-    return this.httpClient.get<ReposicaoAlunos[]>(`${this.url}/Reposicao`)
+    return this.httpClient.get<Reposicao[]>(`${this.url}/Reposicao`)
       .pipe(tap({
         next: res => {
           this.list.next(res)
@@ -27,7 +27,7 @@ export class ReposicaoService {
   }
 
   getListPerfil(){
-    return this.httpClient.get<ReposicaoAlunos[]>(`${this.url}/Reposicao`)
+    return this.httpClient.get<Reposicao[]>(`${this.url}/Reposicao`)
       .pipe(tap({
         next: res => {
           this.list.next(res)
@@ -36,11 +36,11 @@ export class ReposicaoService {
   }
 
   get(id: number) {
-    return this.httpClient.get<ReposicaoAlunos>(`${this.url}/Reposicao/${id}`)
+    return this.httpClient.get<Reposicao>(`${this.url}/Reposicao/${id}`)
 
   }
 
-  post(model: ReposicaoAlunos) {
+  post(model: Reposicao) {
     return this.httpClient.post<Response>(`${this.url}/Reposicao`, model)
   }
 

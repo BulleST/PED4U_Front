@@ -4,10 +4,11 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { Turma } from "../../turmas.model";
-import { PerfilAluno } from "src/app/models/aluno.model";
+import { Turma } from "src/app/models/turmas.model";
+import { Perfil } from "src/app/models/perfis.model";
 import { TurmasService } from "src/app/services/turmas.service";
 import { PerfilService } from "src/app/services/perfil.service";
+import { TurmaCadastro } from "src/app/models/turmas.model";
 
 @Component({
 	selector: 'create-alunos',
@@ -17,12 +18,13 @@ import { PerfilService } from "src/app/services/perfil.service";
 
 export class CreateComponent{
     open = true;
+	item: TurmaCadastro = new TurmaCadastro;
     object: Turma = new Turma;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
-	perfis: PerfilAluno [] = [];
-	diaTurma: string [] = [
+	perfis: Perfil [] = [];
+	diaSemana: string [] = [
 		'Segunda-Feira',
 		'Terça-Feira',
 		'Quarta-Feira',
@@ -36,7 +38,8 @@ export class CreateComponent{
 		'Luana',
 		'Antônio',
 		'Letícia'
-	  ]
+	  ];
+	  selectedPerfis: string[] = [];
 	
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -63,7 +66,7 @@ export class CreateComponent{
 	// Função criada para salvar as informações inseridas na modal de cadastro
 	async save() {
 		this.loading = true;
-		
+		this.object.perfis = this.concatenatePerfil();
 		console.log(this.object)
 		lastValueFrom(this.turmasService.post(this.object))
 			.then(res => {
@@ -87,4 +90,20 @@ export class CreateComponent{
 			})
 	}
 
+	concatenatePerfil(): string{
+		let perfis: string = '';
+		
+		for(let i = 0; i < this.selectedPerfis.length; i++){
+		  perfis += this.selectedPerfis[i]
+		  if(i != this.selectedPerfis.length-1){
+			perfis += ', '
+		  }
+		   
+		}
+		return perfis
+	  }
+
+
 }
+
+

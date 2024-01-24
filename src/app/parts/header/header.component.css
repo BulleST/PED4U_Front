@@ -154,4 +154,15 @@ ul .menu_header{
     cursor: pointer;
 }
 
+.header_loggedIn{
+    display: flex;
+    flex-direction: column;
+}
+
+.button_header{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
 

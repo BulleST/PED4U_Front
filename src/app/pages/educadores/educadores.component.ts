@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { EducadoresService } from 'src/app/services/educadores.service';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
-import { Educadores } from './educadores.model';
+import { Educador } from 'src/app/models/educador.model';
 
 @Component({
     selector: 'educadores',
@@ -11,7 +11,7 @@ import { Educadores } from './educadores.model';
   })
   export class EducadoresComponent {
     open = true;
-    list: Educadores [] = [];
+    list: Educador [] = [];
     id: number = 0;
     erro = '';
     generos: string [] = [

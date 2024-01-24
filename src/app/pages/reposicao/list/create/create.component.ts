@@ -5,9 +5,9 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { ReposicaoAlunos } from "src/app/models/reposicao.model";
+import { Reposicao } from "src/app/models/reposicao.model";
 import { PerfilService } from "src/app/services/perfil.service";
-import { PerfilAluno } from "src/app/models/aluno.model";
+import { Perfil } from "src/app/models/perfis.model";
 
 @Component({
 	selector: 'create-reposicao',
@@ -17,11 +17,11 @@ import { PerfilAluno } from "src/app/models/aluno.model";
 
 export class CreateComponent{
     open = true;
-    object: ReposicaoAlunos = new ReposicaoAlunos;
+    object: Reposicao = new Reposicao;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
-	perfis: PerfilAluno [] = [];
+	perfis: Perfil [] = [];
 	diaTurma: string [] = [
 		'Segunda-Feira',
 		'Terça-Feira',

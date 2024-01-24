@@ -11,16 +11,13 @@
             <img src="../../../assets/Supera_ampliado (2).png" height="80" class="mr-2" />
         </ng-template>
     
-            <div class="button_header" >
-                <p class="header__userLogado-submenu-link">Bem-vindo</p>
-                <a class="header__userLogado-submenu-link" (click)="minhaConta()">
+            <div class="button_header">
+                <a class="header_loggedIn" (click)="minhaConta()">
                     <span style="margin-right: 8px;">
                       
                     </span> Meus dados </a>
-                <a class="header__userLogado-submenu-link" (click)="sair()">
-                    <span style="margin-right: 8px;">
-                        Sair
-                    </span>  </a>
+                    <p-button label="Logout" icon="pi pi-fw pi-power-off" (click)="sair()"></p-button>
+                
             </div>
       
       

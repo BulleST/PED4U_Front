@@ -1,7 +1,7 @@
 
 
 import { Component, ViewChild } from '@angular/core';
-import { Turma } from './turmas.model';
+import { Turma } from 'src/app/models/turmas.model';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
 import { TurmasService } from 'src/app/services/turmas.service';

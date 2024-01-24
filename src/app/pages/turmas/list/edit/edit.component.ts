@@ -4,10 +4,10 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { Turma } from "../../turmas.model";
-import { PerfilAluno } from "src/app/models/aluno.model";
 import { TurmasService } from "src/app/services/turmas.service";
 import { PerfilService } from "src/app/services/perfil.service";
+import { Turma } from "src/app/models/turmas.model";
+import { Perfil } from "src/app/models/perfis.model";
 
 @Component({
 	selector: 'edit',
@@ -21,7 +21,7 @@ export class EditComponent{
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
-	perfis: PerfilAluno [] = [];
+	perfis: Perfil [] = [];
 	diaTurma: string [] = [
 		'Segunda-Feira',
 		'Terça-Feira',

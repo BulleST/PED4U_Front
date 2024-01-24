@@ -21,13 +21,13 @@
                             <div class="campo-container">
                                 <div class="row">
                                     <div class="form-group col-md-4 col-12">
-                                        <label for="genero">Dia da Semana:
+                                        <label for="diaSemana">Dia da Semana:
                                             <span class="text-danger">*</span>
                                         </label>
                                         <p-dropdown 
                                             class="dropdown" 
-                                            [options]="diaTurma" 
-                                            [(ngModel)]="object.diaTurma"
+                                            [options]="diaSemana" 
+                                            [(ngModel)]="object.diaSemana"
                                             name="perfil" 
                                             placeholder="Selecione o dia da semana">
                                         </p-dropdown>
@@ -38,20 +38,20 @@
                                         <input 
                                             type="time" 
                                             class="form-control" 
-                                            id="horarioTurma" 
-                                            name="horarioTurma"
-                                            #horarioTurma="ngModel" 
-                                            [(ngModel)]="object.horarioTurma"
+                                            id="horario" 
+                                            name="horario"
+                                            #horario="ngModel" 
+                                            [(ngModel)]="object.horario"
                                             pattern="\S(.*\S)?"
-                                            (change)="object.horarioTurma = horarioTurma.value.trim()" 
+                                            (change)="object.horario = horario.value.trim()" 
                                             required
                                             minlength="3" 
                                             maxlength="30">
-                                        <div *ngIf="horarioTurma.touched && horarioTurma.errors">
-                                            <p class="text-danger" *ngIf="horarioTurma.errors['required']">
+                                        <div *ngIf="horario.touched && horario.errors">
+                                            <p class="text-danger" *ngIf="horario.errors['required']">
                                                 Esse campo é obrigatório.
                                             </p>
-                                            <p class="text-danger" *ngIf="horarioTurma.errors['pattern']">
+                                            <p class="text-danger" *ngIf="horario.errors['pattern']">
                                                 Não insira espaços em branco antes ou no final do campo
                                             </p>
                                             <p class="text-danger">{{erro}}</p>
@@ -59,47 +59,49 @@
                                     </div>
                                     <div class="form-group col-md-4 col-12">
 
-                                        <label for="idade">Capacidade de Alunos:
+                                        <label for="capacidadeAlunos">Capacidade de Alunos:
                                             <span class="text-danger">*</span></label>
                                         <input 
                                             type="text" 
                                             class="form-control" 
-                                            id="qtdeAlunos" 
-                                            name="qtdeAlunos"
-                                            #qtdeAlunos="ngModel" 
-                                            [(ngModel)]="object.qtdeAlunos" 
+                                            id="capacidadeAlunos" 
+                                            name="capacidadeAlunos"
+                                            #capacidadeAlunos="ngModel" 
+                                            [(ngModel)]="object.capacidadeAlunos" 
                                             placeholder=" ex: 12"
                                             required 
                                             minlength="12" 
                                             maxlength="12">
-                                        <div *ngIf="qtdeAlunos.touched && qtdeAlunos.errors">
-                                            <p class="text-danger" *ngIf="qtdeAlunos.errors['required']">
+                                        <div *ngIf="capacidadeAlunos.touched && capacidadeAlunos.errors">
+                                            <p class="text-danger" *ngIf="capacidadeAlunos.errors['required']">
                                                 Esse campo é obrigatório
                                             </p>
-                                            <p class="text-danger">{{erro}}</p>
+                                           
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4 col-12">
-                                        <label for="perfil">Perfil:
+                                        <label for="perfis">Perfil:
                                             <span class="text-danger">*</span>
                                         </label>
                                         <p-multiSelect 
                                             class="dropdown" 
                                             [options]="perfis" 
+                                            name="perfis"
+                                            optionValue="nome"
                                             optionLabel="nome"
-                                            [(ngModel)]="object.perfil"
+                                            [(ngModel)]="selectedPerfis"
                                             placeholder="Selecione o perfil da turma">
                                         </p-multiSelect>
                                     </div>
                                     <div class="form-group col-md-4 col-12">
-                                        <label for="nome">Educador:
+                                        <label for="nomeEducador">Educador:
                                             <span class="text-danger">*</span>
                                         </label>
                                         <p-dropdown 
                                             class="dropdown" 
                                             [options]="nome"
-                                            [(ngModel)]="object.nome"
-                                            name="nome" 
+                                            [(ngModel)]="object.nomeEducador"
+                                            name="nomeEducador" 
                                             placeholder="Selecione o educador">
                                         </p-dropdown>
                                     </div>
@@ -120,6 +122,7 @@
                                         [disabled]="loading">
                                         Salvar
                                     </button>
+                                    <p class="text-danger">{{erro}}</p>
                                 </div>
                             </div>
                         </div>

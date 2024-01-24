@@ -28,14 +28,6 @@ export class PerfilService {
       }))
   }
 
-  getListPerfil(){
-    return this.httpClient.get<Perfil[]>(`${this.url}/Turma_Perfil`)
-      .pipe(tap({
-        next: res => {
-          this.list.next(res)
-        }
-      }))
-  }
 
   get(id: number) {
     return this.httpClient.get<Perfil>(`${this.url}/Turma_Perfil/${id}`)

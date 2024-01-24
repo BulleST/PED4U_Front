@@ -1,7 +1,8 @@
 import { AlunoService } from "src/app/services/aluno.service";
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { Aluno, PerfilAluno } from "src/app/models/aluno.model";
+import { Aluno} from "src/app/models/aluno.model";
+import { Perfil } from "src/app/models/perfis.model";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
@@ -29,7 +30,7 @@ export class CreateComponent{
 		'Inativo'
 	];
 	perfis: object [] = [];
-	perfil: PerfilAluno = new PerfilAluno;
+	perfil: Perfil = new Perfil;
 	
 
 

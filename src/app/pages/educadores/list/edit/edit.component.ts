@@ -2,7 +2,7 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { EducadoresService } from 'src/app/services/educadores.service';
-import { Educadores } from '../../educadores.model';
+import { Educador } from "src/app/models/educador.model";
 import { ToastrService } from "ngx-toastr";
 import { lastValueFrom } from "rxjs";
 
@@ -15,7 +15,7 @@ import { lastValueFrom } from "rxjs";
 
 export class EditComponent {
 	open = true;
-	object: Educadores = new Educadores;
+	object: Educador = new Educador;
 	erro = '';
 	loading: boolean = true;
 	generos: string[] = [

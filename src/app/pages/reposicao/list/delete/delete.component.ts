@@ -1,7 +1,7 @@
 
 
 import { Component } from "@angular/core";
-import { ReposicaoAlunos } from "src/app/models/reposicao.model";
+import { Reposicao } from "src/app/models/reposicao.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AulasService } from "src/app/services/aulas.service";
 import { lastValueFrom } from "rxjs";
@@ -15,7 +15,7 @@ import { ToastrService } from "ngx-toastr";
 
 export class DeleteComponent{
 	open = true;
-	object: ReposicaoAlunos = new ReposicaoAlunos;
+	object: Reposicao = new Reposicao;
 	id: number = 0;
 	erro = '';
 	loading: boolean = false;

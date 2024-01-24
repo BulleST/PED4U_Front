@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of, tap } from "rxjs";
-import { Educadores } from "../pages/educadores/educadores.model";
+import { Educador } from "../models/educador.model";
 import { environment } from "src/environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
@@ -11,7 +11,7 @@ import { Response } from "../models/response.model";
 
 export class EducadoresService {
 
-  list = new BehaviorSubject<Educadores[]>([
+  list = new BehaviorSubject<Educador[]>([
     { id: 1, nome: 'Lucas', celular: 0, idade: 24, genero: 'masculino', email: 'lucas@gmail.com' },
     { id: 2, nome: 'Marina', celular: 11933377700, idade: 30, genero: 'feminino', email: 'marina@gmail.com' },
     { id: 3, nome: 'Luana', celular: 0, idade: 32, genero: 'feminino', email: 'luana@gmail.com' },
@@ -26,7 +26,7 @@ export class EducadoresService {
   ) { }
 
   getList() {
-    return new Observable<Educadores[]>(observer => {
+    return new Observable<Educador[]>(observer => {
       var lista = this.sortLista();
 
       this.list.next(lista);
@@ -35,7 +35,7 @@ export class EducadoresService {
   }
 
   get(alunoId: number) {
-    return new Observable<Educadores>(observer => {
+    return new Observable<Educador>(observer => {
       var lista = this.sortLista()
       var objeto = lista.find(x => x.id == alunoId);
       if (!objeto) {
@@ -47,7 +47,7 @@ export class EducadoresService {
     return this.list.value.sort((a, b) => a.id - b.id);
   }
 
-  post(model: Educadores) {
+  post(model: Educador) {
     return new Observable<Response>(observer => {
       var lista = this.sortLista();
       var lastIndex = lista.length > 0 ? lista[lista.length - 1].id + 1 : 1;

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of, tap } from "rxjs";
-import { Turma } from "../pages/turmas/turmas.model";
+import { Turma } from "../models/turmas.model";
 import { environment } from "src/environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
@@ -26,14 +26,14 @@ export class TurmasService {
       }))
   }
 
-  getListPerfil(){
-    return this.httpClient.get<Turma[]>(`${this.url}/Turma`)
-      .pipe(tap({
-        next: res => {
-          this.list.next(res)
-        }
-      }))
-  }
+  // getListPerfil(){
+  //   return this.httpClient.get<Turma[]>(`${this.url}/Turma`)
+  //     .pipe(tap({
+  //       next: res => {
+  //         this.list.next(res)
+  //       }
+  //     }))
+  // }
 
   get(id: number) {
     return this.httpClient.get<Turma>(`${this.url}/Turma/${id}`)

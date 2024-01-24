@@ -62,12 +62,12 @@ const routes: Routes = [
     loadChildren: account
   },
   
-  {
-    path: '', redirectTo: 'home', pathMatch: 'full'
-  },
+  // {
+  //   path: '', redirectTo: 'home', pathMatch: 'full'
+  // },
 
   {
-    path: '', redirectTo: 'aulas', pathMatch: 'full'
+    path: '', redirectTo: 'account/login', pathMatch: 'full'
   }
 ];
 

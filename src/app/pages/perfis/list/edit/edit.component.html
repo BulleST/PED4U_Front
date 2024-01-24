@@ -44,26 +44,7 @@
                                             <p class="text-danger">{{erro}}</p>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-4 col-12">
-                                        <label for="qtdeTurmas"> N° de Turmas: 
-                                            <span class="text-danger">*</span></label>
-                                        <input 
-                                            type="text"  
-                                            class="form-control" 
-                                            id="qtdeTurmas"  
-                                            name="qtdeTurmas"
-                                            #qtdeTurmas="ngModel"
-                                            [(ngModel)]="object.qtdeTurmas" 
-                                            required 
-                                            minlength="12"
-                                            maxlength="12">
-                                            <div *ngIf="qtdeTurmas.touched && qtdeTurmas.errors">
-                                            <p class="text-danger" *ngIf="qtdeTurmas.errors['required']">
-                                                Esse campo é obrigatório
-                                            </p>
-                                            <p class="text-danger">{{erro}}</p>
-                                            </div>
-                                    </div>
+                                  
                                    
                                
                                 <div class="modal-footer">
