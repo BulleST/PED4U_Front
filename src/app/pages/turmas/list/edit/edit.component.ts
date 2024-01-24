@@ -6,8 +6,10 @@ import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
 import { TurmasService } from "src/app/services/turmas.service";
 import { PerfilService } from "src/app/services/perfil.service";
-import { Turma } from "src/app/models/turmas.model";
+import { DiaSemana, Turma, TurmaCadastro } from "src/app/models/turmas.model";
 import { Perfil } from "src/app/models/perfis.model";
+import { Educador } from "src/app/models/educador.model";
+
 
 @Component({
 	selector: 'edit',
@@ -17,27 +19,27 @@ import { Perfil } from "src/app/models/perfis.model";
 
 export class EditComponent{
     open = true;
-    object: Turma = new Turma;
+    object: TurmaCadastro = new TurmaCadastro;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
 	perfis: Perfil [] = [];
-	diaTurma: string [] = [
-		'Segunda-Feira',
-		'Terça-Feira',
-		'Quarta-Feira',
-		'Quinta-Feira',
-		'Sexta-Feira',
-		'Sábado'
+	diaSemana: DiaSemana [] = [
+		{id: 1 , nome: 'Segunda-Feira'},
+		{id: 2 , nome: 'Terça-Feira'},
+		{id: 3 , nome: 'Quarta-Feira'},
+		{id: 4 , nome: 'Quinta-Feira'},
+		{id: 5 , nome: 'Sexta-Feira'},
+		{id: 5 , nome: 'Sábado'}
 	  ];
-	  nome: string [] = [
-		'Lucas',
-		'Marina',
-		'Luana',
-		'Antônio',
-		'Letícia'
-		
-	  ]
+	  educadores: Educador [] = [
+		{id: 0, nome: 'Lucas', celular: 0, idade: 0, email: '', genero: ''},
+		{id: 0, nome: 'Marina', celular: 0, idade: 0, email: '', genero: ''},
+		{id: 0, nome: 'Luana', celular: 0, idade: 0, email: '', genero: ''},
+		{id: 0, nome: 'Antônio', celular: 0, idade: 0, email: '', genero: ''},
+		{id: 0, nome: 'Letícia', celular: 0, idade: 0, email: '', genero: ''},
+	  ];
+	  selectedPerfis: string[] = [];
 	
     constructor(
         private activatedRoute: ActivatedRoute,

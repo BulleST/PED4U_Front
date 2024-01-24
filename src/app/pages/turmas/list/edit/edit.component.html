@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Editar Cadastro de Turma</h5>
+                <h5 class="modal-title">Editar Turma</h5>
                 <a 
                     type="button" 
                     class="btn-close" 
@@ -11,6 +11,11 @@
             </div>
             <div class="modal-body">
                 <form #form="ngForm">
+                    <div class="d-flex mb-3">
+                        <button 
+                            type="reset" 
+                            class="btn-clear">Limpar Campos</button>
+                    </div>
                     <div class="column">
                         <div class="form-container mb-4">
                             <div class="campo-container">
@@ -21,14 +26,14 @@
                                         </label>
                                         <p-dropdown 
                                             class="dropdown" 
-                                            [options]="diaTurma" 
+                                            [options]="diaSemana" 
                                             [(ngModel)]="object.diaSemana"
                                             name="perfil" 
                                             placeholder="Selecione o dia da semana">
                                         </p-dropdown>
                                     </div>
                                     <div class="form-group col-md-4 col-12">
-                                        <label for="horario"> Horário:
+                                        <label for="horarioTurma"> Horário:
                                             <span class="text-danger">*</span></label>
                                         <input 
                                             type="time" 
@@ -54,24 +59,22 @@
                                     </div>
                                     <div class="form-group col-md-4 col-12">
 
-                                        <label for="capacidadeAlunos">Capacidade de Alunos:
+                                        <label for="qtdeMaxAluno">Capacidade de Alunos:
                                             <span class="text-danger">*</span></label>
                                         <input 
                                             type="text" 
                                             class="form-control" 
-                                            id="capacidadeAlunos" 
-                                            name="capacidadeAlunos"
-                                            #capacidadeAlunos="ngModel" 
-                                            [(ngModel)]="object.capacidadeAlunos" 
+                                            id="qtdeMaxAluno" 
+                                            name="qtdeMaxAluno"
+                                            #qtdeMaxAluno="ngModel" 
+                                            [(ngModel)]="object.qtdeMaxAluno" 
                                             placeholder=" ex: 12"
-                                            required 
-                                            minlength="12" 
-                                            maxlength="12">
-                                        <div *ngIf="capacidadeAlunos.touched && capacidadeAlunos.errors">
-                                            <p class="text-danger" *ngIf="capacidadeAlunos.errors['required']">
+                                            required>
+                                        <div *ngIf="qtdeMaxAluno.touched && qtdeMaxAluno.errors">
+                                            <p class="text-danger" *ngIf="qtdeMaxAluno.errors['required']">
                                                 Esse campo é obrigatório
                                             </p>
-                                            <p class="text-danger">{{erro}}</p>
+                                           
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4 col-12">
@@ -81,8 +84,10 @@
                                         <p-multiSelect 
                                             class="dropdown" 
                                             [options]="perfis" 
+                                            name="perfis"
+                                            optionValue="nome"
                                             optionLabel="nome"
-                                            [(ngModel)]="object.perfis"
+                                            [(ngModel)]="selectedPerfis"
                                             placeholder="Selecione o perfil da turma">
                                         </p-multiSelect>
                                     </div>
@@ -92,8 +97,10 @@
                                         </label>
                                         <p-dropdown 
                                             class="dropdown" 
-                                            [options]="nome"
-                                            [(ngModel)]="object.nomeEducador"
+                                            optionValue="id"
+                                            optionLabel="nome"
+                                            [options]="educadores"
+                                            [(ngModel)]="object.educador_Id"
                                             name="nomeEducador" 
                                             placeholder="Selecione o educador">
                                         </p-dropdown>
@@ -115,6 +122,7 @@
                                         [disabled]="loading">
                                         Salvar
                                     </button>
+                                    <p class="text-danger">{{erro}}</p>
                                 </div>
                             </div>
                         </div>

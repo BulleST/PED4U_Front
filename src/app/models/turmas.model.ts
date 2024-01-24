@@ -21,3 +21,13 @@ export class TurmaCadastro{
     };
 }
 
+export class DiaSemana{
+    id: number = 0;
+    nome: string = '';
+}
+
+export class TurmaPerfilRel{
+    id: number = 0;
+    turma_Id: number = 0;
+    perfil_Id: number = 0;
+}

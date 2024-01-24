@@ -20,6 +20,7 @@ import { RequestInterceptor } from './helpers/request.interceptor';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import {  NgxMaskModule, NgxMaskPipe } from 'ngx-mask';
 import { MenubarModule } from 'primeng/menubar';
+import { jwtDecode } from 'jwt-decode';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { MenubarModule } from 'primeng/menubar';
     CurrencyPipe,
     NgxMaskPipe,
     DatePipe,
+    
  
     {provide: LOCALE_ID, useValue: 'pt-BR'},
     {provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL'},

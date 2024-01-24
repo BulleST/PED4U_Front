@@ -36,6 +36,8 @@ export class HeaderComponent implements OnInit{
     login: { icon: string; routerLink: string[]; login: { label: string; icon: string; routerLink: string[]; }[]; }[] | undefined;
     loggedIn: boolean = false;
 
+    
+
 
     constructor(
         private accountService: AccountService,
@@ -69,6 +71,15 @@ export class HeaderComponent implements OnInit{
         this.subscription.push(account);
 
         var loggedIn = this.header.loggedIn.subscribe(res => this.loggedIn = res);
+
+        if(accountService.accountValue){
+            this.header.loggedIn.next(true)
+        }
+        else{
+            this.header.loggedIn.next(false)
+        }
+
+
         this.subscription.push(loggedIn);
 
         
@@ -135,8 +146,13 @@ export class HeaderComponent implements OnInit{
               
             },   
         ];
-        
-        
+
+        if(this.loggedIn){
+            this.router.navigate(['home']);
+        }
+        else{
+            this.router.navigate(['']);
+        }
      }
 
         

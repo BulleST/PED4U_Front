@@ -26,9 +26,11 @@
                                         </label>
                                         <p-dropdown 
                                             class="dropdown" 
+                                            optionLabel="nome"
+                                            optionValue="id"
                                             [options]="diaSemana" 
                                             [(ngModel)]="object.diaSemana"
-                                            name="perfil" 
+                                            name="diaSemana" 
                                             placeholder="Selecione o dia da semana">
                                         </p-dropdown>
                                     </div>
@@ -41,9 +43,9 @@
                                             id="horario" 
                                             name="horario"
                                             #horario="ngModel" 
-                                            [(ngModel)]="object.horario"
+                                            [(ngModel)]="selectHorario"
                                             pattern="\S(.*\S)?"
-                                            (change)="object.horario = horario.value.trim()" 
+                                            (change)="selectHorario = horario.value" 
                                             required
                                             minlength="3" 
                                             maxlength="30">
@@ -59,21 +61,19 @@
                                     </div>
                                     <div class="form-group col-md-4 col-12">
 
-                                        <label for="capacidadeAlunos">Capacidade de Alunos:
+                                        <label for="qtdeMaxAluno">Capacidade de Alunos:
                                             <span class="text-danger">*</span></label>
                                         <input 
                                             type="text" 
                                             class="form-control" 
-                                            id="capacidadeAlunos" 
-                                            name="capacidadeAlunos"
-                                            #capacidadeAlunos="ngModel" 
-                                            [(ngModel)]="object.capacidadeAlunos" 
+                                            id="qtdeMaxAluno" 
+                                            name="qtdeMaxAluno"
+                                            #qtdeMaxAluno="ngModel" 
+                                            [(ngModel)]="object.qtdeMaxAluno" 
                                             placeholder=" ex: 12"
-                                            required 
-                                            minlength="12" 
-                                            maxlength="12">
-                                        <div *ngIf="capacidadeAlunos.touched && capacidadeAlunos.errors">
-                                            <p class="text-danger" *ngIf="capacidadeAlunos.errors['required']">
+                                            required>
+                                        <div *ngIf="qtdeMaxAluno.touched && qtdeMaxAluno.errors">
+                                            <p class="text-danger" *ngIf="qtdeMaxAluno.errors['required']">
                                                 Esse campo é obrigatório
                                             </p>
                                            
@@ -99,8 +99,10 @@
                                         </label>
                                         <p-dropdown 
                                             class="dropdown" 
-                                            [options]="nome"
-                                            [(ngModel)]="object.nomeEducador"
+                                            optionValue="id"
+                                            optionLabel="nome"
+                                            [options]="educadores"
+                                            [(ngModel)]="object.educador_Id"
                                             name="nomeEducador" 
                                             placeholder="Selecione o educador">
                                         </p-dropdown>

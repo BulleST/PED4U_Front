@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of, tap } from "rxjs";
-import { Turma } from "../models/turmas.model";
+import { Turma, TurmaCadastro } from "../models/turmas.model";
 import { environment } from "src/environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
@@ -40,7 +40,7 @@ export class TurmasService {
 
   }
 
-  post(model: Turma) {
+  post(model: TurmaCadastro) {
     return this.httpClient.post<Response>(`${this.url}/Turma`, model)
   }
 
