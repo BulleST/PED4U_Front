@@ -8,24 +8,18 @@
 
     <p-menubar [model]="items" *ngIf="loggedIn">
         <ng-template pTemplate="start">
-            <img src="../../../assets/Supera_ampliado (2).png" height="80" class="mr-2" />
+            <a href="home">
+                <img src="../../../assets/Supera_ampliado (2).png" height="80" class="mr-2"/>
+            </a>
         </ng-template>
-    
-            <div class="button_header">
-                <a class="header_loggedIn" (click)="minhaConta()">
-                    <span style="margin-right: 8px;">
-                      
-                    </span> Meus dados </a>
+            <!-- <div class="button_header">
+                <a href="" class="header_loggedIn" (click)="minhaConta()"> </a>
                     <p-button label="Logout" icon="pi pi-fw pi-power-off" (click)="sair()"></p-button>
-                
-            </div>
-      
-      
-        <!-- <ng-template pTemplate="end">
-            <a href="" class="btn-logout" (click)="sair()">
-                <span class="pi pi-power-off" style="margin-right: 8px;"></span> Sair</a>
-        </ng-template> -->
+            </div> -->
+   
     </p-menubar>
+  
+    
     <!-- <div class="menu_header">
         <div class="button_header">
             <p-menu #menu [model]="items" [popup]="true"></p-menu>

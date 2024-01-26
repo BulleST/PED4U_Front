@@ -1,0 +1,71 @@
+:root {
+    --primary: #ff6315;
+    --primary-highlight: #8c47dc;
+    --secondary: #fff;
+    --secondary-highlight: #F94184 ;
+    --grey: #181818;
+    --grey-highlight: #5a5c60;
+}
+
+
+.btn-clear{
+    background-color: var(--grey-highlight);
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 6px;
+    cursor: pointer;
+    
+}
+
+.btn-primary{
+    background-color:var(--primary);
+    color: #fff;
+    font-weight: none;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin: 6px;
+    font-weight: 500;
+    font-size: 12pt;
+}
+
+.btn-edit{
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 12pt;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;  
+}
+
+.btn-delete{
+    background-color: var(--grey-highlight);
+    margin-left: 5px;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 12pt;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;  
+}
+
+.btn:hover {
+    background-color: var(--grey-highlight);
+    color:#fff; 
+}
+
+.btn.active {
+    color: var(--primary);
+}
+.btn-primary:hover{
+    background-color: var(--grey-highlight);
+}
+.btn-delete:hover{
+    background-color: var(--grey);
+}

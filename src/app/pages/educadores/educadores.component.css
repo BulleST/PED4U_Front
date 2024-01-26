@@ -89,59 +89,6 @@ td {
     justify-content: space-between;
 }
 
-.btn-clear{
-    background-color: #5a5c60;
-    color: #fff;
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    margin: 6px;
-    cursor: pointer;
-}
-
-.btn-primary{
-    background-color:var(--primary);
-    color: #fff;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 6px;
-    font-weight: none;
-}
-
-.btn-edit{
-    background-color:#ffffff;
-    color: var(--grey-highlight);
-    border: 2px solid #5a5c60;
-    padding: 7px;
-    border-radius: 10px;
-    font-family: sans-serif;
-    font-weight: 700;
-    font-size: 14pt;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;  
-}
-
-.btn-delete{
-    background-color:var(--secondary);
-    color: #ff6315;
-    border: 2px solid #ff6315;
-    padding: 7px;
-    border-radius: 10px;
-    margin: 6px;
-    font-weight: none;
-    font-size: 14pt;
-    font-weight: 700;
-}
-
-.btn:hover {
-    background-color: #F94184;
-    color:#fff;
-    border-color: #F94184;
-}
-
-.btn.active {
-    color: #ff6315;
-}
-
 .less-rounded span.p-tag.p-tag-rounded { 
     border-radius: 25px; 
     

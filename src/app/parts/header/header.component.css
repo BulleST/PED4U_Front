@@ -165,8 +165,16 @@ ul .menu_header{
 
 .button_header{
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    flex-direction: row;
     cursor: pointer;
   }
 
+.header_loggedIn{
+    color: #ff6315;
+}
 
+p-menubarsub{
+    width: 100%;
+}

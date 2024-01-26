@@ -87,6 +87,7 @@ export class HeaderComponent implements OnInit{
     }
 
     items: MenuItem[] | undefined;
+    itemsRight: MenuItem [] | undefined;
     
 
     ngOnInit() {
@@ -144,8 +145,23 @@ export class HeaderComponent implements OnInit{
                 icon: 'pi pi-fw pi-bookmark', 
                 routerLink: ['reposicao'],
               
-            },   
+            },  
+         
+            {
+                label: 'Meus Dados', 
+                routerLink: ['my-account'],
+                style: {
+                    'margin-left': 'auto'
+                }
+            }, 
+            {
+                label: 'Logout', 
+                icon: 'pi pi-fw pi-power-off', 
+                routerLink: ['logout'],
+                
+            }, 
         ];
+    
 
         if(this.loggedIn){
             this.router.navigate(['home']);
