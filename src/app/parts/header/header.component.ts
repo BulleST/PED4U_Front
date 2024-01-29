@@ -93,7 +93,7 @@ export class HeaderComponent implements OnInit{
     ngOnInit() {
         this.items = [
             {
-                icon: 'pi pi-fw pi-bars', 
+                label: 'Cadastros Gerais', 
                 routerLink: ['listagem-apostilas'],
                 items: [
                     {
@@ -144,6 +144,9 @@ export class HeaderComponent implements OnInit{
                 label: 'Gerenciar Reposição', 
                 icon: 'pi pi-fw pi-bookmark', 
                 routerLink: ['reposicao'],
+                style: {
+                    'margin-right': 'auto'
+                }
               
             },  
          

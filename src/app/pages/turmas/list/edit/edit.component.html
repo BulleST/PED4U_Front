@@ -59,19 +59,19 @@
                                     </div>
                                     <div class="form-group col-md-4 col-12">
 
-                                        <label for="qtdeMaxAluno">Capacidade de Alunos:
+                                        <label for="qtdeMaxAlunos">Capacidade de Alunos:
                                             <span class="text-danger">*</span></label>
                                         <input 
                                             type="text" 
                                             class="form-control" 
-                                            id="qtdeMaxAluno" 
-                                            name="qtdeMaxAluno"
-                                            #qtdeMaxAluno="ngModel" 
-                                            [(ngModel)]="object.qtdeMaxAluno" 
+                                            id="qtdeMaxAlunos" 
+                                            name="qtdeMaxAlunos"
+                                            #qtdeMaxAlunos="ngModel" 
+                                            [(ngModel)]="object.qtdeMaxAlunos" 
                                             placeholder=" ex: 12"
                                             required>
-                                        <div *ngIf="qtdeMaxAluno.touched && qtdeMaxAluno.errors">
-                                            <p class="text-danger" *ngIf="qtdeMaxAluno.errors['required']">
+                                        <div *ngIf="qtdeMaxAlunos.touched && qtdeMaxAlunos.errors">
+                                            <p class="text-danger" *ngIf="qtdeMaxAlunos.errors['required']">
                                                 Esse campo é obrigatório
                                             </p>
                                            

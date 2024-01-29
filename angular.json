@@ -31,7 +31,7 @@
               "node_modules/ngx-toastr/toastr.css"
 
             ],
-            "scripts": []
+            "scripts": [ ]
           },
           "configurations": {
             "production": {

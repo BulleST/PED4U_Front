@@ -30,7 +30,7 @@ export class CreateComponent{
 		{id: 3 , nome: 'Quarta-Feira'},
 		{id: 4 , nome: 'Quinta-Feira'},
 		{id: 5 , nome: 'Sexta-Feira'},
-		{id: 5 , nome: 'Sábado'}
+		{id: 6 , nome: 'Sábado'}
 	  ];
 	  educadores: Educador [] = [
 		{id: 1, nome: 'Lucas', celular: 0, idade: 0, email: '', genero: ''},
@@ -40,6 +40,8 @@ export class CreateComponent{
 		{id: 5, nome: 'Letícia', celular: 0, idade: 0, email: '', genero: ''},
 	  ];
 	  selectedPerfis: string[] = [];
+	  selectedDiaSemana: DiaSemana = {id: -1 , nome: ''};
+	  selectedEducadores: Educador = { id: -1, nome: '', celular: 0, idade: 0, email: '', genero: ''};
 	  selectHorario: string = '';
 	
     constructor(
@@ -67,12 +69,23 @@ export class CreateComponent{
 	// Função criada para salvar as informações inseridas na modal de cadastro
 	async save() {
 		this.loading = true;
-		console.log(this.formatTime(this.selectHorario))
-
-		// this.object.horario = this.formatTime(this.selectHorario)
+		this.object.horario = this.formatTime(this.selectHorario)
+		if(this.selectedDiaSemana.id == -1){
+			this.erro = "Selecione um dia da Semana válido";
+			return;
+		} 
+		this.object.diaSemana = this.selectedDiaSemana.id;
+		if(this.selectedEducadores.id == -1){
+			this.erro = "Selecione um Educador válido";
+			return;
+		} 
+		this.object.educador_Id = this.selectedEducadores.id;
+		this.object.qtdeMaxAlunos = parseInt(this.object.qtdeMaxAlunos.toString())
+		this.object.unidade_Id = 0;
 		console.log(this.object)
 		lastValueFrom(this.turmasService.post(this.object))
 			.then(res => {
+				console.log(res)
 				if (res.success) {
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
@@ -96,8 +109,21 @@ export class CreateComponent{
 	formatTime(horario: string): string{
 		// receive timetable in this format "hh:mm";
 		// then change the time to 'hh:mm:ss'
-		return horario + ':00.0000000' 
+		return horario + ':00.000000' 
 	}
+
+	concatenatePerfil(perfis: string[]): string{
+		let result: string = '';
+		
+		for(let i = 0; i < perfis.length; i++){
+		  result += perfis[i]
+		  if(i != perfis.length-1){
+			result += ', '
+		  }
+		   
+		}
+		return result
+	  }
 
 }
 

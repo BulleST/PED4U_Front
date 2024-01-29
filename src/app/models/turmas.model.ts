@@ -12,13 +12,11 @@ export class Turma {
 
 export class TurmaCadastro{
     id: number = 0;
-    diaSemana: number = 0;
-    qtdeMaxAluno: number = 0;
-    educador_Id: number = 0;
-    unidade_Id:  number = 0;
-    horario!: {
-        ticks: number;
-    };
+    horario: string = '';
+    diaSemana:  number = '' as unknown as number;
+    qtdeMaxAlunos:  number = '' as unknown as number;
+    educador_Id: number = '' as unknown as number;;
+    unidade_Id:   number = '' as unknown as number;;
 }
 
 export class DiaSemana{

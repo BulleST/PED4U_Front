@@ -11,27 +11,47 @@
             </div>
             <div class="modal-body">
                 <form #form="ngForm">
-                    <div class="d-flex mb-3">
-                        <button 
-                            type="reset" 
-                            class="btn-clear">Limpar Campos</button>
-                    </div>
+                    
                     <div class="column">
                         <div class="form-container mb-4">
                             <div class="campo-container">
                                 <div class="row">
-                                    <div class="form-group col-md-4 col-12">
+                                    <div class="form-group col-md-6 col-12">
+                                        <label for="perfis">Perfil:
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <p-multiSelect 
+                                            class="dropdown" 
+                                            [options]="perfis" 
+                                            name="perfis"
+                                            optionValue="nome"
+                                            optionLabel="nome"
+                                            [(ngModel)]="selectedPerfis"
+                                            placeholder="Selecione o perfil da turma">
+                                        </p-multiSelect>
+                                    </div>
+                                    <div class="form-group col-md-6 col-12">
                                         <label for="diaSemana">Dia da Semana:
                                             <span class="text-danger">*</span>
                                         </label>
                                         <p-dropdown 
                                             class="dropdown" 
                                             optionLabel="nome"
-                                            optionValue="id"
                                             [options]="diaSemana" 
-                                            [(ngModel)]="object.diaSemana"
+                                            [(ngModel)]="selectedDiaSemana"
                                             name="diaSemana" 
                                             placeholder="Selecione o dia da semana">
+                                            
+                                                <ng-template pTemplate="selectedItem">
+                                                    <div>
+                                                        <div>{{selectedDiaSemana.nome}}</div>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template let-dropdownvalues pTemplate="item">
+                                                    <div>
+                                                        <div>{{dropdownvalues.nome}}</div>
+                                                    </div>
+                                                </ng-template>
                                         </p-dropdown>
                                     </div>
                                     <div class="form-group col-md-4 col-12">
@@ -61,54 +81,59 @@
                                     </div>
                                     <div class="form-group col-md-4 col-12">
 
-                                        <label for="qtdeMaxAluno">Capacidade de Alunos:
+                                        <label for="qtdeMaxAlunos">Capacidade de Alunos:
                                             <span class="text-danger">*</span></label>
                                         <input 
-                                            type="text" 
+                                            type="number" 
+                                            mask="00"
+                                            pattern="[0-9]"
                                             class="form-control" 
-                                            id="qtdeMaxAluno" 
-                                            name="qtdeMaxAluno"
-                                            #qtdeMaxAluno="ngModel" 
-                                            [(ngModel)]="object.qtdeMaxAluno" 
+                                            id="qtdeMaxAlunos" 
+                                            name="qtdeMaxAlunos"
+                                            #qtdeMaxAlunos="ngModel" 
+                                            [(ngModel)]="object.qtdeMaxAlunos" 
                                             placeholder=" ex: 12"
                                             required>
-                                        <div *ngIf="qtdeMaxAluno.touched && qtdeMaxAluno.errors">
-                                            <p class="text-danger" *ngIf="qtdeMaxAluno.errors['required']">
+                                        <div *ngIf="qtdeMaxAlunos.touched && qtdeMaxAlunos.errors">
+                                            <p class="text-danger" *ngIf="qtdeMaxAlunos.errors['required']">
                                                 Esse campo é obrigatório
                                             </p>
                                            
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-4 col-12">
-                                        <label for="perfis">Perfil:
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <p-multiSelect 
-                                            class="dropdown" 
-                                            [options]="perfis" 
-                                            name="perfis"
-                                            optionValue="nome"
-                                            optionLabel="nome"
-                                            [(ngModel)]="selectedPerfis"
-                                            placeholder="Selecione o perfil da turma">
-                                        </p-multiSelect>
-                                    </div>
+                                    
                                     <div class="form-group col-md-4 col-12">
                                         <label for="nomeEducador">Educador:
                                             <span class="text-danger">*</span>
                                         </label>
                                         <p-dropdown 
                                             class="dropdown" 
-                                            optionValue="id"
                                             optionLabel="nome"
                                             [options]="educadores"
-                                            [(ngModel)]="object.educador_Id"
+                                            [(ngModel)]="selectedEducadores"
                                             name="nomeEducador" 
                                             placeholder="Selecione o educador">
+                                            <ng-template pTemplate="selectedItem">
+                                                <div>
+                                                    <div>{{selectedEducadores.nome}}</div>
+                                                </div>
+                                            </ng-template>
+                                            <ng-template let-dropdownvalues pTemplate="item">
+                                                <div>
+                                                    <div>{{dropdownvalues.nome}}</div>
+                                                </div>
+                                            </ng-template>
                                         </p-dropdown>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
+                                   <div class="me-auto  bd-highlight">
+                                    <button 
+                                            type="reset" 
+                                            class="btn-clear">Limpar Campos</button>
+                                   </div>
+                                        
+                                  
                                     <button 
                                         type="button" 
                                         class="btn-cancel" 

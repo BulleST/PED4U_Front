@@ -41,7 +41,7 @@ export class TurmasService {
   }
 
   post(model: TurmaCadastro) {
-    return this.httpClient.post<Response>(`${this.url}/Turma`, model)
+    return this.httpClient.post<Response>(`${this.url}/Turma`,model)
   }
 
   delete(id: number) {

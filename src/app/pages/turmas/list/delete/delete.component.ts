@@ -1,6 +1,6 @@
 
 import { Component } from "@angular/core";
-import { Turma } from "../../turmas.model";
+import { Turma } from "src/app/models/turmas.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TurmasService } from "src/app/services/turmas.service";
 import { lastValueFrom } from "rxjs";
