@@ -160,7 +160,7 @@ export class HeaderComponent implements OnInit{
             {
                 label: 'Logout', 
                 icon: 'pi pi-fw pi-power-off', 
-                routerLink: ['logout'],
+                command: () => this.sair(),
                 
             }, 
         ];

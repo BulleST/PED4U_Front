@@ -16,25 +16,25 @@
                             <div class="campo-container">
                                 <div class="row">
                                     <div class="form-group col-md-4 col-12">
-                                        <label for="nome">Educador:
+                                        <label for="pessoaNome">Educador:
                                             <span class="text-danger">*</span></label>
                                         <input 
                                             type="text" 
                                             class="form-control" 
-                                            id="nome" 
-                                            name="nome" 
-                                            #nome="ngModel"
-                                            [(ngModel)]="object.nome" 
+                                            id="pessoaNome" 
+                                            name="pessoaNome" 
+                                            #pessoaNome="ngModel"
+                                            [(ngModel)]="object.pessoaNome" 
                                             pattern="\S(.*\S)?"
-                                            (change)="object.nome = nome.value.trim()" 
+                                            (change)="object.pessoaNome = pessoaNome.value.trim()" 
                                             required 
                                             minlength="3"
                                             maxlength="30">
-                                        <div *ngIf="nome.touched && nome.errors">
-                                            <p class="text-danger" *ngIf="nome.errors['required']">
+                                        <div *ngIf="pessoaNome.touched && pessoaNome.errors">
+                                            <p class="text-danger" *ngIf="pessoaNome.errors['required']">
                                                 Esse campo é obrigatório.
                                             </p>
-                                            <p class="text-danger" *ngIf="nome.errors['pattern']">
+                                            <p class="text-danger" *ngIf="pessoaNome.errors['pattern']">
                                                 Não insira espaços em branco antes ou no final do campo
                                             </p>
                                             <p class="text-danger">{{erro}}</p>
@@ -50,7 +50,7 @@
                                             id="apostila" 
                                             name="apostila"
                                             #apostila="ngModel" 
-                                            [(ngModel)]="object.apostila"
+                                            [(ngModel)]="object.apostilaNome"
                                             placeholder=" ex: Básico 1" 
                                             required>
                                         <div *ngIf="apostila.touched && apostila.errors">
@@ -61,11 +61,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4 col-12">
-                                        <label for="pagina">Quantidade de Páginas:
+                                        <label for="paginaAtual">Página:
                                             <span class="text-danger">*</span>
                                         </label>
                                         <p-inputNumber 
-                                            [(ngModel)]="object.pagina" 
+                                            [(ngModel)]="object.paginaAtual" 
+                                            name="paginaAtual"
                                             [showButtons]="true"
                                             buttonLayout="horizontal" 
                                             spinnerMode="horizontal" 
@@ -84,6 +85,7 @@
                                         </label>
                                         <p-toggleButton 
                                             class="btn-falta" 
+                                            name="falta"
                                             [(ngModel)]="object.falta" 
                                             onLabel="Presente"
                                             offLabel="Ausente">
@@ -96,6 +98,7 @@
                                         <p-toggleButton 
                                             class="btn-reposicao" 
                                             [(ngModel)]="object.reposicao"
+                                            name="reposicao"
                                             onLabel="Sim" 
                                             offLabel="Não">
                                         </p-toggleButton>

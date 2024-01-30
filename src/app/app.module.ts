@@ -21,12 +21,17 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
 import {  NgxMaskModule, NgxMaskPipe } from 'ngx-mask';
 import { MenubarModule } from 'primeng/menubar';
 import { jwtDecode } from 'jwt-decode';
+import { LoadingComponent } from './parts/loading/loading.component';
+import { AlertComponent } from './parts/alert/alert.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    AlertComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +47,7 @@ import { jwtDecode } from 'jwt-decode';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    FontAwesomeModule,
     MenubarModule,
     NgxMaskModule.forRoot(),
     ToastrModule.forRoot({

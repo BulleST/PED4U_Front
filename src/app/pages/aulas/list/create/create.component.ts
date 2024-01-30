@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { Aulas } from "src/app/models/aulas.model";
+import { AlunoAula } from "src/app/models/aulas.model";
 
 @Component({
 	selector: 'create-aulas',
@@ -15,7 +15,7 @@ import { Aulas } from "src/app/models/aulas.model";
 
 export class CreateComponent{
     open = true;
-    object: Aulas = new Aulas;
+    object: AlunoAula = new AlunoAula;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;

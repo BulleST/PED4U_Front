@@ -58,8 +58,9 @@ export class AccountService {
         return this.http.post<Account>(`${this.url}/accounts/authenticate`, model, { withCredentials: true } /* */).pipe(
             tap((account) => {
                 this.setAccount(account);
-                const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
+                const returnUrl = this.activatedRoute.snapshot.queryParams['home'] || '/';
                 this.router.navigateByUrl(returnUrl);
+                this.router.navigate(['home']);
                 this.startRefreshTokenTimer();
                 return of(account);
             }),

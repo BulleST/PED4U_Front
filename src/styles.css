@@ -339,9 +339,6 @@ a {
     color: #6c757d;
     display: inline-flex;
     height: 38px;
-    margin-top: 2px;
-    margin-left: 2px;
-    margin-right: 2px;
 }
 
 
@@ -755,6 +752,13 @@ a {
     display: flex;
     flex-direction: column;
   }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 
   @import url('./assets/css/buttons/buttons.css');
   @import "primeicons/primeicons.css";

@@ -1,5 +1,5 @@
 
-import { Aulas } from 'src/app/models/aulas.model';
+import { AlunoAula } from 'src/app/models/aulas.model';
 import { Component, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
@@ -17,7 +17,7 @@ import { ApostilasService } from 'src/app/services/apostilas.service';
 export class AulasComponent {
   open = true;
   object: ApostilaAbaco = new ApostilaAbaco;
-  list: Aulas[] = [];
+  list: AlunoAula[] = [];
   id: number = 0;
   erro = '';
   loadingApostilas = false;
@@ -82,7 +82,7 @@ export class AulasComponent {
         return 'danger';
     }
   }
-   async apostilaChanged(e: any, item: Aulas) {
+   async apostilaChanged(e: any, item: AlunoAula) {
   
       this.loadingApostilas = true;
       if (!this.listapostilas || !this.listapostilas.length) {
