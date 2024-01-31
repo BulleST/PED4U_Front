@@ -13,6 +13,7 @@ const listTurmas = () => import ('./pages/turmas/turmas.module').then( res => re
 const listAulas = () => import ('./pages/aulas/aulas.module').then( res => res.AulasModule)
 const listReposicao = () => import ('./pages/reposicao/reposicao.module').then ( res => res.ReposicaoModule)
 const account = () => import ('./pages/account/account.module'). then ( res => res.AccountModule)
+const myAccount = () => import ('./shared/shared.module'). then ( res => res.SharedModule)
 
 
 
@@ -60,6 +61,11 @@ const routes: Routes = [
   {
     path: 'account',
     loadChildren: account
+  },
+
+  {
+    path: 'minha-conta',
+    loadChildren: myAccount
   },
   
   // {

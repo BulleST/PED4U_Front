@@ -64,7 +64,7 @@
             </div>
             <div class="text-center text-wrap-balance col-12 px-0">
                 <p class="text-danger mb-2" *ngIf="erro">{{erro}}</p>
-                <p class="mt-1 mb-3"> Ao logar você concorda com os <a class="link" [routerLink]="['..', 'termos-de-uso']">termos de uso</a></p>
+                <p class="text-center col-12 mb-3"> Ao logar você concorda com os <a class="link" routerLink="./termos-de-uso">termos de uso</a> do Ped4u.</p>
             </div>
             <div class="row">
                 <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12">
@@ -86,5 +86,6 @@
   
 </div>
 </form>
+<router-outlet></router-outlet>
 
 

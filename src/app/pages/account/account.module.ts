@@ -16,6 +16,9 @@ import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { MyAccountComponent } from './my-account/my-account.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
     TermosDeUsoComponent,
     ResetPasswordComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    MyAccountComponent,
+    ChangePasswordComponent
+
   ],
   imports: [
     CommonModule,

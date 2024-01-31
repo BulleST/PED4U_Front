@@ -1,0 +1,18 @@
+
+:root {
+    --primary: #ff6315;
+    --primary-highlight: #8c47dc;
+    --secondary: #fff;
+    --secondary-highlight: #F94184 ;
+    --grey: #181818;
+    --grey-highlight: #5a5c60;
+}
+
+h3 {
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+app-my-account{
+    width: 100%;
+  }

@@ -18,7 +18,7 @@ export class TurmasComponent {
   constructor(private turmasService: TurmasService){
     this.turmasService.list.subscribe((data) =>{
       this.list = Object.assign([], data);
-      console.log('lista de apostilas ', data)
+      console.log('lista de turmas ', data)
       })
       lastValueFrom(turmasService.getList())
   }

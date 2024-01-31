@@ -759,6 +759,10 @@ a {
   margin: 0;
 }
 
+app-my-account{
+  width: 100%;
+}
+
 
   @import url('./assets/css/buttons/buttons.css');
   @import "primeicons/primeicons.css";

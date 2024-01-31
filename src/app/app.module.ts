@@ -24,6 +24,9 @@ import { jwtDecode } from 'jwt-decode';
 import { LoadingComponent } from './parts/loading/loading.component';
 import { AlertComponent } from './parts/alert/alert.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SharedModule } from './shared/shared.module';
+
+
 
 
 @NgModule({
@@ -32,6 +35,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HeaderComponent,
     AlertComponent,
     LoadingComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -49,6 +53,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     FontAwesomeModule,
     MenubarModule,
+    
+
+  
     NgxMaskModule.forRoot(),
     ToastrModule.forRoot({
       preventDuplicates: true,

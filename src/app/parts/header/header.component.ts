@@ -152,7 +152,7 @@ export class HeaderComponent implements OnInit{
          
             {
                 label: 'Meus Dados', 
-                routerLink: ['my-account'],
+                routerLink: ['./account/my-account'],
                 style: {
                     'margin-left': 'auto'
                 }

@@ -38,6 +38,8 @@ export class CreateAccountComponent implements OnDestroy {
     ) { 
         var loading = this.loadingUtils.loading.subscribe(res => this.loading = res);
         this.subscription.push(loading);
+
+        console.log('estou sendo construido')
     }
 
     ngOnDestroy(): void {

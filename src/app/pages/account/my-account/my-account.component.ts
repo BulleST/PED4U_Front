@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faCreditCard, faKey } from '@fortawesome/free-solid-svg-icons';
+import { faChevronCircleLeft, faCreditCard, faKey } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription, lastValueFrom } from 'rxjs';
 import { Account } from 'src/app/models/account.model';
@@ -13,12 +13,12 @@ import { getError } from 'src/app/utils/error';
 @Component({
     selector: 'app-my-account',
     templateUrl: './my-account.component.html',
-    styleUrls: ['./my-account.component.css']
+    styleUrls: ['my-account.component.css']
 })
 export class MyAccountComponent implements OnDestroy {
     faCreditCard = faCreditCard;
     faKey = faKey;
-
+    faChevronCircleLeft = faChevronCircleLeft;
     objeto: Account = new Account;
     subscription: Subscription[] = [];
     loading = false;
@@ -40,6 +40,7 @@ export class MyAccountComponent implements OnDestroy {
         private accountService: AccountService
 
     ) {
+        console.log('entrei no constructor myAccount')
     }
 
     ngOnDestroy(): void {
@@ -48,14 +49,7 @@ export class MyAccountComponent implements OnDestroy {
 
     ngAfterViewInit(): void {
 
-        this.modal.id = 0;
-        this.modal.template = this.template;
-        this.modal.icon = this.icon;
-        this.modal.style = { 'max-width': '800px' };
-        this.modal.activatedRoute = this.activatedRoute;
-        this.modal.routerBackOptions = { relativeTo: this.activatedRoute };
-        this.modal.routerBack = ['../'];
-        this.modal.title = 'Minha conta'
+        
 
         var account = this.accountService.accountSubject.subscribe(res => {
             if (!res)

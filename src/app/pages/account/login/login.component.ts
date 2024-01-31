@@ -28,10 +28,14 @@ export class LoginComponent {
         private accountService: AccountService,
         private loadingHelper: LoadingService,
         private router: Router,
+
+        
         
 
     ) {
         this.loadingHelper.loading.subscribe(res => this.loading = res);
+
+        console.log('estou sendol construido')
     }
 
     send() {

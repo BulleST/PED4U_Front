@@ -11,13 +11,11 @@ import { NgxMaskModule } from 'ngx-mask';
 import { CalendarModule } from "primeng/calendar";
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DialogModule } from 'primeng/dialog';
-import { MyAccountComponent } from "./my account/my-account.component";
-import { ChangePasswordComponent } from "./change-password/change-password.component";
+
+
 
 @NgModule({
     declarations: [
-        MyAccountComponent,
-        ChangePasswordComponent
 
     ],
     imports:[
@@ -32,8 +30,12 @@ import { ChangePasswordComponent } from "./change-password/change-password.compo
         CalendarModule,
         TabViewModule,
         OverlayPanelModule,
-        DialogModule
+        DialogModule,
+      
     ],
+
+  
+
     providers:[],
 
 })

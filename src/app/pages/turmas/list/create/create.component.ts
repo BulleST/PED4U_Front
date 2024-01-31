@@ -10,6 +10,7 @@ import { TurmasService } from "src/app/services/turmas.service";
 import { PerfilService } from "src/app/services/perfil.service";
 import { TurmaCadastro } from "src/app/models/turmas.model";
 import { Educador } from "src/app/models/educador.model";
+import { TurmaPerfilRel } from "src/app/models/turmas.model";
 
 @Component({
 	selector: 'create-alunos',
@@ -39,7 +40,7 @@ export class CreateComponent{
 		{id: 4, nome: 'Antônio', celular: 0, idade: 0, email: '', genero: ''},
 		{id: 5, nome: 'Letícia', celular: 0, idade: 0, email: '', genero: ''},
 	  ];
-	  selectedPerfis: string[] = [];
+	  selectedPerfis: number[] = [];
 	  selectedDiaSemana: DiaSemana = {id: -1 , nome: ''};
 	  selectedEducadores: Educador = { id: -1, nome: '', celular: 0, idade: 0, email: '', genero: ''};
 	  selectHorario: string = '';
@@ -68,6 +69,8 @@ export class CreateComponent{
 
 	// Função criada para salvar as informações inseridas na modal de cadastro
 	async save() {
+	
+		
 		this.loading = true;
 		this.object.horario = this.formatTime(this.selectHorario)
 		if(this.selectedDiaSemana.id == -1){
@@ -87,6 +90,12 @@ export class CreateComponent{
 			.then(res => {
 				console.log(res)
 				if (res.success) {
+					let turma_id:number = parseInt(res.object? res.object : "0");
+					if(turma_id != 0){
+						// Caso recebemos a turma id, vamos inserir os perfis para cada turma
+						this.sendPerfil(turma_id)
+					}
+
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
 					lastValueFrom(this.turmasService.getList())
@@ -123,6 +132,15 @@ export class CreateComponent{
 		   
 		}
 		return result
+	  }
+
+	  sendPerfil(turma_id: number){
+		this.selectedPerfis.forEach(perfil_id => {
+			let rel:TurmaPerfilRel = new TurmaPerfilRel();
+			rel.turma_Id = turma_id;
+			rel.perfil_Id = perfil_id;
+			console.log(rel)
+		});
 	  }
 
 }
