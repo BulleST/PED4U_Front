@@ -1,10 +1,11 @@
 
 
 import { Component, ViewChild } from '@angular/core';
-import { Turma } from 'src/app/models/turmas.model';
+import { Turma, DiaSemana } from 'src/app/models/turmas.model';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
 import { TurmasService } from 'src/app/services/turmas.service';
+import { LoadingService } from 'src/app/parts/loading/loading';
 
 @Component({
   selector: 'turma',
@@ -14,13 +15,30 @@ import { TurmasService } from 'src/app/services/turmas.service';
 export class TurmasComponent {
   list: Turma[] = [];
   @ViewChild('dt') dt!: Table;
+  diaSemanaList: DiaSemana [] = [
+		{id: 1 , nome: 'Segunda-Feira'},
+		{id: 2 , nome: 'Terça-Feira'},
+		{id: 3 , nome: 'Quarta-Feira'},
+		{id: 4 , nome: 'Quinta-Feira'},
+		{id: 5 , nome: 'Sexta-Feira'},
+		{id: 6 , nome: 'Sábado'}
+	  ];
+    loading: boolean = false;
 
-  constructor(private turmasService: TurmasService){
-    this.turmasService.list.subscribe((data) =>{
-      this.list = Object.assign([], data);
-      console.log('lista de turmas ', data)
+  constructor(
+    private turmasService: TurmasService,
+    private loadingHelper: LoadingService
+    ){
+      this.loadingHelper.loading.subscribe(res => this.loading = res);
+
+      this.turmasService.list.subscribe((data) =>{
+        this.list = Object.assign([], data);
+        console.log('lista de turmas ', data)
       })
+      this.loadingHelper.loading.next(true);
+
       lastValueFrom(turmasService.getList())
+      this.loadingHelper.loading.next(false);
   }
 
   // Função para limpar os filtros aplicados na tabela
@@ -31,6 +49,10 @@ export class TurmasComponent {
   // Função para filtrar a tabela a partir do input
   applyFilterGlobal(event: any, filterType: string) {
     this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);
+  }
+
+  getDiaSemana(diaSemana_id:number){
+    return this.diaSemanaList.find(x => x.id == diaSemana_id)?.nome
   }
 
 }
