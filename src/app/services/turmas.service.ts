@@ -36,9 +36,11 @@ export class TurmasService {
   // }
 
   get(id: number) {
-    return this.httpClient.get<Turma>(`${this.url}/Turma/${id}`)
+    return this.httpClient.get<TurmaCadastro>(`${this.url}/Turma/${id}`)
 
   }
+
+  getTurmaPerfilRel(){}
 
   post(model: TurmaCadastro) {
     return this.httpClient.post<Response>(`${this.url}/Turma`,model)

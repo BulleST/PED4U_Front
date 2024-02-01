@@ -1,4 +1,5 @@
 
+
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
@@ -10,9 +11,10 @@ import { TurmasService } from "src/app/services/turmas.service";
 import { PerfilService } from "src/app/services/perfil.service";
 import { TurmaCadastro } from "src/app/models/turmas.model";
 import { Educador } from "src/app/models/educador.model";
+import { TurmaPerfilRel } from "src/app/models/turmas.model";
 
 @Component({
-	selector: 'create-alunos',
+	selector: 'edit-alunos',
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.css']
 })
@@ -39,7 +41,7 @@ export class EditComponent{
 		{id: 4, nome: 'Antônio', celular: 0, idade: 0, email: '', genero: ''},
 		{id: 5, nome: 'Letícia', celular: 0, idade: 0, email: '', genero: ''},
 	  ];
-	  selectedPerfis: string[] = [];
+	  selectedPerfis: number[] = [];
 	  selectedDiaSemana: DiaSemana = {id: -1 , nome: ''};
 	  selectedEducadores: Educador = { id: -1, nome: '', celular: 0, idade: 0, email: '', genero: ''};
 	  selectHorario: string = '';
@@ -48,10 +50,30 @@ export class EditComponent{
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private turmasService: TurmasService,
-		private httpClient: HttpClient,
 		private toastr: ToastrService,
 		private perfilService: PerfilService
     ){
+		this.activatedRoute.params.subscribe(res => {
+			if (res['id']) {
+				this.object.id = res['id']
+				// Abrir modal
+				lastValueFrom(this.turmasService.get(this.object.id))
+					.then(res => {
+						this.open = true;
+						this.object = res;
+						this.loading = false;
+					}).catch(res => {
+						this.close();
+						this.toastr.error('Não foi possível acessar essa página')
+					})
+			}
+			else {
+				this.close();
+				this.toastr.error('Não foi possível acessar essa página')
+			}
+			console.log(res)
+		})
+
 		this.perfilService.list.subscribe((data) => {
 			this.perfis = Object.assign([], data);
 			
@@ -87,6 +109,12 @@ export class EditComponent{
 			.then(res => {
 				console.log(res)
 				if (res.success) {
+					let turma_id:number = parseInt(res.object? res.object : "0");
+					if(turma_id != 0){
+						// Caso recebemos a turma id, vamos inserir os perfis para cada turma
+						this.sendPerfil(turma_id)
+					}
+
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
 					lastValueFrom(this.turmasService.getList())
@@ -123,6 +151,16 @@ export class EditComponent{
 		   
 		}
 		return result
+	  }
+
+	  sendPerfil(turma_id: number){
+		this.selectedPerfis.forEach(perfil_id => {
+			let rel:TurmaPerfilRel = new TurmaPerfilRel();
+			rel.turma_Id = turma_id;
+			rel.perfil_Id = perfil_id;
+			console.log(rel)
+			lastValueFrom(this.turmasService.postTurmaPerfilRel(rel))
+		});
 	  }
 
 }
