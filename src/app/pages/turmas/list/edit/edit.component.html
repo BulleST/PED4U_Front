@@ -44,7 +44,7 @@
                                             
                                                 <ng-template pTemplate="selectedItem">
                                                     <div>
-                                                        <div>{{selectedDiaSemana.nome}}</div>
+                                                        <div>{{selectedDiaSemana?.nome}}</div>
                                                     </div>
                                                 </ng-template>
                                                 <ng-template let-dropdownvalues pTemplate="item">
@@ -115,7 +115,7 @@
                                             placeholder="Selecione o educador">
                                             <ng-template pTemplate="selectedItem">
                                                 <div>
-                                                    <div>{{selectedEducadores.nome}}</div>
+                                                    <div>{{selectedEducadores?.nome}}</div>
                                                 </div>
                                             </ng-template>
                                             <ng-template let-dropdownvalues pTemplate="item">

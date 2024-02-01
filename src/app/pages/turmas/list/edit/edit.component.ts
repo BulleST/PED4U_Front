@@ -42,8 +42,8 @@ export class EditComponent{
 		{id: 5, nome: 'Letícia', celular: 0, idade: 0, email: '', genero: ''},
 	  ];
 	  selectedPerfis: number[] = [];
-	  selectedDiaSemana: DiaSemana = {id: -1 , nome: ''};
-	  selectedEducadores: Educador = { id: -1, nome: '', celular: 0, idade: 0, email: '', genero: ''};
+	  selectedDiaSemana?: DiaSemana = {id: -1 , nome: ''};
+	  selectedEducadores?: Educador = { id: -1, nome: '', celular: 0, idade: 0, email: '', genero: ''};
 	  selectHorario: string = '';
 	
     constructor(
@@ -61,6 +61,9 @@ export class EditComponent{
 					.then(res => {
 						this.open = true;
 						this.object = res;
+						this.selectedDiaSemana = this.diaSemana.find(x => x.id == this.object.diaSemana)
+						this.selectedEducadores = this.educadores.find(x => x.id == this.object.educador_Id)
+						console.log(this.object.educador_Id)
 						this.loading = false;
 					}).catch(res => {
 						this.close();
@@ -71,8 +74,8 @@ export class EditComponent{
 				this.close();
 				this.toastr.error('Não foi possível acessar essa página')
 			}
-			console.log(res)
 		})
+		
 
 		this.perfilService.list.subscribe((data) => {
 			this.perfis = Object.assign([], data);
@@ -92,16 +95,16 @@ export class EditComponent{
 	async save() {
 		this.loading = true;
 		this.object.horario = this.formatTime(this.selectHorario)
-		if(this.selectedDiaSemana.id == -1){
+		if(!this.selectedDiaSemana){
 			this.erro = "Selecione um dia da Semana válido";
 			return;
 		} 
 		this.object.diaSemana = this.selectedDiaSemana.id;
-		if(this.selectedEducadores.id == -1){
+		if(!this.selectedEducadores){
 			this.erro = "Selecione um Educador válido";
 			return;
 		} 
-		this.object.educador_Id = this.selectedEducadores.id;
+		this.object.educador_Id = this.selectedEducadores? this.selectedEducadores.id : 0;
 		this.object.qtdeMaxAlunos = parseInt(this.object.qtdeMaxAlunos.toString())
 		this.object.unidade_Id = 0;
 		console.log(this.object)
