@@ -69,8 +69,6 @@ export class CreateComponent{
 
 	// Função criada para salvar as informações inseridas na modal de cadastro
 	async save() {
-	
-		
 		this.loading = true;
 		this.object.horario = this.formatTime(this.selectHorario)
 		if(this.selectedDiaSemana.id == -1){
@@ -140,6 +138,7 @@ export class CreateComponent{
 			rel.turma_Id = turma_id;
 			rel.perfil_Id = perfil_id;
 			console.log(rel)
+			lastValueFrom(this.turmasService.postTurmaPerfilRel(rel))
 		});
 	  }
 

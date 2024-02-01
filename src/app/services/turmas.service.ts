@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of, tap } from "rxjs";
-import { Turma, TurmaCadastro } from "../models/turmas.model";
+import { Turma, TurmaCadastro, TurmaPerfilRel } from "../models/turmas.model";
 import { environment } from "src/environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
@@ -42,6 +42,10 @@ export class TurmasService {
 
   post(model: TurmaCadastro) {
     return this.httpClient.post<Response>(`${this.url}/Turma`,model)
+  }
+
+  postTurmaPerfilRel(model: TurmaPerfilRel){
+    return this.httpClient.post<Response>(`${this.url}/Turma_Perfil_Rel`,model)
   }
 
   delete(id: number) {
