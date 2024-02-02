@@ -69,3 +69,8 @@
 .btn-delete:hover{
     background-color: var(--grey);
 }
+
+.btn-dark{
+    background-color: var(--secondary-highlight);
+    border-color: var(--secondary-highlight);
+}

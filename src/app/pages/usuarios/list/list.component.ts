@@ -8,6 +8,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { IsMobile, ScreenWidth } from 'src/app/utils/mobile';
 import { Table } from 'src/app/utils/table';
 
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',

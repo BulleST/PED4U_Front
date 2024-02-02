@@ -11,19 +11,26 @@ import { Response } from "../models/response.model";
 
 export class EducadoresService {
 
-  list = new BehaviorSubject<Educador[]>([
-    { id: 1, nome: 'Lucas', celular: 0, idade: 24, genero: 'masculino', email: 'lucas@gmail.com' },
-    { id: 2, nome: 'Marina', celular: 11933377700, idade: 30, genero: 'feminino', email: 'marina@gmail.com' },
-    { id: 3, nome: 'Luana', celular: 0, idade: 32, genero: 'feminino', email: 'luana@gmail.com' },
-    { id: 4, nome: 'João', celular: 0, idade: 72, genero: 'masculino', email: 'joao@gmail.com' },
-   
-  ])
+  url = environment.url;
+  list: BehaviorSubject<Educador[]> = new BehaviorSubject<Educador[]>([])
 
+  // list = new BehaviorSubject<Educador[]>([
+  //   { id: 1, nome: 'Lucas', celular: 0, idade: 24, genero: 'masculino', email: 'lucas@gmail.com' },
+  //   { id: 2, nome: 'Marina', celular: 11933377700, idade: 30, genero: 'feminino', email: 'marina@gmail.com' },
+  //   { id: 3, nome: 'Luana', celular: 0, idade: 32, genero: 'feminino', email: 'luana@gmail.com' },
+  //   { id: 4, nome: 'João', celular: 0, idade: 72, genero: 'masculino', email: 'joao@gmail.com' },
+   
+  // ])
 
 
   constructor(
     private httpClient: HttpClient
   ) { }
+
+  get(id: number) {
+    return this.httpClient.get<Educador>(`${this.url}/Usuario/educador-list/${id}`)
+
+  }
 
   getList() {
     return new Observable<Educador[]>(observer => {
@@ -34,15 +41,7 @@ export class EducadoresService {
     })
   }
 
-  get(alunoId: number) {
-    return new Observable<Educador>(observer => {
-      var lista = this.sortLista()
-      var objeto = lista.find(x => x.id == alunoId);
-      if (!objeto) {
-        throw new Error('Professor não encontrado.');
-      }
-    })
-  }
+ 
   sortLista() {
     return this.list.value.sort((a, b) => a.id - b.id);
   }

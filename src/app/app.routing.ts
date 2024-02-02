@@ -14,6 +14,7 @@ const listAulas = () => import ('./pages/aulas/aulas.module').then( res => res.A
 const listReposicao = () => import ('./pages/reposicao/reposicao.module').then ( res => res.ReposicaoModule)
 const account = () => import ('./pages/account/account.module'). then ( res => res.AccountModule)
 const myAccount = () => import ('./shared/shared.module'). then ( res => res.SharedModule)
+const Usuarios = () => import ('./pages/usuarios/usuarios.module'). then( res => res.UsuariosModule)
 
 
 
@@ -66,6 +67,11 @@ const routes: Routes = [
   {
     path: 'minha-conta',
     loadChildren: myAccount
+  },
+
+  {
+    path: 'usuarios',
+    loadChildren: Usuarios
   },
   
   // {

@@ -105,14 +105,14 @@ export class HeaderComponent implements OnInit{
                     },
                     {
                         label: 'Alunos',
-                        icon:'pi pi-fw pi-user',
+                        icon:'pi pi-fw pi-user-edit',
                         routerLink: ['aluno']
                         
                         
                     },
                     {
                         label: 'Educadores',
-                        icon: 'pi f-w pi-user-edit',
+                        icon: 'pi f-w pi-briefcase',
                         routerLink: ['educadores'] 
                         
                     },
@@ -127,6 +127,13 @@ export class HeaderComponent implements OnInit{
                         label: 'Turmas',
                         icon: 'pi pi-fw pi-book',
                         routerLink:['turmas']
+                       
+                        
+                    },
+                    {
+                        label: 'Usuários',
+                        icon: 'pi pi-fw pi-user',
+                        routerLink:['usuarios']
                        
                         
                     }

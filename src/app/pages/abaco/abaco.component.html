@@ -1,6 +1,6 @@
 
 <p-tabView class="apostilaAbaco">
-    <p-tabPanel header="Apostila de Ábaco">
+    <p-tabPanel class="page__header" header="Apostila de Ábaco">
         <div class="card table-responsive">
             <p-table 
                 #dt
@@ -16,7 +16,7 @@
                 currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} páginas"
                 [filterDelay]="0"
                 [globalFilterFields]="['id','nome', 'qtdePaginas', 'materialExtra']">
-                <ng-template pTemplate="caption">
+                <ng-template  class="page__header" pTemplate="caption">
                     <div class="flex">
                         <!-- Button para realizar cadastros na Tabela -->
                         <div>

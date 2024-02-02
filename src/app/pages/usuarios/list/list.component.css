@@ -1,0 +1,39 @@
+:root {
+    --primary: #ff6315;
+    --primary-highlight: #8c47dc;
+    --secondary: #fff;
+    --secondary-highlight: #F94184 ;
+    --grey: #181818;
+    --grey-highlight: #5a5c60;
+}
+
+.page__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: wrap;
+    padding: 15px 20px;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px #0000001c;
+    width: 98%;
+    margin: 0 auto 10px;
+}
+
+.page__body {
+    padding: 15px 20px;
+    width: 98%;
+    height: 100%;
+    margin: 10px auto;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px #0000001c;
+}
+
+h3 {
+    color: var(--primary);
+    margin-bottom: 5px;
+    font-size: 18pt;
+    margin-left: 20px;
+    background: #ffffff;
+    border-color: #181818;
+    color: var(--primary);
+}

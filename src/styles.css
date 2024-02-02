@@ -16,6 +16,18 @@
     --grey-highlight: #5a5c60;
 }
 
+.p-tabview-nav-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: wrap;
+  padding: 15px 20px;
+  background-color: #fff;
+  box-shadow: 2px 2px 2px #0000001c;
+  width: 98%;
+  margin: 0 auto 10px;
+}
+
 .p-tabview-nav-link span {
     font-size: 18pt;
     margin-left: 20px;
@@ -283,7 +295,7 @@ a {
 
 .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
     background: #ffffff;
-    border-color: #ff6315;
+    border-color: #ffffff;
     
 }
 
@@ -645,7 +657,7 @@ a {
   .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {
     color: var(--primary);
     text-decoration: none;
-    font-size: 16pt;
+    font-size: 14pt;
   }
   .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {
     color: var(--primary);
@@ -724,12 +736,12 @@ a {
     text-decoration: none;
   }
   .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-text {
-    color: var(--secondary-highlight);
+    color: var(--grey-highlight);
     text-decoration: none;
   }
   .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-menuitem-icon,
   .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover .p-menuitem-link .p-submenu-icon {
-    color: var(--secondary-highlight);
+    color: var(--grey-highlight);
     text-decoration: none;
    
   }

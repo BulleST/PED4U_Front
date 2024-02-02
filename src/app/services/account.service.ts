@@ -59,7 +59,7 @@ export class AccountService {
             tap((account) => {
                 this.setAccount(account);
                 const returnUrl = this.activatedRoute.snapshot.queryParams['home'] || '/';
-                this.router.navigateByUrl(returnUrl);
+                // this.router.navigateByUrl(returnUrl);
                 this.router.navigate(['home']);
                 this.startRefreshTokenTimer();
                 return of(account);
