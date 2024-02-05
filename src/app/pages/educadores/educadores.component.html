@@ -14,7 +14,7 @@
                 [showCurrentPageReport]="true" 
                 currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} páginas"
                 [filterDelay]="0"
-                [globalFilterFields]="['id','nome', 'qtdePaginas', 'materialExtra']">
+                [globalFilterFields]="['id','name']">
                 <ng-template pTemplate="caption">
                     <div class="flex">
                         <!-- Button para realizar cadastros na Tabela -->
@@ -38,40 +38,24 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th></th>
-                        <th pSortableColumn="nome" class="nome">
+                        <th pSortableColumn="name" class="name">
                             Nome
-                            <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
-                            <p-sortIcon field="nome"></p-sortIcon> </th> 
-                        <th pSortableColumn="idade" class="idade">
-                            Idade
-                            <p-columnFilter type="text" field="idade" display="menu"></p-columnFilter>
-                            <p-sortIcon field="idade"></p-sortIcon></th> 
-                        <th pSortableColumn="genero" class="genero">
-                            Gênero
-                            <p-columnFilter type="text" field="genero" display="menu"></p-columnFilter>
-                            <p-sortIcon field="genero"></p-sortIcon></th>
+                            <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+                            <p-sortIcon field="name"></p-sortIcon> </th>
                         <th pSortableColumn="email" class="email">
                             E-mail
                             <p-columnFilter type="text" field="email" display="menu"></p-columnFilter>
-                            <p-sortIcon field="email"></p-sortIcon></th>   
-                        <th pSortableColumn="celular" class="celular">
-                            Telefone:
-                            <p-columnFilter type="text" field="celular" display="menu"></p-columnFilter>
-                            <p-sortIcon field="celular"></p-sortIcon> </th>
+                            <p-sortIcon field="email"></p-sortIcon></th>  
                         <th></th>
                         <th></th>
-                        <th></th>
+                        
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-item>
                     <tr>
                         <td>{{item.id}}</td>
-                        <td>{{item.nome}}</td>
-                        <td>{{item.idade}}</td>
-                        <td>{{item.genero}}</td>
+                        <td>{{item.name}}</td>
                         <td>{{item.email}}</td>
-                        <td>{{item.celular}}</td>
-                        <td></td>
                         <td></td>
                         <td>
                             <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>

@@ -1,8 +1,6 @@
 export class Educador{
     id: number = 0;
-    nome: string = "";
-    celular: number = '' as unknown as number;
+    name: string = "";
     email: string = "";
-    idade: number = '' as unknown as number;
-    genero: string = '';
+   
 }

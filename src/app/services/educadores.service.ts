@@ -14,49 +14,43 @@ export class EducadoresService {
   url = environment.url;
   list: BehaviorSubject<Educador[]> = new BehaviorSubject<Educador[]>([])
 
-  // list = new BehaviorSubject<Educador[]>([
-  //   { id: 1, nome: 'Lucas', celular: 0, idade: 24, genero: 'masculino', email: 'lucas@gmail.com' },
-  //   { id: 2, nome: 'Marina', celular: 11933377700, idade: 30, genero: 'feminino', email: 'marina@gmail.com' },
-  //   { id: 3, nome: 'Luana', celular: 0, idade: 32, genero: 'feminino', email: 'luana@gmail.com' },
-  //   { id: 4, nome: 'João', celular: 0, idade: 72, genero: 'masculino', email: 'joao@gmail.com' },
-   
-  // ])
-
-
   constructor(
     private httpClient: HttpClient
   ) { }
+
+  getList() {
+    return this.httpClient.get<Educador[]>(`${this.url}/Usuario/educador-list/`)
+      .pipe(tap({
+        next: res => {
+          this.list.next(res)
+        }
+      }))
+  }
+
 
   get(id: number) {
     return this.httpClient.get<Educador>(`${this.url}/Usuario/educador-list/${id}`)
 
   }
 
-  getList() {
-    return new Observable<Educador[]>(observer => {
-      var lista = this.sortLista();
+  post(model: Educador) {
+    return this.httpClient.post<Response>(`${this.url}/Usuario/educador-list/$`, model)
+  }
 
-      this.list.next(lista);
-      observer.complete();
-    })
+  delete(id: number) {
+    return this.httpClient.delete<Response>(`${this.url}/Usuario/educador-list/${id}`)
   }
 
  
-  sortLista() {
-    return this.list.value.sort((a, b) => a.id - b.id);
-  }
 
-  post(model: Educador) {
-    return new Observable<Response>(observer => {
-      var lista = this.sortLista();
-      var lastIndex = lista.length > 0 ? lista[lista.length - 1].id + 1 : 1;
-      model.id = lastIndex;
-      // lista.push(model);
-      this.list.next(lista);
-      // observer.next(model)
-      observer.complete()
-    })
-  }
+ 
+
+ 
+  // sortLista() {
+  //   return this.list.value.sort((a, b) => a.id - b.id);
+  // }
+
+ 
 
   // edit(id: number) {
   //   var objeto = this.list.value.find(x=>x.id == id)
@@ -79,27 +73,5 @@ export class EducadoresService {
 
   // }
 
-  delete(id: number) {
-    return new Observable<Response>(observer => {
-      var lista = this.sortLista();
-      console.log(lista)
-      var index = lista.findIndex(x => x.id == id);
-      console.log(index)
-      if (index == -1) {
-        observer.next({
-          message: 'Educador não encontrado',
-          success: false
-        })
-        observer.complete()
-      }
-      lista.splice(index, 1);
-      // this.list.next(lista)
-      observer.next({
-        message: 'Educador excluído com sucesso',
-        success: true
-      })
-      observer.complete()
-    });
-  }
 
 }

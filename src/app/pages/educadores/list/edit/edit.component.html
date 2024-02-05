@@ -19,65 +19,30 @@
                             <div class="campo-container">
                                 <div class="row">
                                     <div class="form-group col-md-4 col-12">
-                                        <label for="nome">Nome do Educador:
+                                        <label for="name">Nome do Educador:
                                              <span class="text-danger">*</span></label>
                                         <input 
                                             type="text" 
                                             class="form-control" 
                                             id="nome" 
                                             name="nome" 
-                                            #nome="ngModel"
-                                            [(ngModel)]="object.nome" 
+                                            #name="ngModel"
+                                            [(ngModel)]="object.name" 
                                             pattern="\S(.*\S)?"
-                                            (change)="object.nome = nome.value.trim()"
+                                            (change)="object.name = name.value.trim()"
                                             required minlength="3" 
                                             maxlength="30">
-                                        <div *ngIf="nome.touched && nome.errors">
-                                            <p class="text-danger" *ngIf="nome.errors['required']">
+                                        <div *ngIf="name.touched && name.errors">
+                                            <p class="text-danger" *ngIf="name.errors['required']">
                                                 Esse campo é obrigatório.
                                             </p>
-                                            <p class="text-danger" *ngIf="nome.errors['pattern']">
+                                            <p class="text-danger" *ngIf="name.errors['pattern']">
                                                 Não insira espaços em branco antes ou no final do campo
                                             </p>
                                             <p class="text-danger">{{erro}}</p>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-4 col-12">
-                                        
-                                        <label for="idade">Data de nascimento: 
-                                            <span class="text-danger">*</span></label>
-                                        <input 
-                                            type="text"  
-                                            class="form-control" 
-                                            id="idade"  
-                                            name="idade"
-                                            #idade="ngModel"
-                                            [(ngModel)]="object.idade" 
-                                            placeholder=" ex: 00/00/0000"
-                                            mask="00/00/0000"
-                                            required 
-                                            minlength="12"
-                                            maxlength="12">
-                                            <div *ngIf="idade.touched && idade.errors">
-                                            <p class="text-danger" *ngIf="idade.errors['required']">
-                                                Esse campo é obrigatório
-                                            </p>
-                                            <p class="text-danger">{{erro}}</p>
-                                            </div>
-                                    </div>
-                                    <div class="form-group col-md-4 col-12">
-                                        <label for="genero">Gênero:
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <p-dropdown 
-                                            class="dropdown" 
-                                            [options]="generos" 
-                                            [(ngModel)]="object.genero" 
-                                            name="vigencia"
-                                            placeholder="Selecione o gênero">
-                                        </p-dropdown>
-                                    </div>  
-                                </div>
+                               
                                 <div class="row">
                                     <div class="form-group col-md-4 col-12">
                                         <label for="email">E-mail:
@@ -102,33 +67,9 @@
                                             </p>
                                             <p class="text-danger">{{erro}}</p>
                                             </div>
-                                     </div>
-                                     <div class="form-group col-md-4 col-12">
-                                        <label for="celular">Telefone:
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <input 
-                                            type="text"  
-                                            class="form-control" 
-                                            id="celular" 
-                                            mask="(00) 0.0000-0000 || (00) 0000-0000"
-                                            pattern="[0-9]{2} [0-9]{5}-[0-9]{4} || [0-9]{2} [0-9]{4}-[0-9]{4}" 
-                                            placeholder="ex: 00 0 0000-0000"
-                                            name="celular"
-                                            #celular="ngModel"
-                                            [(ngModel)]="object.celular" 
-                                            required 
-                                            minlength="1"
-                                            maxlength="16">
-                                            <div *ngIf="celular.touched && celular.errors">
-                                            <p class="text-danger" *ngIf="celular.errors
-                                            ['required']">
-                                                Esse campo é obrigatório
-                                            </p>
-                                            <p class="text-danger">{{erro}}</p>
-                                    </div>
-                                </div>
+                                     </div> 
                             </div>
+                        </div>
                                   
                             
                                 

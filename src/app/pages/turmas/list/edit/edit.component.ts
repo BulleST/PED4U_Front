@@ -35,15 +35,15 @@ export class EditComponent{
 		{id: 6 , nome: 'Sábado'}
 	  ];
 	  educadores: Educador [] = [
-		{id: 1, nome: 'Lucas', celular: 0, idade: 0, email: '', genero: ''},
-		{id: 2, nome: 'Marina', celular: 0, idade: 0, email: '', genero: ''},
-		{id: 3, nome: 'Luana', celular: 0, idade: 0, email: '', genero: ''},
-		{id: 4, nome: 'Antônio', celular: 0, idade: 0, email: '', genero: ''},
-		{id: 5, nome: 'Letícia', celular: 0, idade: 0, email: '', genero: ''},
+		{id: 1, name: 'Lucas', email: ''},
+		{id: 2, name: 'Marina', email: ''},
+		{id: 3, name: 'Luana', email: ''},
+		{id: 4, name: 'Antônio', email: ''},
+		{id: 5, name: 'Letícia', email: ''},
 	  ];
 	  selectedPerfis: number[] = [];
 	  selectedDiaSemana?: DiaSemana = {id: -1 , nome: ''};
-	  selectedEducadores?: Educador = { id: -1, nome: '', celular: 0, idade: 0, email: '', genero: ''};
+	  selectedEducadores?: Educador = { id: -1, name: '', email: ''};
 	  selectHorario: string = '';
 	
     constructor(

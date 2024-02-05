@@ -1,7 +1,13 @@
 <p-tabView class="Usuarios">
-    <p-tabPanel class="page__header" header="Usuários">
+   
+    <p-tabPanel header="Usuários">
+      
         <div class="ms-auto">
-            <button class="btn btn-dark" (click)="getList()" [disabled]="loading"><span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>Atualizar</button>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-2 me-md-2 mx-md-1 px-0 ng-star-inserted">
+                <a class="btn-primary ml-6" [routerLink]="['register']">
+                    <span >Cadastrar Usuário</span>
+                </a>
+            </div>
         </div>
         <div class="card table-responsive">
             <p-table 
@@ -19,28 +25,41 @@
                 [filterDelay]="0"
                 [globalFilterFields]="['']">
                 <ng-template #topActions>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 mb-2 me-md-2 mx-md-1 px-0 ng-star-inserted">
-                        <a class="btn btn-primary d-flex align-items-center align-baseline justify-content-center me-md-0 me-sm-1" [routerLink]="['cadastrar']">
-                            <span style="margin-top: -1px; margin-bottom: 1px;"> Cadastrar Usuário</span>
-                        </a>
-                    </div>
+                    
                 </ng-template>
-
-
-
-<!-- <section class="page">
-    <div class="page__header">
-        <span class="title-icon align-items-center">
-          <fa-icon [icon]="faUsers"></fa-icon>
-        </span>
-        <div class="me-auto">
-            <h3 class="page__header-title">Usuários</h3>
+                <ng-template pTemplate="header">
+                   
+                    <tr>
+                        <th></th>
+                        <th pSortableColumn="name" class="name">
+                            Nome
+                            <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+                            <p-sortIcon field="name"></p-sortIcon> </th>
+                        <th pSortableColumn="email" class="email">
+                            E-mail
+                            <p-columnFilter type="text" field="email" display="menu"></p-columnFilter>
+                            <p-sortIcon field="email"></p-sortIcon></th>  
+                        <th></th>
+                        <th></th>
+                        
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.email}}</td>
+                        <td></td>
+                        <td>
+                            <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
+                            <a class="btn btn-delete" [routerLink]="['excluir', item.id]">Excluir</a>
+                        </td>
+                         
+                    </tr>
+                </ng-template>
+            </p-table>
         </div>
-      
-    </div>
-    <div class="page__body">
-       
+    </p-tabPanel>
+</p-tabView>
 
-    </div>
-</section> -->
 <router-outlet></router-outlet>

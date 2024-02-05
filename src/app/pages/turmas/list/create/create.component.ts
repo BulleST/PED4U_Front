@@ -34,15 +34,15 @@ export class CreateComponent{
 		{id: 6 , nome: 'Sábado'}
 	  ];
 	  educadores: Educador [] = [
-		{id: 1, nome: 'Lucas', celular: 0, idade: 0, email: '', genero: ''},
-		{id: 2, nome: 'Marina', celular: 0, idade: 0, email: '', genero: ''},
-		{id: 3, nome: 'Luana', celular: 0, idade: 0, email: '', genero: ''},
-		{id: 4, nome: 'Antônio', celular: 0, idade: 0, email: '', genero: ''},
-		{id: 5, nome: 'Letícia', celular: 0, idade: 0, email: '', genero: ''},
+		{id: 1, name: 'Lucas', email: ''},
+		{id: 2, name: 'Marina', email: ''},
+		{id: 3, name: 'Luana', email: ''},
+		{id: 4, name: 'Antônio', email: ''},
+		{id: 5, name: 'Letícia', email: ''},
 	  ];
 	  selectedPerfis: number[] = [];
 	  selectedDiaSemana: DiaSemana = {id: -1 , nome: ''};
-	  selectedEducadores: Educador = { id: -1, nome: '', celular: 0, idade: 0, email: '', genero: ''};
+	  selectedEducadores: Educador = { id: -1, name: '', email: ''};
 	  selectHorario: string = '';
 	
     constructor(
@@ -90,10 +90,9 @@ export class CreateComponent{
 				if (res.success) {
 					let turma_id:number = parseInt(res.object? res.object : "0");
 					if(turma_id != 0){
-						// Caso recebemos a turma id, vamos inserir os perfis para cada turma
+						// Caso receba a turma id, inserir os perfis para cada turma
 						this.sendPerfil(turma_id)
 					}
-
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
 					lastValueFrom(this.turmasService.getList())
