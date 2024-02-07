@@ -4,11 +4,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, map, of, tap } from 'rxjs';
 import { Crypto } from '../utils/crypto';
-import { Usuario } from '../models/usuario.model';
+import { Usuario, UsuarioRequest } from '../models/usuario.model';
 import { Table } from '../utils/table';
 import { AccountService } from './account.service';
 import { Account } from '../models/account.model';
 import { PerfilAcesso, Role } from '../models/account-perfil.model';
+import { Response } from '../models/response.model';
 
 @Injectable({
     providedIn: 'root'
@@ -16,12 +17,14 @@ import { PerfilAcesso, Role } from '../models/account-perfil.model';
 export class UserService {
     url = environment.url;
     list = new BehaviorSubject<Usuario[]>([]);
+    listPerfil = new BehaviorSubject<PerfilAcesso[]>([]);
     objeto = new BehaviorSubject<Usuario | undefined>(undefined);
     account: Account = new Account;
     perfilAcesso = new BehaviorSubject<PerfilAcesso[]>([]);
     loading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     constructor(
+        private httpClient: HttpClient,
         private table: Table,
         private http: HttpClient,
         private toastr: ToastrService,
@@ -62,12 +65,13 @@ export class UserService {
         }));
     }
 
+
     get(id: number) {
         return this.http.get<Usuario>(`${this.url}/usuario/${id}`, { headers: new HttpHeaders({ 'loading': 'true' }) });
     }
 
     getPerfilAcesso() {
-        return this.http.get<PerfilAcesso[]>(`${this.url}/perfilAcesso/getAll`)
+        return this.http.get<PerfilAcesso[]>(`${this.url}/Usuario/perfil-list`)
         .pipe(tap({
             next: res => {
                 this.perfilAcesso.next(res);
@@ -81,16 +85,12 @@ export class UserService {
         return this.http.post<Usuario>(`${this.url}/usuario`, request);
     }
 
-    edit(request: Usuario) {
-        return this.http.put<Usuario>(`${this.url}/usuario`, request);
-    }
-
-    delete(id: number) {
-        return this.http.delete(`${this.url}/usuario/${id}`);
+    edit(request: UsuarioRequest) {
+        return this.http.put<UsuarioRequest>(`${this.url}/usuario`, request);
     }
 
     deactivated(id: number, ativo?: boolean) {
-        return this.http.patch<Usuario>(`${this.url}/usuario/${id}/${ativo}`, {});
+        return this.http.patch<Response>(`${this.url}/usuario/${id}/${ativo}`, {});
     }
 
     resetPassword(id: number) {

@@ -1,0 +1,103 @@
+<div class="modal" [class.modal--show]="open">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="mb-3 row">
+                <h3 class="account-title mb-0">Edite um usuário</h3>
+                <p class="account-text mb-0">Insira os dados nos campos abaixo para efetuar o cadastro.</p>
+                <a tabindex="1" class="link d-flex" (click)="close()">
+                    <fa-icon [icon]="faChevronCircleLeft" class="me-2"></fa-icon> voltar </a>
+            </div>
+            <div class="modal-body">
+                <form #form="ngForm" (ngSubmit)="send(form)">
+                    <div class="row">
+                        <div class="form-group col-lg-7 col-md-7 col-sm-6 col-12 mb-2">
+                            <div class="form-floating">
+                                <input type="name"
+                                       class="form-control"
+                                       id="name"
+                                       name="name"
+                                       #name="ngModel"
+                                       [(ngModel)]="objeto.name"
+                                       placeholder="  "
+                                       required>
+                                <label for="name">
+
+                                </label>
+                            </div>
+                            <div *ngIf="name.touched && name.errors" class="p-1 py-0">
+                                <p class="text-danger" *ngIf="name.errors['required']">Este campo é obrigatório.</p>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-5 col-md-5 col-sm-6 col-12 mb-2">
+                            <div class="form-floating">
+                                <input type="text"
+                                       class="form-control"
+                                       id="telefoneCelular"
+                                       name="telefoneCelular"
+                                       #telefoneCelular="ngModel"
+                                       [(ngModel)]="objeto.telefoneCelular"
+                                       placeholder="(11) x.0000-0000"
+                                       required>
+                                <label for="telefoneCelular">
+                       
+                                    <span class="ms-1">Telefone/Celular<span class="text-danger">*</span></span>
+                                </label>
+                            </div>
+                            <div *ngIf="telefoneCelular.errors != null && telefoneCelular.touched" class="p-1 py-0">
+                                <p class="text-danger" *ngIf="telefoneCelular.errors['required']">Este campo é obrigatório.</p>
+                                <p class="text-danger" *ngIf="telefoneCelular.errors['mask']">Telefone/celular inválido</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+                            <div class="form-floating">
+                                <input type="email"
+                                       [email]="true"
+                                       class="form-control"
+                                       id="email"
+                                       name="email"
+                                       #email="ngModel"
+                                       [(ngModel)]="objeto.email"
+                                       placeholder="example@gmail.com"
+                                       required
+                                       disabled>
+                                <label for="email">
+                                    
+                                </label>
+                            </div>
+                            <div *ngIf="email.errors != null && email.touched" class="p-1 py-0">
+                                <p class="text-danger" *ngIf="email.errors['required']">Este campo é obrigatório.</p>
+                                <p class="text-danger" *ngIf="email.errors['email']">E-mail inválido</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+                            <p-dropdown 
+                            class="dropdown"
+                            [(ngModel)]="selectedPerfil"
+                            [options]="perfis"
+                            name="perfil"
+                            optionLabel="perfil"
+                            [style]="{'width':'100%', 'height': '150%'}"></p-dropdown>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <p class="text-danger text-center col-12 mt-3" *ngIf="erro">{{erro}}</p>
+                        <div class="form-group form-floating col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+                            <button type="submit" class="btn-register" [disabled]="form.invalid || loading">
+                                Salvar Alterações
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<router-outlet></router-outlet>

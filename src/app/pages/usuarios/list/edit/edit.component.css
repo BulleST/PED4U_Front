@@ -1,0 +1,26 @@
+.modal-content{
+    padding: 30px;
+}
+
+.modal-dialog {
+    max-width: 900px;
+    width: 95%;
+    max-height: 95vh;
+    padding: 0;
+    margin: auto;
+  }
+
+  .link-back:hover {
+    color: orange;
+}
+
+.link-back.active {
+    color: #ff6315;
+}
+
+.p-inputtext {
+    width: 578px !important;
+    color: #6c757d;
+    display: inline-flex;
+    height: 38px;
+}

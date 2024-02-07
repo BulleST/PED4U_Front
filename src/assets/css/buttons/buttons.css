@@ -74,3 +74,14 @@
     background-color: var(--secondary-highlight);
     border-color: var(--secondary-highlight);
 }
+
+.btn-register{
+    color: white;
+    font-family: sans-serif;
+    cursor: pointer;
+    height: 50px;
+    width: 100%;
+    border: none;
+    margin-top: 30px;
+    background: linear-gradient(311deg, #8c47dc 0%, #F94184 35%, #ff6315 100%);
+}

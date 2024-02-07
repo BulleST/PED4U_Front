@@ -38,9 +38,14 @@
                         <th pSortableColumn="email" class="email">
                             E-mail
                             <p-columnFilter type="text" field="email" display="menu"></p-columnFilter>
-                            <p-sortIcon field="email"></p-sortIcon></th>  
+                            <p-sortIcon field="email"></p-sortIcon></th> 
+                        <th pSortableColumn="perfil" class="perfil">
+                            Perfil
+                            <p-columnFilter type="text" field="perfil" display="menu"></p-columnFilter>
+                            <p-sortIcon field="perfil"></p-sortIcon></th>      
                         <th></th>
-                        <th></th>
+                        
+
                         
                     </tr>
                 </ng-template>
@@ -49,10 +54,10 @@
                         <td>{{item.id}}</td>
                         <td>{{item.name}}</td>
                         <td>{{item.email}}</td>
-                        <td></td>
+                        <td>{{item.perfilAcesso.perfil}}</td>
                         <td>
-                            <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
-                            <a class="btn btn-delete" [routerLink]="['excluir', item.id]">Excluir</a>
+                            <a class="btn btn-edit me-2" [routerLink]="['editar',item.id]">Editar</a>
+                            <a class="btn btn-delete" [routerLink]="['excluir',item.id]">Excluir</a>
                         </td>
                          
                     </tr>

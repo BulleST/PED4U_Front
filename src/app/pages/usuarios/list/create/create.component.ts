@@ -13,10 +13,10 @@ import { getError } from 'src/app/utils/error';
 
 @Component({
     selector: 'app-create-account',
-    templateUrl: './create-account.component.html',
-    styleUrls: ['./../account.component.css', './create-account.component.css']
+    templateUrl: './create.component.html',
+    styleUrls: ['./create.component.css']
 })
-export class CreateAccountComponent implements OnDestroy {
+export class CreateComponent implements OnDestroy {
     faChevronCircleLeft = faChevronCircleLeft;
     faEnvelope = faEnvelope;
     faLock = faLock;

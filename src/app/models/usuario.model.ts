@@ -15,14 +15,13 @@ export class Usuario {
 
 export class UsuarioRequest {
     id: number = 0;
-    empresa_Id: number = 0
     perfilAcesso_Id: number = undefined as unknown as number;
     name: string = '';
     email: string = '';
     telefoneCelular: string = '';
-    dataDesativado?: Date;
-    ativo?: boolean;
 }
+
+
 
 
 export var userColumns: Column[] = [

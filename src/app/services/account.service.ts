@@ -7,6 +7,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { Crypto } from '../utils/crypto';
 import { Account, ChangePassword, Login, Register, ResetPassword, UpdateAccount } from '../models/account.model';
 import { Header } from '../utils/header';
+import { Usuario } from '../models/usuario.model';
 
 
 @Injectable({
@@ -117,6 +118,10 @@ export class AccountService {
     updateAccount(object: UpdateAccount) {
         return this.http.post<any>(`${this.url}/accounts/update-account`, object);
     }
+
+  
+    
+ 
 
     private refreshTokenTimeout: any;
 

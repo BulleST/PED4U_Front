@@ -221,16 +221,7 @@ img{
     font-weight: 100;
 }
 
-.btn-register{
-    color: white;
-    font-family: sans-serif;
-    cursor: pointer;
-    height: 50px;
-    width: 100%;
-    border: none;
-    margin-top: 30px;
-    background: linear-gradient(311deg, #8c47dc 0%, #F94184 35%, #ff6315 100%);
-}
+
 
 ::placeholder {
     color: #bcbfc2;

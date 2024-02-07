@@ -1,4 +1,4 @@
-import { UserService } from './../../../services/user.service';
+
 import { Component } from '@angular/core';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { Subscription, lastValueFrom } from 'rxjs';
@@ -7,6 +7,7 @@ import { Usuario, userColumns } from 'src/app/models/usuario.model';
 import { AccountService } from 'src/app/services/account.service';
 import { IsMobile, ScreenWidth } from 'src/app/utils/mobile';
 import { Table } from 'src/app/utils/table';
+import { UserService } from './../../../services/user.service';
 
 
 @Component({
@@ -62,6 +63,7 @@ export class ListComponent {
         lastValueFrom(this.userService.getList(true));
     }
 
+      
 
 
 }

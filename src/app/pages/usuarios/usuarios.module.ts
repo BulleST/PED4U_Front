@@ -15,15 +15,23 @@ import { TabViewModule } from 'primeng/tabview';
 import { CardModule } from "primeng/card";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { DropdownModule } from 'primeng/dropdown';
 import { TagModule } from 'primeng/tag';
 import { ToastrModule } from "ngx-toastr";
 import { IConfig} from 'ngx-mask'
+import { CreateComponent } from './list/create/create.component';
+import { TermosDeUsoComponent } from './termos-de-uso/termos-de-uso.component';
+import { EditComponent } from './list/edit/edit.component';
+import { DeleteComponent } from './list/delete/delete.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
   declarations: [
-    ListComponent
+    ListComponent,
+    CreateComponent,
+    EditComponent,
+    DeleteComponent,
+    TermosDeUsoComponent
 
   ],
   imports: [
@@ -35,7 +43,8 @@ import { IConfig} from 'ngx-mask'
     CardModule,
     NgbModule,
     ToastrModule,
-    FormsModule
+    FormsModule,
+    DropdownModule,
     
 
   ]
