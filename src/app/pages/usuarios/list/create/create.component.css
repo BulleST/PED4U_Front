@@ -9,3 +9,11 @@
     padding: 0;
     margin: auto;
   }
+
+  ::ng-deep .p-inputtext {
+    width: 578px !important;
+    color: #6c757d;
+    display: inline-flex;
+    align-items: center;
+    height: 58px !important;
+}

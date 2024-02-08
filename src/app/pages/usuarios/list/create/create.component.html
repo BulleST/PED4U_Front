@@ -52,6 +52,17 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+                            <p-dropdown 
+                            class="dropdown"
+                            [(ngModel)]="selectedPerfil"
+                            [options]="perfis"
+                            name="perfil"
+                            optionLabel="perfil"
+                            [style]="{'width':'100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
                             <div class="form-floating">
                                 <input type="email"
                                        [email]="true"
@@ -73,74 +84,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
-                            <div class="form-floating">
-                                <input [type]="showHide.value ? 'password' : 'text'"
-                                       class="form-control"
-                                       id="password"
-                                       name="password"
-                                       #password="ngModel"
-                                       [(ngModel)]="objeto.password"
-                                       placeholder="******"
-                                       required
-                                       minlength="6">
-                                <label for="password">
-                                    <span class="ms-1">Senha <span class="text-danger">*</span></span>
-                                </label>
-                            </div>
-                            <div *ngIf="password.errors != null && password.touched" class="p-1 py-0">
-                                <p class="text-danger" *ngIf="password.errors['required']">Este campo é obrigatório.</p>
-                                <p class="text-danger" *ngIf="password.errors['minlength']">Senha deve conter pelo menos {{password.errors['requiredLength']}} caracteres.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
-                            <div class="form-floating">
-                                <input [type]="showHide.value ? 'password' : 'text'"
-                                       class="form-control"
-                                       id="confirmPassword"
-                                       name="confirmPassword"
-                                       #confirmPassword="ngModel"
-                                       [(ngModel)]="objeto.confirmPassword"
-                                       placeholder="******"
-                                       required
-                                       minlength="4">
-                                <label for="confirmPassword">
-                                    <span class="form-control-icon">
-                                       
-                                    </span>
-                                    <span class="ms-1">Confirmar Senha <span class="text-danger">*</span></span>
-                                </label>
-                            </div>
-                            <div *ngIf="confirmPassword.errors != null && confirmPassword.touched" class="p-1 py-0">
-                                <p class="text-danger" *ngIf="confirmPassword.errors['required']">Esse campo é obrigatório</p>
-                                <p class="text-danger" *ngIf="confirmPassword.errors['minlength']">Confirmação de senha deve conter pelo menos 4 caracteres.</p>
-                            </div>
-                            <p class="text-danger p-2" *ngIf="password.value != confirmPassword.value">Senhas não são iguais</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
-                            <div class="d-flex align-items-center">
-                                <input type="checkbox"
-                                       name="showHide"
-                                       id="showHide"
-                                       #showHide="ngModel"
-                                       ngModel
-                                       [value]="true">
-                                <label for="showHide" class="ml-2">
-                                    <span *ngIf="showHide.value">Exibir</span>
-                                    <span *ngIf="!showHide.value">Esconder</span> senha </label>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    
                     <div class="row">
                         <p class="text-danger text-center col-12 mt-3" *ngIf="erro">{{erro}}</p>
-                        <p class="text-center col-12 mb-3">Ao clicar em "cadastrar" você concorda com os <a class="link" routerLink="./termos-de-uso">termos de uso</a> do Ped4u.</p>
+                        
                         <div class="form-group form-floating col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
-                            <button type="submit" class="btn-register" [disabled]="form.invalid || loading || (password.value != confirmPassword.value)">
+                            <button type="submit" class="btn-register" [disabled]="form.invalid || loading">
                                 Cadastrar
                             </button>
                         </div>

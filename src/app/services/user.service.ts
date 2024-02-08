@@ -65,7 +65,6 @@ export class UserService {
         }));
     }
 
-
     get(id: number) {
         return this.http.get<Usuario>(`${this.url}/usuario/${id}`, { headers: new HttpHeaders({ 'loading': 'true' }) });
     }

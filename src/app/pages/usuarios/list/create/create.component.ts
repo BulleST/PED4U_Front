@@ -9,6 +9,7 @@ import { AlertService } from 'src/app/parts/alert/alert.service';
 import { LoadingService } from 'src/app/parts/loading/loading';
 import { Subscription, lastValueFrom } from 'rxjs';
 import { getError } from 'src/app/utils/error';
+import { PerfilAcesso } from 'src/app/models/account-perfil.model';
 
 
 @Component({
@@ -28,7 +29,9 @@ export class CreateComponent implements OnDestroy {
     loading: boolean = false;
     erro = '';
     subscription: Subscription[] = [];
+    perfis: PerfilAcesso [] = [];
     emailPattern = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    selectedPerfil: PerfilAcesso = new PerfilAcesso;
     constructor(
         private toastr: ToastrService,
         private router: Router,

@@ -19,6 +19,14 @@ export class UsuarioRequest {
     name: string = '';
     email: string = '';
     telefoneCelular: string = '';
+
+    constructor(usuario:Usuario){
+        this.id = usuario.id;
+        this.perfilAcesso_Id = usuario.perfilAcesso_Id;
+        this.name = usuario.name;
+        this.email = usuario.email;
+        this.telefoneCelular = usuario.telefoneCelular;
+    }
 }
 
 

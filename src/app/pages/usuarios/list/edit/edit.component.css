@@ -18,9 +18,10 @@
     color: #ff6315;
 }
 
-.p-inputtext {
+::ng-deep .p-inputtext {
     width: 578px !important;
     color: #6c757d;
     display: inline-flex;
-    height: 38px;
+    align-items: center;
+    height: 58px !important;
 }

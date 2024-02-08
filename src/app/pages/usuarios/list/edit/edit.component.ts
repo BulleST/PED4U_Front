@@ -9,7 +9,7 @@ import { LoadingService } from 'src/app/parts/loading/loading';
 import { AccountService } from 'src/app/services/account.service';
 import { Modal, ModalService } from 'src/app/services/modal.service';
 import { getError } from 'src/app/utils/error';
-import { UsuarioRequest } from 'src/app/models/usuario.model';
+import { Usuario, UsuarioRequest } from 'src/app/models/usuario.model';
 import { PerfilAcesso } from 'src/app/models/account-perfil.model';
 
 @Component({
@@ -22,7 +22,7 @@ export class EditComponent {
     open = true;
     faKey = faKey;
     faChevronCircleLeft = faChevronCircleLeft;
-    objeto: UsuarioRequest = new UsuarioRequest;
+    objeto: UsuarioRequest = new UsuarioRequest(new Usuario);
     subscription: Subscription[] = [];
     loading = false;
     mensagemErro = '';
@@ -51,11 +51,13 @@ export class EditComponent {
         this.activatedRoute.params.subscribe(res => {
 			if (res['id']) {
 				this.objeto.id = res['id']
-				// Abrir modal
+				// chamada da função get 
+                // get captura informação do banco de dados utilizando a service
 				lastValueFrom(this.userService.get(this.objeto.id))
-					.then(res => {
+					.then(usuario => {
 						this.open = true;
-						this.objeto = res;
+						this.objeto = new UsuarioRequest(usuario);
+                        this.selectedPerfil = usuario.perfilAcesso;
 						this.loading = false;
 					}).catch(res => {
 						this.close();
@@ -79,10 +81,6 @@ export class EditComponent {
     }
 
 
-    voltar() {
-        this.modalService.removeModal(this.modal);
-    }
-
     send(form: NgForm) {
         this.erro = '';
         this.loading = true;
@@ -92,15 +90,22 @@ export class EditComponent {
             this.toastr.error('Formulário inválido');
             return;
         }
+        this.objeto.perfilAcesso_Id = this.selectedPerfil.id
+        console.log(this.objeto)
+        console.log('entrou no objeto')
         lastValueFrom(this.userService.edit(this.objeto))
             .then(res => {
-                this.voltar();
+                lastValueFrom(this.userService.getList())
+                this.close();
                 this.loading = false;
             })
             .catch(res => {
+                console.log(res)
+                console.log('estamos no res')
                 this.erro = getError(res);
                 this.loading = false;
             })
+
     }
 
     // Fechar modal e retornar para rota de estabelecimento
