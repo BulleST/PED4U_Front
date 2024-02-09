@@ -80,16 +80,16 @@ export class UserService {
         }));
     }
 
-    create(request: Usuario) {
-        return this.http.post<Usuario>(`${this.url}/usuario`, request);
+    create(request: UsuarioRequest) {
+        return this.http.post<UsuarioRequest>(`${this.url}/usuario`, request);
     }
 
     edit(request: UsuarioRequest) {
         return this.http.put<UsuarioRequest>(`${this.url}/usuario`, request);
     }
 
-    deactivated(id: number, ativo?: boolean) {
-        return this.http.patch<Response>(`${this.url}/usuario/${id}/${ativo}`, {});
+    changeStatus(id: number, ativo: boolean) {
+        return this.http.patch<Usuario>(`${this.url}/usuario/${id}/${ativo}`, {});
     }
 
     resetPassword(id: number) {

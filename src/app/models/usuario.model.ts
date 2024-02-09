@@ -10,7 +10,12 @@ export class Usuario {
     email: string = '';
     telefoneCelular: string = '';
     dataDesativado?: Date;
-    ativo?: boolean;
+    ativo: boolean;
+
+    constructor(){
+        if(this.dataDesativado == null) this.ativo = true;
+        else this.ativo = false;
+    }
 }
 
 export class UsuarioRequest {

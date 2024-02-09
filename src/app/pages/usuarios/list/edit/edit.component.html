@@ -31,6 +31,7 @@
                         <div class="form-group col-lg-5 col-md-5 col-sm-6 col-12 mb-2">
                             <div class="form-floating">
                                 <input type="text"
+                                        mask="(00) 0 0000 0000"
                                        class="form-control"
                                        id="telefoneCelular"
                                        name="telefoneCelular"
@@ -73,21 +74,32 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
-                            <p-dropdown 
-                            class="dropdown"
-                            [(ngModel)]="selectedPerfil"
-                            [options]="perfis"
-                            name="perfil"
-                            optionLabel="perfil"
-                            [style]="{'width':'100%'}"></p-dropdown>
+                        <div class="form-group col-lg-6 col-md-5 col-sm-6 col-12 mb-2">
+                            <div class="form-floating">
+                                <p-dropdown 
+                                class="dropdown"
+                                [(ngModel)]="selectedPerfil"
+                                [options]="perfis"
+                                name="perfil"
+                                optionLabel="perfil"
+                                [style]="{'width':'100%'}"></p-dropdown>
+                            </div>
                         </div>
-
+                        <div class="form-group col-lg-6 col-md-5 col-sm-6 col-12 mb-2" style="height: 100%;">
+                            <div class="d-flex form-floating" style="height: 100%;">
+                                <a class="btn-email" tabindex="1" (click)="sendEmailPassword()">
+                                    Solicitar nova senha por e-mail
+                                </a>
+                            </div>
+                            
+                        </div>
                     </div>
+                   
 
 
                     <div class="row">
                         <p class="text-danger text-center col-12 mt-3" *ngIf="erro">{{erro}}</p>
+                        <p class="text-center col-12 mt-3" *ngIf="sucesso">{{sucesso}}</p>
                         <div class="form-group form-floating col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
                             <button type="submit" class="btn-register" [disabled]="form.invalid || loading">
                                 Salvar Alterações

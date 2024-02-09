@@ -82,6 +82,7 @@ ul .p-tabview .p-tabview-nav-content  {
 
 .p-datatable .p-datatable-tbody > tr > td {
     text-align: center;
+    vertical-align: middle;
     border: 1px solid #f1f1f1;
     border-width: 0 0 1px 0;
     padding: 1rem;
@@ -306,44 +307,6 @@ a {
 
 .form-control{
     color: #6c757d;
-}
-
-.p-button:focus {
-    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--primary), 0 1px 2px 0 black;
-}
-
-.btn-reposicao > .p-tag{
-    width: 50%;
-}
-
-.btn-reposicao > .p-button{
-    font-size: 12pt;
-    height: 32px;
-    background: #fff;
-    border: 2px solid;
-    border-color:  #d1d5db;
-    color: #4b5563;
-}
-
-.btn-falta > .p-button{
-    font-size: 12pt;
-    height: 32px;
-    background: #fff;
-    border: 2px solid;
-    border-color:  #d1d5db;
-    color: #4b5563;
-}
-
-.btn-falta > .p-togglebutton.p-button.p-highlight {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: #ffffff;
-}
-
-.btn-reposicao > .p-togglebutton.p-button.p-highlight {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: #ffffff;
 }
 
 .p-inputtext {

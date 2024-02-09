@@ -21,7 +21,9 @@ import { IConfig} from 'ngx-mask'
 import { CreateComponent } from './list/create/create.component';
 import { TermosDeUsoComponent } from './termos-de-uso/termos-de-uso.component';
 import { EditComponent } from './list/edit/edit.component';
-import { DeleteComponent } from './list/delete/delete.component';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { NgxMaskModule } from 'ngx-mask';
+
 import { DropdownModule } from 'primeng/dropdown';
 
 
@@ -30,7 +32,6 @@ import { DropdownModule } from 'primeng/dropdown';
     ListComponent,
     CreateComponent,
     EditComponent,
-    DeleteComponent,
     TermosDeUsoComponent
 
   ],
@@ -45,7 +46,8 @@ import { DropdownModule } from 'primeng/dropdown';
     ToastrModule,
     FormsModule,
     DropdownModule,
-    
+    ToggleButtonModule,
+    NgxMaskModule
 
   ]
 })

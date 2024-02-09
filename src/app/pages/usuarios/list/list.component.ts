@@ -8,6 +8,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { IsMobile, ScreenWidth } from 'src/app/utils/mobile';
 import { Table } from 'src/app/utils/table';
 import { UserService } from './../../../services/user.service';
+import { LoadingService } from 'src/app/parts/loading/loading';
 
 
 @Component({
@@ -28,9 +29,11 @@ export class ListComponent {
         private table: Table,
         private userService: UserService,
         private accountService: AccountService,
+        private loadingHelper: LoadingService
     ) {
         var list = this.userService.list.subscribe(res => this.list = Object.assign([], res));
         this.subscription.push(list);
+        this.loadingHelper.loading.subscribe(res => this.loading = res);
 
         var loading = this.userService.loading.subscribe(res => this.loading = res);
         this.subscription.push(loading);
@@ -63,7 +66,16 @@ export class ListComponent {
         lastValueFrom(this.userService.getList(true));
     }
 
-      
-
-
+    updateStatus(usuario:Usuario,status:any){
+        this.loading = true;
+        lastValueFrom(this.userService.changeStatus(usuario.id, status)).then(res=>{
+            console.log(res)
+            lastValueFrom(this.userService.get(usuario.id)).then(res=>{
+                if(res.dataDesativado == null) usuario.ativo = true;
+                else usuario.ativo = false;
+            })
+            this.loading = false;
+        });
+        
+    }
 }

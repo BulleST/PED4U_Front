@@ -85,3 +85,70 @@
     margin-top: 30px;
     background: linear-gradient(311deg, #8c47dc 0%, #F94184 35%, #ff6315 100%);
 }
+
+.p-button:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--primary), 0 1px 2px 0 black;
+}
+
+.btn-reposicao > .p-tag{
+    width: 50%;
+}
+
+.btn-reposicao > .p-button{
+    font-size: 12pt;
+    height: 32px;
+    background: #fff;
+    border: 2px solid;
+    border-color:  #d1d5db;
+    color: #4b5563;
+}
+
+.btn-falta > .p-button{
+    font-size: 12pt;
+    height: 32px;
+    background: #fff;
+    border: 2px solid;
+    border-color:  #d1d5db;
+    color: #4b5563;
+}
+
+.btn-falta > .p-togglebutton.p-button.p-highlight {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+}
+
+.btn-reposicao > .p-togglebutton.p-button.p-highlight {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+}
+
+.btn-status > .p-button{
+    font-size: 12pt;
+    height: 40px;
+    background: #fff;
+    border: 2px solid;
+    border-color:  #d1d5db;
+    color: #4b5563;
+    min-width: 100px;
+}
+
+.btn-status > .p-togglebutton.p-button.p-highlight {
+    background: var(--grey-highlight);
+    border-color: var(--grey-highlight);
+    color: #ffffff;
+}
+
+.btn-email{
+    color: white;
+    font-family: sans-serif;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+    background: linear-gradient(311deg, #8c47dc 0%, #F94184 35%, #ff6315 100%);
+    font-family: sans-serif;
+    font-size: 11pt;    
+    width: 100%;
+    padding: 18px 0;
+}

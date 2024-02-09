@@ -24,9 +24,7 @@
                 currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} páginas"
                 [filterDelay]="0"
                 [globalFilterFields]="['']">
-                <ng-template #topActions>
-                    
-                </ng-template>
+                <div></div>
                 <ng-template pTemplate="header">
                    
                     <tr>
@@ -39,10 +37,10 @@
                             E-mail
                             <p-columnFilter type="text" field="email" display="menu"></p-columnFilter>
                             <p-sortIcon field="email"></p-sortIcon></th> 
-                        <th pSortableColumn="perfil" class="perfil">
+                        <th pSortableColumn="perfilAcesso.perfil" class="perfilAcesso.perfil">
                             Perfil
-                            <p-columnFilter type="text" field="perfil" display="menu"></p-columnFilter>
-                            <p-sortIcon field="perfil"></p-sortIcon></th>      
+                            <p-columnFilter type="text" field="perfilAcesso.perfil" display="menu"></p-columnFilter>
+                            <p-sortIcon field="perfilAcesso.perfil"></p-sortIcon></th>      
                         <th></th>
                         
 
@@ -57,7 +55,14 @@
                         <td>{{item.perfilAcesso.perfil}}</td>
                         <td>
                             <a class="btn btn-edit me-2" [routerLink]="['editar',item.id]">Editar</a>
-                            <a class="btn btn-delete" [routerLink]="['excluir',item.id]">Excluir</a>
+                            <p-toggleButton 
+                            class="btn-status" 
+                            [(ngModel)]="item.ativo"
+                            onLabel="Ativo" 
+                            offLabel="Inativo"
+                            (ngModelChange)="updateStatus(item, $event)">
+                            </p-toggleButton>
+                           
                         </td>
                          
                     </tr>

@@ -5,7 +5,7 @@ import { ListComponent } from './list/list.component';
 import { CreateComponent } from './list/create/create.component';
 import { TermosDeUsoComponent } from './termos-de-uso/termos-de-uso.component';
 import { EditComponent } from './list/edit/edit.component';
-import { DeleteComponent } from './list/delete/delete.component';
+
 
 const routes: Routes = [
      { path: '', component: ListComponent, children: [
@@ -17,9 +17,7 @@ const routes: Routes = [
                     { 
                       path: 'editar/:id', component: EditComponent
                     },
-                    {
-                      path: 'excluir/:id', component: DeleteComponent
-                    }
+                   
                     
                     
         //         { path: 'cadastrar', component: FormComponent, data: { modalOrder: 1 }, title: 'Zentech - Cadastrar usuário' },

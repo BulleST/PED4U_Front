@@ -10,6 +10,8 @@ import { LoadingService } from 'src/app/parts/loading/loading';
 import { Subscription, lastValueFrom } from 'rxjs';
 import { getError } from 'src/app/utils/error';
 import { PerfilAcesso } from 'src/app/models/account-perfil.model';
+import { UserService } from 'src/app/services/user.service';
+import { Usuario, UsuarioRequest } from 'src/app/models/usuario.model';
 
 
 @Component({
@@ -25,7 +27,7 @@ export class CreateComponent implements OnDestroy {
     faUser = faUser;
     faPhone = faPhone;
     open = true;
-    objeto = new Register;
+    objeto =  new UsuarioRequest(new Usuario);
     loading: boolean = false;
     erro = '';
     subscription: Subscription[] = [];
@@ -37,12 +39,21 @@ export class CreateComponent implements OnDestroy {
         private router: Router,
         private loadingUtils: LoadingService,
         private accountService: AccountService,
-       private alertService: AlertService
+        private alertService: AlertService,
+        private userService: UserService
+
     ) { 
         var loading = this.loadingUtils.loading.subscribe(res => this.loading = res);
         this.subscription.push(loading);
 
         console.log('estou sendo construido')
+        this.userService.listPerfil.subscribe((data) => {
+            this.perfis = Object.assign([], data);
+
+        })
+        lastValueFrom(userService.getPerfilAcesso()).then(res => {
+            this.perfis = res
+        }) 
     }
 
     ngOnDestroy(): void {
@@ -51,18 +62,28 @@ export class CreateComponent implements OnDestroy {
 
     send(form: NgForm) {
         this.loadingUtils.loading.next(true);
-        this.objeto.acceptTerms = true;
-        lastValueFrom(this.accountService.register(this.objeto))
+        this.objeto.perfilAcesso_Id = this.selectedPerfil.id;
+        lastValueFrom(this.userService.create(this.objeto))
         .then(res => {
-            this.router.navigate(['account', 'login']);
-            this.toastr.success('Operação concluida com sucesso!')
-            this.alertService.success('Um link de verificação de conta foi enviado para o email cadastrado. Siga as instruções para completar o cadastro.');
-            this.loadingUtils.loading.next(false);
+            console.log(res)
+            if(res.id){
+                lastValueFrom(this.userService.resetPassword(res.id))
+            }
+            lastValueFrom(this.userService.getList())
+            this.close();
+            this.loading = false;
         })
         .catch(res => {
             this.loadingUtils.loading.next(false);
             this.erro = getError(res);
         });
     }
+
+      // Fechar modal e retornar para rota de usuarios
+	close(): void {
+		this.open = false;
+		this.router.navigate(['usuarios']);
+		return;
+	}
 
 }

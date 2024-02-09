@@ -27,6 +27,7 @@ export class EditComponent {
     loading = false;
     mensagemErro = '';
     erro: string = '';
+    sucesso: string = '';
     perfis: PerfilAcesso [] = [];
     @ViewChild('template')
     template!: TemplateRef<any>;
@@ -43,10 +44,14 @@ export class EditComponent {
         private modalService: ModalService,
         private accountService: AccountService,
         private userService: UserService,
-        private router: Router
+        private router: Router,
+        private loadingHelper: LoadingService
 
     ) {
         console.log('entrei no constructor')
+        this.loadingHelper.loading.subscribe(res => this.loading = res);
+        var loading = this.userService.loading.subscribe(res => this.loading = res);
+        this.subscription.push(loading);
 
         this.activatedRoute.params.subscribe(res => {
 			if (res['id']) {
@@ -81,6 +86,16 @@ export class EditComponent {
     }
 
 
+     sendEmailPassword(){
+        this.loading = true;
+        lastValueFrom(this.userService.resetPassword(this.objeto.id))
+        .then(res =>{
+            console.log(res);
+            this.sucesso = 'E-mail para troca de senha enviado com sucesso';
+            this.loading = false;
+        })
+    }
+
     send(form: NgForm) {
         this.erro = '';
         this.loading = true;
@@ -105,10 +120,9 @@ export class EditComponent {
                 this.erro = getError(res);
                 this.loading = false;
             })
-
     }
 
-    // Fechar modal e retornar para rota de estabelecimento
+    // Fechar modal e retornar para rota de usuarios
 	close(): void {
 		this.open = false;
 		this.router.navigate(['usuarios']);
