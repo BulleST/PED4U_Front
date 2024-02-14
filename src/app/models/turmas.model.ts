@@ -8,6 +8,7 @@ export class Turma {
     vagasRestantes: number = 0;
     nomeEducador: string = '';
     perfis: string = '';
+    diaSemanaTxt: string = '';
 }
 
 export class TurmaCadastro{

@@ -34,7 +34,11 @@ export class TurmasComponent {
       this.turmasService.list.subscribe((data) =>{
         this.list = Object.assign([], data);
         console.log('lista de turmas ', data)
+        this.list.forEach( turma => {
+          turma.diaSemanaTxt = this.getDiaSemana(turma.diaSemana)
+        })
       })
+      
       this.loadingHelper.loading.next(true);
 
       lastValueFrom(turmasService.getList())
@@ -51,8 +55,10 @@ export class TurmasComponent {
     this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);
   }
 
-  getDiaSemana(diaSemana_id:number){
-    return this.diaSemanaList.find(x => x.id == diaSemana_id)?.nome
+  getDiaSemana(diaSemana_id:number): string{
+    let diaSemana = this.diaSemanaList.find(x => x.id == diaSemana_id)
+    if(diaSemana == null) return '';
+    else return diaSemana.nome;
   }
 
 }

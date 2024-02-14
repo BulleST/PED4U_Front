@@ -108,10 +108,10 @@
                                         </label>
                                         <p-dropdown 
                                             class="dropdown" 
-                                            optionLabel="nome"
+                                            optionLabel="name"
                                             [options]="educadores"
                                             [(ngModel)]="selectedEducadores"
-                                            name="nomeEducador" 
+                                            name="name" 
                                             placeholder="Selecione o educador">
                                             <ng-template pTemplate="selectedItem">
                                                 <div>
@@ -120,7 +120,7 @@
                                             </ng-template>
                                             <ng-template let-dropdownvalues pTemplate="item">
                                                 <div>
-                                                    <div>{{dropdownvalues.nome}}</div>
+                                                    <div>{{dropdownvalues.name}}</div>
                                                 </div>
                                             </ng-template>
                                         </p-dropdown>

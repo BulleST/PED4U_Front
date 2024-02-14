@@ -11,6 +11,7 @@ import { PerfilService } from "src/app/services/perfil.service";
 import { TurmaCadastro } from "src/app/models/turmas.model";
 import { Educador } from "src/app/models/educador.model";
 import { TurmaPerfilRel } from "src/app/models/turmas.model";
+import { EducadoresService } from "src/app/services/educadores.service";
 
 @Component({
 	selector: 'create-alunos',
@@ -33,13 +34,7 @@ export class CreateComponent{
 		{id: 5 , nome: 'Sexta-Feira'},
 		{id: 6 , nome: 'Sábado'}
 	  ];
-	  educadores: Educador [] = [
-		{id: 1, name: 'Lucas', email: ''},
-		{id: 2, name: 'Marina', email: ''},
-		{id: 3, name: 'Luana', email: ''},
-		{id: 4, name: 'Antônio', email: ''},
-		{id: 5, name: 'Letícia', email: ''},
-	  ];
+	  educadores: Educador [] = [];
 	  selectedPerfis: number[] = [];
 	  selectedDiaSemana: DiaSemana = {id: -1 , nome: ''};
 	  selectedEducadores: Educador = { id: -1, name: '', email: ''};
@@ -51,13 +46,23 @@ export class CreateComponent{
         private turmasService: TurmasService,
 		private httpClient: HttpClient,
 		private toastr: ToastrService,
-		private perfilService: PerfilService
+		private perfilService: PerfilService,
+		private educadoresService: EducadoresService
     ){
 		this.perfilService.list.subscribe((data) => {
 			this.perfis = Object.assign([], data);
 			
 		  })
 		  lastValueFrom(perfilService.getList())
+
+		this.educadoresService.list.subscribe((data) =>{
+			this.educadores = Object.assign([], data);
+		})
+		lastValueFrom(educadoresService.getList()).then( res => {
+			console.log(this.educadores)
+
+		})
+		
 	}
 
     // Fechar modal e retornar para rota de estabelecimento
