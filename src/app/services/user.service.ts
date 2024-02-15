@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, map, of, tap } from 'rxjs';
 import { Crypto } from '../utils/crypto';
 import { Usuario, UsuarioRequest } from '../models/usuario.model';
-import { Table } from '../utils/table';
+import { Tables } from '../utils/table';
 import { AccountService } from './account.service';
 import { Account } from '../models/account.model';
 import { PerfilAcesso, Role } from '../models/account-perfil.model';
@@ -25,7 +25,7 @@ export class UserService {
 
     constructor(
         private httpClient: HttpClient,
-        private table: Table,
+        private tables: Tables,
         private http: HttpClient,
         private toastr: ToastrService,
         private crypto: Crypto,
@@ -49,7 +49,7 @@ export class UserService {
 
     getList(loading: boolean = false) {
        this.loading.next(loading);
-        this.table.loading.next(true);
+        this.tables.loading.next(true);
         return this.http.get<Usuario[]>(`${this.url}/usuario`)
         .pipe(tap({
             next: list => {

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import * as $ from 'jquery';
 import { Crypto } from "./crypto";
-import { Table } from "./table";
+import { Tables } from "./table";
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +13,7 @@ export class Header {
 
     constructor(
         private crypto: Crypto,
-        private table: Table,
+        private tables: Tables,
     ) {
 
     }

@@ -12,6 +12,7 @@ import { PerfilService } from "src/app/services/perfil.service";
 import { TurmaCadastro } from "src/app/models/turmas.model";
 import { Educador } from "src/app/models/educador.model";
 import { TurmaPerfilRel } from "src/app/models/turmas.model";
+import { EducadoresService } from "src/app/services/educadores.service";
 
 @Component({
 	selector: 'edit-alunos',
@@ -34,13 +35,7 @@ export class EditComponent{
 		{id: 5 , nome: 'Sexta-Feira'},
 		{id: 6 , nome: 'Sábado'}
 	  ];
-	  educadores: Educador [] = [
-		{id: 1, name: 'Lucas', email: ''},
-		{id: 2, name: 'Marina', email: ''},
-		{id: 3, name: 'Luana', email: ''},
-		{id: 4, name: 'Antônio', email: ''},
-		{id: 5, name: 'Letícia', email: ''},
-	  ];
+	  educadores: Educador [] = [];
 	  selectedPerfis: number[] = [];
 	  selectedDiaSemana?: DiaSemana = {id: -1 , nome: ''};
 	  selectedEducadores?: Educador = { id: -1, name: '', email: ''};
@@ -51,12 +46,21 @@ export class EditComponent{
         private router: Router,
         private turmasService: TurmasService,
 		private toastr: ToastrService,
-		private perfilService: PerfilService
+		private perfilService: PerfilService,
+		private educadoresService: EducadoresService
     ){
 		this.activatedRoute.params.subscribe(res => {
 			if (res['id']) {
 				this.object.id = res['id']
-				// Abrir modal
+
+				this.educadoresService.list.subscribe((data) =>{
+					this.educadores = Object.assign([], data);
+				})
+				lastValueFrom(educadoresService.getList()).then( res => {
+					console.log(this.educadores)
+		
+				})
+
 				lastValueFrom(this.turmasService.get(this.object.id))
 					.then(res => {
 						this.open = true;

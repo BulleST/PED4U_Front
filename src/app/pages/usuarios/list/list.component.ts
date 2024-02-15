@@ -1,14 +1,15 @@
 
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { Subscription, lastValueFrom } from 'rxjs';
 import { MenuTableLink } from 'src/app/helpers/menu-links.interface';
 import { Usuario, userColumns } from 'src/app/models/usuario.model';
 import { AccountService } from 'src/app/services/account.service';
 import { IsMobile, ScreenWidth } from 'src/app/utils/mobile';
-import { Table } from 'src/app/utils/table';
+import { Tables } from 'src/app/utils/table';
 import { UserService } from './../../../services/user.service';
 import { LoadingService } from 'src/app/parts/loading/loading';
+import { Table } from 'primeng/table';
 
 
 @Component({
@@ -19,6 +20,7 @@ import { LoadingService } from 'src/app/parts/loading/loading';
 export class ListComponent {
     faUsers = faUsers;
     list: Usuario[] = []
+    @ViewChild('dt') dt!: Table;
     tableLinks: MenuTableLink[] = [];
 
     columns = userColumns;
@@ -26,7 +28,7 @@ export class ListComponent {
     loading = false;
 
     constructor(
-        private table: Table,
+        private tables: Tables,
         private userService: UserService,
         private accountService: AccountService,
         private loadingHelper: LoadingService
@@ -40,7 +42,7 @@ export class ListComponent {
 
         lastValueFrom(this.userService.getList(true));
 
-        var selected = this.table.selected.subscribe(res => {
+        var selected = this.tables.selected.subscribe(res => {
             if (res) {
                 this.tableLinks = [
                     { label: 'Editar', routePath: ['editar'], paramsFieldName: ['id'] },
@@ -51,7 +53,7 @@ export class ListComponent {
                 if (this.accountService.accountValue?.perfilAcesso_Id == 1) {
                     this.tableLinks.push({ label: 'Excluir', routePath: ['excluir'], paramsFieldName: ['id'] } )
                 }
-                this.tableLinks = this.table.encryptParams(this.tableLinks);
+                this.tableLinks = this.tables.encryptParams(this.tableLinks);
             }
         });
         this.subscription.push(selected);
@@ -78,4 +80,14 @@ export class ListComponent {
         });
         
     }
+
+    // Função para limpar os filtros aplicados na tabela
+    clear(table: Table) {
+        table.clear();
+    }
+
+    // Função para filtrar a tabela a partir do input
+    applyFilterGlobal(event: any, filterType: string) {
+        this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);
+  }
 }

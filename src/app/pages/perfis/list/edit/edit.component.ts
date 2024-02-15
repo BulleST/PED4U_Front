@@ -54,6 +54,7 @@ export class EditComponent {
 
 	send() {
 		this.loading = true;
+		console.log(this.object)
 		lastValueFrom(this.perfilService.post(this.object))
 			.then(res => {
 

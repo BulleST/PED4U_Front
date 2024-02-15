@@ -4,7 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { finalize, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Table } from '../utils/table';
+import { Tables } from '../utils/table';
 import { LoadingService } from '../parts/loading/loading';
 import { getError } from '../utils/error';
 
@@ -35,7 +35,7 @@ export class RequestInterceptor implements HttpInterceptor {
     constructor(
         private router: Router,
         private toastr: ToastrService,
-        private table: Table,
+        private tables: Tables,
         private loadingUtils: LoadingService,
     ) { }
 
@@ -51,14 +51,14 @@ export class RequestInterceptor implements HttpInterceptor {
             }
         }
         
-        this.table.resetSelection();
+        this.tables.resetSelection();
         return next.handle(request).pipe(
             tap({
                 next: (data: any) => {
 
                     if (data.type == 0) {
                         if (request.method == 'POST' || request.method == 'PUT' || request.method == 'PATCH' || request.method == 'DELETE') {
-                             this.table.onRowUnselect();
+                             this.tables.onRowUnselect();
                         }
                     }
                     else 
@@ -90,24 +90,24 @@ export class RequestInterceptor implements HttpInterceptor {
                                     }
                                     else if (request.method == 'PUT') {
                                         this.toastr.success('Registro atualizado com sucesso');
-                                         this.table.onRowUnselect();
+                                         this.tables.onRowUnselect();
                                     }
                                     else if (request.method == 'PATCH') {
                                         this.toastr.success('Registro atualizado com sucesso');
-                                        this.table.onRowUnselect();
+                                        this.tables.onRowUnselect();
                                     }
                                     else if (request.method == 'DELETE') {
                                         this.toastr.success('Registro excluído com sucesso')
-                                        this.table.onRowUnselect();
+                                        this.tables.onRowUnselect();
                                     }
                                 }
 
 
                                 if (request.method == 'GET') {
                                     setTimeout(() => {
-                                        this.table.goToCurrentPage();
+                                        this.tables.goToCurrentPage();
                                     }, 100);
-                                    this.table.loading.next(false)
+                                    this.tables.loading.next(false)
                                     this.loadingUtils.loading.next(false);
                                 }
 
@@ -133,7 +133,7 @@ export class RequestInterceptor implements HttpInterceptor {
                     else if (notToastr.length == 0) {
                         this.toastr.error(msg);
                     }
-                    this.table.loading.next(false)
+                    this.tables.loading.next(false)
                     this.loadingUtils.loading.next(false);
 
                     return throwError(() => new Error(msg));
@@ -142,7 +142,7 @@ export class RequestInterceptor implements HttpInterceptor {
             }),
             // Log when response observable either completes or errors
             finalize(() => {
-                this.table.loading.next(false)
+                this.tables.loading.next(false)
                 this.loadingUtils.loading.next(false);
                 if (request.method == 'POST' || request.method == 'PUT' || request.method == 'DELETE' || loadingHeader == 'true') {
                     this.loadingUtils.removeLoadingRequest();

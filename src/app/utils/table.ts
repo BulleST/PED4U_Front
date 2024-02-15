@@ -13,7 +13,7 @@ import { MenuTableLink } from '../helpers/menu-links.interface';
 @Injectable({
     providedIn: 'root'
 })
-export class Table {
+export class Tables {
 
     loading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     // selectedItems: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
