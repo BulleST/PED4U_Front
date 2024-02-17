@@ -20,14 +20,23 @@
                                         <label for="perfis">Perfil:
                                             <span class="text-danger">*</span>
                                         </label>
+
+                            
                                         <p-multiSelect 
                                             class="dropdown" 
                                             [options]="perfis" 
                                             name="perfis"
-                                            optionLabel="nome"
-                                            optionValue="id"
                                             [(ngModel)]="selectedPerfis"
                                             placeholder="Selecione o perfil da turma">
+                                            <ng-template let-value pTemplate="selectedItems">
+                                                <div style="display: inline;" *ngFor="let option of value">
+                                                    <div style="display: inline;">{{ option.nome }},</div>
+                                                </div>
+                                                <div *ngIf="!value || value.length === 0">Selecione os Perfis</div>
+                                            </ng-template>
+                                            <ng-template let-perfil pTemplate="item">
+                                                {{ perfil.nome }}
+                                            </ng-template>
                                         </p-multiSelect>
                                     </div>
                                     <div class="form-group col-md-6 col-12">
@@ -136,14 +145,14 @@
                                   
                                     <button 
                                         type="button" 
-                                        class="btn-cancel" 
+                                        class="btn-delete" 
                                         (click)="close()"
                                         [disabled]="loading">
                                         Cancelar
                                     </button>
                                     <button 
                                         type="button" 
-                                        class="btn-save" 
+                                        class="btn-edit" 
                                         data-dismiss="modal" 
                                         (click)="save()"
                                         [disabled]="loading">

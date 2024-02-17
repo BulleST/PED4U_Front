@@ -27,10 +27,8 @@ const routes: Routes = [
         { path: 'forgot-password', component: ForgotPasswordComponent },
         { path: 'reset-password', component: ResetPasswordComponent },
         { path: 'verify-email', component: VerifyEmailComponent },
-        { path: 'my-account', component: MyAccountComponent, children: [
-            { path: 'change-password', component: ChangePasswordComponent },
-        ]
-    },
+        { path: 'my-account', component: MyAccountComponent },
+        { path: 'change-password', component: ChangePasswordComponent }
     ]}
 
 ];

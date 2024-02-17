@@ -738,6 +738,14 @@ app-my-account{
   width: 100%;
 }
 
+app-change-password{
+  width: 100%;
+}
+
+app-forgot-password{
+  width:100%
+}
+
 
   @import url('./assets/css/buttons/buttons.css');
   @import "primeicons/primeicons.css";

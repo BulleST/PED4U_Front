@@ -55,7 +55,7 @@
     justify-content: space-between;
     max-width: var(--account-width);
     width: 90%;
-    padding: 40px 20px;
+    padding: 20px 20px;
     background-color: #ffffff;
     z-index: 1;
     box-shadow: 2px 2px 9px rgb(0 0 0 / 27%);
@@ -166,10 +166,6 @@
     color: #4069fd;
 }
 
-.account.account-register .account-inner {
-    padding: 10px 20px;
-    scale: 0.9;
-}
 
 .account-right {
     background:#FFF;
@@ -252,10 +248,6 @@ img{
     color: #ff6315;
 }
 
-.account.account-register .account-inner {
-    padding: 10px 20px;
-    scale: 0.9;
-}
 
 .row {
     --bs-gutter-x: 1.5rem;

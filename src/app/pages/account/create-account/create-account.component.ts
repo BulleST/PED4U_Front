@@ -14,7 +14,7 @@ import { getError } from 'src/app/utils/error';
 @Component({
     selector: 'app-create-account',
     templateUrl: './create-account.component.html',
-    styleUrls: ['./../account.component.css', './create-account.component.css']
+    styleUrls: ['./create-account.component.css']
 })
 export class CreateAccountComponent implements OnDestroy {
     faChevronCircleLeft = faChevronCircleLeft;

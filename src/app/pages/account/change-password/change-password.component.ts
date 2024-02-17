@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faKey } from '@fortawesome/free-solid-svg-icons';
-import { ToastrService } from 'ngx-toastr';
+import { faChevronCircleLeft, faEnvelope, faKey} from '@fortawesome/free-solid-svg-icons';
+import {     ToastrService } from 'ngx-toastr';
 import { Subscription, lastValueFrom } from 'rxjs';
 import { Account, ChangePassword } from 'src/app/models/account.model';
 import { LoadingService } from 'src/app/parts/loading/loading';
 import { AccountService } from 'src/app/services/account.service';
-import { Modal, ModalService } from 'src/app/services/modal.service';
+
 import { getError } from 'src/app/utils/error';
 
 @Component({
@@ -15,8 +15,10 @@ import { getError } from 'src/app/utils/error';
     templateUrl: './change-password.component.html',
     styleUrls: ['./change-password.component.css']
 })
-export class ChangePasswordComponent implements OnDestroy {
+export class ChangePasswordComponent  {
     faKey= faKey;
+    faChevron = faChevronCircleLeft;
+    open = true;
     objeto: ChangePassword = new ChangePassword;
     loading = false;
     erro = '';
@@ -26,7 +28,7 @@ export class ChangePasswordComponent implements OnDestroy {
     template!: TemplateRef<any>;
     @ViewChild('icon')
     icon!: TemplateRef<any>;
-    modal: Modal = new Modal;
+   
 
     constructor(
         private router: Router,
@@ -34,41 +36,17 @@ export class ChangePasswordComponent implements OnDestroy {
         private toastr: ToastrService,
         private loadingUtils: LoadingService,
         private accountService: AccountService,
-        private modalService: ModalService,
+      
         ) { 
     }
 
-    ngOnDestroy(): void {
-        this.subscription.forEach(item => item.unsubscribe());
-    }
 
-    ngAfterViewInit(): void {
-        
-        this.modal.id = 0;
-        this.modal.template = this.template;
-        this.modal.icon = this.icon;
-        this.modal.style = { 'max-width': '400px' };
-        this.modal.activatedRoute = this.activatedRoute;
-        this.modal.routerBackOptions = { relativeTo: this.activatedRoute };
-        this.modal.routerBack = ['../'];
-        this.modal.title = 'Alterar Senha'
-
-        var account =  this.accountService.accountSubject.subscribe(res => {
-            if (!res)
-                this.voltar()
-            else {
-                this.account = res;
-                setTimeout(() => {
-                    this.modal = this.modalService.addModal(this.modal, 'change-password');
-                }, 200);
-            }
-        });
-        this.subscription.push(account);
-    }
-
-    voltar() {
-        this.modalService.removeModal(this.modal);
-    }
+   // Fechar modal e retornar para rota de estabelecimento
+	close(): void {
+		this.open = false;
+		this.router.navigate(['my-account']);
+		return;
+	}
 
 
     send(form: NgForm) { 
@@ -87,7 +65,7 @@ export class ChangePasswordComponent implements OnDestroy {
         }
         lastValueFrom(this.accountService.changePassword(this.objeto))
         .then(res => {
-            this.voltar();
+            this.close();
         })
         .catch(res => {
             this.erro = getError(res);

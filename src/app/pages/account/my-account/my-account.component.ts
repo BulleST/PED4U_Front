@@ -48,12 +48,8 @@ export class MyAccountComponent implements OnDestroy {
     }
 
     ngAfterViewInit(): void {
-
-        
-
         var account = this.accountService.accountSubject.subscribe(res => {
-            if (!res)
-                this.voltar()
+            if (!res) {}
             else {
                 this.objeto = res;
                 setTimeout(() => {
@@ -62,12 +58,6 @@ export class MyAccountComponent implements OnDestroy {
             }
         });
         this.subscription.push(account);
-
-
-    }
-
-    voltar() {
-        this.modalService.removeModal(this.modal);
     }
 
     send(form: NgForm) {
@@ -81,7 +71,6 @@ export class MyAccountComponent implements OnDestroy {
         }
         lastValueFrom(this.accountService.updateAccount(this.objeto))
             .then(res => {
-                this.voltar();
                 this.loading = false;
             })
             .catch(res => {

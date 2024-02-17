@@ -4,6 +4,7 @@ import { Turma, TurmaCadastro, TurmaPerfilRel } from "../models/turmas.model";
 import { environment } from "src/environment/environment";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
+import { Perfil } from "../models/perfis.model";
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,16 @@ export class TurmasService {
 
   }
 
-  getTurmaPerfilRel(){}
+  getPerfilByTurma(id: number){
+    // return this.httpClient.get<Perfil[]>(`${this.url}/Turma_Perfil_Rel/ListByTurmaId${id}`)
+
+    return new Observable<Perfil[]>(observer => {
+      observer.next(
+        [{id: 6, nome: "15/02 Edição"}]
+      )
+      observer.complete()
+    });
+  }
 
   post(model: TurmaCadastro) {
     return this.httpClient.post<Response>(`${this.url}/Turma`,model)

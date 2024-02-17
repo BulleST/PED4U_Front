@@ -5,49 +5,65 @@
 </div>
 
 <form #form="ngForm" (ngSubmit)="send()">
-<div class="container">
-    
-    <div class="container_login">
-        <div class="user_container">
-            <input 
+    <div class="form-row">
+        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+            <div class="form-floating">
+                <input 
+                    pInputText 
+                    id="username"
+                    name="email" 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="E-mail"
+                    #email="ngModel"
+                    [(ngModel)]="login.email"/>
+                    <label for="password">
+                        <span>E-mail <span class="text-danger">*</span>
+                        </span>
+                    </label>
+                    <div *ngIf="email.touched && email.errors">
+                        <p class="text-danger" *ngIf="email.errors['required']">
+                            Esse campo é obrigatório.
+                        </p>
+                        <p class="text-danger" *ngIf="email.errors['pattern']">
+                            Não insira espaços em branco antes ou no final do campo
+                        </p>
+                        <p class="text-danger">{{erro}}</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="form-row">
+        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+            <div class="form-floating">
+                <input 
                 pInputText 
-                id="username"
-                name="email" 
-                type="text" 
-                class="login-control" 
-                placeholder="E-mail"
-                #email="ngModel"
-                [(ngModel)]="login.email"/>
-                <div *ngIf="email.touched && email.errors">
-                    <p class="text-danger" *ngIf="email.errors['required']">
+                id="password"
+                name="password"
+                [type]="showHide.value ? 'password' : 'text'"
+                #password="ngModel"
+                class="form-control" 
+                placeholder="Senha"
+                [(ngModel)]="login.password"/>
+                <label for="password">
+                    <span>Senha <span class="text-danger">*</span>
+                    </span>
+                </label>
+                <div *ngIf="password.touched && password.errors">
+                    <p class="text-danger" *ngIf="password.errors['required']">
                         Esse campo é obrigatório.
                     </p>
-                    <p class="text-danger" *ngIf="email.errors['pattern']">
+                    <p class="text-danger" *ngIf="password.errors['pattern']">
                         Não insira espaços em branco antes ou no final do campo
                     </p>
                     <p class="text-danger">{{erro}}</p>
                 </div>
-        </div>
-        <div class="flex flex-wrap justify-content-center align-items-center gap-2">
-            <input 
-            pInputText 
-            id="password"
-            name="password"
-            [type]="showHide.value ? 'password' : 'text'"
-            #password="ngModel"
-            class="login-control" 
-            placeholder="Senha"
-            [(ngModel)]="login.password"/>
-            <div *ngIf="password.touched && password.errors">
-                <p class="text-danger" *ngIf="password.errors['required']">
-                    Esse campo é obrigatório.
-                </p>
-                <p class="text-danger" *ngIf="password.errors['pattern']">
-                    Não insira espaços em branco antes ou no final do campo
-                </p>
-                <p class="text-danger">{{erro}}</p>
             </div>
         </div>
+          
+    </div>
+     
         <div class="row">
             <div class="form-group col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
                 <div class="d-flex align-items-center">
@@ -82,9 +98,9 @@
             </div>
         </div>
         
-    </div>
+   
   
-</div>
+
 </form>
 <router-outlet></router-outlet>
 

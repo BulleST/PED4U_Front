@@ -11,7 +11,7 @@ import { getError } from 'src/app/utils/error';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./../account.component.css']
+    styleUrls: ['login.component.css']
 })
 export class LoginComponent {
     login = new Login;
@@ -27,11 +27,6 @@ export class LoginComponent {
     constructor(
         private accountService: AccountService,
         private loadingHelper: LoadingService,
-        private router: Router,
-
-        
-        
-
     ) {
         this.loadingHelper.loading.subscribe(res => this.loading = res);
 

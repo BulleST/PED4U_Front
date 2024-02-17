@@ -9,7 +9,7 @@ import { getError } from 'src/app/utils/error';
 @Component({
     selector: 'app-forgot-password',
     templateUrl: './forgot-password.component.html',
-    styleUrls: ['./../account.component.css']
+    styleUrls: ['forgot-password.component.css']
    
 })
 export class ForgotPasswordComponent {

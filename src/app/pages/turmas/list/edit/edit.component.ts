@@ -36,10 +36,13 @@ export class EditComponent{
 		{id: 6 , nome: 'Sábado'}
 	  ];
 	  educadores: Educador [] = [];
-	  selectedPerfis: number[] = [];
+	  selectedPerfis: Perfil[] = [];
 	  selectedDiaSemana?: DiaSemana = {id: -1 , nome: ''};
 	  selectedEducadores?: Educador = { id: -1, name: '', email: ''};
 	  selectHorario: string = '';
+
+	  selectedPerfisIniciais:Perfil[] = [];
+
 	
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -53,26 +56,43 @@ export class EditComponent{
 			if (res['id']) {
 				this.object.id = res['id']
 
+				this.perfilService.list.subscribe((data) => {
+					this.perfis = Object.assign([], data);
+				})
 				this.educadoresService.list.subscribe((data) =>{
 					this.educadores = Object.assign([], data);
 				})
-				lastValueFrom(educadoresService.getList()).then( res => {
-					console.log(this.educadores)
-		
-				})
+				lastValueFrom(perfilService.getList()).then(res =>{
+					lastValueFrom(educadoresService.getList()).then( res => {
+						lastValueFrom(this.turmasService.getPerfilByTurma(this.object.id)).then(res => {
+							
+							if(res != null){
+								this.perfis.map( (perfil) => {
+									let perfilExistente = res.find(x => x.id == perfil.id) 
 
-				lastValueFrom(this.turmasService.get(this.object.id))
-					.then(res => {
-						this.open = true;
-						this.object = res;
-						this.selectedDiaSemana = this.diaSemana.find(x => x.id == this.object.diaSemana)
-						this.selectedEducadores = this.educadores.find(x => x.id == this.object.educador_Id)
-						console.log(this.object.educador_Id)
-						this.loading = false;
-					}).catch(res => {
-						this.close();
-						this.toastr.error('Não foi possível acessar essa página')
+									if(perfilExistente != null)
+										this.selectedPerfis.push(perfil)
+								})
+							}
+							this.selectedPerfisIniciais = this.selectedPerfis
+
+							lastValueFrom(this.turmasService.get(this.object.id)).then(res => {
+								this.open = true;
+								this.object = res;
+								this.selectedDiaSemana = this.diaSemana.find(x => x.id == this.object.diaSemana);
+								this.selectedEducadores = this.educadores.find(x => x.id == this.object.educador_Id);
+								this.selectHorario = this.object.horario;
+								console.log(this.object)
+								this.loading = false;
+							}).catch(res => {
+								this.close();
+								this.toastr.error('Não foi possível acessar essa página')
+							})
+						})
 					})
+				})
+				
+
 			}
 			else {
 				this.close();
@@ -81,11 +101,7 @@ export class EditComponent{
 		})
 		
 
-		this.perfilService.list.subscribe((data) => {
-			this.perfis = Object.assign([], data);
-			
-		  })
-		  lastValueFrom(perfilService.getList())
+
 	}
 
     // Fechar modal e retornar para rota de estabelecimento
@@ -119,7 +135,7 @@ export class EditComponent{
 					let turma_id:number = parseInt(res.object? res.object : "0");
 					if(turma_id != 0){
 						// Caso recebemos a turma id, vamos inserir os perfis para cada turma
-						this.sendPerfil(turma_id)
+						// this.sendPerfil(turma_id)
 					}
 
 					this.close()
@@ -160,15 +176,16 @@ export class EditComponent{
 		return result
 	  }
 
-	  sendPerfil(turma_id: number){
-		this.selectedPerfis.forEach(perfil_id => {
+	sendPerfil(turma_id: number){
+		this.selectedPerfis.forEach(perfil => {
+			
 			let rel:TurmaPerfilRel = new TurmaPerfilRel();
 			rel.turma_Id = turma_id;
-			rel.perfil_Id = perfil_id;
+			rel.perfil_Id = perfil.id;
 			console.log(rel)
 			lastValueFrom(this.turmasService.postTurmaPerfilRel(rel))
 		});
-	  }
+	}
 
 }
 
