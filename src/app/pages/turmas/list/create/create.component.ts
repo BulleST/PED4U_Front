@@ -92,22 +92,12 @@ export class CreateComponent{
 		lastValueFrom(this.turmasService.post(this.object))
 			.then(res => {
 				console.log(res)
-				if (res.success) {
-					let turma_id:number = parseInt(res.object? res.object : "0");
-					if(turma_id != 0){
-						// Caso receba a turma id, inserir os perfis para cada turma
-						this.sendPerfil(turma_id)
-					}
+				
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
 					lastValueFrom(this.turmasService.getList())
-				}
-				else {
-					this.erro = res.message
-					this.toastr.error(res.message)
-				}
-				this.loading = false;
-			})
+			})	
+
 			.catch(res => {
 				this.erro = res;
 				console.error("console catch" + res);
@@ -120,7 +110,12 @@ export class CreateComponent{
 	formatTime(horario: string): string{
 		// receive timetable in this format "hh:mm";
 		// then change the time to 'hh:mm:ss'
-		return horario + ':00.000000' 
+		if(horario.length == 5)
+			return horario + ':00.000000' 
+		else if(horario.length == 8)
+			return horario + '.000000' 
+		else 
+			return horario
 	}
 
 	concatenatePerfil(perfis: string[]): string{
@@ -136,15 +131,7 @@ export class CreateComponent{
 		return result
 	  }
 
-	  sendPerfil(turma_id: number){
-		this.selectedPerfis.forEach(perfil_id => {
-			let rel:TurmaPerfilRel = new TurmaPerfilRel();
-			rel.turma_Id = turma_id;
-			rel.perfil_Id = perfil_id;
-			console.log(rel)
-			lastValueFrom(this.turmasService.postTurmaPerfilRel(rel))
-		});
-	  }
+	
 
 }
 

@@ -2,7 +2,7 @@
 
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { lastValueFrom } from "rxjs";
+import { Observable, async, lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
 import { DiaSemana, Turma } from "src/app/models/turmas.model";
@@ -22,7 +22,7 @@ import { EducadoresService } from "src/app/services/educadores.service";
 
 export class EditComponent{
     open = true;
-    object: TurmaCadastro = new TurmaCadastro;
+    turma: TurmaCadastro = new TurmaCadastro;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
@@ -41,7 +41,6 @@ export class EditComponent{
 	  selectedEducadores?: Educador = { id: -1, name: '', email: ''};
 	  selectHorario: string = '';
 
-	  selectedPerfisIniciais:Perfil[] = [];
 
 	
     constructor(
@@ -54,7 +53,7 @@ export class EditComponent{
     ){
 		this.activatedRoute.params.subscribe(res => {
 			if (res['id']) {
-				this.object.id = res['id']
+				this.turma.id = res['id']
 
 				this.perfilService.list.subscribe((data) => {
 					this.perfis = Object.assign([], data);
@@ -64,44 +63,35 @@ export class EditComponent{
 				})
 				lastValueFrom(perfilService.getList()).then(res =>{
 					lastValueFrom(educadoresService.getList()).then( res => {
-						lastValueFrom(this.turmasService.getPerfilByTurma(this.object.id)).then(res => {
+
+						lastValueFrom(this.turmasService.get(this.turma.id)).then(res => {
+							this.open = true;
+							this.turma = res;
+							this.selectedDiaSemana = this.diaSemana.find(x => x.id == this.turma.diaSemana);
+							this.selectedEducadores = this.educadores.find(x => x.id == this.turma.educador_Id);
+							this.selectHorario = this.turma.horario;
 							
-							if(res != null){
-								this.perfis.map( (perfil) => {
-									let perfilExistente = res.find(x => x.id == perfil.id) 
+							this.perfis.forEach(perfil => {
+								if(this.turma.perfis.find(x => x == perfil.id) != null){
+									this.selectedPerfis.push(perfil)
+								}
+							});
 
-									if(perfilExistente != null)
-										this.selectedPerfis.push(perfil)
-								})
-							}
-							this.selectedPerfisIniciais = this.selectedPerfis
 
-							lastValueFrom(this.turmasService.get(this.object.id)).then(res => {
-								this.open = true;
-								this.object = res;
-								this.selectedDiaSemana = this.diaSemana.find(x => x.id == this.object.diaSemana);
-								this.selectedEducadores = this.educadores.find(x => x.id == this.object.educador_Id);
-								this.selectHorario = this.object.horario;
-								console.log(this.object)
-								this.loading = false;
-							}).catch(res => {
-								this.close();
-								this.toastr.error('Não foi possível acessar essa página')
-							})
+							console.log(this.turma)
+							this.loading = false;
+						}).catch(res => {
+							this.close();
+							this.toastr.error('Não foi possível acessar essa página')
 						})
 					})
 				})
-				
-
 			}
 			else {
 				this.close();
 				this.toastr.error('Não foi possível acessar essa página')
 			}
 		})
-		
-
-
 	}
 
     // Fechar modal e retornar para rota de estabelecimento
@@ -114,33 +104,33 @@ export class EditComponent{
 	// Função criada para salvar as informações inseridas na modal de cadastro
 	async save() {
 		this.loading = true;
-		this.object.horario = this.formatTime(this.selectHorario)
+		this.turma.horario = this.formatTime(this.selectHorario)
 		if(!this.selectedDiaSemana){
 			this.erro = "Selecione um dia da Semana válido";
 			return;
 		} 
-		this.object.diaSemana = this.selectedDiaSemana.id;
+		this.turma.diaSemana = this.selectedDiaSemana.id;
 		if(!this.selectedEducadores){
+			console.log(this.selectedEducadores)
 			this.erro = "Selecione um Educador válido";
 			return;
 		} 
-		this.object.educador_Id = this.selectedEducadores? this.selectedEducadores.id : 0;
-		this.object.qtdeMaxAlunos = parseInt(this.object.qtdeMaxAlunos.toString())
-		this.object.unidade_Id = 0;
-		console.log(this.object)
-		lastValueFrom(this.turmasService.post(this.object))
-			.then(res => {
+		this.turma.educador_Id = this.selectedEducadores? this.selectedEducadores.id : 0;
+		this.turma.qtdeMaxAlunos = parseInt(this.turma.qtdeMaxAlunos.toString())
+		this.turma.unidade_Id = 0;
+		this.turma.perfis = []
+		this.selectedPerfis.forEach(perfil =>{
+			perfil.id = this.turma.perfis.push(perfil.id)
+		})
+		console.log(this.turma)
+		lastValueFrom(this.turmasService.post(this.turma))
+			.then(async res => {
 				console.log(res)
 				if (res.success) {
-					let turma_id:number = parseInt(res.object? res.object : "0");
-					if(turma_id != 0){
-						// Caso recebemos a turma id, vamos inserir os perfis para cada turma
-						// this.sendPerfil(turma_id)
-					}
+					lastValueFrom(this.turmasService.getList())
 
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
-					lastValueFrom(this.turmasService.getList())
 				}
 				else {
 					this.erro = res.message
@@ -160,7 +150,12 @@ export class EditComponent{
 	formatTime(horario: string): string{
 		// receive timetable in this format "hh:mm";
 		// then change the time to 'hh:mm:ss'
-		return horario + ':00.000000' 
+		if(horario.length == 5)
+			return horario + ':00.000000' 
+		else if(horario.length == 8)
+			return horario + '.000000' 
+		else 
+			return horario
 	}
 
 	concatenatePerfil(perfis: string[]): string{
@@ -176,16 +171,9 @@ export class EditComponent{
 		return result
 	  }
 
-	sendPerfil(turma_id: number){
-		this.selectedPerfis.forEach(perfil => {
-			
-			let rel:TurmaPerfilRel = new TurmaPerfilRel();
-			rel.turma_Id = turma_id;
-			rel.perfil_Id = perfil.id;
-			console.log(rel)
-			lastValueFrom(this.turmasService.postTurmaPerfilRel(rel))
-		});
-	}
+	
+		
+
 
 }
 

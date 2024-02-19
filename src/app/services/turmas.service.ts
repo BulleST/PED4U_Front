@@ -19,6 +19,7 @@ export class TurmasService {
   ) { }
 
   getList() {
+    console.log('pegando lista')
     return this.httpClient.get<Turma[]>(`${this.url}/Turma`)
       .pipe(tap({
         next: res => {
@@ -42,23 +43,22 @@ export class TurmasService {
   }
 
   getPerfilByTurma(id: number){
-    // return this.httpClient.get<Perfil[]>(`${this.url}/Turma_Perfil_Rel/ListByTurmaId${id}`)
+    return this.httpClient.get<TurmaPerfilRel[]>(`${this.url}/Turma_Perfil_Rel/ListByTurmaId${id}`)
 
-    return new Observable<Perfil[]>(observer => {
+    return new Observable<TurmaPerfilRel[]>(observer => {
       observer.next(
-        [{id: 6, nome: "15/02 Edição"}]
+        [{id: 1, perfil_Id: 6, turma_Id: 63}]
       )
       observer.complete()
     });
   }
 
   post(model: TurmaCadastro) {
+    console.log("Entramos no post turma model:")
+    console.log(model)
     return this.httpClient.post<Response>(`${this.url}/Turma`,model)
   }
 
-  postTurmaPerfilRel(model: TurmaPerfilRel){
-    return this.httpClient.post<Response>(`${this.url}/Turma_Perfil_Rel`,model)
-  }
 
   delete(id: number) {
     return this.httpClient.delete<Response>(`${this.url}/Turma/${id}`)

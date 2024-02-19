@@ -81,3 +81,7 @@ h5 {
   width: 17px;
   height: 16px;
 }
+
+.p-multiselect-label-container{
+  padding:10px
+}

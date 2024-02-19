@@ -16,8 +16,9 @@ export class TurmaCadastro{
     horario: string = '';
     diaSemana:  number = '' as unknown as number;
     qtdeMaxAlunos:  number = '' as unknown as number;
-    educador_Id: number = '' as unknown as number;;
-    unidade_Id:   number = '' as unknown as number;;
+    educador_Id: number = '' as unknown as number;
+    unidade_Id:   number = '' as unknown as number;
+    perfis: number[] = [];
 }
 
 export class DiaSemana{
