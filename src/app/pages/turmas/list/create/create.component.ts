@@ -21,7 +21,7 @@ import { EducadoresService } from "src/app/services/educadores.service";
 
 export class CreateComponent{
     open = true;
-    object: TurmaCadastro = new TurmaCadastro;
+    turma: TurmaCadastro = new TurmaCadastro;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
@@ -73,23 +73,24 @@ export class CreateComponent{
 	}
 
 	// Função criada para salvar as informações inseridas na modal de cadastro
-	async save() {
+	save() {
 		this.loading = true;
-		this.object.horario = this.formatTime(this.selectHorario)
+		this.turma.horario = this.formatTime(this.selectHorario)
 		if(this.selectedDiaSemana.id == -1){
 			this.erro = "Selecione um dia da Semana válido";
 			return;
 		} 
-		this.object.diaSemana = this.selectedDiaSemana.id;
+		this.turma.diaSemana = this.selectedDiaSemana.id;
 		if(this.selectedEducadores.id == -1){
 			this.erro = "Selecione um Educador válido";
 			return;
 		} 
-		this.object.educador_Id = this.selectedEducadores.id;
-		this.object.qtdeMaxAlunos = parseInt(this.object.qtdeMaxAlunos.toString())
-		this.object.unidade_Id = 0;
-		console.log(this.object)
-		lastValueFrom(this.turmasService.post(this.object))
+		this.turma.educador_Id = this.selectedEducadores.id;
+		this.turma.perfis = this.selectedPerfis;
+		this.turma.qtdeMaxAlunos = parseInt(this.turma.qtdeMaxAlunos.toString())
+		this.turma.unidade_Id = 0;
+		console.log(this.turma)
+		lastValueFrom(this.turmasService.post(this.turma))
 			.then(res => {
 				console.log(res)
 				

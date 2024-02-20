@@ -72,6 +72,8 @@ export class EditComponent{
 							this.selectHorario = this.turma.horario;
 							
 							this.perfis.forEach(perfil => {
+								if(this.turma.perfis == null)
+									return
 								if(this.turma.perfis.find(x => x == perfil.id) != null){
 									this.selectedPerfis.push(perfil)
 								}
@@ -120,7 +122,7 @@ export class EditComponent{
 		this.turma.unidade_Id = 0;
 		this.turma.perfis = []
 		this.selectedPerfis.forEach(perfil =>{
-			perfil.id = this.turma.perfis.push(perfil.id)
+			this.turma.perfis.push(perfil.id)
 		})
 		console.log(this.turma)
 		lastValueFrom(this.turmasService.post(this.turma))

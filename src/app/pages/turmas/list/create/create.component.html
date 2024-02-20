@@ -20,7 +20,10 @@
                                         <label for="perfis">Perfil:
                                             <span class="text-danger">*</span>
                                         </label>
+                                        
                                         <p-multiSelect 
+                                            [filter]="false"
+                                            inputId="float-label"
                                             class="dropdown" 
                                             [options]="perfis" 
                                             name="perfis"
@@ -91,7 +94,7 @@
                                             id="qtdeMaxAlunos" 
                                             name="qtdeMaxAlunos"
                                             #qtdeMaxAlunos="ngModel" 
-                                            [(ngModel)]="object.qtdeMaxAlunos" 
+                                            [(ngModel)]="turma.qtdeMaxAlunos" 
                                             placeholder=" ex: 12"
                                             required>
                                         <div *ngIf="qtdeMaxAlunos.touched && qtdeMaxAlunos.errors">

@@ -81,4 +81,71 @@
     width: 17px;
     height: 16px;
   }
-  
+
+  :host ::ng-deep .p-multiselect-trigger {
+    color: var(--primary);
+  }
+
+  :host ::ng-deep .p-multiselect-label {
+    color: var(--grey-highlight)
+  }
+
+  :host ::ng-deep .p-multiselect-items {
+    color: var(--primary);
+  }
+
+  :host ::ng-deep .p-multiselect-filter-container {
+    display: none;
+
+  }
+
+  :host ::ng-deep .p-checkbox .p-checkbox-box.p-highlight {
+    background: var(--primary);
+    border: #ff6315;
+
+  }
+
+  :host ::ng-deep .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight.p-focus {
+    background: none;
+  }
+
+  :host ::ng-deep .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {
+    background: none;
+  }
+
+  :host ::ng-deep .p-multiselect-panel .p-multiselect-header .p-multiselect-filter-container .p-multiselect-filter-icon {
+    color: var(--primary);
+    align-items: center;
+  }
+
+  :host ::ng-deep .p-multiselect-filter-icon {
+    margin-bottom: 5px;
+  }
+
+  :host ::ng-deep .p-multiselect-panel .p-multiselect-header {
+    display: none;
+  }
+
+  :host ::ng-deep .p-multiselect-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  :host ::ng-deep .p-multiselect span.ng-star-inserted {
+    margin-left: 5px;
+    color: var(--grey-highlight);
+  }
+
+  :host ::ng-deep .p-multiselect .p-inputtext {
+    font-family: var(--font-family);
+    font-feature-settings: var(--font-feature-settings, normal);
+    font-size: 1rem;
+    color: #4b5563;
+    background: #ffffff;
+    padding: 0.75rem 0.75rem;
+    border: 1px solid #d1d5db;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    border-radius: 6px;
+  }
