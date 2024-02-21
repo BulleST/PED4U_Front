@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Aluno, AlunoList } from "src/app/models/aluno.model";
 import { ToastrService } from "ngx-toastr";
 import { lastValueFrom } from "rxjs";
+import { Perfil } from "src/app/models/perfis.model";
 
 
 @Component({
@@ -15,7 +16,7 @@ import { lastValueFrom } from "rxjs";
 
 export class EditComponent {
 	open = true;
-	object: Aluno = new Aluno;
+	aluno: Aluno = new Aluno;
 	erro = '';
 	loading: boolean = true;
 	generos: string[] = [
@@ -27,7 +28,7 @@ export class EditComponent {
 		'Ativo',
 		'Inativo'
 	];
-	perfis: object [] = [
+	perfis: Perfil [] = [
 		{
 			id: 2,
 			nome: '80+'
@@ -43,12 +44,11 @@ export class EditComponent {
 	) {
 		this.activatedRoute.params.subscribe(res => {
 			if (res['id']) {
-				this.object.id = res['id']
+				this.aluno.id = res['id']
 				// Abrir modal
-				lastValueFrom(this.alunoService.get(this.object.id))
+				lastValueFrom(this.alunoService.get(this.aluno.id))
 					.then(res => {
 						this.open = true;
-						this.object = res;
 						this.loading = false;
 					}).catch(res => {
 						this.close();
@@ -72,7 +72,7 @@ export class EditComponent {
 
 	send() {
 		this.loading = true;
-		lastValueFrom(this.alunoService.post(this.object))
+		lastValueFrom(this.alunoService.post(this.aluno))
 			.then(res => {
 
 				if (res.success) {

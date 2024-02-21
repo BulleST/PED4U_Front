@@ -1,7 +1,7 @@
 
 
 import { Component, ViewChild } from '@angular/core';
-import { Aluno } from 'src/app/models/aluno.model';
+import { AlunoList } from 'src/app/models/aluno.model';
 import { AlunoService } from 'src/app/services/aluno.service';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
@@ -15,7 +15,7 @@ import { lastValueFrom } from 'rxjs';
 
   export class AlunoComponent{
     open = true;
-    list: Aluno [] = [];
+    list: AlunoList [] = [];
     id: number = 0;
     erro = '';
     generos: string [] = [
@@ -46,12 +46,11 @@ import { lastValueFrom } from 'rxjs';
       this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);
     }
 
-    getValue(value: boolean){
-      switch (value){
-        case true:
-          return 'Ativo';
-        case false:
+    getValue(value: string){
+      if (value == null){
           return 'Inativo';
+      }else {
+        return 'Ativo'
       }
     }
   

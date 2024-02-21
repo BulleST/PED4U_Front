@@ -75,3 +75,7 @@
 .less-rounded span.p-tag.p-tag-rounded { 
     border-radius: 25px; 
 } 
+
+:host ::ng-deep .p-tag{
+    background-color: #22C55E;
+}

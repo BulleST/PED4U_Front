@@ -14,13 +14,14 @@ export class Aluno{
   
   export class AlunoList {
     alunoId: number = '' as unknown as number;
+    turma_Id: number = '' as unknown as number;
     nome: string = '';
-    celular: number = '' as unknown as number;
+    celular: string = '';
     idade: number = '' as unknown as number;
     sexo: string = '';
-    horarioTurma:  Date = new Date(); 
-    diaTurma: string = '';
-    PerfilAluno: number = undefined as unknown as number;
-    dataVigencia: boolean = false;
+    horarioTurma:  string = ''; 
+    diaTurma: number = '' as unknown as number;
+    perfilAluno: string = '';
+    dataVigencia: string = '';
   }
 

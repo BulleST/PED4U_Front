@@ -174,10 +174,9 @@ export class HeaderComponent implements OnInit{
     
 
         if(this.loggedIn){
-            // this.router.navigate(['home']);
+            this.router.navigate(['home']);
 
-            // FAVOR REMOVER ESSA porcaria
-            this.router.navigate(['turmas', 'editar', '63']);
+          
         }
         else{
             this.router.navigate(['']);

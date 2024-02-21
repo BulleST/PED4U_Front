@@ -27,9 +27,9 @@
                                             id="nome" 
                                             name="nome" 
                                             #nome="ngModel"
-                                            [(ngModel)]="object.nome" 
+                                            [(ngModel)]="aluno.nome" 
                                             pattern="\S(.*\S)?"
-                                            (change)="object.nome = nome.value.trim()"
+                                            (change)="aluno.nome = nome.value.trim()"
                                             required minlength="3" 
                                             maxlength="30">
                                         <div *ngIf="nome.touched && nome.errors">
@@ -52,7 +52,7 @@
                                             id="dataNascimento"  
                                             name="dataNascimento"
                                             #dataNascimento="ngModel"
-                                            [(ngModel)]="object.dataNascimento" 
+                                            [(ngModel)]="aluno.dataNascimento" 
                                             placeholder=" ex: 00/00/0000"
                                             mask="00/00/0000"
                                             required 
@@ -72,7 +72,7 @@
                                         <p-dropdown 
                                             class="dropdown" 
                                             [options]="generos" 
-                                            [(ngModel)]="object.sexo_Id" 
+                                            [(ngModel)]="aluno.sexo_Id" 
                                             name="sexo"
                                             placeholder="Selecione o gênero">
                                         </p-dropdown>
@@ -84,19 +84,19 @@
                                         <p-dropdown 
                                             class="dropdown" 
                                             [options]="" 
-                                            [(ngModel)]="object.turma_Id" 
+                                            [(ngModel)]="aluno.turma_Id" 
                                             name="diaTurma"
                                             placeholder="Selecione a Turma">
                                         </p-dropdown>
                                     </div>
                                     <div class="form-group col-md-4 col-12">
                                         <!-- <p>{{perfil_Id.value}}</p>
-                                        <p>{{object.perfil_Id}}</p> -->
+                                        <p>{{aluno.perfil_Id}}</p> -->
                                         <label for="perfil_Id">Perfil:</label>
                                         <p-dropdown 
                                         class="dropdown" 
                                         [options]="perfis" 
-                                        [(ngModel)]="object.perfil_Id" 
+                                        [(ngModel)]="aluno.perfil_Id" 
                                         #perfil_Id="ngModel"
                                         optionLabel="nome"
                                         optionValue="id"
@@ -111,7 +111,7 @@
                                         <p-dropdown 
                                             class="dropdown"
                                             [options]="vigencia" 
-                                            [(ngModel)]="object.data_Vigencia_Inicial" 
+                                            [(ngModel)]="aluno.data_Vigencia_Inicial" 
                                             name="data_Vigencia_Inicial"
                                             placeholder="Informe o status da matrícula">
                                         </p-dropdown>
@@ -122,7 +122,7 @@
                                         <p-dropdown 
                                             class="dropdown"
                                             [options]="vigencia" 
-                                            [(ngModel)]="object.data_Vigencia_Final" 
+                                            [(ngModel)]="aluno.data_Vigencia_Final" 
                                             name="data_Vigencia_Inicial"
                                             placeholder="Informe o status da matrícula">
                                         </p-dropdown>
