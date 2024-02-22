@@ -6,6 +6,7 @@ import { Aluno, AlunoList } from "src/app/models/aluno.model";
 import { ToastrService } from "ngx-toastr";
 import { lastValueFrom } from "rxjs";
 import { Perfil } from "src/app/models/perfis.model";
+import { Turma } from "src/app/models/turmas.model";
 
 
 @Component({
@@ -28,12 +29,8 @@ export class EditComponent {
 		'Ativo',
 		'Inativo'
 	];
-	perfis: Perfil [] = [
-		{
-			id: 2,
-			nome: '80+'
-		}
-	];
+	perfis: Perfil [] = [];
+	turmas: Turma [] = [];
 	
 
 	constructor(

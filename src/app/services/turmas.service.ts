@@ -19,7 +19,6 @@ export class TurmasService {
   ) { }
 
   getList() {
-    console.log('pegando lista')
     return this.httpClient.get<Turma[]>(`${this.url}/Turma`)
       .pipe(tap({
         next: res => {

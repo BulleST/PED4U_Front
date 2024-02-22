@@ -20,7 +20,7 @@
                         <div class="form-container mb-4">
                             <div class="campo-container">
                                 <div class="row">
-                                    <div class="form-group col-md-6 col-12">
+                                    <div class="form-group col-md-5 col-12">
                                         <label for="nome">Nome do aluno:
                                              <span class="text-danger">*</span></label>
                                         <input 
@@ -29,9 +29,9 @@
                                             id="nome" 
                                             name="nome" 
                                             #nome="ngModel"
-                                            [(ngModel)]="object.nome" 
+                                            [(ngModel)]="aluno.nome" 
                                             pattern="\S(.*\S)?"
-                                            (change)="object.nome = nome.value.trim()"
+                                            (change)="aluno.nome = nome.value.trim()"
                                             required minlength="3" 
                                             maxlength="30">
                                         <div *ngIf="nome.touched && nome.errors">
@@ -44,46 +44,34 @@
                                             <p class="text-danger">{{erro}}</p>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-6 col-12">
-                                        
-                                        <label for="idade">Data de nascimento: 
-                                            <span class="text-danger">*</span></label>
-                                        <input 
-                                            type="text"  
-                                            class="form-control" 
-                                            id="dataNascimento"  
-                                            name="dataNascimento"
-                                            #dataNacimento="ngModel"
-                                            [(ngModel)]="object.dataNascimento" 
-                                            placeholder=" ex: 00/00/0000"
-                                            mask="00/00/0000"
-                                            required 
-                                            minlength="12"
-                                            maxlength="12">
-                                            <div *ngIf="dataNacimento.touched && dataNacimento.errors">
-                                            <p class="text-danger" *ngIf="dataNacimento.errors['required']">
-                                                Esse campo é obrigatório
-                                            </p>
-                                            <p class="text-danger">{{erro}}</p>
-                                            </div>
+                                     <div class="form-group col-md-3 col-12">
+                               
+                                        <label for="dataNascimento">Data de nascimento: 
+                                         <span class="text-danger">*</span>
+                                        </label>
+                                        <p-calendar 
+                                            [(ngModel)]="aluno.dataNascimento" 
+                                            selectionMode="single" 
+                                            [readonlyInput]="true" 
+                                            dateFormat="dd/mm/yy" 
+                                            [showIcon]="true"></p-calendar>
                                     </div>
-                                    
-                                   
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-6 col-12">
+                                    <div class="form-group col-md-4 col-12">
                                         <label for="genero">Gênero:
                                             <span class="text-danger">*</span>
                                         </label>
                                         <p-dropdown 
                                             class="dropdown" 
                                             [options]="generos" 
-                                            [(ngModel)]="object.sexo_Id" 
+                                            [(ngModel)]="aluno.sexo_Id" 
                                             name="vigencia"
                                             placeholder="Selecione o gênero">
                                         </p-dropdown>
                                     </div>  
-                                    <div class="form-group col-md-6 col-12">
+                                </div>
+                                <div class="row">
+                                   
+                                    <div class="form-group col-md-4 col-12">
                                         
                                         <label for="celular">Telefone: 
                                             <span class="text-danger">*</span></label>
@@ -93,7 +81,7 @@
                                             id="celular"  
                                             name="celular"
                                             #celular="ngModel"
-                                            [(ngModel)]="object.celular" 
+                                            [(ngModel)]="aluno.celular" 
                                             mask="(00) 0.0000-0000 || (00) 0000-0000"
                                             pattern="[0-9]{2} [0-9]{5}-[0-9]{4} || [0-9]{2} [0-9]{4}-[0-9]{4}" 
                                             placeholder="ex: 00 0 0000-0000"
@@ -107,48 +95,41 @@
                                             <p class="text-danger">{{erro}}</p>
                                             </div>
                                     </div>
-                                </div>
-                                  <div class="row">
                                     <div class="form-group col-md-4 col-12">
                                         <label for="turma_Id">Turma:</label>
                                         <p-dropdown 
                                             class="dropdown" 
-                                            [options]="" 
-                                            [(ngModel)]="object.turma_Id" 
-                                            name="diaTurma"
+                                            optionValue="id"
+                                            [options]="turmas"
+                                            [(ngModel)]="aluno.turma_Id" 
+                                            optionLabel="nome"
+                                            name="turma_Id"
                                             placeholder="Selecione a Turma">
                                         </p-dropdown>
                                     </div>
                                     <div class="form-group col-md-4 col-12">
                                         <label for="perfil_Id">Perfil:</label>
                                         <p-dropdown 
-                                        class="dropdown" 
-                                        [options]="perfis" 
-                                        [(ngModel)]="perfil.nome" 
-                                        optionLabel="nome"
-                                        name="perfil_Id"
-                                        placeholder="Selecione o Perfil do Aluno">
-                                    </p-dropdown>
-                                     </div>
-                                     <div class="form-group col-md-4 col-12">
-                                        <label for="data_Vigencia_Inicial"> Status Matrícula:  
-                                            <span class="text-danger">*</span></label>
-                                        <p-dropdown 
-                                            class="dropdown"
-                                            [options]="vigencia" 
-                                            [(ngModel)]="object.data_Vigencia_Inicial" 
-                                            name="data_Vigencia_Inicial"
-                                            placeholder="Informe o status da matrícula">
+                                            class="dropdown" 
+                                            [options]="perfis" 
+                                            optionValue="id" 
+                                            [(ngModel)]="aluno.perfil_Id" 
+                                            optionLabel="nome"
+                                            name="perfil_Id" 
+                                            placeholder="Selecione o Perfil do Aluno">
                                         </p-dropdown>
-                                    </div>
-                                    <div class="form-group col-md-4 col-12">
-                                        <label for="data_Vigencia_Final"> Status Matrícula:  
+                                     </div>
+                                </div>
+                                  <div class="row">
+
+                                     <div class="form-group col-md-4 col-12">
+                                        <label for="data_Vigencia_Inicial"> Início da Vigência:   
                                             <span class="text-danger">*</span></label>
                                         <p-dropdown 
                                             class="dropdown"
                                             [options]="vigencia" 
-                                            [(ngModel)]="object.data_Vigencia_Final" 
-                                            name="data_Vigencia_Final"
+                                            [(ngModel)]="aluno.data_Vigencia_Inicial" 
+                                            name="data_Vigencia_Inicial"
                                             placeholder="Informe o status da matrícula">
                                         </p-dropdown>
                                     </div>

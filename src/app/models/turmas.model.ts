@@ -9,7 +9,9 @@ export class Turma {
     nomeEducador: string = '';
     perfis: string = '';
     diaSemanaTxt: string = '';
+    nome: string = '';
 }
+
 
 export class TurmaCadastro{
     id: number = 0;

@@ -3,11 +3,11 @@ export class Aluno{
     id: number = '' as unknown as number;
     pessoa_Id: number = '' as unknown as number;
     turma_Id: number = '' as unknown as number;
-    perfil_Id:number = '' as unknown as number;
+    perfil_Id: number = '' as unknown as number;
     data_Vigencia_Inicial: boolean = false;
     data_Vigencia_Final:boolean = false;
     nome: string = '';
-    dataNascimento:  string = '';;
+    dataNascimento:  string = '';
     celular: string = '';
     sexo_Id: number = '' as unknown as number;
   }

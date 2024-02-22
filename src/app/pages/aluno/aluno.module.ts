@@ -15,6 +15,7 @@ import { EditComponent } from './list/edit/edit.component';
 import { ToastrModule } from "ngx-toastr";
 import { IConfig } from 'ngx-mask'
 import { DeleteComponent } from './list/delete/delete.component';
+import { CalendarModule } from 'primeng/calendar';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
     return {
@@ -43,6 +44,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
         CheckboxModule,
         DropdownModule,
         ToastrModule,
+        CalendarModule
    
     ],
 

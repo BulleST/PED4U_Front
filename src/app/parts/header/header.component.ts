@@ -174,9 +174,9 @@ export class HeaderComponent implements OnInit{
     
 
         if(this.loggedIn){
-            this.router.navigate(['home']);
+            // this.router.navigate(['home']);
 
-          
+            this.router.navigate(['aluno/cadastrar']);
         }
         else{
             this.router.navigate(['']);

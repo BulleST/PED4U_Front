@@ -1,3 +1,4 @@
+import { PerfilService } from './../../../../services/perfil.service';
 import { AlunoService } from "src/app/services/aluno.service";
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
@@ -6,6 +7,10 @@ import { Perfil } from "src/app/models/perfis.model";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
+import { TurmasService } from 'src/app/services/turmas.service';
+import { Turma } from 'src/app/models/turmas.model';
+
+
 
 
 @Component({
@@ -16,7 +21,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class CreateComponent{
     open = true;
-    object: Aluno = new Aluno;
+    aluno: Aluno = new Aluno;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
@@ -29,8 +34,10 @@ export class CreateComponent{
 		'Ativo',
 		'Inativo'
 	];
-	perfis: object [] = [];
-	perfil: Perfil = new Perfil;
+	perfis: Perfil [] = [];
+	turmas: Turma [] = [];
+	
+	
 	
 
 
@@ -39,8 +46,20 @@ export class CreateComponent{
 		private router: Router,
 		private alunoService: AlunoService,
 		private toastr: ToastrService,
-		private http: HttpClient
-	) { }
+		private http: HttpClient,
+		private perfilService: PerfilService,
+		private turmasService: TurmasService
+	) { 
+		this.perfilService.list.subscribe((data) => {
+			this.perfis = Object.assign([], data);
+		})
+		lastValueFrom(perfilService.getList());
+
+		this.turmasService.list.subscribe((data) =>{
+			this.turmas = Object.assign([], data)
+		})
+		lastValueFrom(turmasService.getList());
+	}
 
 	// Fechar modal e retornar para rota de estabelecimento
 	close(): void {
@@ -50,10 +69,10 @@ export class CreateComponent{
 	}
 
 	// Função criada para salvar as informações inseridas na modal de cadastro
-	async save() {
+	 save() {
 		this.loading = true;
-		console.log(this.object)
-		lastValueFrom(this.alunoService.post(this.object))
+		console.log(this.aluno)
+		lastValueFrom(this.alunoService.post(this.aluno))
 			.then(res => {
 				if (res.success) {
 					this.close()
