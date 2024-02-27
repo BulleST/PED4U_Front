@@ -13,7 +13,7 @@ import { Response } from "../models/response.model";
 
 export class AlunoService {
   url = environment.url;
-  list: BehaviorSubject<AlunoList[]> = new BehaviorSubject<AlunoList[]>([])
+  list: BehaviorSubject<Aluno[]> = new BehaviorSubject<Aluno[]>([])
 
 
   constructor(
@@ -21,7 +21,7 @@ export class AlunoService {
   ) { }
 
   getList() {
-    return this.httpClient.get<AlunoList[]>(`${this.url}/Aluno`)
+    return this.httpClient.get<Aluno[]>(`${this.url}/Aluno`)
       .pipe(tap({
         next: res => {
           this.list.next(res)
@@ -30,7 +30,7 @@ export class AlunoService {
   }
 
   getListPerfil(){
-    return this.httpClient.get<AlunoList[]>(`${this.url}/Aluno`)
+    return this.httpClient.get<Aluno[]>(`${this.url}/Aluno`)
       .pipe(tap({
         next: res => {
           this.list.next(res)
@@ -39,7 +39,7 @@ export class AlunoService {
   }
 
   get(id: number) {
-    return this.httpClient.get<AlunoList>(`${this.url}/Aluno/${id}`)
+    return this.httpClient.get<Aluno>(`${this.url}/Aluno/${id}`)
 
   }
 

@@ -6,7 +6,7 @@ import { lastValueFrom } from 'rxjs';
 import { AulasService } from 'src/app/services/aulas.service';
 import { ApostilaAbaco } from 'src/app/models/abaco.model';
 import { ApostilasService } from 'src/app/services/apostilas.service';
-
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -94,6 +94,11 @@ export class AulasComponent {
       console.log(this.object.nome, this.apostilaSelected)
   }
 
+  formatDate( value :string){
+    const datePipe: DatePipe = new DatePipe('en-US')
+    let date = new Date(value)
+    return datePipe.transform(date,'dd/MM/YYYY')
+  }
 }
     
 

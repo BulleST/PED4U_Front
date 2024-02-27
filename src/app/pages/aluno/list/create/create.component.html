@@ -13,9 +13,6 @@
             </div>
             <div class="modal-body">
                 <form #form="ngForm">
-                    <div class="d-flex mb-3">
-                        <button type="reset" class="btn-clear">Limpar Campos</button>
-                    </div>
                     <div class="column">
                         <div class="form-container mb-4">
                             <div class="campo-container">
@@ -31,6 +28,7 @@
                                             #nome="ngModel"
                                             [(ngModel)]="aluno.nome" 
                                             pattern="\S(.*\S)?"
+                                            placeholder="Digite o nome do Aluno"
                                             (change)="aluno.nome = nome.value.trim()"
                                             required minlength="3" 
                                             maxlength="30">
@@ -50,22 +48,32 @@
                                          <span class="text-danger">*</span>
                                         </label>
                                         <p-calendar 
+                                            name="dataNascimento"
                                             [(ngModel)]="aluno.dataNascimento" 
+                                            placeholder="__/__/__"
                                             selectionMode="single" 
                                             [readonlyInput]="true" 
                                             dateFormat="dd/mm/yy" 
                                             [showIcon]="true"></p-calendar>
                                     </div>
                                     <div class="form-group col-md-4 col-12">
-                                        <label for="genero">Gênero:
+                                        <label for="sexo_Id">Gênero:
                                             <span class="text-danger">*</span>
                                         </label>
                                         <p-dropdown 
                                             class="dropdown" 
+                                            #sexo_Id="ngModel"
                                             [options]="generos" 
-                                            [(ngModel)]="aluno.sexo_Id" 
-                                            name="vigencia"
+                                            [(ngModel)]="selectedGenero" 
+                                            name="sexo_Id"
+                                            inputId="sexo_Id"
                                             placeholder="Selecione o gênero">
+                                            <ng-template pTemplate="selectedItem">
+                                                    <div *ngIf="selectedGenero">{{selectedGenero.nome}}</div>
+                                            </ng-template>
+                                            <ng-template let-sexo pTemplate="item">
+                                               <p>{{sexo.nome}}</p>
+                                            </ng-template>
                                         </p-dropdown>
                                     </div>  
                                 </div>
@@ -84,7 +92,7 @@
                                             [(ngModel)]="aluno.celular" 
                                             mask="(00) 0.0000-0000 || (00) 0000-0000"
                                             pattern="[0-9]{2} [0-9]{5}-[0-9]{4} || [0-9]{2} [0-9]{4}-[0-9]{4}" 
-                                            placeholder="ex: 00 0 0000-0000"
+                                            placeholder="Ex: (00) 0 0000-0000"
                                             required 
                                             minlength="12"
                                             maxlength="12">
@@ -92,66 +100,101 @@
                                             <p class="text-danger" *ngIf="celular.errors['required']">
                                                 Esse campo é obrigatório
                                             </p>
-                                            <p class="text-danger">{{erro}}</p>
+                                            
                                             </div>
                                     </div>
                                     <div class="form-group col-md-4 col-12">
                                         <label for="turma_Id">Turma:</label>
                                         <p-dropdown 
                                             class="dropdown" 
-                                            optionValue="id"
                                             [options]="turmas"
-                                            [(ngModel)]="aluno.turma_Id" 
-                                            optionLabel="nome"
+                                            [(ngModel)]="selectedTurma" 
+                                            optionLabel="horario"
                                             name="turma_Id"
+                                            inputId="turma_Id"
+                                            #turma_Id="ngModel"
                                             placeholder="Selecione a Turma">
+                                            <!-- <ng-template pTemplate="selectedItem">
+                                                <div class="flex align-items-center gap-2" *ngIf="selectedTurma">
+                                                    <div>{{selectedTurma.nome}}</div>
+                                                </div>
+                                            </ng-template> -->
+                                            <ng-template let-turma pTemplate="item">
+                                               <p>{{turma.horario}} {{turma.nomeEducador}}</p>
+                                            </ng-template>
                                         </p-dropdown>
+                                        
                                     </div>
                                     <div class="form-group col-md-4 col-12">
                                         <label for="perfil_Id">Perfil:</label>
                                         <p-dropdown 
                                             class="dropdown" 
                                             [options]="perfis" 
-                                            optionValue="id" 
-                                            [(ngModel)]="aluno.perfil_Id" 
+                                            [(ngModel)]="selectedPerfis" 
                                             optionLabel="nome"
-                                            name="perfil_Id" 
-                                            placeholder="Selecione o Perfil do Aluno">
+                                            name="perfil_Id"
+                                            placeholder="Selecione um perfil">
+                                            <ng-template pTemplate="selectedItem">
+                                                <div class="flex align-items-center gap-2" *ngIf="selectedPerfis">
+                                                    <div>{{ selectedPerfis.nome }}</div>
+                                                </div>
+                                            </ng-template>
+                                            <ng-template let-perfis pTemplate="item">
+                                               <p>{{perfis.nome}}</p>
+                                            </ng-template>
                                         </p-dropdown>
                                      </div>
                                 </div>
                                   <div class="row">
 
                                      <div class="form-group col-md-4 col-12">
+
                                         <label for="data_Vigencia_Inicial"> Início da Vigência:   
                                             <span class="text-danger">*</span></label>
-                                        <p-dropdown 
+                                        <p-calendar  
+                                            name="vigencia"  
+                                            [(ngModel)]="datavigencia" 
+                                            selectionMode="range" 
+                                            (onSelect)="dataVigenciaSelected($event)"
+                                            [readonlyInput]="true"
+                                            dateFormat="dd/mm/yy" s
+                                            [showIcon]="true"></p-calendar>
+
+                                        <!-- <p-dropdown 
                                             class="dropdown"
                                             [options]="vigencia" 
                                             [(ngModel)]="aluno.data_Vigencia_Inicial" 
                                             name="data_Vigencia_Inicial"
                                             placeholder="Informe o status da matrícula">
-                                        </p-dropdown>
+                                        </p-dropdown> -->
                                     </div>
                                   </div>
                             
-                                
-                               
-                                <div class="modal-footer">
-                                    <button 
-                                        type="button"
-                                        class="btn-cancel" 
-                                        (click)="close()"
-                                        [disabled]="loading">Cancelar
-                                    </button>
-                                    <button 
-                                        type="button"
-                                        class="btn-save" 
-                                        data-dismiss="modal" 
-                                        (click)="save()"
-                                        [disabled]="loading">Salvar
+                                  <div class="modal-footer">
+                                    <div class="me-auto  bd-highlight">
+                                     <button 
+                                             type="reset" 
+                                             class="btn-clear">Limpar Campos</button>
+                                    </div>
+                                         
+                                   
+                                     <button 
+                                         type="button" 
+                                         class="btn-delete" 
+                                         (click)="close()"
+                                         [disabled]="loading">
+                                         Cancelar
                                      </button>
-                                </div>
+                                     <button 
+                                         type="button" 
+                                         class="btn-edit" 
+                                         data-dismiss="modal" 
+                                         (click)="save()"
+                                         [disabled]="loading">
+                                         Salvar
+                                     </button>
+                                     <p class="text-danger">{{erro}}</p>
+                                 </div>
                             </div>
                         </div>
                     </div>

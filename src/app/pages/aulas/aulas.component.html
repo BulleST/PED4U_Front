@@ -15,7 +15,7 @@
                 [showCurrentPageReport]="true" 
                 currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} páginas"
                 [filterDelay]="0"
-                [globalFilterFields]="['id','nome', 'apostila', 'pagina', 'falta', 'reposicao']">
+                [globalFilterFields]="['id','descricao', 'data', 'realizada','educadorNome','apostila', 'pagina', 'falta', 'reposicao']">
                 <ng-template pTemplate="caption">
                     <div class="flex">
                         <!-- Button para realizar cadastros na Tabela -->
@@ -39,10 +39,18 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th></th>
-                        <th pSortableColumn="nome" class="nome">
+                        <th pSortableColumn="descricao" class="descricao">
                             Nome
-                            <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
-                            <p-sortIcon field="nome"></p-sortIcon> </th> 
+                            <p-columnFilter type="text" field="descricao" display="menu"></p-columnFilter>
+                            <p-sortIcon field="descricao"></p-sortIcon> </th> 
+                        <th pSortableColumn="data" class="data">
+                            Data
+                            <p-columnFilter type="text" field="data" display="menu"></p-columnFilter>
+                            <p-sortIcon field="data"></p-sortIcon> </th> 
+                        <th pSortableColumn="realizada" class="realizada">
+                            Aula Realizada
+                            <p-columnFilter type="text" field="realizada" display="menu"></p-columnFilter>
+                            <p-sortIcon field="realizada"></p-sortIcon> </th> 
                         <th pSortableColumn="apostila" class="apostila">
                             Apostila
                             <p-columnFilter type="text" field="apostila" display="menu"></p-columnFilter>
@@ -67,7 +75,15 @@
                 <ng-template pTemplate="body" let-item>
                     <tr>
                         <td>{{item.id}}</td>
-                        <td>{{item.nome}}</td>
+                        <td>{{item.descricao}}</td>
+                        <td>{{formatDate(item.data)}}</td>
+                        <td>
+                            <p-toggleButton 
+                                class="btn-falta" 
+                                [(ngModel)]="item.realizada"
+                                onLabel="Concluída" 
+                                offLabel="A Realizar">
+                            </p-toggleButton></td>
                        <td>
                         <span class="p-float-label">
                             <!-- <label for="apostila">Apostilas</label> -->

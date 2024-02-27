@@ -149,3 +149,11 @@
     appearance: none;
     border-radius: 6px;
   }
+
+
+  ::ng-deep .p-inputtext {
+    width: 578px !important;
+    color: #6c757d;
+    display: inline-flex;
+    align-items: center;
+}

@@ -79,3 +79,10 @@
 :host ::ng-deep .p-tag{
     background-color: #22C55E;
 }
+
+:host ::ng-deep .p-inputtext {
+    
+    color: #6c757d;
+    display: inline-flex;
+    align-items: center;
+}

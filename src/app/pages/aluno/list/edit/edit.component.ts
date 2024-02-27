@@ -6,7 +6,7 @@ import { Aluno, AlunoList } from "src/app/models/aluno.model";
 import { ToastrService } from "ngx-toastr";
 import { lastValueFrom } from "rxjs";
 import { Perfil } from "src/app/models/perfis.model";
-import { Turma } from "src/app/models/turmas.model";
+import { DiaSemana, Turma } from "src/app/models/turmas.model";
 
 
 @Component({
@@ -29,8 +29,18 @@ export class EditComponent {
 		'Ativo',
 		'Inativo'
 	];
+	diaSemanaList: DiaSemana [] = [
+		{id: 1 , nome: 'Segunda-Feira'},
+		{id: 2 , nome: 'Terça-Feira'},
+		{id: 3 , nome: 'Quarta-Feira'},
+		{id: 4 , nome: 'Quinta-Feira'},
+		{id: 5 , nome: 'Sexta-Feira'},
+		{id: 6 , nome: 'Sábado'}
+	  ];
 	perfis: Perfil [] = [];
 	turmas: Turma [] = [];
+	selectedPerfis?: Perfil = new Perfil;
+	selectedTurma?: Turma = new Turma;
 	
 
 	constructor(
@@ -43,7 +53,7 @@ export class EditComponent {
 			if (res['id']) {
 				this.aluno.id = res['id']
 				// Abrir modal
-				lastValueFrom(this.alunoService.get(this.aluno.id))
+				lastValueFrom(this.alunoService.post(this.aluno))
 					.then(res => {
 						this.open = true;
 						this.loading = false;
@@ -69,6 +79,8 @@ export class EditComponent {
 
 	send() {
 		this.loading = true;
+		this.aluno.turma_Id = this.selectedTurma?.id as number;
+		this.aluno.perfil_Id = this.selectedPerfis?.id as number;
 		lastValueFrom(this.alunoService.post(this.aluno))
 			.then(res => {
 
@@ -92,6 +104,18 @@ export class EditComponent {
 			.finally(() => {
 				this.loading = false;
 			})
+	}
+
+	getTurmaNome(turma: Turma){
+		let diaSemanaTxt = this.getDiaSemana(turma.diaSemana);
+		let turmaNome = turma.nomeEducador + ' ' + diaSemanaTxt + ' ' + turma.horario;
+		return turmaNome;	
+	}
+
+	getDiaSemana(diaSemana_id:number): string{
+		let diaSemana = this.diaSemanaList.find(x => x.id == diaSemana_id)
+		if(diaSemana == null) return '';
+		else return diaSemana.nome;
 	}
 
 }

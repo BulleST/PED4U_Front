@@ -16,7 +16,7 @@ import { getError } from 'src/app/utils/error';
     styleUrls: ['./change-password.component.css']
 })
 export class ChangePasswordComponent  {
-    faKey= faKey;
+    faKey = faKey;
     faChevron = faChevronCircleLeft;
     open = true;
     objeto: ChangePassword = new ChangePassword;

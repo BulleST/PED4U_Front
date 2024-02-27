@@ -1,6 +1,8 @@
+
+import { AlunoAulaRel } from './../models/aluno.model';
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of, tap } from "rxjs";
-import { AlunoAula } from "../models/aulas.model";
+import { AlunoAula, Aula} from "../models/aulas.model";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
 import { environment } from "src/environment/environment";
@@ -12,7 +14,7 @@ import { ApostilaAbaco } from "../models/abaco.model";
 
 export class AulasService {
   url = environment.url;
-  list: BehaviorSubject<AlunoAula[]> = new BehaviorSubject<AlunoAula[]>([])
+  list: BehaviorSubject<AlunoAulaRel[]> = new BehaviorSubject<AlunoAulaRel[]>([])
 
 
 
@@ -22,7 +24,7 @@ export class AulasService {
   ) { }
 
   getList() {
-    return this.httpClient.get<AlunoAula[]>(`${this.url}/Aluno_Aula_Rel`)
+    return this.httpClient.get<AlunoAulaRel[]>(`${this.url}/Aluno_Aula_Rel/Presenca-by-AulaId/{aula_Id}`)
       .pipe(tap({
         next: res => {
           this.list.next(res)
@@ -31,7 +33,7 @@ export class AulasService {
   }
 
   get(id: number) {
-    return this.httpClient.get<AlunoAula>(`${this.url}/Aluno_Aula_Rel/${id}`)
+    return this.httpClient.get<AlunoAulaRel>(`${this.url}/Aluno_Aula_Rel/Presenca-by-AulaId/{aula_Id}`)
 
   }
 

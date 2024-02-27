@@ -17,7 +17,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { RequestInterceptor } from './helpers/request.interceptor';
-import { CurrencyPipe, DatePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe, registerLocaleData } from '@angular/common';
 import {  NgxMaskModule, NgxMaskPipe } from 'ngx-mask';
 import { MenubarModule } from 'primeng/menubar';
 import { jwtDecode } from 'jwt-decode';
@@ -25,6 +25,8 @@ import { LoadingComponent } from './parts/loading/loading.component';
 import { AlertComponent } from './parts/alert/alert.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from './shared/shared.module';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt)
 
 
 
