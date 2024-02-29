@@ -29,7 +29,7 @@ import { lastValueFrom } from 'rxjs';
     constructor(private alunoService: AlunoService){
       this.alunoService.list.subscribe((data) =>{
         this.list = Object.assign([], data);
-        console.log('lista de apostilas ', data)
+
         })
         lastValueFrom(alunoService.getList())
     }

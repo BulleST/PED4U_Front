@@ -42,28 +42,37 @@
                                         </div>
                                     </div>
                                      <div class="form-group col-md-3 col-12">
-                               
-                                        <label for="dataNascimento">Data de nascimento: 
-                                         <span class="text-danger">*</span>
+                                        <label for="dataNascimento">Data de nascimento:
+                                            <span class="text-danger">*</span>
                                         </label>
                                         <p-calendar 
-                                            name="dataNascimento"
+                                            name="dataNascimento" 
                                             [(ngModel)]="aluno.dataNascimento" 
-                                            selectionMode="single" 
+                                            placeholder="__/__/__" 
+                                            selectionMode="single"
                                             [readonlyInput]="true" 
                                             dateFormat="dd/mm/yy" 
-                                            [showIcon]="true"></p-calendar>
+                                            [showIcon]="true">
+                                        </p-calendar>
                                     </div>
                                     <div class="form-group col-md-4 col-12">
-                                        <label for="genero">Gênero:
+                                        <label for="sexo_Id">Gênero:
                                             <span class="text-danger">*</span>
                                         </label>
                                         <p-dropdown 
                                             class="dropdown" 
+                                            #sexo_Id="ngModel"
                                             [options]="generos" 
-                                            [(ngModel)]="aluno.sexo_Id" 
-                                            name="genero"
+                                            [(ngModel)]="selectedGenero" 
+                                            name="sexo_Id"
+                                            inputId="sexo_Id"
                                             placeholder="Selecione o gênero">
+                                            <ng-template pTemplate="selectedItem">
+                                                    <div *ngIf="selectedGenero">{{selectedGenero.nome}}</div>
+                                            </ng-template>
+                                            <ng-template let-sexo pTemplate="item">
+                                               <p>{{sexo.nome}}</p>
+                                            </ng-template>
                                         </p-dropdown>
                                     </div>  
                                 </div>
@@ -106,48 +115,56 @@
                                             placeholder="Selecione a Turma">
                                             <ng-template pTemplate="selectedItem">
                                                 <div class="flex align-items-center gap-2" *ngIf="selectedTurma">
-                                                    <div>{{this.getTurmaNome(selectedTurma)}}</div>
+                                                    <div>{{selectedTurma.horario}} {{selectedTurma.nomeEducador}}</div>
                                                 </div>
                                             </ng-template>
                                             <ng-template let-turma pTemplate="item">
-                                               <p>{{this.getTurmaNome(turma)}}</p>
+                                               <p>{{turma.horario}} {{turma.nomeEducador}}</p>
                                             </ng-template>
                                         </p-dropdown>
-
                                     </div>
                                     <div class="form-group col-md-4 col-12">
                                         <label for="perfil_Id">Perfil:</label>
                                         <p-dropdown 
-                                            class="dropdown" 
-                                            [options]="perfis" 
-                                            [(ngModel)]="selectedPerfis" 
-                                            optionLabel="nome"
-                                            name="perfil_Id"
-                                            placeholder="Selecione um perfil">
-                                            <ng-template pTemplate="selectedItem">
-                                                <div class="flex align-items-center gap-2" *ngIf="selectedPerfis">
-                                                    <div>{{ selectedPerfis.nome }}</div>
-                                                </div>
-                                            </ng-template>
-                                            <ng-template let-perfis pTemplate="item">
-                                               <p>{{perfis.nome}}</p>
-                                            </ng-template>
-                                        </p-dropdown>
+                                        class="dropdown" 
+                                        [options]="perfis" 
+                                        [(ngModel)]="selectedPerfis" 
+                                        optionLabel="nome"
+                                        name="perfil_Id"
+                                        placeholder="Selecione um perfil">
+                                        <ng-template pTemplate="selectedItem">
+                                            <div class="flex align-items-center gap-2" *ngIf="selectedPerfis">
+                                                <div>{{ selectedPerfis.nome }}</div>
+                                            </div>
+                                        </ng-template>
+                                        <ng-template let-perfis pTemplate="item">
+                                           <p>{{perfis.nome}}</p>
+                                        </ng-template>
+                                    </p-dropdown>
                                      </div>
                                 </div>
                                   <div class="row">
 
                                      <div class="form-group col-md-4 col-12">
 
-                                        <label for="data_Vigencia_Inicial"> Início da Vigência:   
+                                        <label for="dataVigencia"> Data de Vigência:   
                                             <span class="text-danger">*</span></label>
                                         <p-calendar  
-                                            name="vigencia"  
-                                            [(ngModel)]="aluno.data_Vigencia_Inicial" 
+                                            #calendarDataVigencia
+                                            name="dataVigencia"  
+                                            inputId="dataVigencia"
+                                            [(ngModel)]="dataVigencia"                                           
                                             selectionMode="range" 
+                                            (onSelect)="dataVigenciaSelected($event)"
+                                            [ngModelOptions]="{updateOn: 'blur'}"
                                             [readonlyInput]="true"
+                                            dataType="string"
                                             dateFormat="dd/mm/yy" 
+                                            [monthNavigator]="true"
+                                            [yearNavigator]="true"
+                                            [defaultDate]="dataVigencia[0]"
                                             [showIcon]="true"></p-calendar>
+                                            
 
                                         <!-- <p-dropdown 
                                             class="dropdown"

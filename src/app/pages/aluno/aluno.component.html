@@ -61,13 +61,9 @@
                             <p-columnFilter style="color: #fff" type="text" field="sexo_Id" display="menu"></p-columnFilter>
                             <p-sortIcon field=""></p-sortIcon></th>     
                         <th pSortableColumn="horarioTurma" class="horarioTurma">
-                            Horário
+                            Turma
                             <p-columnFilter style="color: #fff" type="text" field="horarioTurma" display="menu"></p-columnFilter>
-                            <p-sortIcon field="horarioTurma"></p-sortIcon></th>
-                        <th pSortableColumn="diaTurma" class="diaTurma">
-                            Dia da semana
-                            <p-columnFilter style="color: #fff" type="text" field="diaTurma" display="menu"></p-columnFilter>
-                            <p-sortIcon field="diaTurma"></p-sortIcon></th>    
+                            <p-sortIcon field="horarioTurma"></p-sortIcon></th> 
                         <th pSortableColumn="perfil" class="perfil">
                             Perfil
                             <p-columnFilter type="text" field="perfil" display="menu"></p-columnFilter>
@@ -88,15 +84,15 @@
                         <td>{{item.celular}}</td>
                         <td>{{item.idade}}</td>
                         <td>{{item.sexo }}</td>
-                        <td>{{item.horarioTurma}}</td>
-                        <td>{{item.diaTurma}}</td>
+                        <td>{{item.horarioTurma}},{{item.nomeEducador}},{{item.diaTurma}}</td>
+                  
                         <td>{{item.perfilAluno}}</td>
                         <td>
                             <p-tag [value]="getValue(item.dataVigencia)" [severity]="getSeverity(item.dataVigencia)"></p-tag>
                         </td>
                         <td>
-                            <a class="btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
-                            <a class="btn-delete" [routerLink]="['excluir',item.id]">Excluir</a>
+                            <a class="btn-edit me-2" [routerLink]="['editar',item.alunoId]">Editar</a>
+                            <a class="btn-delete" [routerLink]="['excluir',item.alunoId]">Excluir</a>
                         </td>
                             
                          

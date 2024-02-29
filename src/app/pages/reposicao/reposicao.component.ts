@@ -39,18 +39,18 @@ export class ReposicaoComponent {
     this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);
   }
 
-  concatenatePerfil(reposicao: Reposicao): string{
-    let perfis: string = '';
+  // concatenatePerfil(reposicao: Reposicao): string{
+  //   let perfis: string = '';
     
-    for(let i = 0; i < reposicao.perfil.length; i++){
-      perfis += reposicao.perfil[i].nome
-      if(i != reposicao.perfil.length-1){
-        perfis += ', '
-      }
+  //   for(let i = 0; i < reposicao.perfil.length; i++){
+  //     perfis += reposicao.perfil[i].nome
+  //     if(i != reposicao.perfil.length-1){
+  //       perfis += ', '
+  //     }
        
-    }
-    return perfis
-  }
+  //   }
+  //   return perfis
+  // }
 
   getValueFalta(value: boolean){
     switch (value){

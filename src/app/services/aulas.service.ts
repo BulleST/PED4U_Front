@@ -14,7 +14,7 @@ import { ApostilaAbaco } from "../models/abaco.model";
 
 export class AulasService {
   url = environment.url;
-  list: BehaviorSubject<AlunoAulaRel[]> = new BehaviorSubject<AlunoAulaRel[]>([])
+  list: BehaviorSubject<Aula[]> = new BehaviorSubject<Aula[]>([])
 
 
 
@@ -24,7 +24,7 @@ export class AulasService {
   ) { }
 
   getList() {
-    return this.httpClient.get<AlunoAulaRel[]>(`${this.url}/Aluno_Aula_Rel/Presenca-by-AulaId/{aula_Id}`)
+    return this.httpClient.get<Aula[]>(`${this.url}/Aula`)
       .pipe(tap({
         next: res => {
           this.list.next(res)

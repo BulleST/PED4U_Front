@@ -22,14 +22,7 @@ export class CreateComponent{
 	erro = '';
 	loading: boolean = false;
 	perfis: Perfil [] = [];
-	diaTurma: string [] = [
-		'Segunda-Feira',
-		'Terça-Feira',
-		'Quarta-Feira',
-		'Quinta-Feira',
-		'Sexta-Feira',
-		'Sábado'
-	  ];
+	
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,

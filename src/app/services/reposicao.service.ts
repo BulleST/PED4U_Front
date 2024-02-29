@@ -18,7 +18,7 @@ export class ReposicaoService {
   ) { }
 
   getList() {
-    return this.httpClient.get<Reposicao[]>(`${this.url}/Reposicao`)
+    return this.httpClient.get<Reposicao[]>(`${this.url}/Aluno_Aula_Rel/Reposicao-List`)
       .pipe(tap({
         next: res => {
           this.list.next(res)
