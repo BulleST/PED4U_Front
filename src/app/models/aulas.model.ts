@@ -15,10 +15,19 @@ export class Aula{
 
 export class AlunoAula{
     id: number = 0;
-    reposicao: boolean = true;
-    falta: boolean = true;
+    aula_Id: number = 0;
+    aluno_Id: number = 0;
+    nome: string = '';
+    data_Vigencia_Final: Date = new Date;
+    apostila: string = '';
     paginaAtual: number = 0;
-    apostilaNome: string = '';
-    pessoaNome: string = '';
+    falta: boolean = true;
+    reposicao: boolean = true;
 }
+
+
+
+
+
+
 

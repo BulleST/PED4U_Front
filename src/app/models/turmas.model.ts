@@ -2,6 +2,7 @@
 
 export class Turma {
     id: number = 0;
+    nome: string = '';
     horario: string = '';
     diaSemana: number = 0;
     capacidadeAlunos: number = 0;
@@ -9,7 +10,7 @@ export class Turma {
     nomeEducador: string = '';
     perfis: string = '';
     diaSemanaTxt: string = '';
-    nome: string = '';
+
 }
 
 

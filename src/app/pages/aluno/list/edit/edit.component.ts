@@ -1,8 +1,8 @@
 
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild} from "@angular/core";
 import { AlunoService } from "src/app/services/aluno.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Aluno, AlunoList } from "src/app/models/aluno.model";
+import { Aluno } from "src/app/models/aluno.model";
 import { ToastrService } from "ngx-toastr";
 import { lastValueFrom } from "rxjs";
 import { Perfil } from "src/app/models/perfis.model";
@@ -84,10 +84,9 @@ export class EditComponent {
 						this.selectedGenero = this.generos.find(genero => genero.id == this.aluno.sexo_Id);
 						this.aluno.dataNascimento = this.datePipe.transform(this.aluno.dataNascimento, 'dd/MM/yyyy') as string;
 						console.log(this.aluno)
-						this.dataVigencia[0] = new Date (this.aluno.data_Vigencia_Inicial);
-						this.dataVigencia[1] =  new Date (this.aluno.data_Vigencia_Final);
+						this.dataVigencia[0] = new Date(this.aluno.data_Vigencia_Inicial + " 03:00:00");
+						this.dataVigencia[1] = new Date(this.aluno.data_Vigencia_Final + " 03:00:00");
 						this.calendar.updateInputfield();
-						console.log("teste")
 						this.loading = false;
 					}).catch(res => {
 						this.close();
@@ -121,6 +120,7 @@ export class EditComponent {
 		this.aluno.turma_Id = this.selectedTurma?.id as number;
 		this.aluno.perfil_Id = this.selectedPerfis?.id as number;
 		this.aluno.sexo_Id = this.selectedGenero?.id as number;
+		
 		console.log('aluno ',this.aluno)
 		lastValueFrom(this.alunoService.post(this.aluno))
 			.then(res => {
@@ -160,8 +160,10 @@ export class EditComponent {
 	}
 
 	dataVigenciaSelected(event: any){
+		console.log(this.dataVigencia)
 		this.aluno.data_Vigencia_Inicial = this.dataVigencia[0];
 		this.aluno.data_Vigencia_Final = this.dataVigencia[1];
+		
 		
 	}
 

@@ -15,7 +15,7 @@
                 [showCurrentPageReport]="true" 
                 currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} páginas"
                 [filterDelay]="0"
-                [globalFilterFields]="['id','descricao', 'data', 'realizada','educadorNome','apostila', 'pagina', 'falta', 'reposicao']">
+                [globalFilterFields]="['id','horario', 'diaSemana', 'capacidadeAlunos', 'vagasRestantes', 'educadorNome']">
                 <ng-template pTemplate="caption">
                     <div class="flex">
                         <!-- Button para realizar cadastros na Tabela -->
@@ -38,35 +38,32 @@
                </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th></th>
-                        <th pSortableColumn="descricao" class="descricao">
-                            Nome
-                            <p-columnFilter type="text" field="descricao" display="menu"></p-columnFilter>
-                            <p-sortIcon field="descricao"></p-sortIcon> </th> 
-                        <th pSortableColumn="data" class="data">
-                            Data
-                            <p-columnFilter type="text" field="data" display="menu"></p-columnFilter>
-                            <p-sortIcon field="data"></p-sortIcon> </th> 
-                        <th pSortableColumn="realizada" class="realizada">
-                            Aula Realizada
-                            <p-columnFilter type="text" field="realizada" display="menu"></p-columnFilter>
-                            <p-sortIcon field="realizada"></p-sortIcon> </th> 
-                        <th pSortableColumn="apostila" class="apostila">
-                            Apostila
-                            <p-columnFilter type="text" field="apostila" display="menu"></p-columnFilter>
-                            <p-sortIcon field="apostila"></p-sortIcon> </th>
-                        <th pSortableColumn="pagina" class="pagina">
-                            Página
-                            <p-columnFilter type="text" field="pagina" display="menu"></p-columnFilter>
-                            <p-sortIcon field="pagina"></p-sortIcon></th>  
-                        <th pSortableColumn="falta" class="falta">
-                            Falta
-                            <p-columnFilter type="text" field="falta" display="menu"></p-columnFilter>
-                            <p-sortIcon field="falta"></p-sortIcon></th>   
-                        <th pSortableColumn="reposicao" class="reposicao">
-                            Reposição
-                            <p-columnFilter type="text" field="reposicao" display="menu"></p-columnFilter>
-                            <p-sortIcon field="reposicao"></p-sortIcon></th>   
+                       
+                        <th pSortableColumn="id" class="id">
+                            Id
+                            <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
+                            <p-sortIcon field="id"></p-sortIcon> </th> 
+                        <th pSortableColumn="horario" class="horario">
+                            Horário
+                            <p-columnFilter type="text" field="horario" display="menu"></p-columnFilter>
+                            <p-sortIcon field="horario"></p-sortIcon> </th> 
+                        <th pSortableColumn="diaSemana" class="diaSemana">
+                            Dia da semana
+                            <p-columnFilter type="text" field="diaSemana" display="menu"></p-columnFilter>
+                            <p-sortIcon field="diaSemana"></p-sortIcon></th> 
+                        <th pSortableColumn="capacidadeAlunos" class="capacidadeAlunos">
+                            Capacidade de alunos
+                            <p-columnFilter type="text" field="capacidadeAlunos" display="menu"></p-columnFilter>
+                            <p-sortIcon field="capacidadeAlunos"></p-sortIcon> </th>
+                        <th pSortableColumn="vagasRestantes" class="vagasRestantes">
+                            Vagas restantes
+                            <p-columnFilter type="text" field="vagasRestantes" display="menu"></p-columnFilter>
+                            <p-sortIcon field="vagasRestantes"></p-sortIcon></th>  
+                        <th pSortableColumn="nomeEducador" class="nomeEducador">
+                            Nome do educador
+                            <p-columnFilter type="text" field="nomeEducador" display="menu"></p-columnFilter>
+                            <p-sortIcon field="nomeEducador"></p-sortIcon></th>  
+                     
                         <th></th>
                         <th></th>
                         <th></th>
@@ -75,68 +72,27 @@
                 <ng-template pTemplate="body" let-item>
                     <tr>
                         <td>{{item.id}}</td>
-                        <td>{{item.descricao}}</td>
-                        <td>{{formatDate(item.data)}}</td>
-                        <td>
-                            <p-toggleButton 
+                        <td>{{item.horario}}</td>
+                        <td>{{this.getDiaSemana(item.diaSemana)}}</td>
+                        <td>{{item.capacidadeAlunos}}
+                        <td>{{item.vagasRestantes}}</td>
+                        <td>{{item.nomeEducador}}</td>
+                            <!-- <p-toggleButton 
                                 class="btn-falta" 
                                 [(ngModel)]="item.realizada"
                                 onLabel="Concluída" 
                                 offLabel="A Realizar">
-                            </p-toggleButton></td>
-                       <td>
-                        <span class="p-float-label">
-                            <!-- <label for="apostila">Apostilas</label> -->
-                                <p-dropdown 
-                                    [autoDisplayFirst]="false"
-                                    appendTo="body" 
-                                    styleClass="dropdown-apostila" 
-                                    panelStyleClass="minWidthOverride"
-                                    [style]="{'width':'80%', overflow: 'visible'}" 
-                                    [options]="listapostilas" 
-                                    #apostila="ngModel"
-                                    [(ngModel)]="item.apostila" 
-                                    optionLabel="nome" 
-                                    optionValue="id" 
-                                    [placeholder]="'Selecione'"
-                                    [disabled]="loadingApostilas" 
-                                    name="apostila_id" 
-                                    id="apostila_id" 
-                                    [filterFields]="['nome']" 
-                                    [showClear]="false"
-                                    [required]="true">
-                                    (ngModelChange)="apostilaChanged($event)"
-                                    <ng-template pTemplate="footer">
-                                        <div class="py-2 px-3 border-top bg-light"> Não encontrou? Clique para <a class="link text-info"
-                                                [routerLink]="['cadastrar']">adicionar</a>
-                                        </div>
-                                    </ng-template>
-                   
-                            </p-dropdown>
-                        </span>            
-                       </td>    
-                       <td>{{item.pagina}}</td>
-                        <td>
-                            <p-toggleButton 
-                                    class="btn-falta" 
-                                    [(ngModel)]="item.falta"
-                                    onLabel="Presente" 
-                                    offLabel="Ausente">
-                            </p-toggleButton>
-                        </td>
-                        <td>
-                            <p-toggleButton 
-                            class="btn-reposicao" 
-                            [(ngModel)]="item.reposicao"
-                            onLabel="Sim" 
-                            offLabel="Não">
-                    </p-toggleButton>
+                            </p-toggleButton></td> -->
+                 
+                     
+                       
                         <td></td>
-                        <td></td>
+                        
                         <td>
-                            <a class="btn btn-edit me-2" [routerLink]="['editar',item.id ]">Editar</a>
-                            <a class="btn btn-delete" [routerLink]="['excluir', item.id]">Excluir</a>
+                            <a class="btn btn-edit me-2" [routerLink]="['lancar',item.id ]">Lançar</a>
+                         
                         </td>
+                        <td></td>
                     </tr>
                 </ng-template>
             </p-table>

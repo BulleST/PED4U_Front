@@ -7,6 +7,7 @@ import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
 import { environment } from "src/environment/environment";
 import { ApostilaAbaco } from "../models/abaco.model";
+import { Turma } from '../models/turmas.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ import { ApostilaAbaco } from "../models/abaco.model";
 
 export class AulasService {
   url = environment.url;
-  list: BehaviorSubject<Aula[]> = new BehaviorSubject<Aula[]>([])
+  list: BehaviorSubject<Turma[]> = new BehaviorSubject<Turma[]>([])
 
 
 
@@ -24,7 +25,7 @@ export class AulasService {
   ) { }
 
   getList() {
-    return this.httpClient.get<Aula[]>(`${this.url}/Aula`)
+    return this.httpClient.get<Turma[]>(`${this.url}/Turma`)
       .pipe(tap({
         next: res => {
           this.list.next(res)

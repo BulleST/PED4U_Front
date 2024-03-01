@@ -1,6 +1,6 @@
 import { AlunoComponent } from './aluno.component';
 import { AlunosRoutingModule } from './aluno.routing';
-import { NgModule } from "@angular/core";
+import { NgModule, LOCALE_ID } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { TableModule } from 'primeng/table';
@@ -44,12 +44,13 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
         CheckboxModule,
         DropdownModule,
         ToastrModule,
-        CalendarModule
+        CalendarModule,
+       
    
     ],
 
     providers: [
-  
+      { provide: LOCALE_ID, useValue: 'pt-BR' }
     ]
 })
 

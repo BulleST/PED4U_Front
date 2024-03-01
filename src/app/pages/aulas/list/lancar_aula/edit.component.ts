@@ -1,11 +1,12 @@
 
 import { AulasService } from "src/app/services/aulas.service";
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
 import { AlunoAula } from "src/app/models/aulas.model";
+import { Table } from 'primeng/table';
 
 @Component({
 	selector: 'edit-aulas',
@@ -14,10 +15,12 @@ import { AlunoAula } from "src/app/models/aulas.model";
 })
 
 export class EditComponent{
+	@ViewChild('dt') dt!: Table;
     open = true;
     object: AlunoAula = new AlunoAula;
     id: number = 0;
 	erro = '';
+	list: AlunoAula[] = [];
 	loading: boolean = false;
 	// faltas: any[] = [
     //     { name: 'Ausente', value: 1 },
@@ -28,7 +31,7 @@ export class EditComponent{
 	// 	'Ativo',
 	// 	'Inativo'
 	// ];
-
+	
 	
 
 
@@ -82,4 +85,12 @@ export class EditComponent{
 			})
 	}
 
+	clear(table: Table) {
+		table.clear();
+	  }
+
+	applyFilterGlobal(event: any, filterType: string) {
+	this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);
+	}
+	
 }

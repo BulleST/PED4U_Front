@@ -5,6 +5,7 @@ import { AlunoList } from 'src/app/models/aluno.model';
 import { AlunoService } from 'src/app/services/aluno.service';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
+import { DiaSemana } from 'src/app/models/turmas.model';
 
 @Component({
     selector: 'alunos',
@@ -22,7 +23,15 @@ import { lastValueFrom } from 'rxjs';
       'Masculino',
       'Feminino',
       'Outros'
-    ]
+    ];
+    diaSemanaList: DiaSemana [] = [
+      {id: 1 , nome: 'Segunda-Feira'},
+      {id: 2 , nome: 'Terça-Feira'},
+      {id: 3 , nome: 'Quarta-Feira'},
+      {id: 4 , nome: 'Quinta-Feira'},
+      {id: 5 , nome: 'Sexta-Feira'},
+      {id: 6 , nome: 'Sábado'}
+      ];
     loading: boolean = true;
     @ViewChild('dt') dt!: Table;
 
@@ -61,5 +70,11 @@ import { lastValueFrom } from 'rxjs';
         case false:
           return 'danger';
       }
+    }
+
+    getDiaSemana(diaSemana_id:number): string{
+      let diaSemana = this.diaSemanaList.find(x => x.id == diaSemana_id)
+      if(diaSemana == null) return '';
+      else return diaSemana.nome;
     }
   }

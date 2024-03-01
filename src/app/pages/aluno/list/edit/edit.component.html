@@ -152,20 +152,16 @@
                                         <p-calendar  
                                             #calendarDataVigencia
                                             name="dataVigencia"  
-                                            inputId="dataVigencia"
                                             [(ngModel)]="dataVigencia"                                           
                                             selectionMode="range" 
                                             (onSelect)="dataVigenciaSelected($event)"
-                                            [ngModelOptions]="{updateOn: 'blur'}"
                                             [readonlyInput]="true"
-                                            dataType="string"
                                             dateFormat="dd/mm/yy" 
                                             [monthNavigator]="true"
                                             [yearNavigator]="true"
-                                            [defaultDate]="dataVigencia[0]"
                                             [showIcon]="true"></p-calendar>
                                             
-
+                                       
                                         <!-- <p-dropdown 
                                             class="dropdown"
                                             [options]="vigencia" 

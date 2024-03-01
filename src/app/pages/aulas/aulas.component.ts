@@ -1,5 +1,6 @@
 
 import { AlunoAula } from 'src/app/models/aulas.model';
+import { DiaSemana, Turma } from 'src/app/models/turmas.model';
 import { Component, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { lastValueFrom } from 'rxjs';
@@ -17,13 +18,20 @@ import { DatePipe } from '@angular/common';
 export class AulasComponent {
   open = true;
   object: ApostilaAbaco = new ApostilaAbaco;
-  list: AlunoAula[] = [];
+  list: Turma[] = [];
   id: number = 0;
   erro = '';
   loadingApostilas = false;
   apostilasAbaco: ApostilaAbaco[] = [];
   apostilaSelected?: ApostilaAbaco;
-
+  diaSemanaList: DiaSemana [] = [
+    {id: 1 , nome: 'Segunda-Feira'},
+    {id: 2 , nome: 'Terça-Feira'},
+    {id: 3 , nome: 'Quarta-Feira'},
+    {id: 4 , nome: 'Quinta-Feira'},
+    {id: 5 , nome: 'Sexta-Feira'},
+    {id: 6 , nome: 'Sábado'}
+    ];
 
   listapostilas: ApostilaAbaco [] = [
     { id: 1, nome: 'Basico 1', qtdePaginas: 2, materialExtra: false },
@@ -98,6 +106,12 @@ export class AulasComponent {
     const datePipe: DatePipe = new DatePipe('en-US')
     let date = new Date(value)
     return datePipe.transform(date,'dd/MM/YYYY')
+  }
+
+  getDiaSemana(diaSemana_id:number): string{
+    let diaSemana = this.diaSemanaList.find(x => x.id == diaSemana_id)
+    if(diaSemana == null) return '';
+    else return diaSemana.nome;
   }
 }
     

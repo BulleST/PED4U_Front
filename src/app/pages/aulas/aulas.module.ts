@@ -9,7 +9,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
 import { CreateComponent } from "./list/create/create.component";
-import { EditComponent } from "./list/edit/edit.component";
+import { EditComponent } from "./list/lancar_aula/edit.component";
 import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
