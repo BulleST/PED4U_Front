@@ -1,5 +1,4 @@
-
-
+// model para lista página de Turmas
 export class Turma {
     id: number = 0;
     nome: string = '';
@@ -10,10 +9,19 @@ export class Turma {
     nomeEducador: string = '';
     perfis: string = '';
     diaSemanaTxt: string = '';
-
 }
-
-
+// model para lista de aulas por Turma
+export class TurmaAula{
+    id: number = 0;
+    descricao: string = '';
+    data: Date = new Date;
+    realizada: boolean = true;
+    educadorNome: string = '';
+    horario: string = '';
+    diaSemana:  number = '' as unknown as number;
+    turmaId: number = 0;
+}
+// model para lista cadastrar uma Turma
 export class TurmaCadastro{
     id: number = 0;
     horario: string = '';

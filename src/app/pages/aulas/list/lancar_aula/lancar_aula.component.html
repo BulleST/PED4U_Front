@@ -2,15 +2,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Lançar Aula</h5>
                 <a type="button" class="btn-close" (click)="close()">
                 </a>
             </div>
             <div class="modal-body">
                 <form #form="ngForm">
-                    <div class="d-flex mb-3">
-                        <button type="reset" class="btn-clear">Limpar Campos</button>
-                    </div>
                     <div class="column">
                         <div class="form-container mb-4">
 
@@ -32,24 +28,9 @@
                 [filterDelay]="0"
                 [globalFilterFields]="['id','horario', 'diaSemana', 'capacidadeAlunos', 'vagasRestantes', 'educadorNome']">
                 <ng-template pTemplate="caption">
-                    <div class="flex">
-                        <!-- Button para realizar cadastros na Tabela -->
                         <div>
                             <a  class="btn-primary" [routerLink]="['cadastrar']">Cadastrar</a>
                         </div>
-                        <!-- Button para limpar filtros aplicados na Tabela -->
-                        <div class="p-2">
-                            <button class="btn-clear" (click)="clear(dt)">
-                                <span class="me-2">Limpar filtros</span>
-                                <i class="pi pi-filter-slash"></i>
-                            </button>
-                            <!-- Input para palavras-chave dados da Tabela -->
-                            <span class="p-2 p-input-icon-right">
-                                <i class="pi pi-search me-2 ml-3"></i>
-                                <input class="generalInput"  pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Digite a Palavra-Chave" />
-                            </span>
-                        </div>
-                    </div>
                </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
@@ -59,26 +40,14 @@
                             <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
                             <p-sortIcon field="id"></p-sortIcon> </th> 
                         <th pSortableColumn="horario" class="horario">
-                            Horário
+                            Data
                             <p-columnFilter type="text" field="horario" display="menu"></p-columnFilter>
                             <p-sortIcon field="horario"></p-sortIcon> </th> 
                         <th pSortableColumn="diaSemana" class="diaSemana">
-                            Dia da semana
+                            Realizada
                             <p-columnFilter type="text" field="diaSemana" display="menu"></p-columnFilter>
                             <p-sortIcon field="diaSemana"></p-sortIcon></th> 
-                        <th pSortableColumn="capacidadeAlunos" class="capacidadeAlunos">
-                            Capacidade de alunos
-                            <p-columnFilter type="text" field="capacidadeAlunos" display="menu"></p-columnFilter>
-                            <p-sortIcon field="capacidadeAlunos"></p-sortIcon> </th>
-                        <th pSortableColumn="vagasRestantes" class="vagasRestantes">
-                            Vagas restantes
-                            <p-columnFilter type="text" field="vagasRestantes" display="menu"></p-columnFilter>
-                            <p-sortIcon field="vagasRestantes"></p-sortIcon></th>  
-                        <th pSortableColumn="nomeEducador" class="nomeEducador">
-                            Nome do educador
-                            <p-columnFilter type="text" field="nomeEducador" display="menu"></p-columnFilter>
-                            <p-sortIcon field="nomeEducador"></p-sortIcon></th>  
-                     
+                       
                         <th></th>
                         <th></th>
                         <th></th>
@@ -87,22 +56,9 @@
                 <ng-template pTemplate="body" let-item>
                     <tr>
                         <td>{{item.id}}</td>
-                        <td>{{item.horario}}</td>
-                   
-                        <td>{{item.capacidadeAlunos}}
-                        <td>{{item.vagasRestantes}}</td>
-                        <td>{{item.nomeEducador}}</td>
-                            <!-- <p-toggleButton 
-                                class="btn-falta" 
-                                [(ngModel)]="item.realizada"
-                                onLabel="Concluída" 
-                                offLabel="A Realizar">
-                            </p-toggleButton></td> -->
-                 
-                     
-                       
+                        <td>{{item.data}}</td>                 
+                        <td>{{item.realizada}}
                         <td></td>
-                        
                         <td>
                             <a class="btn btn-edit me-2" [routerLink]="['lancar',item.id ]">Lançar</a>
                          
@@ -212,13 +168,7 @@
 
 
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn-cancel" (click)="close()" [disabled]="loading">Cancelar
-                                </button>
-                                <button type="button" class="btn-save" data-dismiss="modal" (click)="save()"
-                                    [disabled]="loading">Salvar
-                                </button>
-                            </div>
+                          
                         </div>
                     </div>
 

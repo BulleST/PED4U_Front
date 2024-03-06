@@ -25,8 +25,19 @@ export class AlunoAula{
     reposicao: boolean = true;
 }
 
+export class AulaCadastro{
+    id: number = 0;
+    descricao: string = '';
+    turma_Id: number = 0;
+    data: Date = new Date;
+    realizada: boolean = true;
+    educador_Id:  number = 0;
+}
 
-
+export class AulaCadastroBody{
+    rels: string[] = [];
+    aula: AulaCadastro = new AulaCadastro();
+}
 
 
 

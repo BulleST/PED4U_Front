@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
 import { environment } from "src/environment/environment";
 import { ApostilaAbaco } from "../models/abaco.model";
-import { Turma } from '../models/turmas.model';
+import { Turma, TurmaAula } from '../models/turmas.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,7 @@ import { Turma } from '../models/turmas.model';
 export class AulasService {
   url = environment.url;
   list: BehaviorSubject<Turma[]> = new BehaviorSubject<Turma[]>([])
+  listTurma: BehaviorSubject<TurmaAula[]> = new BehaviorSubject<TurmaAula[]>([])
 
 
 
@@ -29,6 +30,15 @@ export class AulasService {
       .pipe(tap({
         next: res => {
           this.list.next(res)
+        }
+      }))
+  }
+
+  getListAula(turma_id: number) {
+    return this.httpClient.get<TurmaAula[]>(`${this.url}/Aula/list/turma/${turma_id}`)
+      .pipe(tap({
+        next: res => {
+          this.listTurma.next(res)
         }
       }))
   }

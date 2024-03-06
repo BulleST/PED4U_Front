@@ -2,7 +2,7 @@
 
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { Observable, async, lastValueFrom } from "rxjs";
+import { Observable, lastValueFrom } from "rxjs";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
 import { DiaSemana, Turma } from "src/app/models/turmas.model";
@@ -11,7 +11,6 @@ import { TurmasService } from "src/app/services/turmas.service";
 import { PerfilService } from "src/app/services/perfil.service";
 import { TurmaCadastro } from "src/app/models/turmas.model";
 import { Educador } from "src/app/models/educador.model";
-import { TurmaPerfilRel } from "src/app/models/turmas.model";
 import { EducadoresService } from "src/app/services/educadores.service";
 
 @Component({

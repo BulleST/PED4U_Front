@@ -7,14 +7,15 @@ import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
 import { AlunoAula } from "src/app/models/aulas.model";
 import { Table } from 'primeng/table';
+import { TurmaAula } from "src/app/models/turmas.model";
 
 @Component({
-	selector: 'edit-aulas',
-	templateUrl: './edit.component.html',
-	styleUrls: ['./edit.component.css']
+	selector: 'lancar_aulas',
+	templateUrl: './lancar_aula.component.html',
+	styleUrls: ['./lancar_aula.component.css']
 })
 
-export class EditComponent{
+export class LancarAula{
 	@ViewChild('dt') dt!: Table;
     open = true;
     object: AlunoAula = new AlunoAula;
@@ -22,18 +23,8 @@ export class EditComponent{
 	erro = '';
 	list: AlunoAula[] = [];
 	loading: boolean = false;
-	// faltas: any[] = [
-    //     { name: 'Ausente', value: 1 },
-    //     { name: 'Option 2', value: 2 },
-    //     { name: 'Option 3', value: 3 }
-    // ];
-	// vigencia: string [] = [
-	// 	'Ativo',
-	// 	'Inativo'
-	// ];
-	
-	
-
+	turma_id: number = 0
+	aulas: TurmaAula[] = [];
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -42,11 +33,20 @@ export class EditComponent{
 		private httpClient: HttpClient,
 		private toastr: ToastrService,
     ){
-
-		// lastValueFrom(this.aulasService.getList()).then( res => {
-		// 	this.Aulas = Object.assign([], res);
-		// });
-		lastValueFrom(this.aulasService.getList())
+		this.activatedRoute.params.subscribe(res => {
+			if (res['id']) {
+				this.turma_id = res['id']
+				lastValueFrom(this.aulasService.getListAula(this.turma_id)).then( res => {
+					this.aulas = Object.assign([], res);
+				});
+			}	else {
+				this.close();
+				this.toastr.error('Não foi possível acessar essa página')
+			}
+		})
+		
+		
+		
 
 		
 	}
