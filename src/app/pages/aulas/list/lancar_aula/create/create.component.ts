@@ -3,8 +3,9 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { AulasService } from "src/app/services/aulas.service";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from '@angular/common/http';
-import { lastValueFrom } from "rxjs";
 import { AulaCadastro } from "src/app/models/aulas.model";
+import { Educador } from "src/app/models/educador.model";
+import { EducadoresService } from "src/app/services/educadores.service";
 
 @Component({
 	selector: 'create',
@@ -17,26 +18,39 @@ export class CreateAulaComponent{
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
-    turmaAula: AulaCadastro = new AulaCadastro;
+    aula: AulaCadastro = new AulaCadastro;
+	educadores: Educador [] = [];
+	selectedEducadores?: Educador = { id: -1, name: '', email: ''};
+	selectHorario: string = '';
+	
+
 
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private aulasService: AulasService,
+		private educadoresService: EducadoresService,
 		private httpClient: HttpClient,
 		private toastr: ToastrService,
     ){
 
-		// lastValueFrom(this.aulasService.getList()).then( res => {
-		// 	this.Aulas = Object.assign([], res);
-		// });
-		lastValueFrom(this.aulasService.getList())
+		this.activatedRoute.parent?.params.subscribe(res => {
+			console.log(res)
+			if (res['turma_id']) {
+				this.aula.turma_Id = res['turma_id']
+				this.educadoresService.list.subscribe((data) => {
+					this.educadores = Object.assign([], data);
+				})
 
-		
+				
+			}	else {
+				this.close();
+				this.toastr.error('Não foi possível acessar essa página')
+			}
+			
+		})
+
 	}
-
-
-
 
 
 

@@ -119,3 +119,16 @@
     height: 16px;
   }
   
+  :host ::ng-deep .p-inputtext{
+    width:100%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    }
+
+    :host ::ng-deep .p-button{
+      padding: 0;
+      border: 1px solid #ced4da;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      
+      } 

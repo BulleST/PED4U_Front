@@ -34,8 +34,8 @@ export class LancarAula{
 		private toastr: ToastrService,
     ){
 		this.activatedRoute.params.subscribe(res => {
-			if (res['id']) {
-				this.turma_id = res['id']
+			if (res['turma_id']) {
+				this.turma_id = res['turma_id']
 				lastValueFrom(this.aulasService.getListAula(this.turma_id)).then( res => {
 					this.aulas = Object.assign([], res);
 				});

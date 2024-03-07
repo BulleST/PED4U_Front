@@ -29,7 +29,7 @@
                 [globalFilterFields]="['id','horario', 'diaSemana', 'capacidadeAlunos', 'vagasRestantes', 'educadorNome']">
                 <ng-template pTemplate="caption">
                         <div>
-                            <a  class="btn-primary" [routerLink]="['cadastrar']">Cadastrar</a>
+                            <a  class="btn-primary" [routerLink]="['cadastrar-aula']">Cadastrar</a>
                         </div>
                </ng-template>
                 <ng-template pTemplate="header">
@@ -60,7 +60,7 @@
                         <td>{{item.realizada}}
                         <td></td>
                         <td>
-                            <a class="btn btn-edit me-2" [routerLink]="['lancar',item.id ]">Lançar</a>
+                            <a class="btn btn-edit me-2" [routerLink]="['cadastrar-aula']">Lançar</a>
                          
                         </td>
                         <td></td>
@@ -176,3 +176,4 @@
             </div>
         </div>
     </div>
+    <router-outlet></router-outlet>

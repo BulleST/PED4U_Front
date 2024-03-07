@@ -18,6 +18,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CreateAulaComponent } from "./list/lancar_aula/create/create.component";
+import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule ({
@@ -42,7 +43,8 @@ import { CreateAulaComponent } from "./list/lancar_aula/create/create.component"
         RadioButtonModule,
         SelectButtonModule,
         ToggleButtonModule,
-        InputNumberModule
+        InputNumberModule,
+        CalendarModule
         
     
     ],

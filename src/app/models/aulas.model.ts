@@ -24,7 +24,7 @@ export class AlunoAula{
     falta: boolean = true;
     reposicao: boolean = true;
 }
-
+// model para realizar cadastro de aula
 export class AulaCadastro{
     id: number = 0;
     descricao: string = '';
