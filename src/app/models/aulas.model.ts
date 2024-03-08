@@ -24,7 +24,8 @@ export class AlunoAula{
     falta: boolean = true;
     reposicao: boolean = true;
 }
-// model para realizar cadastro de aula
+
+
 export class AulaCadastro{
     id: number = 0;
     descricao: string = '';
@@ -34,9 +35,33 @@ export class AulaCadastro{
     educador_Id:  number = 0;
 }
 
+export class AulaPresenca{
+    id: number = 0;
+    aluno_Id: number = 0;
+    nomeAluno: string = '';
+    aula_Id: number = 0;
+    apostilaAbaco_Id: number = 0;
+    reposicao: boolean = true;
+    falta: boolean = true;
+    paginaAtual: number = 0;
+
+}
+
+export class AulaApostila{
+    id: number = 0;
+    nome: string = '';
+    qtdePaginas: number = 0;
+    materialExtra: string = '';
+}
+
+
+
 export class AulaCadastroBody{
-    rels: string[] = [];
+    rels: AulaPresenca[] = [];
     aula: AulaCadastro = new AulaCadastro();
+    apostila_List: AulaApostila[] = [];
+    success: boolean = true;
+    message: string = '';
 }
 
 

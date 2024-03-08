@@ -8,11 +8,12 @@ import { HttpClient } from '@angular/common/http';
 import { AlunoAula } from "src/app/models/aulas.model";
 import { Table } from 'primeng/table';
 import { TurmaAula } from "src/app/models/turmas.model";
+import { DatePipe } from '@angular/common';
 
 @Component({
 	selector: 'lancar_aulas',
-	templateUrl: './lancar_aula.component.html',
-	styleUrls: ['./lancar_aula.component.css']
+	templateUrl: './lancar-aula.component.html',
+	styleUrls: ['./lancar-aula.component.css']
 })
 
 export class LancarAula{
@@ -21,10 +22,10 @@ export class LancarAula{
     object: AlunoAula = new AlunoAula;
     id: number = 0;
 	erro = '';
-	list: AlunoAula[] = [];
+	list: TurmaAula[] = [];
 	loading: boolean = false;
 	turma_id: number = 0
-	aulas: TurmaAula[] = [];
+	
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -36,61 +37,38 @@ export class LancarAula{
 		this.activatedRoute.params.subscribe(res => {
 			if (res['turma_id']) {
 				this.turma_id = res['turma_id']
-				lastValueFrom(this.aulasService.getListAula(this.turma_id)).then( res => {
-					this.aulas = Object.assign([], res);
-				});
+				this.aulasService.listTurma.subscribe((data) => {
+					this.list = Object.assign([], data);
+					console.log(data)
+				  })
+				lastValueFrom(this.aulasService.getListAula(this.turma_id)).then
 			}	else {
 				this.close();
 				this.toastr.error('Não foi possível acessar essa página')
 			}
-		})
-		
-		
-		
-
-		
+		})		
 	}
 
-    // Fechar modal e retornar para rota de estabelecimento
+	// Fechar modal e retornar para rota de estabelecimento
 	close(): void {
 		this.open = false;
 		this.router.navigate(['aulas']);
 		return;
 	}
 
-	// Função criada para salvar as informações inseridas na modal de cadastro
-	async save() {
-		this.loading = true;
-		
-		console.log(this.object)
-		lastValueFrom(this.aulasService.post(this.object))
-			.then(res => {
-				if (res.success) {
-					this.close()
-					this.toastr.success('Operação concluída com sucesso')
-					lastValueFrom(this.aulasService.getList())
-				}
-				else {
-					this.erro = res.message
-					this.toastr.error(res.message)
-				}
-				this.loading = false;
-			})
-			.catch(res => {
-				this.erro = res;
-				console.error("console catch" + res);
-			})
-			.finally(() => {
-				this.loading = false;
-			})
+	formatDate(value: string) {
+		const datePipe: DatePipe = new DatePipe('en-US')
+		let date = new Date(value)
+		console.log(value)
+		return datePipe.transform(date, 'dd/MM/YYYY')
 	}
 
 	clear(table: Table) {
 		table.clear();
-	  }
+	}
 
 	applyFilterGlobal(event: any, filterType: string) {
-	this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);
+		this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);
 	}
 	
 }

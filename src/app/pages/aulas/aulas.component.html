@@ -1,6 +1,6 @@
 
 <p-tabView class="aulas">
-    <p-tabPanel header="Lançamento de Aulas">
+    <p-tabPanel header="Listagem de Turmas">
         <div class="card table-responsive">
             <p-table 
                 #dt
@@ -18,10 +18,7 @@
                 [globalFilterFields]="['id','horario', 'diaSemana', 'capacidadeAlunos', 'vagasRestantes', 'educadorNome']">
                 <ng-template pTemplate="caption">
                     <div class="flex">
-                        <!-- Button para realizar cadastros na Tabela -->
-                        <div>
-                            <a  class="btn-primary" [routerLink]="['cadastrar']">Cadastrar</a>
-                        </div>
+                    
                         <!-- Button para limpar filtros aplicados na Tabela -->
                         <div class="p-2">
                             <button class="btn-clear" (click)="clear(dt)">
@@ -89,7 +86,7 @@
                         <td></td>
                         
                         <td>
-                            <a class="btn btn-edit me-2" [routerLink]="['lancar',item.id ]">Lançar</a>
+                            <a class="btn btn-edit me-2" [routerLink]="['lancar',item.id ]">Listagem de Aulas</a>
                          
                         </td>
                         <td></td>

@@ -2,7 +2,7 @@
 import { AlunoAulaRel } from './../models/aluno.model';
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of, tap } from "rxjs";
-import { AlunoAula, Aula} from "../models/aulas.model";
+import { AulaCadastroBody, Aula, AlunoAula} from "../models/aulas.model";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
 import { environment } from "src/environment/environment";
@@ -48,7 +48,7 @@ export class AulasService {
 
   }
 
-  post(model: AlunoAula) {
+  post(model: AulaCadastroBody) {
     return this.httpClient.post<Response>(`${this.url}/Aula`, model)
   }
 

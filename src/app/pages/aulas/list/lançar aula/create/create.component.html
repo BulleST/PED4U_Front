@@ -64,7 +64,7 @@
                                             placeholder="Selecione o educador">
                                             <ng-template pTemplate="selectedItem">
                                                 <div>
-                                                    <div>{{selectedEducadores?.name}}</div>
+                                                    <div>{{selectedEducadores.name}}</div>
                                                 </div>
                                             </ng-template>
                                             <ng-template let-dropdownvalues pTemplate="item">
@@ -81,6 +81,7 @@
                                             <label for="data"> Status da aula:
                                                 <span class="text-danger">*</span></label>
                                             <p-toggleButton 
+                                            name="nome"
                                             class="btn-falta" 
                                             [(ngModel)]="aula.realizada" 
                                             onLabel="Concluída" 
@@ -115,14 +116,14 @@
                                      [disabled]="loading">
                                      Cancelar
                                  </button>
-                                 <!-- <button 
+                                 <button 
                                      type="button" 
                                      class="btn-edit" 
                                      data-dismiss="modal" 
                                      (click)="save()"
                                      [disabled]="loading">
-                                     Salvar
-                                 </button> -->
+                                     Cadastrar Aula
+                                 </button>
                                  <p class="text-danger">{{erro}}</p>
                              </div>
                     

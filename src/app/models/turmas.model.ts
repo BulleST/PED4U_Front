@@ -21,6 +21,7 @@ export class TurmaAula{
     diaSemana:  number = '' as unknown as number;
     turmaId: number = 0;
 }
+
 // model para lista cadastrar uma Turma
 export class TurmaCadastro{
     id: number = 0;
