@@ -9,12 +9,11 @@
 
 
 .btn-clear{
-    background-color: var(--grey-highlight);
-    color: #fff;
     padding: 10px;
     border-radius: 10px;
     margin: 6px;
     cursor: pointer;
+  
     
 }
 
@@ -67,6 +66,9 @@
     background-color: var(--grey-highlight);
 }
 .btn-delete:hover{
+    background-color: var(--grey);
+}
+.btn-clear:hover{
     background-color: var(--grey);
 }
 

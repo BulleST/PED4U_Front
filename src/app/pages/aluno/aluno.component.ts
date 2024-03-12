@@ -44,12 +44,10 @@ import { DiaSemana } from 'src/app/models/turmas.model';
     }
       
   
-
-    // Função para limpar os filtros aplicados na tabela
-    clear(table: Table) {
-      table.clear();
-    }
-
+  // Função para limpar os filtros aplicados na tabela
+  clear(table: Table) {
+    table.clear();
+  }
     // Função para filtrar a tabela a partir do input
     applyFilterGlobal(event: any, filterType: string) {
       this.dt.filterGlobal((event.target as HTMLInputElement).value, filterType);

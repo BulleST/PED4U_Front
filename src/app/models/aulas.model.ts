@@ -30,9 +30,9 @@ export class AulaCadastro{
     id: number = 0;
     descricao: string = '';
     turma_Id: number = 0;
-    data: Date = new Date;
+    data: string = '';
     realizada: boolean = true;
-    educador_Id:  number = 0;
+    educador_Id:  number = null as unknown as number;
 }
 
 export class AulaPresenca{

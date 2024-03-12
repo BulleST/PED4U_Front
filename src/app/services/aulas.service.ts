@@ -1,5 +1,5 @@
 
-import { AlunoAulaRel } from './../models/aluno.model';
+import { AlunoAulaListagem, AlunoAulaRel } from './../models/aluno.model';
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of, tap } from "rxjs";
 import { AulaCadastroBody, Aula, AlunoAula} from "../models/aulas.model";
@@ -17,6 +17,7 @@ export class AulasService {
   url = environment.url;
   list: BehaviorSubject<Turma[]> = new BehaviorSubject<Turma[]>([])
   listTurma: BehaviorSubject<TurmaAula[]> = new BehaviorSubject<TurmaAula[]>([])
+  listAlunos: BehaviorSubject<AlunoAulaListagem[]> = new BehaviorSubject<AlunoAulaListagem[]>([])
 
 
 
@@ -43,8 +44,8 @@ export class AulasService {
       }))
   }
 
-  get(id: number) {
-    return this.httpClient.get<AlunoAulaRel>(`${this.url}/Aluno_Aula_Rel/Presenca-by-AulaId/{aula_Id}`)
+  get(aula_Id: number) {
+    return this.httpClient.get<AlunoAulaListagem>(`${this.url}/Aluno_Aula_Rel/list/aluno/${aula_Id}`)
 
   }
 

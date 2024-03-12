@@ -7,6 +7,9 @@ import { AulaCadastro, AulaCadastroBody } from "src/app/models/aulas.model";
 import { Educador } from "src/app/models/educador.model";
 import { EducadoresService } from "src/app/services/educadores.service";
 import { lastValueFrom } from "rxjs";
+import { AlunoAulaListagem } from "src/app/models/aluno.model";
+import { TurmasService } from "src/app/services/turmas.service";
+import { DatePipe } from "@angular/common";
 
 @Component({
 	selector: 'create',
@@ -19,10 +22,14 @@ export class CreateAulaComponent{
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
+	list: AlunoAulaListagem[] = [];
     aula: AulaCadastro = new AulaCadastro;
 	educadores: Educador [] = [];
-	selectedEducadores: Educador = { id: -1, name: '', email: ''};
+	selectedEducadores?: Educador;
 	selectHorario: string = '';
+	turma_id: number = 0;
+	selectedData: Date = new Date();
+	
 	
 
 
@@ -33,21 +40,25 @@ export class CreateAulaComponent{
 		private educadoresService: EducadoresService,
 		private httpClient: HttpClient,
 		private toastr: ToastrService,
+		private turmaService: TurmasService,
+		private datePipe: DatePipe
     ){
 
 		this.activatedRoute.parent?.params.subscribe(res => {
 			console.log(res)
 			if (res['turma_id']) {
-				this.aula.turma_Id = res['turma_id']
+				this.aula.turma_Id = parseInt(res['turma_id'])
 
+				lastValueFrom(this.turmaService.get(this.turma_id))
+				.then(res => {
+					this.aula.educador_Id = res.educador_Id
+				})
 				this.educadoresService.list.subscribe((data) =>{
 					this.educadores = Object.assign([], data);
 				})
 
-				this.save();
 				lastValueFrom(educadoresService.getList()).then( res => {
 					console.log(this.educadores)
-		
 				})
 			}	else {
 				this.close();
@@ -69,22 +80,23 @@ export class CreateAulaComponent{
 	async save() {
 		this.loading = true;
 		console.log(this.aula.data)
-		
-		// if(this.selectedEducadores.id == -1){
-		// 	this.erro = "Selecione um Educador válido";
-		// 	return;
-		// } 
-		this.aula.educador_Id = this.selectedEducadores.id;
+		if (this.selectedEducadores){
+			this.aula.educador_Id = this.selectedEducadores?.id;
+		}
+		this.aula.data = this.datePipe.transform(this.selectedData, "yyyy-MM-ddThh:mm:ss") as string;
+		this.aula.data = this.aula.data + "Z";
+		console.log(this.aula.data);
 		let body: AulaCadastroBody = new AulaCadastroBody;
 		// body recebe a informação de aula
 		body.aula = this.aula;
 		lastValueFrom(this.aulasService.post(body))
 			.then(res => {
 				if (res.success) {
-					console.log(res)
+					console.log(body)
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
 					lastValueFrom(this.aulasService.getListAula(this.aula.turma_Id))
+					
 					
 				}
 				else {

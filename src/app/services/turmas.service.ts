@@ -13,6 +13,7 @@ import { Perfil } from "../models/perfis.model";
 export class TurmasService {
   url = environment.url;
   list: BehaviorSubject<Turma[]> = new BehaviorSubject<Turma[]>([])
+  turmaSelected: BehaviorSubject<Turma> = new BehaviorSubject<Turma>(new Turma)
 
   constructor(
     private httpClient: HttpClient

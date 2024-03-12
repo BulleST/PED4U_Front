@@ -37,11 +37,17 @@ export class LancarAula{
 		this.activatedRoute.params.subscribe(res => {
 			if (res['turma_id']) {
 				this.turma_id = res['turma_id']
+				
+				
 				this.aulasService.listTurma.subscribe((data) => {
 					this.list = Object.assign([], data);
-					console.log(data)
+					
 				  })
-				lastValueFrom(this.aulasService.getListAula(this.turma_id)).then
+				lastValueFrom(this.aulasService.getListAula(this.turma_id)).then  (res => {
+					console.log(res)
+					console.log('estou no then')
+				})
+				
 			}	else {
 				this.close();
 				this.toastr.error('Não foi possível acessar essa página')
@@ -59,7 +65,6 @@ export class LancarAula{
 	formatDate(value: string) {
 		const datePipe: DatePipe = new DatePipe('en-US')
 		let date = new Date(value)
-		console.log(value)
 		return datePipe.transform(date, 'dd/MM/YYYY')
 	}
 

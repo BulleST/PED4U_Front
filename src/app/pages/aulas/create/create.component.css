@@ -51,7 +51,7 @@
   }
   
   .modal-dialog {
-    max-width: 900px;
+    max-width: 1200px;
     width: 95%;
     max-height: 95vh;
     padding: 0;
@@ -124,3 +124,43 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     }
+
+:host ::ng-deep .p-tabview-nav-content {
+box-shadow: none;
+}
+
+:host ::ng-deep .card {
+  background: var(--surface-card);
+  border: var(--card-border);
+  padding: 0;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+:host ::ng-deep .btn-falta{
+  width: 100%
+}
+
+:host ::ng-deep .p-togglebutton{
+  width: 100%
+}
+
+:host ::ng-deep .p-tabview .p-tabview-panels{
+  padding: 0;
+}
+
+
+:host ::ng-deep .p-button{
+  padding: 0;
+  border: 1px solid #ced4da;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+
+}
+
+:host ::ng-deep .p-togglebutton{
+  border: none;
+  border-radius: 5px;
+}
+
+@import url('../../../../assets/css/buttons/buttons.css');

@@ -1,0 +1,197 @@
+<div class="modal" [class.modal--show]="open">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cadastrar Aula</h5>
+                <a type="button" class="btn-close" (click)="close()">
+                </a>
+            </div>
+            <div class="modal-body">
+                <form #form="ngForm">
+                    
+                    <div class="column">
+                        <div class="form-container mb-4">
+                            <div class="campo-container">
+                                <div class="row">
+                                    <div class="form-group col-md-3 col-12">
+                                        <label for="descricao">Nome:
+                                            <span class="text-danger">*</span></label>
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            id="descricao" 
+                                            name="descricao" 
+                                            #descricao="ngModel"
+                                            [(ngModel)]="aula.descricao" 
+                                            pattern="\S(.*\S)?"
+                                            required 
+                                            minlength="3"
+                                            maxlength="30">
+                                        <div *ngIf="descricao.touched && descricao.errors">
+                                            <p class="text-danger" *ngIf="descricao.errors['required']">
+                                                Esse campo é obrigatório.
+                                            </p>
+                                            <p class="text-danger" *ngIf="descricao.errors['pattern']">
+                                                Não insira espaços em branco antes ou no final do campo
+                                            </p>
+                                            <p class="text-danger">{{erro}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-3 col-12">
+                                        <label for="data"> Data e horário da aula:
+                                            <span class="text-danger">*</span></label>
+                                        <p-calendar 
+                                        name="data"  
+                                        [(ngModel)]="selectedData" 
+                                        placeholder="__/__/__" 
+                                        selectionMode="single"
+                                        [readonlyInput]="true" 
+                                        dateFormat="dd/mm/yy" 
+                                        [showIcon]="true"
+                                        hourFormat="24"
+                                        onchange=""
+                                        [showTime]="true">
+                                    </p-calendar>
+                                    </div>
+                                    <div class="form-group col-md-4 col-12">
+                                        <label for="educador_Id">Educador:
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <p-dropdown 
+                                            class="dropdown" 
+                                            optionLabel="name"
+                                            [options]="educadores"
+                                            [(ngModel)]="selectedEducadores"
+                                            name="name" 
+                                            placeholder="Selecione o educador">
+                                            <ng-template pTemplate="selectedItem">
+                                                <div *ngIf="selectedEducadores">
+                                                    <div>{{selectedEducadores.name}}</div>
+                                                </div>
+                                            </ng-template>
+                                            <ng-template let-dropdownvalues pTemplate="item">
+                                                <div>
+                                                    <div>{{dropdownvalues.name}}</div>
+                                                </div>
+                                            </ng-template>
+                                        </p-dropdown>
+                                    </div>
+                                    <div class="form-group col-md-2 col-12 mt-1">
+                                        <label for="data"> Status da aula:
+                                            <span class="text-danger">*</span></label>
+                                        <p-toggleButton 
+                                        name="nome"
+                                        class="btn-falta" 
+                                        [(ngModel)]="aula.realizada" 
+                                        onLabel="Concluída" 
+                                        offLabel="A Realizar">
+                                        </p-toggleButton> 
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                       
+                                      
+                                    </div>
+                                    <p-tabView >
+                                       
+                                            <div class="card table-responsive">
+                                                <p-table 
+                                                    #dt
+                                                    class="table"
+                                                    [value]="list"
+                                                    sortField=""
+                                                    dataKey="id"
+                                                    styleClass="p-datatable-striped"
+                                                    [tableStyle]="{'min-width': '50rem'}"
+                                                    [showCurrentPageReport]="true" 
+                                                    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} páginas"
+                                                    [filterDelay]="0"
+                                                    [globalFilterFields]="['id','horario', 'diaSemana', 'capacidadeAlunos', 'vagasRestantes', 'educadorNome']">
+                                                    
+                                                    <ng-template pTemplate="header">
+                                                        <tr>
+                                                           
+                                                            <th pSortableColumn="id" class="id">
+                                                                Id
+                                                                <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
+                                                                <p-sortIcon field="id"></p-sortIcon> </th> 
+                                                            <th pSortableColumn="descricao" class="descricao">
+                                                                Descrição
+                                                                <p-columnFilter type="text" field="descricao" display="menu"></p-columnFilter>
+                                                                <p-sortIcon field="descricao"></p-sortIcon> </th> 
+                                                            <th pSortableColumn="horario" class="horario">
+                                                                Data
+                                                                <p-columnFilter type="text" field="horario" display="menu"></p-columnFilter>
+                                                                <p-sortIcon field="horario"></p-sortIcon> </th> 
+                                                            <th pSortableColumn="horario" class="horario">
+                                                                Horário
+                                                                <p-columnFilter type="text" field="horario" display="menu"></p-columnFilter>
+                                                                <p-sortIcon field="horario"></p-sortIcon> </th> 
+                                                            <th pSortableColumn="diaSemana" class="diaSemana">
+                                                                Realizada
+                                                                <p-columnFilter type="text" field="diaSemana" display="menu"></p-columnFilter>
+                                                                <p-sortIcon field="diaSemana"></p-sortIcon></th> 
+                                                           
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="body" let-item>
+                                                        <tr>
+                                                            <td>{{item.id}}</td>
+                                                            <td>{{item.nome}}</td>
+                                                            <td>{{item.apostila}}</td>      
+                                                            <td>{{item.paginaAtual}}</td>           
+                                                            <td>{{item.falta}}</td>
+                                                            <td>{{item.reposicao}}</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </ng-template>
+                                                </p-table>
+                                            </div>
+                                       
+                                    </p-tabView>    
+                               
+                            </div>
+                        </div>
+                    </div>
+                             
+
+
+
+
+                            <div class="modal-footer">
+                                <div class="me-auto  bd-highlight">
+                                 <button 
+                                         type="reset" 
+                                         class="btn-clear">Limpar Campos</button>
+                                </div>
+                                     
+                               
+                                 <button 
+                                     type="button" 
+                                     class="btn-delete" 
+                                     (click)="close()"
+                                     [disabled]="loading">
+                                     Cancelar
+                                 </button>
+                                 <button 
+                                     type="button" 
+                                     class="btn-edit" 
+                                     data-dismiss="modal" 
+                                     (click)="save()"
+                                     [disabled]="loading">
+                                     Cadastrar Aula
+                                 </button>
+                                
+                             </div>
+                                   
+                            <!-- <p class="text-danger">{{erro}}</p>  -->
+                  
+
+                </form>
+            </div>
+        </div>
+    </div>
