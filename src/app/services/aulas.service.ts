@@ -49,6 +49,11 @@ export class AulasService {
 
   }
 
+  getAula(aula_Id: number) {
+    return this.httpClient.get<Aula>(`${this.url}/Aula/list/aluno/${aula_Id}`)
+
+  }
+
   post(model: AulaCadastroBody) {
     return this.httpClient.post<Response>(`${this.url}/Aula`, model)
   }

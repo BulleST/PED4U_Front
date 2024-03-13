@@ -164,6 +164,29 @@
     font-size: 12pt;
     transition: all .3s linear;
   }
+
+  :host ::ng-deep .p-togglebutton{
+    width: 100%
+  }
+  
+  :host ::ng-deep .p-tabview .p-tabview-panels{
+    padding: 0;
+  }
+  
+  
+  :host ::ng-deep .p-button{
+    padding: 0;
+    border: 1px solid #ced4da;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  
+  }
+  
+  :host ::ng-deep .p-togglebutton{
+    border: none;
+    border-radius: 5px;
+  }
+  
   
   
   

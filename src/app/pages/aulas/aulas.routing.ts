@@ -11,7 +11,7 @@ const routes: Routes = [
     {
         path: '', component: AulasComponent, children: [    
             { path: 'lancar/:turma_id', component: LancarAula, children: [
-                { path:'listagem-alunos/:aula_id', component: EditComponent},
+                { path:'editar-aula/:aula_id', component: EditComponent},
                 { path: 'cadastrar-aula', component: CreateAulaComponent},
             ]},
             

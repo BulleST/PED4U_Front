@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AulasService } from "src/app/services/aulas.service";
 import { ToastrService } from "ngx-toastr";
@@ -17,7 +17,7 @@ import { DatePipe } from "@angular/common";
 	styleUrls: ['./create.component.css']
 })
 
-export class CreateAulaComponent{
+export class CreateAulaComponent implements OnInit{
     open = true;
     id: number = 0;
 	erro = '';
@@ -29,9 +29,6 @@ export class CreateAulaComponent{
 	selectHorario: string = '';
 	turma_id: number = 0;
 	selectedData: Date = new Date();
-	
-	
-
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -43,12 +40,12 @@ export class CreateAulaComponent{
 		private turmaService: TurmasService,
 		private datePipe: DatePipe
     ){
-
+		this.open = true;
 		this.activatedRoute.parent?.params.subscribe(res => {
 			console.log(res)
 			if (res['turma_id']) {
 				this.aula.turma_Id = parseInt(res['turma_id'])
-
+			
 				lastValueFrom(this.turmaService.get(this.turma_id))
 				.then(res => {
 					this.aula.educador_Id = res.educador_Id
@@ -60,14 +57,28 @@ export class CreateAulaComponent{
 				lastValueFrom(educadoresService.getList()).then( res => {
 					console.log(this.educadores)
 				})
+
+				
+
+
 			}	else {
 				this.close();
 				this.toastr.error('Não foi possível acessar essa página')
 			}
-	
+
+			
 		})
 	}
 
+	ngOnInit(): void {
+		this.open = true;
+		console.log('entrei no ngOninit')
+		lastValueFrom(this.aulasService.getListAula(this.turma_id)).then  (res => {
+			console.log(res)
+			console.log('estou no then')
+		})
+
+	}
 
      // Fechar modal e retornar para rota 
 	close(): void {
@@ -79,25 +90,24 @@ export class CreateAulaComponent{
 	// Função criada para salvar as informações inseridas na modal de cadastro
 	async save() {
 		this.loading = true;
-		console.log(this.aula.data)
 		if (this.selectedEducadores){
 			this.aula.educador_Id = this.selectedEducadores?.id;
 		}
-		this.aula.data = this.datePipe.transform(this.selectedData, "yyyy-MM-ddThh:mm:ss") as string;
-		this.aula.data = this.aula.data + "Z";
+		 this.aula.data = this.datePipe.transform(this.selectedData, "yyyy-MM-ddThh:mm:ss") as string;
+		 this.aula.data = this.aula.data + "Z";
 		console.log(this.aula.data);
 		let body: AulaCadastroBody = new AulaCadastroBody;
-		// body recebe a informação de aula
+		// Body receives information from aula
 		body.aula = this.aula;
+		
 		lastValueFrom(this.aulasService.post(body))
 			.then(res => {
 				if (res.success) {
-					console.log(body)
-					this.close()
+					console.log(body);
+					console.log(this.aula.data);
+					this.close();
 					this.toastr.success('Operação concluída com sucesso')
 					lastValueFrom(this.aulasService.getListAula(this.aula.turma_Id))
-					
-					
 				}
 				else {
 					this.erro = res.message

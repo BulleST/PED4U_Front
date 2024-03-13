@@ -12,13 +12,13 @@ import { TurmasService } from "src/app/services/turmas.service";
 import { DatePipe } from "@angular/common";
 
 @Component({
-	selector: 'create',
+	selector: 'app-edit-component',
 	templateUrl: './edit.component.html',
 	styleUrls: ['./edit.component.css']
 })
 
 export class EditComponent{
-    open = true;
+    open = false;
     id: number = 0;
 	erro = '';
 	loading: boolean = false;
@@ -43,51 +43,54 @@ export class EditComponent{
 		private turmaService: TurmasService,
 		private datePipe: DatePipe
     ){
-
-		this.activatedRoute.parent?.params.subscribe(res => {
-			console.log(res)
-			if (res['turma_id']) {
-				this.aula.turma_Id = parseInt(res['turma_id'])
-
-				lastValueFrom(this.turmaService.get(this.turma_id))
+		console.log('construtor')
+		
+		this.activatedRoute.params.subscribe(res => {
+			console.log('params', res)
+			if (res['aula_id']) {
+				this.aula.id = parseInt(res['aula_id']);
+				this.open = true;
+				lastValueFrom(this.aulasService.get(this.aula.id))
 				.then(res => {
-					this.aula.educador_Id = res.educador_Id
+
 				})
+
 				this.educadoresService.list.subscribe((data) =>{
 					this.educadores = Object.assign([], data);
-				})
+				});
 
 				lastValueFrom(educadoresService.getList()).then( res => {
-					console.log(this.educadores)
+					console.log('educadores', this.educadores)
 				})
 			}	else {
+				console.log('else')
 				this.close();
 				this.toastr.error('Não foi possível acessar essa página')
 			}
-	
 		})
 	}
 
-
-     // Fechar modal e retornar para rota 
+     // Close modal and return to route 
 	close(): void {
-		this.router.navigate(['..'], {relativeTo: this.activatedRoute});
+		console.log('entrou no close')
+		this.router.navigate(['../../'], {relativeTo: this.activatedRoute});
 		return;
 	}
 
-	
-	// Função criada para salvar as informações inseridas na modal de cadastro
+	// Function created to save information entered in the registration modal
 	async save() {
 		this.loading = true;
 		console.log(this.aula.data)
 		if (this.selectedEducadores){
 			this.aula.educador_Id = this.selectedEducadores?.id;
 		}
-		this.aula.data = this.datePipe.transform(this.selectedData, "yyyy-MM-ddThh:mm:ss") as string;
-		this.aula.data = this.aula.data + "Z";
+		this.aula.data = new Date(this.aula.data) as unknown as string;
+		// this.aula.data = this.datePipe.transform(this.selectedData, "yyyy-MM-ddThh:mm:ss") as string;
+		// this.aula.data = this.aula.data + "Z";
 		console.log(this.aula.data);
+		
 		let body: AulaCadastroBody = new AulaCadastroBody;
-		// body recebe a informação de aula
+		// body receives class information	
 		body.aula = this.aula;
 		lastValueFrom(this.aulasService.post(body))
 			.then(res => {
@@ -96,8 +99,6 @@ export class EditComponent{
 					this.close()
 					this.toastr.success('Operação concluída com sucesso')
 					lastValueFrom(this.aulasService.getListAula(this.aula.turma_Id))
-					
-					
 				}
 				else {
 					this.erro = res.message

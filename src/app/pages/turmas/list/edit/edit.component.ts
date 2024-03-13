@@ -77,8 +77,6 @@ export class EditComponent{
 									this.selectedPerfis.push(perfil)
 								}
 							});
-
-
 							console.log(this.turma)
 							this.loading = false;
 						}).catch(res => {

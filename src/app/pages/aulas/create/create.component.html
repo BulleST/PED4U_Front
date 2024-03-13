@@ -42,15 +42,13 @@
                                             <span class="text-danger">*</span></label>
                                         <p-calendar 
                                         name="data"  
+                                        class="layout-light"
                                         [(ngModel)]="selectedData" 
                                         placeholder="__/__/__" 
                                         selectionMode="single"
                                         [readonlyInput]="true" 
                                         dateFormat="dd/mm/yy" 
-                                        [showIcon]="true"
-                                        hourFormat="24"
-                                        onchange=""
-                                        [showTime]="true">
+                                        [showIcon]="true">
                                     </p-calendar>
                                     </div>
                                     <div class="form-group col-md-4 col-12">
@@ -119,14 +117,10 @@
                                                                 Descrição
                                                                 <p-columnFilter type="text" field="descricao" display="menu"></p-columnFilter>
                                                                 <p-sortIcon field="descricao"></p-sortIcon> </th> 
-                                                            <th pSortableColumn="horario" class="horario">
+                                                            <th pSortableColumn="data" class="data">
                                                                 Data
-                                                                <p-columnFilter type="text" field="horario" display="menu"></p-columnFilter>
-                                                                <p-sortIcon field="horario"></p-sortIcon> </th> 
-                                                            <th pSortableColumn="horario" class="horario">
-                                                                Horário
-                                                                <p-columnFilter type="text" field="horario" display="menu"></p-columnFilter>
-                                                                <p-sortIcon field="horario"></p-sortIcon> </th> 
+                                                                <p-columnFilter type="text" field="data" display="menu"></p-columnFilter>
+                                                                <p-sortIcon field="data"></p-sortIcon> </th> 
                                                             <th pSortableColumn="diaSemana" class="diaSemana">
                                                                 Realizada
                                                                 <p-columnFilter type="text" field="diaSemana" display="menu"></p-columnFilter>
@@ -140,11 +134,9 @@
                                                     <ng-template pTemplate="body" let-item>
                                                         <tr>
                                                             <td>{{item.id}}</td>
-                                                            <td>{{item.nome}}</td>
-                                                            <td>{{item.apostila}}</td>      
-                                                            <td>{{item.paginaAtual}}</td>           
-                                                            <td>{{item.falta}}</td>
-                                                            <td>{{item.reposicao}}</td>
+                                                            <td>{{item.descricao}}</td>
+                                                            <td>{{item.data}}</td>      
+                                                            <td>{{item.realizada}}</td>           
                                                             <td></td>
                                                             <td></td>
                                                         </tr>

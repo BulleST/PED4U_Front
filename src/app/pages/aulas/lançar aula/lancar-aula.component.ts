@@ -55,7 +55,7 @@ export class LancarAula{
 		})		
 	}
 
-	// Fechar modal e retornar para rota de estabelecimento
+	// Fechar modal e retornar para rota de aulas
 	close(): void {
 		this.open = false;
 		this.router.navigate(['aulas']);

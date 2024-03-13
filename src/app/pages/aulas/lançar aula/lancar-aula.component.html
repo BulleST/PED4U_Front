@@ -82,19 +82,21 @@
                                                 <tr>
                                                     <td>{{item.id}}</td>
                                                     <td>{{item.descricao}}</td>
-                                                    <td>{{formatDate(item.data)}}</td>
+                                                    <td>{{formatDate(item.data)}} </td>
                                                     <td>{{item.horario}}</td>
                                                     <td>{{item.realizada}}</td>
                                                     <td>{{item.educadorNome}}</td>
                                                     <td>
                                                         <a class="btn btn-edit me-2"
-                                                            [routerLink]="['listagem-alunos',item.id ]">Editar</a>
-
+                                                            [routerLink]="['editar-aula',item.id ]">Editar</a>
+                                                        
                                                     </td>
                                                     <td></td>
                                                     <td></td>
                                                 </tr>
+                                               
                                             </ng-template>
+                                          
                                         </p-table>
                                     </div>
                                 </p-tabPanel>
