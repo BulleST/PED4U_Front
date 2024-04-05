@@ -34,7 +34,7 @@ export class Aluno{
     falta: boolean = true;
     reposicao: boolean = true;
   }
-//model para listagedm de alunopor aula 
+//model para listagedm de aluno por aula 
   export class AlunoAulaListagem{
     id: number = 0;
     aula_Id: number = 0;

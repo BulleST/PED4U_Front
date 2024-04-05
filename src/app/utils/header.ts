@@ -41,24 +41,4 @@ export class Header {
         this.loggedIn.next(false);
     }
 
-    clickOut() {
-        // var classe = this;
-        // $('body').on('click', function (e) {
-        //     classe.closeMenuMinhaConta();
-        //     classe.setMenuAside(false);
-        // });
-        
-        // $('.navigation-toggle-content').on('click', function (e) {
-        //     classe.setMenuAside(true);
-        // });
-        
-        // $('.navigation-content*').each((i, el) => {
-        //     $(el).on('click', function (e) {
-        //         e.stopPropagation();
-        //     });
-        // })
-        // $('.navigation-content').on('click', function (e) {
-        //     e.stopPropagation();
-        // });
-    }
 }

@@ -25,7 +25,7 @@ export class AlunoAula{
     reposicao: boolean = true;
 }
 
-
+// endpoint Get Aula{id}
 export class AulaCadastro{
     id: number = 0;
     descricao: string = '';

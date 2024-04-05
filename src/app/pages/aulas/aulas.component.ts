@@ -45,8 +45,10 @@ export class AulasComponent {
   // Função para limpar os filtros aplicados na tabela
 
 
-  constructor(private aulasService: AulasService,
+  constructor(
+    private aulasService: AulasService,
     private apostilasService: ApostilasService,) {
+
     this.aulasService.list.subscribe((data) => {
       this.list = Object.assign([], data);
       console.log('perfis', data)

@@ -29,9 +29,6 @@ export class EditComponent{
 	selectHorario: string = '';
 	turma_id: number = 0;
 	selectedData: Date = new Date();
-	
-	
-
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -44,24 +41,29 @@ export class EditComponent{
 		private datePipe: DatePipe
     ){
 		console.log('construtor')
-		
-		this.activatedRoute.params.subscribe(res => {
+
+		this.aulasService.aulaSelected.subscribe((data) =>{
+			this.aula = Object.assign([], data)
+		})
+		this.educadoresService.list.subscribe((data) =>{
+			this.educadores = Object.assign([], data);
+		});
+		lastValueFrom(aulasService.getListAula(this.turma_id));
+		this.activatedRoute.params.subscribe( async res => {
 			console.log('params', res)
 			if (res['aula_id']) {
-				this.aula.id = parseInt(res['aula_id']);
-				this.open = true;
+				this.aula.id = res['aula_id'];
+				await lastValueFrom(educadoresService.getList())
+				// Abrir modal
 				lastValueFrom(this.aulasService.get(this.aula.id))
 				.then(res => {
-
+					this.open = true;
+					this.aula = res;
+					this.selectedEducadores = this.educadores.find(x => x.id == this.aula.educador_Id);
+					console.log('aula', res)
+					console.log(this.selectedEducadores)
 				})
-
-				this.educadoresService.list.subscribe((data) =>{
-					this.educadores = Object.assign([], data);
-				});
-
-				lastValueFrom(educadoresService.getList()).then( res => {
-					console.log('educadores', this.educadores)
-				})
+				
 			}	else {
 				console.log('else')
 				this.close();
@@ -80,7 +82,7 @@ export class EditComponent{
 	// Function created to save information entered in the registration modal
 	async save() {
 		this.loading = true;
-		console.log(this.aula.data)
+		
 		if (this.selectedEducadores){
 			this.aula.educador_Id = this.selectedEducadores?.id;
 		}

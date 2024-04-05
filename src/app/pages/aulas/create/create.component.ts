@@ -1,15 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { AulasService } from "src/app/services/aulas.service";
-import { ToastrService } from "ngx-toastr";
+import { Router, ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { lastValueFrom } from "rxjs";
+import { AulasService } from "src/app/services/aulas.service";
 import { AulaCadastro, AulaCadastroBody } from "src/app/models/aulas.model";
 import { Educador } from "src/app/models/educador.model";
 import { EducadoresService } from "src/app/services/educadores.service";
-import { lastValueFrom } from "rxjs";
 import { AlunoAulaListagem } from "src/app/models/aluno.model";
 import { TurmasService } from "src/app/services/turmas.service";
-import { DatePipe } from "@angular/common";
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
 	selector: 'create',

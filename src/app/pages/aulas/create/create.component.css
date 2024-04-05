@@ -193,7 +193,53 @@ td {
   border-bottom-right-radius: 0;
 }
 
+:host ::ng-deep .p-datepicker {
+  padding: 1.3rem;
+  background: #ffffff;
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 10pt;
+}
 
+:host ::ng-deep .p-datatable-thead{
+  padding: 5px;
+}
+
+:host ::ng-deep .p-datepicker table tr > span{
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  border-radius: 50%;
+  transition: box-shadow 0.2s;
+  border: 1px solid transparent;
+}
+
+
+:host ::ng-deep .p-datepicker table td > span {
+  width: 30px;
+  height: 25px;
+  margin: 0.5rem 0;
+  font-size: 0.8rem;
+  align-items: center;
+  border-radius: 50%;
+  transition: box-shadow 0.2s;
+  border: 1px solid transparent;
+}
+
+:host ::ng-deep .p-datepicker table td.p-datepicker-today > span.p-highlight {
+  color: #fff;
+  background: var(--primary);
+}
+
+:host ::ng-deep .p-datepicker table td > span.p-highlight {
+  color: #fff;
+  background: var(--primary);
+}
+
+:host ::ng-deep .p-datepicker table thead {
+  margin-top: 10px;
+}
 
 
 @import url('../../../../assets/css/buttons/buttons.css');

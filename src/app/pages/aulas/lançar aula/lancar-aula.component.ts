@@ -1,10 +1,11 @@
 
-import { AulasService } from "src/app/services/aulas.service";
 import { Component, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { lastValueFrom } from "rxjs";
-import { ToastrService } from "ngx-toastr";
+import { AulasService } from "src/app/services/aulas.service";
+import { lastValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+
+import { ToastrService } from "ngx-toastr";
 import { AlunoAula } from "src/app/models/aulas.model";
 import { Table } from 'primeng/table';
 import { TurmaAula } from "src/app/models/turmas.model";

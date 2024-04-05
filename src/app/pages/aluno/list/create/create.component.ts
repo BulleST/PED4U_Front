@@ -69,7 +69,7 @@ export class CreateComponent{
 		lastValueFrom(turmasService.getList());
 	}
 
-	// Fechar modal e retornar para rota de estabelecimento
+	// Fechar modal e retornar para rota
 	close(): void {
 		this.open = false;
 		this.router.navigate(['aluno']);

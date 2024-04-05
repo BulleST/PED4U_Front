@@ -1,6 +1,6 @@
 
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { AulasComponent } from "./aulas.component";
 import { AulasRoutingmodule } from './aulas.routing';
@@ -17,7 +17,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CreateAulaComponent } from "./create/create.component";
-import { CalendarModule } from 'primeng/calendar';
+import { CalendarModule } from "primeng/calendar";
 import { EditComponent } from "./edit/edit.component";
 
 
@@ -49,6 +49,10 @@ import { EditComponent } from "./edit/edit.component";
         
     
     ],
+    providers: [
+        DatePipe,
+      
+      ]
 })
 
 export class AulasModule {}

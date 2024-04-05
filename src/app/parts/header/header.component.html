@@ -1,53 +1,57 @@
-<div class="header" >
+<!-- <div class="header">
     <p-menubar *ngIf="!loggedIn">
         <ng-template pTemplate="start">
             <img src="assets/Supera_ampliado (2).png" height="80" class="mr-2" />
         </ng-template>
-       <ng-template ></ng-template>
+        <ng-template></ng-template>
     </p-menubar>
-
     <p-menubar [model]="items" *ngIf="loggedIn">
         <ng-template pTemplate="start">
             <a href="home">
-                <img src="assets/Supera_ampliado (2).png" height="80" class="mr-2"/>
+                <img src="assets/Supera_ampliado (2).png" height="80" class="mr-2" />
             </a>
         </ng-template>
-            <!-- <div class="button_header">
-                <a href="" class="header_loggedIn" (click)="minhaConta()"> </a>
-                    <p-button label="Logout" icon="pi pi-fw pi-power-off" (click)="sair()"></p-button>
-            </div> -->
-   
     </p-menubar>
-  
-    
-    <!-- <div class="menu_header">
-        <div class="button_header">
-            <p-menu #menu [model]="items" [popup]="true"></p-menu>
-            <button pButton type="button" (click)="menu.toggle($event)" icon="pi pi-angle-down" label="Cadastros Gerais"></button>
-        </div>
-        <div class="button_header">
-            <button [routerLink]="['aulas']" routerLinkActive="active" pButton type="button"  label="Lançar Aula">
-            </button>
-        </div>
-        <div class="button_header">
-            <button [routerLink]="['reposicao']" routerLinkActive="active" pButton type="button"  label="Gerenciar Reposições">
-            </button>
+</div> -->
+
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img class="mb-2 mt-2 me-2" src="../../../assets/logo.png" width="100px" height="50px" alt="Logo-Supera"></a>
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+      
+           
+         
+        <span class="navbar-toggler-icon"></span>
+       
+      </button>
+
+      <div class="navbar-collapse collapse" id="navbarsExample09">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false"><span class="p-button-icon pi pi-file me-2"></span>Cadastros Gerais</a>
+            <ul class="dropdown-menu">
+              <a class="nav-link active" aria-current="page" [routerLink]="['abaco']">Apostila de Ábaco</a>
+              <a class="nav-link active" aria-current="page" [routerLink]="['aluno']">Alunos</a>
+              <a class="nav-link active" aria-current="page" [routerLink]="['educadores']">Educadores</a>
+              <a class="nav-link active" aria-current="page" [routerLink]="['perfis']">Perfis</a>
+              <a class="nav-link active" aria-current="page" [routerLink]="['turmas']">Turmas</a>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false"><span class="p-button-icon pi pi-calendar me-2"></span>Gerenciar Reposições</a>
+            <ul class="dropdown-menu">
+              <a class="nav-link active" aria-current="page" [routerLink]="['reposicao']">Reposições</a>
             
-        </div>
-        <div class="button_header">
-            <button class="btn-header" type="button" [routerLink]="['account']" routerLinkActive="active">Fazer Login</button>
-        </div>
-        <div class="button_header" [class.header__userLogado-submenu--open]="menuMinhaContaOpen">
-            <p class="header__userLogado-submenu-link">Bem-vindo</p>
-            <a class="header__userLogado-submenu-link" (click)="minhaConta()">
-                <span style="margin-right: 8px;">
-                  
-                </span> Meus dados </a>
-            <a class="header__userLogado-submenu-link" (click)="sair()">
-                <span style="margin-right: 8px;">
-                   
-                </span> Sair </a>
-        </div>
-    </div> -->
-   
-</div>
+            </ul>
+          </li>
+        </ul>
+        <button pbutton pRipple icon="pi pi-power-off" class="p-element btn-off shadow-2 p-ripple"  (click)="sair()">
+            <span class="p-button-icon pi pi-power-off" aria-hidden="true"></span>
+            <span class="p-ink" aria-hidden="true" role="presentation"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>

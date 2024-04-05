@@ -2,7 +2,7 @@
 import { AlunoAulaListagem, AlunoAulaRel } from './../models/aluno.model';
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of, tap } from "rxjs";
-import { AulaCadastroBody, Aula, AlunoAula} from "../models/aulas.model";
+import { AulaCadastroBody, Aula, AlunoAula, AulaCadastro} from "../models/aulas.model";
 import { HttpClient } from "@angular/common/http";
 import { Response } from "../models/response.model";
 import { environment } from "src/environment/environment";
@@ -17,7 +17,8 @@ export class AulasService {
   url = environment.url;
   list: BehaviorSubject<Turma[]> = new BehaviorSubject<Turma[]>([])
   listTurma: BehaviorSubject<TurmaAula[]> = new BehaviorSubject<TurmaAula[]>([])
-  listAlunos: BehaviorSubject<AlunoAulaListagem[]> = new BehaviorSubject<AlunoAulaListagem[]>([])
+  aulaSelected: BehaviorSubject<AulaCadastro> = new BehaviorSubject<AulaCadastro>(new AulaCadastro)
+ 
 
 
 
@@ -44,8 +45,8 @@ export class AulasService {
       }))
   }
 
-  get(aula_Id: number) {
-    return this.httpClient.get<AlunoAulaListagem>(`${this.url}/Aluno_Aula_Rel/list/aluno/${aula_Id}`)
+  get(id: number) {
+    return this.httpClient.get<AulaCadastro>(`${this.url}/Aula/${id}`)
 
   }
 

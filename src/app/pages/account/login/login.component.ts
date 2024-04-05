@@ -30,7 +30,7 @@ export class LoginComponent {
     ) {
         this.loadingHelper.loading.subscribe(res => this.loading = res);
 
-        console.log('estou sendol construido')
+        console.log('estou sendo construido')
     }
 
     send() {
